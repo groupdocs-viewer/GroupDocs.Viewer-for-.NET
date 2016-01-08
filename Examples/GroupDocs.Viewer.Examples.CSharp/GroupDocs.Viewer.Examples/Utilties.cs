@@ -19,26 +19,33 @@ namespace GroupDocs.Viewer.Examples
         public const string OutputHtmlPath = "../../../../Data/Output/html/";
         public const string OutputImagePath = "../../../../Data/Output/images/";
         public const string OutputPath = "../../../../Data/Output/";
-        public const string licensePath = "../../GroupDocs.total.lic";
+        public const string licensePath = "../../../../Data/Storage/GroupDocs.Total.lic";
 
         #region Configurations
 
-        //ExStart:Configurations
+       
         
+        /// <summary>
+        /// Initialize, populate and return the ViewerConfig object
+        /// </summary>
+        /// <returns>Populated ViewerConfig Object</returns>
         public static ViewerConfig GetConfigurations()
         {
+            //ExStart:Configurations
             ViewerConfig config = new ViewerConfig();
             //set the storage path
             config.StoragePath = StoragePath;
             //Uncomment the below line for cache purpose
             //config.UseCache = true;
             return config;
+            //ExEnd:Configurations
+
         }
 
 
 
 
-        //ExEnd:Configurations
+        
         #endregion
         
         #region Transformations
@@ -53,10 +60,10 @@ namespace GroupDocs.Viewer.Examples
            
             public static void RotatePages(ref ImageOptions options, int angle)
             {
-               // config.UsePdf = true;
-               
-                // Set rotation angle
+                //ExStart:rotationAngle
+                // Set the property of ImageOption's rotation angle
                 options.RotationAngle = angle;
+                //ExEnd:rotationAngle
              }
            /// <summary>
            /// Reorder a page before rendering
@@ -67,8 +74,12 @@ namespace GroupDocs.Viewer.Examples
            /// <param name="newPageNumber">New number of page</param>
             public static void ReorderPage(ref ViewerHandler Handler, String guid, int currentPageNumber, int newPageNumber)
             {
+                //ExStart:reorderPage
+                //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
                 ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
+               // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
                 Handler.ReorderPage(options);
+                //ExEnd:reorderPage
             }
             /// <summary>
             /// add a watermark text to all rendered images.
@@ -80,12 +91,18 @@ namespace GroupDocs.Viewer.Examples
             /// <param name="width"></param>
             public static void AddWatermark(ref ImageOptions options, String text, Color color, WatermarkPosition position,int width)
             {
-                
+                //ExStart:AddWatermark
+                //Initialize watermark object by passing the text to display.
                 Watermark watermark = new Watermark(text);
+                //Apply the watermark color by assigning System.Drawing.Color.
                 watermark.Color = color;
+                //Set the watermark's position by assigning an enum WatermarkPosition's value.
                 watermark.Position = position;
+                //set an integer value as watermark width 
                 watermark.Width = width;
+                //Assign intialized and populated watermark object to ImageOptions or HtmlOptions objects
                 options.Watermark = watermark;
+                //ExEnd:AddWatermark
             }
             /// <summary>
             /// add a watermark text to all rendered Html pages.
@@ -110,16 +127,27 @@ namespace GroupDocs.Viewer.Examples
         #endregion
 
         #region ProductLicense
-        //ExStart:ApplyLicense
+    
         /// <summary>
-        /// Set product's license
+        /// Set product's license for HTML Handler
         /// </summary>
-        public static void ApplyLicense()
+        public static void ApplyLicense(ref ViewerHtmlHandler handler)
         {
-            //License lic = new License();
-            //lic.SetLicense(licensePath);
+            //ExStart:ApplyLicense
+            // Setup license whereas handler can be ViewerHtmlHandler or ViewerImageHandler.
+            handler.SetLicense(licensePath);
+            //ExEnd:ApplyLicense
         }
-        //ExEnd:ApplyLicense
+        /// <summary>
+        /// Set product's license for HTML Handler
+        /// </summary>
+        /// <param name="handler"></param>
+         public static void ApplyLicense(ref ViewerImageHandler handler)
+        {
+            // Setup license
+            handler.SetLicense(licensePath);
+        }
+       
         #endregion
 
         #region OutputHandling
@@ -132,15 +160,19 @@ namespace GroupDocs.Viewer.Examples
         {
             try
             {
+                //ExStart:SaveAsHTML
+                // set an html file name with absolute path
                 String fname = Path.Combine(Path.GetFullPath(OutputHtmlPath), Path.GetFileNameWithoutExtension(filename) + ".html");
                
                 // create a file at the disk
                 System.IO.File.WriteAllText(fname, content);
+                //ExEnd:SaveAsHTML
             }
             catch (System.Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
         }
         /// <summary>
         /// Save the rendered images at disk
@@ -151,11 +183,13 @@ namespace GroupDocs.Viewer.Examples
         {
             try
             {
+                //ExStart:SaveAsImage
                 // extract the image from stream
                 Image img = Image.FromStream(imageContent);
                 
                 //save the image in the form of jpeg
                 img.Save(Path.Combine(Path.GetFullPath(OutputImagePath), Path.GetFileNameWithoutExtension(imageName)) + ".Jpeg", ImageFormat.Jpeg);
+                //ExEnd:SaveAsImage
             }
             catch (System.Exception ex)
             {
@@ -171,8 +205,8 @@ namespace GroupDocs.Viewer.Examples
         {
             try
             {
-           
-
+                //ExStart:SaveAnyFile
+                //Create file stream
                 FileStream fileStream = File.Create(Path.Combine(Path.GetFullPath(OutputPath), filename), (int)content.Length);
 
                 // Initialize the bytes array with the stream length and then fill it with data
@@ -181,7 +215,7 @@ namespace GroupDocs.Viewer.Examples
 
                 // Use write method to write to the file specified above
                 fileStream.Write(bytesInStream, 0, bytesInStream.Length);
-               
+                //ExEnd:SaveAnyFile
             }
             catch ( System.Exception ex)
             {

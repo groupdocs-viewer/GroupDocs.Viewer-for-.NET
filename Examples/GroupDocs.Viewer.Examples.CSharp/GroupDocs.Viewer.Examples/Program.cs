@@ -10,25 +10,21 @@ namespace GroupDocs.Viewer.Examples.CSharp
     {
         static void Main(string[] args)
         {
-            /**
-            *  Applying product license
-            *  Please uncomment the statement if you do have license.
-            */
-            Utilities.ApplyLicense();
+            
            
             #region ViewerHtmlPresentation
             
             //Render a power point presentation in html form
             //ViewGenerator.RenderAsHtml("sample.pptx");
-            
+           
             //Render a spreadsheet in html form
             //ViewGenerator.RenderAsHtml("spreadsheet.xlsx");
             
             //Render a MS word document by replacing its 1st page order with 2nd page 
             // ViewGenerator.RenderAsHtml("word.doc",1,2);
-            
-            //Render a word document in html form and also apply a text as watermark on each page
-            // ViewGenerator.RenderAsHtml("word.doc", "Show me as watermark", Color.Purple);
+        
+             //Render a word document in html form and also apply a text as watermark on each page
+             //ViewGenerator.RenderAsHtml("word.doc", "Show me as watermark", Color.Purple);
             
             //Render a document located at a web location
            // ViewGenerator.RenderAsHtml(new Uri("http://www.example.com/sample.doc"));
@@ -50,7 +46,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // ViewGenerator.RenderAsImages("word.doc", "Show me as watermark", Color.Purple);
             
             //Render a word document in images form and set the rotation angle to display the rotated page.
-            ViewGenerator.RenderAsImages("word.doc", 180);
+           // ViewGenerator.RenderAsImages("word.doc", 180);
             
             //Render a document located at a web location
             // ViewGenerator.RenderAsImages(new Uri("http://www.example.com/sample.doc"));
