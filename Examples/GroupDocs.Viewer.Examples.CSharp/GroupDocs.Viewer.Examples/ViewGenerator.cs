@@ -24,7 +24,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
-        public static void RenderAsHtml(String DocumentName,String DocumentPassword=null)
+        public static void RenderDocumentAsHtml(String DocumentName,String DocumentPassword=null)
         {
            //ExStart:RenderAsHtml
             //Get Configurations
@@ -68,7 +68,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="position">Watermark Position is optional parameter. Default value is WatermarkPosition.Diagonal</param>
         /// <param name="WatermarkWidth"> width of watermark as integer. it is optional Parameter default value is 100</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsHtml(String DocumentName, String WatermarkText, Color WatermarkColor, WatermarkPosition position=WatermarkPosition.Diagonal, int WatermarkWidth=100, String DocumentPassword=null )
+        public static void RenderDocumentAsHtml(String DocumentName, String WatermarkText, Color WatermarkColor, WatermarkPosition position = WatermarkPosition.Diagonal, int WatermarkWidth = 100, String DocumentPassword = null)
         {
             //ExStart:RenderAsHtmlWithWaterMark
             //Get Configurations
@@ -110,7 +110,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="CurrentPageNumber">Page existing order number</param>
         /// <param name="NewPageNumber">Page new order number</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsHtml(String DocumentName, int CurrentPageNumber, int NewPageNumber, String DocumentPassword = null)
+        public static void RenderDocumentAsHtml(String DocumentName, int CurrentPageNumber, int NewPageNumber, String DocumentPassword = null)
         {
             //ExStart:RenderAsHtmlAndReorderPage
             //Get Configurations
@@ -156,7 +156,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsHtml(Uri DocumentURL, String DocumentPassword = null)
+        public static void RenderDocumentAsHtml(Uri DocumentURL, String DocumentPassword = null)
         {
             //ExStart:RenderRemoteDocAsHtml
            //Get Configurations 
@@ -193,7 +193,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
-        public static void RenderAsImages(String DocumentName,String DocumentPassword=null)
+        public static void RenderDocumentAsImages(String DocumentName,String DocumentPassword=null)
         {
             //ExStart:RenderAsImage
             //Get Configurations
@@ -203,7 +203,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerImageHandler imageHandler = new ViewerImageHandler(config);
             
             // Apply product license to image handler.
-            //Utilities.ApplyLicense(ref imageHandler);
+            Utilities.ApplyLicense(ref imageHandler);
             
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -235,7 +235,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="position">Watermark Position is optional parameter. Default value is WatermarkPosition.Diagonal</param>
         /// <param name="WatermarkWidth"> width of watermark as integer. it is optional Parameter default value is 100</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsImages(String DocumentName, String WatermarkText, Color WatermarkColor, WatermarkPosition position = WatermarkPosition.Diagonal, int WatermarkWidth = 100, String DocumentPassword = null)
+        public static void RenderDocumentAsImages(String DocumentName, String WatermarkText, Color WatermarkColor, WatermarkPosition position = WatermarkPosition.Diagonal, int WatermarkWidth = 100, String DocumentPassword = null)
         {
             //ExStart:RenderAsImageWithWaterMark
             //Get Configurations
@@ -276,7 +276,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="DocumentName"></param>
         /// <param name="RotationAngle">rotation angle in digits</param>
         /// <param name="DocumentPassword"></param>
-        public static void RenderAsImages(String DocumentName, int RotationAngle, String DocumentPassword = null)
+        public static void RenderDocumentAsImages(String DocumentName, int RotationAngle, String DocumentPassword = null)
         {
             //ExStart:RenderAsImageWithRotationTransformation
             //Get Configurations
@@ -318,7 +318,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="CurrentPageNumber">Page existing order number</param>
         /// <param name="NewPageNumber">Page new order number</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsImages(String DocumentName, int CurrentPageNumber, int NewPageNumber, String DocumentPassword = null)
+        public static void RenderDocumentAsImages(String DocumentName, int CurrentPageNumber, int NewPageNumber, String DocumentPassword = null)
         {
             //ExStart:RenderAsImageAndReorderPage
             //Get Configurations
@@ -361,7 +361,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static void RenderAsImages(Uri DocumentURL, String DocumentPassword = null)
+        public static void RenderDocumentAsImages(Uri DocumentURL, String DocumentPassword = null)
         {
             //ExStart:RenderRemoteDocAsImages
             //Get Configurations
@@ -398,7 +398,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// Render a document as it is (original form)
         /// </summary>
         /// <param name="DocumentName"></param>
-        public static void RenderOriginal(String DocumentName)
+        public static void RenderDocumentAsOriginal(String DocumentName)
         {
             //ExStart:RenderOriginal
             // Create image handler 
@@ -422,7 +422,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
        /// Render a document in PDF Form
        /// </summary>
        /// <param name="DocumentName"></param>
-        public static void RenderAsPDF(String DocumentName)
+        public static void RenderDocumentAsPDF(String DocumentName)
         {
             //ExStart:RenderAsPdf
             // Create/initialize image handler 
