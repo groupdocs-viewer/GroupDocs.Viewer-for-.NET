@@ -127,11 +127,9 @@ Namespace GroupDocs.Viewer.Examples
         ''' <summary>
         ''' Set product's license for HTML Handler
         ''' </summary>
-        Public Shared Sub ApplyLicense(ByRef handler As ViewerHtmlHandler)
-            'ExStart:ApplyLicense
-            ' Setup license whereas handler can be ViewerHtmlHandler or ViewerImageHandler.
-            handler.SetLicense(licensePath)
-            'ExEnd:ApplyLicense
+       Public Shared Sub ApplyLicense()
+            Dim lic As New License()
+            lic.SetLicense(licensePath)
         End Sub
         ''' <summary>
         ''' Set product's license for HTML Handler

@@ -11,6 +11,16 @@ Namespace GroupDocs.Viewer.Examples
         Sub Main()
 
 
+            'ExStart:ApplyingLicense
+            '*
+            '             *  Applying product license
+            '             *  Please uncomment the statement if you do have license.
+            '             
+
+            Utilities.ApplyLicense()
+
+            'ExEnd:ApplyingLicense
+
             '#Region "ViewerHtmlPresentation"
 
             'Render a power point presentation in html form

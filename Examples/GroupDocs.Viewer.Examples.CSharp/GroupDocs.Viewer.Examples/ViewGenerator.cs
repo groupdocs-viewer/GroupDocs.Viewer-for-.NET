@@ -33,9 +33,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create html handler
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
-            // Apply product license to html handler.
-            Utilities.ApplyLicense(ref htmlHandler);
-
+            
             // Guid implies that unique document name 
             string guid = DocumentName;
 
@@ -77,9 +75,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create html handler
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
-            // Apply product license to html handler.
-            Utilities.ApplyLicense(ref htmlHandler);
-
             // Guid implies that unique document name 
             string guid = DocumentName;
 
@@ -92,7 +87,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Call AddWatermark and pass the reference of HtmlOptions object as 1st parameter
             Utilities.PageTransformations.AddWatermark(ref options, WatermarkText, WatermarkColor, position, WatermarkWidth);
-
+            
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
 
@@ -138,10 +133,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //down cast the handler(ViewerHandler) to viewerHtmlHandler
             ViewerHtmlHandler htmlHandler = (ViewerHtmlHandler)handler;
 
-            // Apply product license to html handler.
-            Utilities.ApplyLicense(ref htmlHandler);
-
-            //Get document pages in html form
+           //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
 
             foreach (PageHtml page in pages)
@@ -165,10 +157,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create html handler
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
-            // Apply product license to html handler.
-            Utilities.ApplyLicense(ref htmlHandler);
-
-            //Instantiate the HtmlOptions object
+           //Instantiate the HtmlOptions object
             HtmlOptions options = new HtmlOptions();
 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -201,9 +190,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Create image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-            
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
             
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -244,9 +230,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create image handler
             ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
-
             // Guid implies that unique document name
             string guid = DocumentName;
 
@@ -284,9 +267,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Create image handler
             ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
 
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -342,10 +322,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
            
             //down cast the handler(ViewerHandler) to viewerHtmlHandler
             ViewerImageHandler imageHandler = (ViewerImageHandler)handler;
-
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
-
+            
             //Get document pages in image form
             List<PageImage> Images = imageHandler.GetPages(guid, options);
 
@@ -369,10 +346,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Create image handler
             ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-            
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
-            
+                                  
             //Initialize ImageOptions Object
             ImageOptions options = new ImageOptions();
 
@@ -404,10 +378,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
             
-            // Apply product license to image handler.
-            Utilities.ApplyLicense(ref imageHandler);
-           
-            // Guid implies that unique document name 
+           // Guid implies that unique document name 
             string guid = DocumentName;
 
             // Get original file
@@ -428,10 +399,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create/initialize image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
-            // Apply product license to image handler.
-             Utilities.ApplyLicense(ref imageHandler);
-           
-            //Initialize PdfFileOptions object
+           //Initialize PdfFileOptions object
             PdfFileOptions options = new PdfFileOptions();
            
             // Guid implies that unique document name 

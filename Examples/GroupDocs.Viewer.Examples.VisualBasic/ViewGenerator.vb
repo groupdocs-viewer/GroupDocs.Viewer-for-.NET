@@ -32,9 +32,6 @@ Namespace GroupDocs.Viewer.Examples
             ' Create html handler
             Dim htmlHandler As New ViewerHtmlHandler(config)
 
-            ' Apply product license to html handler.
-            Utilities.ApplyLicense(htmlHandler)
-
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
@@ -75,8 +72,6 @@ Namespace GroupDocs.Viewer.Examples
             ' Create html handler
             Dim htmlHandler As New ViewerHtmlHandler(config)
 
-            ' Apply product license to html handler.
-            Utilities.ApplyLicense(htmlHandler)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -136,9 +131,6 @@ Namespace GroupDocs.Viewer.Examples
             'down cast the handler(ViewerHandler) to viewerHtmlHandler
             Dim htmlHandler As ViewerHtmlHandler = DirectCast(handler, ViewerHtmlHandler)
 
-            ' Apply product license to html handler.
-            Utilities.ApplyLicense(htmlHandler)
-
             'Get document pages in html form
             Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
 
@@ -160,9 +152,6 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Create html handler
             Dim htmlHandler As New ViewerHtmlHandler(config)
-
-            ' Apply product license to html handler.
-            Utilities.ApplyLicense(htmlHandler)
 
             'Instantiate the HtmlOptions object
             Dim options As New HtmlOptions()
@@ -196,9 +185,6 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Create image handler 
             Dim imageHandler As New ViewerImageHandler(config)
-
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -238,9 +224,6 @@ Namespace GroupDocs.Viewer.Examples
             ' Create image handler
             Dim imageHandler As New ViewerImageHandler(config)
 
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
-
             ' Guid implies that unique document name
             Dim guid As String = DocumentName
 
@@ -277,9 +260,6 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Create image handler
             Dim imageHandler As New ViewerImageHandler(config)
-
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -336,9 +316,6 @@ Namespace GroupDocs.Viewer.Examples
             'down cast the handler(ViewerHandler) to viewerHtmlHandler
             Dim imageHandler As ViewerImageHandler = DirectCast(handler, ViewerImageHandler)
 
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
-
             'Get document pages in image form
             Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, options)
 
@@ -360,9 +337,6 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Create image handler
             Dim imageHandler As New ViewerImageHandler(config)
-
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
 
             'Initialize ImageOptions Object
             Dim options As New ImageOptions()
@@ -394,9 +368,6 @@ Namespace GroupDocs.Viewer.Examples
             ' Create image handler 
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
 
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
-
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
@@ -416,9 +387,6 @@ Namespace GroupDocs.Viewer.Examples
             'ExStart:RenderAsPdf
             ' Create/initialize image handler 
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
-
-            ' Apply product license to image handler.
-            Utilities.ApplyLicense(imageHandler)
 
             'Initialize PdfFileOptions object
             Dim options As New PdfFileOptions()

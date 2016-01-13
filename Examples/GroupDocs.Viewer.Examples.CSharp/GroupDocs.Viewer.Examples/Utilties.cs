@@ -129,25 +129,14 @@ namespace GroupDocs.Viewer.Examples
         #region ProductLicense
     
         /// <summary>
-        /// Set product's license for HTML Handler
+        /// Set product's license 
         /// </summary>
-        public static void ApplyLicense(ref ViewerHtmlHandler handler)
+        public static void ApplyLicense()
         {
-            //ExStart:ApplyLicense
-            // Setup license whereas handler can be ViewerHtmlHandler or ViewerImageHandler.
-            handler.SetLicense(licensePath);
-            //ExEnd:ApplyLicense
+            License lic = new License();
+            lic.SetLicense(licensePath);
         }
-        /// <summary>
-        /// Set product's license for HTML Handler
-        /// </summary>
-        /// <param name="handler"></param>
-         public static void ApplyLicense(ref ViewerImageHandler handler)
-        {
-            // Setup license
-            handler.SetLicense(licensePath);
-        }
-       
+               
         #endregion
 
         #region OutputHandling
@@ -199,8 +188,8 @@ namespace GroupDocs.Viewer.Examples
         /// <summary>
         /// Save file in any format
         /// </summary>
-        /// <param name="imageName">Save as provided string</param>
-        /// <param name="imageContent">stream of image contents</param>
+        /// <param name="filename">Save as provided string</param>
+        /// <param name="content">Stream as content of a file</param>
         public static void SaveFile(String filename, Stream content)
         {
             try
