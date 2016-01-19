@@ -39,7 +39,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Instantiate the HtmlOptions object
             HtmlOptions options = new HtmlOptions();
-
+            
             //to get html representations of pages with embedded resources
             options.IsResourcesEmbedded = true;
 
@@ -81,6 +81,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Instantiate the HtmlOptions object 
             HtmlOptions options = new HtmlOptions();
 
+            options.IsResourcesEmbedded = false;
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
@@ -117,8 +118,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Guid implies that unique document name 
             string guid = DocumentName;
 
-            //Instantiate the HtmlOptions object
-            HtmlOptions options = new HtmlOptions();
+            //Instantiate the HtmlOptions object with setting of Reorder Transformation
+            HtmlOptions options = new HtmlOptions {  Transformations=Transformation.Reorder };
 
             //to get html representations of pages with embedded resources
             options.IsResourcesEmbedded = true;
@@ -271,8 +272,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Guid implies that unique document name 
             string guid = DocumentName;
            
-            //Initialize ImageOptions Object
-            ImageOptions options = new ImageOptions();
+            //Initialize ImageOptions Object and setting Rotate Transformation
+            ImageOptions options = new ImageOptions { Transformations=Transformation.Rotate  };
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -310,8 +311,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Guid implies that unique document name 
             string guid = DocumentName;
 
-            //Initialize ImageOptions Object
-            ImageOptions options = new ImageOptions();
+            //Initialize ImageOptions Object and setting Reorder Transformation
+            ImageOptions options = new ImageOptions  {  Transformations=Transformation.Reorder  };
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -416,7 +417,45 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsPdf
 
         }
+        /// <summary>
+        /// Load directory structure as file tree
+        /// </summary>
+        /// <param name="Path"></param>
+        public static void LoadFileTree(String Path)
+        {
+            //ExStart:LoadFileTree
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
+            // Load file tree list for custom path 
+            var options = new FileTreeOptions(Path);
+
+           // Load file tree list for ViewerConfig.StoragePath
+            FileTreeContainer container = imageHandler.LoadFileTree(options);
+
+            foreach (var node in container.FileTree)
+            {
+                if (node.IsDirectory)
+                {
+                    Console.WriteLine("Guid: {0} | Name: {1} | LastModificationDate: {2}",
+                        node.Guid,
+                        node.Name,
+                        node.LastModificationDate);
+                }
+                else
+                    Console.WriteLine("Guid: {0} | Name: {1} | Document type: {2} | File type: {3} | Extension: {4} | Size: {5} | LastModificationDate: {6}",
+                        node.Guid,
+                        node.Name,
+                        node.DocumentType,
+                        node.FileType,
+                        node.Extension,
+                        node.Size,
+                        node.LastModificationDate);
+            }
+
+            //ExEnd:LoadFioleTree
+
+        }
         #endregion
 
     }

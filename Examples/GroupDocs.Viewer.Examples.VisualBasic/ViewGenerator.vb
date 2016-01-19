@@ -12,6 +12,8 @@ Imports System.Drawing
 Imports GroupDocs.Viewer.Domain
 Imports GroupDocs.Viewer.Domain.Containers
 Imports System.IO
+Imports GroupDocs.Viewer.Domain.Transformation
+
 
 Namespace GroupDocs.Viewer.Examples
     Public NotInheritable Class ViewGenerator
@@ -19,6 +21,9 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
 #Region "HTMLRepresentation"
+
+
+
         ''' <summary>
         ''' Render simple document in html representation
         ''' </summary>
@@ -114,8 +119,10 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
-            'Instantiate the HtmlOptions object
-            Dim options As New HtmlOptions()
+
+            'Instantiate the HtmlOptions object with setting of Reorder Transformation
+            Dim options As New HtmlOptions() With {.Transformations = Transformation.Reorder}
+
 
             'to get html representations of pages with embedded resources
             options.IsResourcesEmbedded = True
@@ -264,8 +271,8 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
-            'Initialize ImageOptions Object
-            Dim options As New ImageOptions()
+            'Initialize ImageOptions Object and setting Rotate Transformation
+            Dim options As New ImageOptions() With {.Transformations = Transformation.Rotate}
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
@@ -302,8 +309,9 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
-            'Initialize ImageOptions Object
-            Dim options As New ImageOptions()
+
+            'Initialize ImageOptions Object and setting Reorder Transformation
+            Dim options As New ImageOptions() With {.Transformations = Transformation.Reorder }
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
@@ -407,6 +415,8 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
 #End Region
+
+        
 
     End Class
 
