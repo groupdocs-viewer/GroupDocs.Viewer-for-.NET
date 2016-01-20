@@ -1,0 +1,72 @@
+﻿<h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
+
+<table>
+    <tr>
+        <td style="text-align: center">
+            <h4>View document in HTML mode</h4>
+        </td>
+        <td></td>
+        <td style="text-align: center">
+            <h4>View document in image mode</h4>
+        </td>
+     </tr>
+    <tr>
+        <td>
+           
+            <div id="viewerHtmlDiv"></div>
+        </td>
+        <td style="width:30px"></td>
+        <td>
+            
+            <div id="viewerImageDiv"></div>
+        </td>
+    </tr>
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#viewerHtmlDiv').groupdocsViewer({
+                filePath: 'candy.pdf',
+                zoomToFitWidth: true,
+                showFolderBrowser: true,
+                showHeader: true,
+                showPaging: true,
+                showThumbnails: true,
+                useHtmlThumbnails: true,
+                width: 650,
+                height: 900,
+                //watermarkPosition: 'Diagonal',
+                //watermarkText: 'Watermark for pdf',
+                useHtmlBasedEngine: true,
+
+                showDownload: true,
+                downloadPdfFile: true,
+
+                showPrint: true,
+                usePdfPrinting: true
+            });
+        });
+
+        $(function () {
+            $('#viewerImageDiv').groupdocsViewer({
+                filePath: 'demo.docx',
+                zoomToFitWidth: true,
+                showFolderBrowser: true,
+                showHeader: true,
+                showPaging: true,
+                width: 650,
+                height: 900,
+                watermarkPosition: 'Diagonal',
+                watermarkText: 'Watermark for image',
+                useHtmlBasedEngine: false,
+
+                showDownload: true,
+                downloadPdfFile: false,
+
+                showPrint: true,
+                usePdfPrinting: false
+            });
+        });
+    </script>
+}

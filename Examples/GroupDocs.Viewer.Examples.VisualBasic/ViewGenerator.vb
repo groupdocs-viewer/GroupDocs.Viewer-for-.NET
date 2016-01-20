@@ -266,7 +266,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim config As ViewerConfig = Utilities.GetConfigurations()
 
             ' Create image handler
-            Dim imageHandler As New ViewerImageHandler(config)
+            Dim handler As ViewerHandler = New ViewerImageHandler(config)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -276,18 +276,21 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
-                options.Password = DocumentPassword
+                Options.Password = DocumentPassword
             End If
 
             'Call RotatePages to apply rotate transformation to a page
-            Utilities.PageTransformations.RotatePages(options, RotationAngle)
+            Utilities.PageTransformations.RotatePages(handler, guid, 1, RotationAngle)
+
+            'down cast the handler(ViewerHandler) to viewerHtmlHandler
+            Dim imageHandler As ViewerImageHandler = DirectCast(handler, ViewerImageHandler)
 
             'Get document pages in image form
-            Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, options)
+            Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, Options)
 
             For Each image As PageImage In Images
                 'Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber & "_" & DocumentName, image.Stream)
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream)
             Next
             'ExEnd:RenderAsImageWithRotationTransformation
         End Sub

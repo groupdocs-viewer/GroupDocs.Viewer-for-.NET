@@ -267,7 +267,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerConfig config = Utilities.GetConfigurations();
 
             // Create image handler
-            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+            ViewerHandler handler = new ViewerImageHandler(config);
 
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -280,8 +280,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 options.Password = DocumentPassword;
 
             //Call RotatePages to apply rotate transformation to a page
-            Utilities.PageTransformations.RotatePages(ref options,RotationAngle);
+            Utilities.PageTransformations.RotatePages(ref handler, guid,1,RotationAngle);
 
+            //down cast the handler(ViewerHandler) to viewerHtmlHandler
+            ViewerImageHandler imageHandler = (ViewerImageHandler)handler;
+            
             //Get document pages in image form
             List<PageImage> Images = imageHandler.GetPages(guid, options);
 

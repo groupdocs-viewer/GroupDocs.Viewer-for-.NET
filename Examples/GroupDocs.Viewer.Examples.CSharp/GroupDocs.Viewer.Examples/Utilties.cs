@@ -17,7 +17,7 @@ namespace GroupDocs.Viewer.Examples
     {
         public const string StoragePath = "../../../../Data/Storage/";
         public const string OutputHtmlPath = "../../../../Data/Output/html/";
-        public const string OutputImagePath = "../../../../Data/Output/images/";
+        public const string OutputImagePath = "../../../../Data/Output/images/";      
         public const string OutputPath = "../../../../Data/Output/";
         public const string licensePath = "../../../../Data/Storage/GroupDocs.Total.lic";
 
@@ -36,7 +36,7 @@ namespace GroupDocs.Viewer.Examples
             //set the storage path
             config.StoragePath = StoragePath;
             //Uncomment the below line for cache purpose
-            //config.UseCache = true;
+            config.UseCache = true;
             return config;
             //ExEnd:Configurations
 
@@ -58,11 +58,11 @@ namespace GroupDocs.Viewer.Examples
            /// <param name="options"></param>
            /// <param name="angle"></param>
            
-            public static void RotatePages(ref ImageOptions options, int angle)
+            public static void RotatePages(ref ViewerHandler handler,String guid,int PageNumber, int angle)
             {
                 //ExStart:rotationAngle
-                // Set the property of ImageOption's rotation angle
-                options.RotationAngle = angle;
+                // Set the property of handler's rotate Page
+                handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
                 //ExEnd:rotationAngle
              }
            /// <summary>

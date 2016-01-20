@@ -10,6 +10,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Linq
 Imports System.Text
+Imports GroupDocs.Viewer.Domain.Containers
 
 Namespace GroupDocs.Viewer.Examples
     Public NotInheritable Class Utilities
@@ -53,15 +54,17 @@ Namespace GroupDocs.Viewer.Examples
             Private Sub New()
             End Sub
             ''' <summary>
-            ''' Rotate a Page before rendering
+            '''  Rotate a Page before rendering
             ''' </summary>
-            ''' <param name="options"></param>
+            ''' <param name="handler"></param>
+            ''' <param name="guid"></param>
+            ''' <param name="PageNumber"></param>
             ''' <param name="angle"></param>
-
-            Public Shared Sub RotatePages(ByRef options As ImageOptions, angle As Integer)
+            ''' <remarks></remarks>
+            Public Shared Sub RotatePages(ByRef handler As ViewerHandler, guid As [String], PageNumber As Integer, angle As Integer)
                 'ExStart:rotationAngle
-                ' Set the property of ImageOption's rotation angle
-                options.RotationAngle = angle
+                ' Set the property of handler's rotate Page
+                handler.RotatePage(New RotatePageOptions(guid, PageNumber, angle))
                 'ExEnd:rotationAngle
             End Sub
             ''' <summary>
@@ -127,7 +130,7 @@ Namespace GroupDocs.Viewer.Examples
         ''' <summary>
         ''' Set product's license for HTML Handler
         ''' </summary>
-       Public Shared Sub ApplyLicense()
+        Public Shared Sub ApplyLicense()
             Dim lic As New License()
             lic.SetLicense(licensePath)
         End Sub
@@ -201,6 +204,33 @@ Namespace GroupDocs.Viewer.Examples
             Catch ex As System.Exception
                 Console.WriteLine(ex.Message)
             End Try
+        End Sub
+        ''' <summary>
+        ''' Load directory structure as file tree
+        ''' </summary>
+        ''' <param name="Path"></param>
+        Public Shared Sub LoadFileTree(Path As [String])
+            'ExStart:LoadFileTree
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Load file tree list for custom path 
+            Dim options = New FileTreeOptions(Path)
+
+            ' Load file tree list for ViewerConfig.StoragePath
+            Dim container As FileTreeContainer = imageHandler.LoadFileTree(options)
+
+            For Each node In container.FileTree
+                If node.IsDirectory Then
+                    Console.WriteLine("Guid: {0} | Name: {1} | LastModificationDate: {2}", node.Guid, node.Name, node.LastModificationDate)
+                Else
+                    Console.WriteLine("Guid: {0} | Name: {1} | Document type: {2} | File type: {3} | Extension: {4} | Size: {5} | LastModificationDate: {6}", node.Guid, node.Name, node.DocumentType, node.FileType, node.Extension, _
+                        node.Size, node.LastModificationDate)
+                End If
+            Next
+
+            'ExEnd:LoadFioleTree
+
         End Sub
 
 #End Region
