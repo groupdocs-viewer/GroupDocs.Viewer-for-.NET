@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<FileData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DateModified>2016-01-15T11:58:13.705678+05:00</DateModified>
+  <DateCreated xsi:nil="true" />
+  <PageCount>1</PageCount>
+  <UsePdf>false</UsePdf>
+  <Pages>
+    <PageData>
+      <Number>1</Number>
+      <Angle>0</Angle>
+      <Width>1240</Width>
+      <Height>1753</Height>
+      <Rows />
+    </PageData>
+  </Pages>
+  <MaxWidth>1240</MaxWidth>
+  <MaxHeight>1753</MaxHeight>
+</FileData>
