@@ -1,0 +1,56 @@
+﻿body {
+    font-family: Arial,Verdana,Tahoma;
+    font-size: small;
+}
+
+.viewer {
+    height: 800px;
+    overflow-y: scroll;
+}
+
+#reorderable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #reorderable li {
+        margin: 3px 3px 3px 0;
+        padding: 1px;
+        border: 1px solid #808080;
+        background-color: #deefdd;
+        float: left;
+        width: 50px;
+        height: 60px;
+        font-size: 1em;
+        text-align: center;
+    }
+
+#rotation_container {
+    height: 200px;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-state-highlight {
+    background-color: #f9f3f3;
+}
+
+#rotation_container div {
+    margin: 20px 100px;
+    padding: 1px;
+    border: 1px solid #808080;
+    background-color: #deefdd;
+    float: left;
+    width: 100px;
+    height: 150px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.image_page {
+    border: 1px solid #808080;
+    padding: 5px;
+    margin: 5px;
+}
