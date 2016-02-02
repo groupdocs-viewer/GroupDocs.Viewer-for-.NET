@@ -270,10 +270,11 @@ namespace GroupDocs.Viewer.Model
             {
                 string imgname=image.PageNumber + "_" + Path.GetFileNameWithoutExtension(DocumentName);
                 imgname = Regex.Replace(imgname, @"\s+", "_");
-                Utilities.SaveAsImage(imgname, image.Stream);
+                
+                Utilities.SaveAsImage(Path.GetDirectoryName(DocumentName),imgname, image.Stream);
                 
                 ImageInfo imageInfo = new ImageInfo();
-                imageInfo.ImageUrl = @"../Uploads/images/" + imgname + ".jpg";
+                imageInfo.ImageUrl = @"/Uploads/images/" + imgname + ".jpg?" + Guid.NewGuid().ToString();
                 imageInfo.PageNmber = image.PageNumber;
                 imageInfo.HtmlContent = @"<div class='image_page'><img src='" + imageInfo.ImageUrl + "' /></div>";
                 contents.Add(imageInfo);
@@ -292,7 +293,7 @@ namespace GroupDocs.Viewer.Model
         /// <param name="position">Watermark Position is optional parameter. Default value is WatermarkPosition.Diagonal</param>
         /// <param name="WatermarkWidth"> width of watermark as integer. it is optional Parameter default value is 100</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
-        public static List<ImageInfo> RenderDocumentAsImages(String DocumentName, String WatermarkText, Color WatermarkColor, WatermarkPosition position = WatermarkPosition.Diagonal, int WatermarkWidth = 100, String DocumentPassword = null)
+        public static List<ImageInfo> RenderDocumentAsImages(String DocumentName, String WatermarkText, Color WatermarkColor, int WatermarkWidth = 100, String DocumentPassword = null)
         {
             //ExStart:RenderAsImageWithWaterMark
             //Get Configurations
@@ -312,7 +313,7 @@ namespace GroupDocs.Viewer.Model
                 options.Password = DocumentPassword;
            
             // Call AddWatermark and pass the reference of ImageOptions object as 1st parameter
-            Utilities.PageTransformations.AddWatermark(ref options, WatermarkText, WatermarkColor, position, WatermarkWidth);
+            Utilities.PageTransformations.AddWatermark(ref options, WatermarkText, WatermarkColor, WatermarkPosition.Diagonal, WatermarkWidth);
             
             //Get document pages in image form
             List<PageImage> Images = imageHandler.GetPages(guid, options);
@@ -323,10 +324,11 @@ namespace GroupDocs.Viewer.Model
             {
                 string imgname = image.PageNumber + "_" + Path.GetFileNameWithoutExtension(DocumentName);
                 imgname = Regex.Replace(imgname, @"\s+", "_");
-                Utilities.SaveAsImage(imgname, image.Stream);
+
+                Utilities.SaveAsImage(Path.GetDirectoryName(DocumentName), imgname, image.Stream);
 
                 ImageInfo imageInfo = new ImageInfo();
-                imageInfo.ImageUrl = @"../Uploads/images/" + imgname + ".jpg";
+                imageInfo.ImageUrl = @"/Uploads/images/" + imgname + ".jpg?" + Guid.NewGuid().ToString();
                 imageInfo.PageNmber = image.PageNumber;
                 imageInfo.HtmlContent = @"<div class='image_page'><img src='" + imageInfo.ImageUrl + "' /></div>";
                 contents.Add(imageInfo);
@@ -361,7 +363,7 @@ namespace GroupDocs.Viewer.Model
                 options.Password = DocumentPassword;
 
             //Call RotatePages to apply rotate transformation to a page
-            Utilities.PageTransformations.RotatePages(ref handler, guid,1,RotationAngle);
+            Utilities.PageTransformations.RotatePages(ref handler, guid, pageNumber, RotationAngle);
 
             //down cast the handler(ViewerHandler) to viewerHtmlHandler
             ViewerImageHandler imageHandler = (ViewerImageHandler)handler;
@@ -375,10 +377,11 @@ namespace GroupDocs.Viewer.Model
             {
                 string imgname = image.PageNumber + "_" + Path.GetFileNameWithoutExtension(DocumentName);
                 imgname = Regex.Replace(imgname, @"\s+", "_");
-                Utilities.SaveAsImage(imgname, image.Stream);
+
+                Utilities.SaveAsImage(Path.GetDirectoryName(DocumentName), imgname, image.Stream);
 
                 ImageInfo imageInfo = new ImageInfo();
-                imageInfo.ImageUrl = @"../Uploads/images/" + imgname + ".jpg";
+                imageInfo.ImageUrl = @"/Uploads/images/" + imgname + ".jpg?"+Guid.NewGuid().ToString();
                 imageInfo.PageNmber = image.PageNumber;
                 imageInfo.HtmlContent = @"<div class='image_page'><img src='" + imageInfo.ImageUrl + "' /></div>";
                 contents.Add(imageInfo);
@@ -428,10 +431,11 @@ namespace GroupDocs.Viewer.Model
             {
                 string imgname = image.PageNumber + "_" + Path.GetFileNameWithoutExtension(DocumentName);
                 imgname = Regex.Replace(imgname, @"\s+", "_");
-                Utilities.SaveAsImage(imgname, image.Stream);
+
+                Utilities.SaveAsImage(Path.GetDirectoryName(DocumentName), imgname, image.Stream);
 
                 ImageInfo imageInfo = new ImageInfo();
-                imageInfo.ImageUrl = @"../Uploads/images/" + imgname + ".jpg";
+                imageInfo.ImageUrl = @"/Uploads/images/" + imgname + ".jpg?" + Guid.NewGuid().ToString();
                 imageInfo.PageNmber = image.PageNumber;
                 imageInfo.HtmlContent = @"<div class='image_page'><img src='" + imageInfo.ImageUrl + "' /></div>";
                 contents.Add(imageInfo);
@@ -467,7 +471,7 @@ namespace GroupDocs.Viewer.Model
             foreach (PageImage image in Images)
             {
                 //Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber + "_" + Path.GetFileName(DocumentURL.LocalPath), image.Stream);
+               // Utilities.SaveAsImage(image.PageNumber + "_" + Path.GetFileName(DocumentURL.LocalPath), image.Stream);
             }
             //ExEnd:RenderRemoteDocAsImages
         }
@@ -492,7 +496,7 @@ namespace GroupDocs.Viewer.Model
             FileContainer container = imageHandler.GetFile(guid);
            
             //Save each image at disk
-            Utilities.SaveAsImage(DocumentName, container.Stream);
+           // Utilities.SaveAsImage(DocumentName, container.Stream);
             //ExEnd:RenderOriginal
 
         }

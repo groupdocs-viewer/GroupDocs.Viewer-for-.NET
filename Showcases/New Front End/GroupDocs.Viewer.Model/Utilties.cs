@@ -16,9 +16,7 @@ namespace GroupDocs.Viewer.Model
     public static class Utilities
     {
 
-        public const string licensePath = @"D:\from office working\for aspose\storage\GroupDocs.Total.lic";
-        public const string imagesPath = @"Uploads\images";
-
+       
         #region Configurations
 
        
@@ -35,7 +33,7 @@ namespace GroupDocs.Viewer.Model
             config.StoragePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();;
             //Uncomment the below line for cache purpose
             config.TempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
-            config.UseCache = true;
+            config.UseCache = false;
             return config;
             //ExEnd:Configurations
 
@@ -135,7 +133,7 @@ namespace GroupDocs.Viewer.Model
         /// <summary>
         /// Set product's license 
         /// </summary>
-        public static void ApplyLicense()
+        public static void ApplyLicense(string licensePath)
         {
             License lic = new License();
             lic.SetLicense(licensePath);
@@ -172,7 +170,7 @@ namespace GroupDocs.Viewer.Model
         /// </summary>
         /// <param name="imageName">Save as provided string</param>
         /// <param name="imageContent">stream of image contents</param>
-        public static void SaveAsImage(String imageName, Stream imageContent)
+        public static void SaveAsImage(String path,String imageName, Stream imageContent)
         {
             try
             {
@@ -182,7 +180,7 @@ namespace GroupDocs.Viewer.Model
                 
 
                 //save the image in the form of jpeg
-                img.Save(Path.Combine(Path.GetFullPath(imagesPath), Path.GetFileNameWithoutExtension(imageName)) + ".jpg", ImageFormat.Jpeg);
+                img.Save(Path.Combine(path+"\\images", Path.GetFileNameWithoutExtension(imageName)) + ".jpg", ImageFormat.Jpeg);
                 //ExEnd:SaveAsImage
             }
             catch (System.Exception ex)

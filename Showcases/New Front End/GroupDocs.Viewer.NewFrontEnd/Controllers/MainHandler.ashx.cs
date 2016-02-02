@@ -60,7 +60,7 @@ namespace GroupDocs.Viewer.NewFrontEnd.Controllers
             {
                 String FilePath = context.Request["filepath"].ToString();
                 String WatermarkText = context.Request["watermark"].ToString();
-                List<ImageInfo> lstPages = ViewGenerator.RenderDocumentAsImages(FilePath, WatermarkText, System.Drawing.Color.Red);
+                List<ImageInfo> lstPages = ViewGenerator.RenderDocumentAsImages(FilePath, WatermarkText,System.Drawing.Color.Red);
                 GenerateResponse(lstPages, context);
             }
             else if (context.Request["action"].ToString() == "renderasimagewithreorder")

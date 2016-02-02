@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.NewFrontEnd", "GroupDocs.Viewer.NewFrontEnd.csproj", "{FBC96447-5E48-4515-8739-544A9A9FEE43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.NewFrontEnd", "GroupDocs.Viewer.NewFrontEnd\GroupDocs.Viewer.NewFrontEnd.csproj", "{FBC96447-5E48-4515-8739-544A9A9FEE43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Model", "..\GroupDocs.Viewer.Model\GroupDocs.Viewer.Model.csproj", "{299B0FC2-4D15-42F2-B3B3-2655602D0DF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Model", "GroupDocs.Viewer.Model\GroupDocs.Viewer.Model.csproj", "{299B0FC2-4D15-42F2-B3B3-2655602D0DF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,6 +24,7 @@ $(function () {
             $('#rotateDiv').show();
             $('#reorderable').sortable({
                 update: function (e, ui) {
+                    $('#rotation_container').empty();
                     var guid = $('#hfguid').val();
                     var start = ui.item.attr('id');
                     var newIndex = ui.item.index();
@@ -75,7 +76,7 @@ $(function () {
     });
 
     $('#btnWatermark').click(function (e) {
-
+        reset();
         var guid = $('#hfguid').val();
         var text = $('#txtWatermark').val();
 
@@ -92,8 +93,7 @@ $(function () {
 
     $('#btnRender').click(function (e) {
         e.preventDefault();
-        $('#grpTransform').hide();
-        $('.optional').hide();
+        reset();
         // Get the file from File upload
         var fileUpload = $("#inputFile").get(0);
         var files = fileUpload.files;
@@ -160,12 +160,12 @@ function GenerateHtml(result) {
     // in a case of success the returned result would be written in the result box
     $('.viewer').text('');
     $('#reorderable').empty();
-    //  $('#rotateable').empty();
+   
     $(result).each(function (page) {
 
         $('.viewer').append(this.HtmlContent);
         $('#reorderable').append('<li id="' + this.PageNmber + '" >' + this.PageNmber + '</li>');
-        // $('#rotateable').append('<li id="' + this.PageNmber + '" >' + this.PageNmber + '</li>');
+       
 
     });
 
@@ -178,4 +178,11 @@ function onComplete() {
 function onFail(err) {
 
     $('#viewer').text(err.statusText);
+}
+function reset() {
+    $('#grpTransform').hide();
+    $('.optional').hide();
+    $('#chkWatermark').prop('checked', false);
+    $('#chkReorder').prop('checked', false);
+    $('#rotation_container').empty();
 }

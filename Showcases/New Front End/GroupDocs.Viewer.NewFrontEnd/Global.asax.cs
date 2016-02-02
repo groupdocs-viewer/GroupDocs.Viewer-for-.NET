@@ -12,7 +12,8 @@ namespace GroupDocs.Viewer.NewFrontEnd
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            GroupDocs.Viewer.Model.Utilities.ApplyLicense();
+            if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString()))
+                GroupDocs.Viewer.Model.Utilities.ApplyLicense(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString());
         }
 
         protected void Session_Start(object sender, EventArgs e)
