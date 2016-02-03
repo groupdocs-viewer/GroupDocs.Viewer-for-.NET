@@ -105,7 +105,7 @@ namespace MvcSample.Controllers
                 var urls = new List<string>();
 
                 // If no cache - save images to temp folder
-                var tempFolderPath = Path.Combine(Server.MapPath("~"), "Content", "TempStorage");
+                var tempFolderPath = Path.Combine(Microsoft.SqlServer.Server.MapPath("~"), "Content", "TempStorage");
 
                 foreach (var pageImage in imagePages)
                 {
