@@ -12,6 +12,7 @@ namespace GroupDocs.Viewer.NewFrontEnd
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            GroupDocs.Viewer.Model.Utilities.Storage_Path = Server.MapPath("~/Uploads/");
             if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString()))
                 GroupDocs.Viewer.Model.Utilities.ApplyLicense(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString());
         }

@@ -5,6 +5,7 @@ using System.Web;
 using GroupDocs.Viewer.Model;
 using System.Web.Script.Serialization;
 using GroupDocs.Viewer.Model.BusinessObjects;
+using System.IO;
 
 namespace GroupDocs.Viewer.NewFrontEnd.Controllers
 {
@@ -88,7 +89,14 @@ namespace GroupDocs.Viewer.NewFrontEnd.Controllers
             context.Response.ContentType = "text/html";
             context.Response.Write(serObj);
         }
-
+        public void GenerateFile(Stream obj, HttpContext context)
+        {
+            context.Response.Clear();
+            context.Response.ContentType = "application/pdf";
+           // context.Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+           // context.Response.BinaryWrite(;
+            context.Response.End();
+        }
         public bool IsReusable
         {
             get

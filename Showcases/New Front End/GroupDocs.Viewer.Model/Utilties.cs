@@ -19,7 +19,7 @@ namespace GroupDocs.Viewer.Model
        
         #region Configurations
 
-       
+       public static String Storage_Path=@"Uploads/";
         
         /// <summary>
         /// Initialize, populate and return the ViewerConfig object
@@ -30,10 +30,10 @@ namespace GroupDocs.Viewer.Model
             //ExStart:Configurations
             ViewerConfig config = new ViewerConfig();
             //set the storage path
-            config.StoragePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();;
+            config.StoragePath = Storage_Path;
             //Uncomment the below line for cache purpose
-            config.TempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
-            config.UseCache = false;
+            config.TempPath = Storage_Path + "\\Temp";
+            config.UseCache = true;
             return config;
             //ExEnd:Configurations
 
