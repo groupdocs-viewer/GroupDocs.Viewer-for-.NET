@@ -14,12 +14,12 @@ GroupDocs.Viewer for .NET is a .NET API which provides the technology to create 
 Directory | Description
 --------- | -----------
 [Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET examples (C# & VB) and sample files that will help you learn how to use product features. 
-[Showcases](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | Web Report Generator is an ASP.NET Web Forms Application that demonstrates the core functionalities provided by GroupDocs.Assembly for .NET.
+[Showcases](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | The *Legacy Front End* and *New Front End* are the open source web based projects. These projects are based on Front Controller Design pattern and demonstrate the salient features of GroupDocs.Viewer. 
 
 ## Resources
 
 + **Website:** [www.groupdocs.com](http://www.groupdocs.com)
-+ **Product Home:** [GroupDocs.Assembly for .NET](http://groupdocs.com/dot-net/document-viewer-library)
++ **Product Home:** [GroupDocs.Viewer for .NET](http://groupdocs.com/dot-net/document-viewer-library)
 + **Download:** [Download GroupDocs.Viewer for .NET](http://groupdocs.com/Community/files/8/.net-libraries/groupdocs_viewer_for_.net/full.aspx)
 + **Documentation:** [GroupDocs.Viewer for .NET Documentation](http://groupdocs.com/docs/display/viewernet/Introducing+GroupDocs.Viewer+for+.NET)
 + **Forum:** [GroupDocs.Viewer for .NET Forum](http://groupdocs.com/Community/forums/groupdocs.viewer-product-family/4/showforum.aspx)
