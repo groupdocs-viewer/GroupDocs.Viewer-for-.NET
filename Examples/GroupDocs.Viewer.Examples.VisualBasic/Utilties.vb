@@ -134,14 +134,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim lic As New License()
             lic.SetLicense(licensePath)
         End Sub
-        ''' <summary>
-        ''' Set product's license for HTML Handler
-        ''' </summary>
-        ''' <param name="handler"></param>
-        Public Shared Sub ApplyLicense(ByRef handler As ViewerImageHandler)
-            ' Setup license
-            handler.SetLicense(licensePath)
-        End Sub
+        
 
 #End Region
 
