@@ -35,9 +35,9 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         private static ViewerConfig _config;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {/*
             License lic = new License();
-            lic.SetLicense(@"D:\from office working\for aspose\storage\GroupDocs.total.lic");
+            lic.SetLicense(@"D:\from office working\for aspose\storage\GroupDocs.total.lic");*/
       
             _config = new ViewerConfig
             {
@@ -156,7 +156,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         }
         [WebMethod]
         [ScriptMethod]
-        public GetImageUrlsResponse GetImageUrls(GetImageUrlsParameters parameters)
+        public static GetImageUrlsResponse GetImageUrls(GetImageUrlsParameters parameters)
         {
             if (string.IsNullOrEmpty(parameters.Path))
             {
@@ -171,7 +171,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             // Save images some where and provide urls
             var urls = new List<string>();
-            var tempFolderPath = Path.Combine(Server.MapPath("~"), "Content", "TempStorage");
+            var tempFolderPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), "Content", "TempStorage");
 
             foreach (var pageImage in imagePages)
             {
@@ -189,7 +189,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                     stream.CopyTo(fileStream);
                 }
 
-                var baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
                 urls.Add(string.Format("{0}Content/TempStorage/{1}/{2}.png", baseUrl, parameters.Path, pageImage.PageNumber));
             }
 
@@ -358,7 +358,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             queryString["supportPageRotation"] = supportPageRotation.ToString().ToLower();
 
             var handlerName = isPrintable ? "GetPdfWithPrintDialog" : "GetFile";
-
+            queryString["IsPrintable"] = isPrintable.ToString();
             var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "default.aspx/";
 
             string fileUrl = string.Format("{0}{1}?{2}", baseUrl, handlerName, queryString);

@@ -38,13 +38,13 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             _imageHandler = new ViewerImageHandler(_config);
 
             var parameters = (GetFileParameters)Session["fileparams"];
-            
+            Session.RemoveAll();
             
             var displayName = string.IsNullOrEmpty(parameters.DisplayName) ?
                            Path.GetFileName(parameters.Path) : Uri.EscapeDataString(parameters.DisplayName);
 
             Stream fileStream;
-            if (parameters.GetPdf)
+            if (parameters.GetPdf || parameters.IsPrintable)
             {
                 displayName = Path.ChangeExtension(displayName, "pdf");
 
@@ -71,11 +71,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             byte[] Bytes = new byte[fileStream.Length];
             fileStream.Read(Bytes, 0, Bytes.Length);
             string contentDispositionString="attachment; filename=\"" + displayName + "\"";
-           
-            if(!parameters.GetPdf)
-                contentDispositionString = new ContentDisposition { FileName = displayName, Inline = true }.ToString();
 
-            if (!parameters.GetPdf)
+            if (parameters.IsPrintable)
+            {
+               contentDispositionString = new ContentDisposition { FileName = displayName, Inline = true }.ToString();
+            }
+            if (parameters.IsPrintable)
                 HttpContext.Current.Response.ContentType = "application/pdf";
             else
             HttpContext.Current.Response.ContentType = "application/octet-stream";
