@@ -1621,7 +1621,7 @@
                                               ignoreDocumentAbsence,
                                               useHtmlBasedEngine, /*supportPageRotation*/false,
                 function (response) {
-                    callback.apply(this, [response.data.imageUrls]);
+                    callback.apply(this, [response.data.d.imageUrls]);
                 },
                 function (error) {
                     errorCallback.apply(this, [error]);

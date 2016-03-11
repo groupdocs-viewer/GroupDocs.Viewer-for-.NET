@@ -1477,27 +1477,29 @@ ignoreDocumentAbsence,
 useHtmlBasedEngine, supportPageRotation,
 successCallback, errorCallback,
 instanceIdToken, locale) {
-var data = {
-userId: userId,
-privateKey: privateKey,
-path: path,
-width: width,
-token: token,
-firstPage: firstPage,
-pageCount: pageCount,
-quality: quality,
-usePdf: usePdf,
-docVersion: docVersion,
-watermarkText: watermarkText,
-watermarkColor: watermarkColor,
-watermarkPosition: watermarkPosition,
-watermarkWidth: watermarkWidth,
-ignoreDocumentAbsence: ignoreDocumentAbsence,
-useHtmlBasedEngine: useHtmlBasedEngine,
-supportPageRotation: supportPageRotation,
-instanceIdToken: instanceIdToken,
-locale: locale
-};
+    var data = {
+        parameters: {
+            userId: userId,
+            privateKey: privateKey,
+            path: path,
+            width: width,
+            token: token,
+            firstPage: firstPage,
+            pageCount: pageCount,
+            quality: quality,
+            usePdf: usePdf,
+            docVersion: docVersion,
+            watermarkText: watermarkText,
+            watermarkColor: watermarkColor,
+            watermarkPosition: watermarkPosition,
+            watermarkWidth: watermarkWidth,
+            ignoreDocumentAbsence: ignoreDocumentAbsence,
+            useHtmlBasedEngine: useHtmlBasedEngine,
+            supportPageRotation: supportPageRotation,
+            instanceIdToken: instanceIdToken,
+            locale: locale
+        }
+    };
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetImageUrls' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 loadFileBrowserTreeData: function (userId, privateKey, path, pageIndex, pageSize, orderBy, orderAsc, filter, fileTypes, extended, successCallback, errorCallback, useCache, instanceIdToken) {
@@ -2373,10 +2375,10 @@ this.useHtmlBasedEngine, this.supportPageRotation,
 this.instanceIdToken,
 function (response) {
 var imageUrls;
-if (response.imageUrls && typeof response.image_urls == "undefined")
-imageUrls = response.imageUrls;
+if (response.d.imageUrls && typeof response.image_urls == "undefined")
+imageUrls = response.d.imageUrls;
 else
-imageUrls = response.image_urls;
+imageUrls = response.d.image_urls;
 for (i = 0; i < imageCount; i++) {
 this.pages()[i].url(imageUrls[i]);
 this.loadImagesForVisiblePages();
@@ -6998,10 +7000,10 @@ this.options.useHtmlBasedEngine, this.options.supportPageRotation,
 function (response) {
 response = response.data;
 var imageUrls;
-if (response.imageUrls && typeof response.image_urls == "undefined")
-imageUrls = response.imageUrls;
+if (response.d.imageUrls && typeof response.image_urls == "undefined")
+imageUrls = response.d.imageUrls;
 else
-imageUrls = response.image_urls; ;
+imageUrls = response.d.image_urls; ;
 for (var i = 0; i < imageCount; i++) {
 this._viewModel.thumbnails()[i].url(imageUrls[i]);
 }
