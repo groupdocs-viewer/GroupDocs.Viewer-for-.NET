@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<WordsFileData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DateModified>2015-12-29T05:06:56+05:00</DateModified>
+  <DateCreated>2013-06-05T07:56:00Z</DateCreated>
+  <PageCount>8</PageCount>
+  <Pages>
+    <PageData>
+      <Number>1</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>2</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>3</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>4</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>5</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>6</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>7</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+    <PageData>
+      <Number>8</Number>
+      <Angle>0</Angle>
+      <Width>612</Width>
+      <Height>792</Height>
+      <Rows />
+    </PageData>
+  </Pages>
+  <MaxWidth>612</MaxWidth>
+  <MaxHeight>792</MaxHeight>
+  <ContentControls />
+</WordsFileData>
