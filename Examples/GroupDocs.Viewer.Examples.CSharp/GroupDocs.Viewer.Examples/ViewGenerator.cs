@@ -12,6 +12,7 @@ using System.Drawing;
 using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Containers;
 using System.IO;
+using GroupDocs.Viewer.Handler.Input;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -46,7 +47,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Set password if document is password protected. 
             if(!String.IsNullOrEmpty(DocumentPassword))
             options.Password = DocumentPassword;
-            
+            options.PageNumbersToConvert = Enumerable.Range(1, 3).ToList();
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
 
@@ -57,6 +58,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtml
         }
+        
+      
+
         /// <summary>
         /// Render document in html representation with watermark
         /// </summary>
@@ -408,7 +412,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
            
             // Guid implies that unique document name 
             options.Guid = DocumentName;
-
+            
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
             FileContainer container = imageHandler.GetPdfFile(options);
            
@@ -456,11 +460,66 @@ namespace GroupDocs.Viewer.Examples.CSharp
                         node.LastModificationDate);
             }
 
-            //ExEnd:LoadFioleTree
+            //ExEnd:LoadFileTree
 
         }
         #endregion
 
+        #region InputDataHandlers
+
+        /// <summary>
+        /// Render a document from Azure Storage 
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderDocFromAzure(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = new ViewerConfig();
+            config.StoragePath = @"C:\storage";
+
+            // File guid
+            string guid = @"word.doc";
+
+            // Use custom IInputDataHandler implementation
+            IInputDataHandler inputDataHandler = new AzureInputDataHandler("<Account_Name>","<Account_Key>","<Container_Name>");
+
+            // Get file HTML representation
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, inputDataHandler);
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid);
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+        /// <summary>
+        /// Render a document from FTP location 
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderDocFromFTP(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = new ViewerConfig();
+            config.StoragePath = @"C:\storage";
+
+            // File guid
+            string guid = @"word.doc";
+
+            // Use custom IInputDataHandler implementation
+            IInputDataHandler inputDataHandler = new FtpInputDataHandler();
+            
+            // Get file HTML representation
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, inputDataHandler);
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid);
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+        #endregion
     }
 
     

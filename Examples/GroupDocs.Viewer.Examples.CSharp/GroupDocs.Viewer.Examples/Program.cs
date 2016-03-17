@@ -16,19 +16,19 @@ namespace GroupDocs.Viewer.Examples.CSharp
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            //Utilities.ApplyLicense();
+            Utilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
             #region ViewerHtmlPresentation
             
             //Render a power point presentation in html form
-            //ViewGenerator.RenderDocumentAsHtml("sample.pptx");
+            //ViewGenerator.RenderDocumentAsHtml("word.doc");
            
             //Render a spreadsheet in html form
             //ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx");
             
             //Render a MS word document by replacing its 1st page order with 2nd page 
-             ViewGenerator.RenderDocumentAsHtml("word.doc",1,2);
+            //ViewGenerator.RenderDocumentAsHtml("large_will_not_getting_processed.docx");
         
              //Render a word document in html form and also apply a text as watermark on each page
             //ViewGenerator.RenderDocumentAsHtml("word.doc", "Show me as watermark", Color.Purple);
@@ -62,11 +62,19 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region GeneralRepresentation
             //Render the word document in the form of pdf markup
-             //ViewGenerator.RenderDocumentAsPDF("word.doc");
+             ViewGenerator.RenderDocumentAsPDF("test.pdf");
 
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
             #endregion
+
+            #region InputDataHandlers
+            //Render a document from Azure Storage 
+            //ViewGenerator.RenderDocFromAzure("word.doc");
+            //Render a document from ftp location 
+            //ViewGenerator.RenderDocFromAzure("word.doc");
+            #endregion
+
 
         }
     }

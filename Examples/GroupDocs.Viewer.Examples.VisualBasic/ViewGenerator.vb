@@ -13,6 +13,7 @@ Imports GroupDocs.Viewer.Domain
 Imports GroupDocs.Viewer.Domain.Containers
 Imports System.IO
 Imports GroupDocs.Viewer.Domain.Transformation
+Imports GroupDocs.Viewer.Handler.Input
 
 
 Namespace GroupDocs.Viewer.Examples
@@ -276,7 +277,7 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
-                Options.Password = DocumentPassword
+                options.Password = DocumentPassword
             End If
 
             'Call RotatePages to apply rotate transformation to a page
@@ -286,7 +287,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim imageHandler As ViewerImageHandler = DirectCast(handler, ViewerImageHandler)
 
             'Get document pages in image form
-            Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, Options)
+            Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, options)
 
             For Each image As PageImage In Images
                 'Save each image at disk
@@ -314,7 +315,7 @@ Namespace GroupDocs.Viewer.Examples
 
 
             'Initialize ImageOptions Object and setting Reorder Transformation
-            Dim options As New ImageOptions() With {.Transformations = Transformation.Reorder }
+            Dim options As New ImageOptions() With {.Transformations = Transformation.Reorder}
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
@@ -419,7 +420,66 @@ Namespace GroupDocs.Viewer.Examples
 
 #End Region
 
-        
+
+#Region "InputDataHandlers"
+
+        ''' <summary>
+        ''' Render a document from Azure Storage 
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderDocFromAzure(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As New ViewerConfig()
+            config.StoragePath = "C:\storage"
+
+            ' File guid
+            Dim guid As String = "word.doc"
+
+            ' Use custom IInputDataHandler implementation
+            Dim inputDataHandler As IInputDataHandler = New AzureInputDataHandler("<Account_Name>", "<Account_Key>", "<Container_Name>")
+
+            ' Get file HTML representation
+            Dim htmlHandler As New ViewerHtmlHandler(config, inputDataHandler)
+
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid)
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+        End Sub
+        ''' <summary>
+        ''' Render a document from FTP location 
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderDocFromFTP(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As New ViewerConfig()
+            config.StoragePath = "C:\storage"
+
+            ' File guid
+            Dim guid As String = "word.doc"
+
+            ' Use custom IInputDataHandler implementation
+            Dim inputDataHandler As IInputDataHandler = New FtpInputDataHandler()
+
+            ' Get file HTML representation
+            Dim htmlHandler As New ViewerHtmlHandler(config, inputDataHandler)
+
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid)
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+        End Sub
+#End Region
+
+        '=======================================================
+        'Service provided by Telerik (www.telerik.com)
+        'Conversion powered by NRefactory.
+        'Twitter: @telerik
+        'Facebook: facebook.com/telerik
+        '=======================================================
+
 
     End Class
 
