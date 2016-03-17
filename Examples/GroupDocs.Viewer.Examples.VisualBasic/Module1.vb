@@ -70,6 +70,13 @@ Namespace GroupDocs.Viewer.Examples
             'ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf")
             '#End Region
 
+            '#Region "InputDataHandlers"
+            'Render a document from Azure Storage 
+            'ViewGenerator.RenderDocFromAzure("word.doc");
+            'Render a document from ftp location 
+            'ViewGenerator.RenderDocFromAzure("word.doc");
+            '#End Region
+
         End Sub
     End Module
 End Namespace
