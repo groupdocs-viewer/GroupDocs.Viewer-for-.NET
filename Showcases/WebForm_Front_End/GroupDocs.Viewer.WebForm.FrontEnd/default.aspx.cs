@@ -32,18 +32,18 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         private static string _licensePath = @"";
         private static string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString(); // App_Data folder path
         private static string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
+        private static string _CachePath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\umar";
         private static ViewerConfig _config;
 
         protected void Page_Load(object sender, EventArgs e)
-        {/*
-            License lic = new License();
-            lic.SetLicense(@"D:\from office working\for aspose\storage\GroupDocs.total.lic");*/
+        {
       
             _config = new ViewerConfig
             {
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
-                UseCache = true
+                UseCache = true,
+               CachePath=_CachePath 
             };
 
             _htmlHandler = new ViewerHtmlHandler(_config);
@@ -77,9 +77,11 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 result.docType = docInfo.DocumentType;
                 result.fileType = docInfo.FileType;
 
-              //  var htmlOptions = new HtmlOptions { IsResourcesEmbedded = true, Watermark = GetWatermark(request) };
-                var htmlPages = _htmlHandler.GetPages(request.Path);
+                var htmlOptions = new HtmlOptions { IsResourcesEmbedded = true, Watermark = GetWatermark(request) };
+              
+                var htmlPages = _htmlHandler.GetPages(request.Path, htmlOptions);
                 result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
+           
 
                 //NOTE: Fix for incomplete cells document
                 for (int i = 0; i < result.pageHtml.Length; i++)

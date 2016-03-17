@@ -56,6 +56,7 @@
 
 </body>
      <script>
+         // For Html Representation
          $(function () {
              $('#viewerHtmlDiv').groupdocsViewer({
                  filePath: 'candy.pdf',
@@ -63,8 +64,9 @@
                  showFolderBrowser: true,
                  showHeader: true,
                  showPaging: true,
-                 showThumbnails: false,
-                 useHtmlThumbnails: false,
+                 showThumbnails: true,
+                 showZoom: true,
+                 useHtmlThumbnails: true,
                  width: 650,
                  height: 900,
                  watermarkPosition: 'Diagonal',
@@ -72,20 +74,20 @@
                  watermarkWidth: 7,
                  IsPrintable: true,
                  useHtmlBasedEngine: true,
-
                  showDownload: true,
                  downloadPdfFile: true,
-
                  showPrint: true,
                  usePdfPrinting: true
              });
          });
-
+         //For Image Representation
          $(function () {
              $('#viewerImageDiv').groupdocsViewer({
                  filePath: 'demo.docx',
                  zoomToFitWidth: true,
                  showFolderBrowser: true,
+                 showThumbnails: true,
+                 showZoom: true,
                  showHeader: true,
                  showPaging: true,
                  width: 650,
