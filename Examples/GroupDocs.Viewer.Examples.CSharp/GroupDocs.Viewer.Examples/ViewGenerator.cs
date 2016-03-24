@@ -58,9 +58,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtml
         }
-        
-      
-
         /// <summary>
         /// Render document in html representation with watermark
         /// </summary>
@@ -117,7 +114,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerConfig config = Utilities.GetConfigurations();
 
             // Cast ViewerHtmlHandler class object to its base class(ViewerHandler).
-            ViewerHandler handler = new ViewerHtmlHandler(config);
+            ViewerHandler<PageHtml> handler = new ViewerHtmlHandler(config);
 
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -271,7 +268,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerConfig config = Utilities.GetConfigurations();
 
             // Create image handler
-            ViewerHandler handler = new ViewerImageHandler(config);
+            ViewerHandler<PageImage> handler = new ViewerImageHandler(config);
 
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -313,7 +310,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerConfig config = Utilities.GetConfigurations();
 
             // Cast ViewerHtmlHandler class object to its base class(ViewerHandler).
-            ViewerHandler handler = new ViewerImageHandler(config);
+            ViewerHandler<PageImage> handler = new ViewerImageHandler(config);
             
             // Guid implies that unique document name 
             string guid = DocumentName;

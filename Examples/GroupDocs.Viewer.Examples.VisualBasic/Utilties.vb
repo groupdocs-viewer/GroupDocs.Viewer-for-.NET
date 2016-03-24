@@ -11,6 +11,8 @@ Imports System.IO
 Imports System.Linq
 Imports System.Text
 Imports GroupDocs.Viewer.Domain.Containers
+Imports GroupDocs.Viewer.Domain.Html
+Imports GroupDocs.Viewer.Domain.Image
 
 Namespace GroupDocs.Viewer.Examples
     Public NotInheritable Class Utilities
@@ -54,14 +56,28 @@ Namespace GroupDocs.Viewer.Examples
             Private Sub New()
             End Sub
             ''' <summary>
-            '''  Rotate a Page before rendering
+            '''  Rotate a Page before rendering html
             ''' </summary>
             ''' <param name="handler"></param>
             ''' <param name="guid"></param>
             ''' <param name="PageNumber"></param>
             ''' <param name="angle"></param>
             ''' <remarks></remarks>
-            Public Shared Sub RotatePages(ByRef handler As ViewerHandler, guid As [String], PageNumber As Integer, angle As Integer)
+            Public Shared Sub RotatePages(ByRef handler As ViewerHandler(Of PageHtml), guid As [String], PageNumber As Integer, angle As Integer)
+                'ExStart:rotationAngle
+                ' Set the property of handler's rotate Page
+                handler.RotatePage(New RotatePageOptions(guid, PageNumber, angle))
+                'ExEnd:rotationAngle
+            End Sub
+            ''' <summary>
+            '''  Rotate a Page before rendering image
+            ''' </summary>
+            ''' <param name="handler"></param>
+            ''' <param name="guid"></param>
+            ''' <param name="PageNumber"></param>
+            ''' <param name="angle"></param>
+            ''' <remarks></remarks>
+            Public Shared Sub RotatePages(ByRef handler As ViewerHandler(Of PageImage), guid As [String], PageNumber As Integer, angle As Integer)
                 'ExStart:rotationAngle
                 ' Set the property of handler's rotate Page
                 handler.RotatePage(New RotatePageOptions(guid, PageNumber, angle))
@@ -74,7 +90,22 @@ Namespace GroupDocs.Viewer.Examples
             ''' <param name="guid">File name</param>
             ''' <param name="currentPageNumber">Existing number of page</param>
             ''' <param name="newPageNumber">New number of page</param>
-            Public Shared Sub ReorderPage(ByRef Handler As ViewerHandler, guid As [String], currentPageNumber As Integer, newPageNumber As Integer)
+            Public Shared Sub ReorderPage(ByRef Handler As ViewerHandler(Of PageHtml), guid As [String], currentPageNumber As Integer, newPageNumber As Integer)
+                'ExStart:reorderPage
+                'Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
+                Dim options As New ReorderPageOptions(guid, currentPageNumber, newPageNumber)
+                ' call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
+                Handler.ReorderPage(options)
+                'ExEnd:reorderPage
+            End Sub
+            ''' <summary>
+            ''' Reorder a page before rendering
+            ''' </summary>
+            ''' <param name="Handler">Base class of handlers</param>
+            ''' <param name="guid">File name</param>
+            ''' <param name="currentPageNumber">Existing number of page</param>
+            ''' <param name="newPageNumber">New number of page</param>
+            Public Shared Sub ReorderPage(ByRef Handler As ViewerHandler(Of PageImage), guid As [String], currentPageNumber As Integer, newPageNumber As Integer)
                 'ExStart:reorderPage
                 'Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
                 Dim options As New ReorderPageOptions(guid, currentPageNumber, newPageNumber)
