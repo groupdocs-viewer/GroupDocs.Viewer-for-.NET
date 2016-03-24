@@ -1,6 +1,8 @@
 ﻿using GroupDocs.Viewer.Config;
 using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Html;
+using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using System;
@@ -17,14 +19,14 @@ namespace GroupDocs.Viewer.Examples
     {
         public const string StoragePath = "../../../../Data/Storage/";
         public const string OutputHtmlPath = "../../../../Data/Output/html/";
-        public const string OutputImagePath = "../../../../Data/Output/images/";      
+        public const string OutputImagePath = "../../../../Data/Output/images/";
         public const string OutputPath = "../../../../Data/Output/";
         public const string licensePath = "../../../../Data/Storage/GroupDocs.Total.lic";
 
         #region Configurations
 
-       
-        
+
+
         /// <summary>
         /// Initialize, populate and return the ViewerConfig object
         /// </summary>
@@ -45,39 +47,67 @@ namespace GroupDocs.Viewer.Examples
 
 
 
-        
+
         #endregion
-        
+
         #region Transformations
-        
+
         public static class PageTransformations
         {
-           /// <summary>
-           /// Rotate a Page before rendering
-           /// </summary>
-           /// <param name="options"></param>
-           /// <param name="angle"></param>
-           
-            public static void RotatePages(ref ViewerHandler handler,String guid,int PageNumber, int angle)
+            /// <summary>
+            /// Rotate a Page before rendering html
+            /// </summary>
+            /// <param name="options"></param>
+            /// <param name="angle"></param>
+
+            public static void RotatePages(ref ViewerHandler<PageHtml> handler, String guid, int PageNumber, int angle)
             {
                 //ExStart:rotationAngle
                 // Set the property of handler's rotate Page
                 handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
                 //ExEnd:rotationAngle
-             }
-           /// <summary>
-           /// Reorder a page before rendering
-           /// </summary>
-           /// <param name="Handler">Base class of handlers</param>
-           /// <param name="guid">File name</param>
-           /// <param name="currentPageNumber">Existing number of page</param>
-           /// <param name="newPageNumber">New number of page</param>
-            public static void ReorderPage(ref ViewerHandler Handler, String guid, int currentPageNumber, int newPageNumber)
+            }
+            /// <summary>
+            /// Rotate a Page before rendering image
+            /// </summary>
+            /// <param name="options"></param>
+            /// <param name="angle"></param>
+            public static void RotatePages(ref ViewerHandler<PageImage> handler, String guid, int PageNumber, int angle)
+            {
+                //ExStart:rotationAngle
+                // Set the property of handler's rotate Page
+                handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
+                //ExEnd:rotationAngle
+            }
+            /// <summary>
+            /// Reorder a page before rendering html
+            /// </summary>
+            /// <param name="Handler">Base class of handlers</param>
+            /// <param name="guid">File name</param>
+            /// <param name="currentPageNumber">Existing number of page</param>
+            /// <param name="newPageNumber">New number of page</param>
+            public static void ReorderPage(ref ViewerHandler<PageHtml> Handler, String guid, int currentPageNumber, int newPageNumber)
             {
                 //ExStart:reorderPage
                 //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
                 ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
-               // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
+                // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
+                Handler.ReorderPage(options);
+                //ExEnd:reorderPage
+            }
+            /// <summary>
+            /// Reorder a page before rendering image
+            /// </summary>
+            /// <param name="Handler">Base class of handlers</param>
+            /// <param name="guid">File name</param>
+            /// <param name="currentPageNumber">Existing number of page</param>
+            /// <param name="newPageNumber">New number of page</param>
+            public static void ReorderPage(ref ViewerHandler<PageImage> Handler, String guid, int currentPageNumber, int newPageNumber)
+            {
+                //ExStart:reorderPage
+                //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
+                ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
+                // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
                 Handler.ReorderPage(options);
                 //ExEnd:reorderPage
             }
@@ -89,7 +119,7 @@ namespace GroupDocs.Viewer.Examples
             /// <param name="color">System.Drawing.Color</param>
             /// <param name="position"></param>
             /// <param name="width"></param>
-            public static void AddWatermark(ref ImageOptions options, String text, Color color, WatermarkPosition position,int width)
+            public static void AddWatermark(ref ImageOptions options, String text, Color color, WatermarkPosition position, int width)
             {
                 //ExStart:AddWatermark
                 //Initialize watermark object by passing the text to display.
@@ -123,11 +153,11 @@ namespace GroupDocs.Viewer.Examples
             }
 
         }
-        
+
         #endregion
 
         #region ProductLicense
-    
+
         /// <summary>
         /// Set product's license 
         /// </summary>
@@ -136,7 +166,7 @@ namespace GroupDocs.Viewer.Examples
             License lic = new License();
             lic.SetLicense(licensePath);
         }
-               
+
         #endregion
 
         #region OutputHandling
@@ -152,7 +182,7 @@ namespace GroupDocs.Viewer.Examples
                 //ExStart:SaveAsHTML
                 // set an html file name with absolute path
                 String fname = Path.Combine(Path.GetFullPath(OutputHtmlPath), Path.GetFileNameWithoutExtension(filename) + ".html");
-               
+
                 // create a file at the disk
                 System.IO.File.WriteAllText(fname, content);
                 //ExEnd:SaveAsHTML
@@ -175,7 +205,7 @@ namespace GroupDocs.Viewer.Examples
                 //ExStart:SaveAsImage
                 // extract the image from stream
                 Image img = Image.FromStream(imageContent);
-                
+
                 //save the image in the form of jpeg
                 img.Save(Path.Combine(Path.GetFullPath(OutputImagePath), Path.GetFileNameWithoutExtension(imageName)) + ".Jpeg", ImageFormat.Jpeg);
                 //ExEnd:SaveAsImage
@@ -206,13 +236,13 @@ namespace GroupDocs.Viewer.Examples
                 fileStream.Write(bytesInStream, 0, bytesInStream.Length);
                 //ExEnd:SaveAnyFile
             }
-            catch ( System.Exception ex)
+            catch (System.Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-       
+
         #endregion
     }
-  
+
 }

@@ -115,7 +115,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim config As ViewerConfig = Utilities.GetConfigurations()
 
             ' Cast ViewerHtmlHandler class object to its base class(ViewerHandler).
-            Dim handler As ViewerHandler = New ViewerHtmlHandler(config)
+            Dim handler As ViewerHandler(Of PageHtml) = New ViewerHtmlHandler(config)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -267,7 +267,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim config As ViewerConfig = Utilities.GetConfigurations()
 
             ' Create image handler
-            Dim handler As ViewerHandler = New ViewerImageHandler(config)
+            Dim handler As ViewerHandler(Of PageImage) = New ViewerImageHandler(config)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
@@ -308,7 +308,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim config As ViewerConfig = Utilities.GetConfigurations()
 
             ' Cast ViewerHtmlHandler class object to its base class(ViewerHandler).
-            Dim handler As ViewerHandler = New ViewerImageHandler(config)
+            Dim handler As ViewerHandler(Of PageImage) = New ViewerImageHandler(config)
 
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
