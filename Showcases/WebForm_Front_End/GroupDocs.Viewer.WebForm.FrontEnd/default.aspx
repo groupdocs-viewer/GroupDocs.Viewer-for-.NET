@@ -52,7 +52,8 @@
          // For Html Representation
          $(function () {
              $('#viewerHtmlDiv').groupdocsViewer({
-                 filePath: 'candy.pdf',
+                 //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
+                 filePath: 'John Wayne.docx',
                  zoomToFitWidth: true,
                  showFolderBrowser: true,
                  showHeader: true,

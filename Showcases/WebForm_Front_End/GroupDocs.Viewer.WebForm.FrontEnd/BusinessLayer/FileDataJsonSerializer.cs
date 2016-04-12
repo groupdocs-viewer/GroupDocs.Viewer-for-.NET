@@ -17,7 +17,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         /// <summary>
         /// The _file data
         /// </summary>
-        private readonly List<PageData> _fileData;
+        private readonly FileData _fileData;
         /// <summary>
         /// The _options
         /// </summary>
@@ -33,7 +33,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         /// </summary>
         /// <param name="fileData">The file data.</param>
         /// <param name="options">The options.</param>
-        public FileDataJsonSerializer(List<PageData> fileData, FileDataOptions options)
+        public FileDataJsonSerializer(FileData fileData, FileDataOptions options)
         {
             _fileData = fileData;
             _options = options;
@@ -45,9 +45,11 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         /// <returns>System.String.</returns>
         public string Serialize(bool isDefault)
         {
-      
+            WordsFileData wordsFileData = _fileData as WordsFileData;
+            if (wordsFileData != null)
+                return SerializeWords(wordsFileData);
 
-            var isCellsFileData = _fileData.Any(_ => !string.IsNullOrEmpty(_.Name));
+            var isCellsFileData = _fileData.Pages.Any(_ => !string.IsNullOrEmpty(_.Name));
             if (isCellsFileData && !isDefault)
                 return SerializeCells();
 
@@ -63,15 +65,15 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             StringBuilder json = new StringBuilder();
 
             json.Append(string.Format("{{\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
-                _fileData[0].Height, _fileData[0].Height));
+                _fileData.MaxHeight, _fileData.MaxHeight));
             json.Append(",\"pages\":[");
 
-            int pageCount = _fileData.Count;
+            int pageCount = _fileData.Pages.Count;
             for (int i = 0; i < pageCount; i++)
             {
-                PageData pageData = _fileData[i];
+                PageData pageData = _fileData.Pages[i];
 
-                bool needSeparator = pageData.Number != 1;
+                bool needSeparator = i > 0;
                 if (needSeparator)
                     json.Append(",");
 
@@ -109,12 +111,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
 
             json.Append("{\"sheets\":[");
 
-            int pageCount = _fileData.Count;
+            int pageCount = _fileData.Pages.Count;
             for (int i = 0; i < pageCount; i++)
             {
-                PageData pageData = _fileData[i];
+                PageData pageData = _fileData.Pages[i];
 
-                bool needSeparator = pageData.Number != 1;
+                bool needSeparator = pageData.Number >= 1;
                 if (needSeparator)
                     json.Append(",");
 
@@ -132,12 +134,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         /// </summary>
         /// <param name="wordsFileData">The words file data.</param>
         /// <returns>System.String.</returns>
-        private string SerializeWords(PageData wordsFileData)
+        private string SerializeWords(WordsFileData wordsFileData)
         {
-         /*   StringBuilder json = new StringBuilder();
+            StringBuilder json = new StringBuilder();
 
             json.Append(string.Format("{{\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
-                _fileData., _fileData.MaxHeight));
+                _fileData.MaxHeight, _fileData.MaxHeight));
             json.Append(",\"pages\":[");
 
             int pageCount = wordsFileData.Pages.Count;
@@ -145,7 +147,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             {
                 PageData pageData = wordsFileData.Pages[i];
 
-                bool needSeparator = pageData.Number != 1;
+                bool needSeparator = pageData.Number >= 1;
                 if (needSeparator)
                     json.Append(",");
 
@@ -155,7 +157,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             }
             json.Append("]"); // pages
 
-            bool includeContentControls = _options.IncludeContentControls && wordsFileData.ContentControls.Count > 0;
+            bool includeContentControls = _options.UsePdf && wordsFileData.ContentControls.Count > 0;
             if (includeContentControls)
             {
                 json.Append(", \"contentControls\":[");
@@ -174,8 +176,6 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             json.Append("}"); //document
 
             return json.ToString();
-          * */
-            return "";
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             json.Append(string.Format("{{\"w\":{0},\"h\":{1},\"number\":{2}",
                 pageData.Width.ToString(_defaultCulture),
                 pageData.Height.ToString(_defaultCulture),
-                pageData.Number.ToString(_defaultCulture)));
+                (pageData.Number - 1).ToString(_defaultCulture)));
         }
 
         /// <summary>
