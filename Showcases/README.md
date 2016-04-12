@@ -5,6 +5,6 @@ In GroupDocs.Viewer 3.x the Front-End has been disintegrated. So the GroupDocs.V
 
 Directory | Description
 --------- | -----------
-[Legacy Front End](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET examples (C# & VB) and sample files that will help you learn how to use product features. 
-[ASP.NET Web Form Front End](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | The *Legacy Front End* and *New Front End* are the open source web based projects. These projects are based on Front Controller Design pattern and demonstrate the salient features of GroupDocs.Viewer.
-[New Front End](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | The *Legacy Front End* and *New Front End* are the open source web based projects. These projects are based on Front Controller Design pattern and demonstrate the salient features of GroupDocs.Viewer.
+[Legacy Front End](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases/Legacy%20Front%20End)  | It is an MVC application which demonstrate that how UI less GroupDocs.Viewer 3.x is being used to create a full fledge viewer. 
+[ASP.NET Web Form Front End](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases/WebForm_Front_End)  | This Front-End is actually *Legacy Front End* but implemented as ASP.NET Web Form application. 
+[New Front End](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases/New%20Front%20End)  | This Application allows a user to see the Html or Image Representation of a document. User can apply watermark and apply other trnasformations like Reordering and rotation to the output pages.
