@@ -2,9 +2,11 @@
 using GroupDocs.Viewer.Config;
 using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Html;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer;
+using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -28,6 +30,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
     {
         private static  ViewerHtmlHandler _htmlHandler;
         private static ViewerImageHandler _imageHandler;
+        private static readonly Dictionary<string, Stream> _streams = new Dictionary<string, Stream>();
 
         private static string _licensePath = @"";
         private static string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString(); // App_Data folder path
@@ -42,19 +45,27 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             {
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
-                UseCache = true,
-               CachePath=_CachePath 
+                UseCache = false
+              // CachePath=_CachePath 
             };
 
             _htmlHandler = new ViewerHtmlHandler(_config);
             _imageHandler = new ViewerImageHandler(_config);
 
+           // _streams.Add("StreamExample_1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
+            //_streams.Add("StreamExample_2.doc", HttpWebRequest.Create("http://www.acm.org/sigs/publications/pubform.doc").GetResponse().GetResponseStream());
+
         }
+       
         [WebMethod]
         [ScriptMethod]
         public static ViewDocumentResponse ViewDocument(ViewDocumentParameters request)
         {
-            
+            if (Utils.IsValidUrl(request.Path))
+                request.Path = DownloadToStorage(request.Path);
+            else if (_streams.ContainsKey(request.Path))
+                request.Path = SaveStreamToStorage(request.Path);
+
             var fileName = Path.GetFileName(request.Path);
 
             var result = new ViewDocumentResponse
@@ -69,71 +80,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             };
 
             if (request.UseHtmlBasedEngine)
-            {
-
-                var docInfo = _htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
-
-                result.documentDescription = new FileDataJsonSerializer(docInfo.Pages, new FileDataOptions()).Serialize(false);
-                result.docType = docInfo.DocumentType;
-                result.fileType = docInfo.FileType;
-
-                var htmlOptions = new HtmlOptions { IsResourcesEmbedded = true, Watermark = GetWatermark(request) };
-              
-                var htmlPages = _htmlHandler.GetPages(request.Path, htmlOptions);
-                result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
-           
-
-                //NOTE: Fix for incomplete cells document
-                for (int i = 0; i < result.pageHtml.Length; i++)
-                {
-                    var html = result.pageHtml[i];
-                    var indexOfScript = html.IndexOf("script");
-                    if (indexOfScript > 0)
-                        result.pageHtml[i] = html.Substring(0, indexOfScript);
-                }
-            }
+                ViewDocumentAsHtml(request, result, fileName);
             else
-            {
-                
-                var docInfo = _imageHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
-                result.documentDescription = new FileDataJsonSerializer(docInfo.Pages, new FileDataOptions()).Serialize(true);
-                result.docType = docInfo.DocumentType;
-                result.fileType = docInfo.FileType;
+                ViewDocumentAsImage(request, result, fileName);
 
-                var imageOptions = new ImageOptions { Watermark = GetWatermark(request) };
-                var imagePages = _imageHandler.GetPages(request.Path, imageOptions);
-
-                // Provide images urls
-                var urls = new List<string>();
-
-                // If no cache - save images to temp folder
-                var tempFolderPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), "Content", "TempStorage");
-
-                foreach (var pageImage in imagePages)
-                {
-                    var docFoldePath = Path.Combine(tempFolderPath, request.Path);
-
-                    if (!Directory.Exists(docFoldePath))
-                        Directory.CreateDirectory(docFoldePath);
-
-                    var pageImageName = string.Format("{0}\\{1}.png", docFoldePath, pageImage.PageNumber);
-
-                    using (var stream = pageImage.Stream)
-                    using (FileStream fileStream = new FileStream(pageImageName, FileMode.Create))
-                    {
-                        stream.Seek(0, SeekOrigin.Begin);
-                        stream.CopyTo(fileStream);
-                    }
-
-                    var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
-                    urls.Add(string.Format("{0}Content/TempStorage/{1}/{2}.png", baseUrl, request.Path, pageImage.PageNumber));
-                }
-
-                result.imageUrls = urls.ToArray();
-            }
-      
             return result;
+           
         }
+        
         [WebMethod]
         [ScriptMethod]
         public static FileBrowserTreeDataResponse LoadFileBrowserTreeData(LoadFileBrowserTreeDataParameters parameters)
@@ -156,6 +110,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             return data;
 
         }
+        
         [WebMethod]
         [ScriptMethod]
         public static GetImageUrlsResponse GetImageUrls(GetImageUrlsParameters parameters)
@@ -200,6 +155,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             return result;
         }
+        
         [WebMethod]
         [ScriptMethod]
         public static void GetFile(GetFileParameters parameters)
@@ -207,6 +163,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             HttpContext.Current.Session["fileparams"] = parameters;
          
         }
+       
         [WebMethod]
         [ScriptMethod]
         public static String GetPdfWithPrintDialog(GetFileParameters parameters)
@@ -377,7 +334,222 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 return ms.ToArray();
             }
         }
-      
+        private static void ViewDocumentAsImage(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
+        {
+            var docInfo = _imageHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+
+            var maxWidth = 0;
+            var maxHeight = 0;
+            foreach (var pageData in docInfo.Pages)
+            {
+                if (pageData.Height > maxHeight)
+                {
+                    maxHeight = pageData.Height;
+                    maxWidth = pageData.Width;
+                }
+            }
+            var fileData = new FileData
+            {
+                DateCreated = DateTime.Now,
+                DateModified = docInfo.LastModificationDate,
+                PageCount = docInfo.Pages.Count,
+                Pages = docInfo.Pages,
+                MaxWidth = maxWidth,
+                MaxHeight = maxHeight
+            };
+
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
+
+            var imageOptions = new ImageOptions
+            {
+                Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor, request.WatermarkPosition, request.WatermarkWidth)
+            };
+
+            // NOTE: imageOptions.JpegQuality available since 3.2.0 version
+            //if (request.Quality.HasValue)
+            //    imageOptions.JpegQuality = request.Quality.Value;
+
+            var imagePages = _imageHandler.GetPages(fileName, imageOptions);
+
+
+            // Provide images urls
+            var urls = new List<string>();
+
+            // If no cache - save images to temp folder
+            var tempFolderPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), "Content", "TempStorage");
+
+            foreach (var pageImage in imagePages)
+            {
+                var docFoldePath = Path.Combine(tempFolderPath, Path.GetFileName(request.Path));
+
+                using (new InterProcessLock(docFoldePath))
+                {
+                    if (!Directory.Exists(docFoldePath))
+                        Directory.CreateDirectory(docFoldePath);
+                }
+
+
+                var pageImageName = string.Format("{0}\\{1}.png", docFoldePath, pageImage.PageNumber);
+
+                using (var stream = pageImage.Stream)
+                using (var fileStream = new FileStream(pageImageName, FileMode.Create))
+                {
+                    stream.Seek(0, SeekOrigin.Begin);
+                    stream.CopyTo(fileStream);
+                }
+
+                var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority +
+                                HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
+                urls.Add(string.Format("{0}Content/TempStorage/{1}/{2}.png", baseUrl, request.Path,
+                    pageImage.PageNumber));
+            }
+
+            result.imageUrls = urls.ToArray();
+        }
+
+        private static void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
+        {
+            var docInfo = _htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+
+            var maxWidth = 0;
+            var maxHeight = 0;
+            foreach (var pageData in docInfo.Pages)
+            {
+                if (pageData.Height > maxHeight)
+                {
+                    maxHeight = pageData.Height;
+                    maxWidth = pageData.Width;
+                }
+            }
+            var fileData = new FileData
+            {
+                DateCreated = DateTime.Now,
+                DateModified = docInfo.LastModificationDate,
+                PageCount = docInfo.Pages.Count,
+                Pages = docInfo.Pages,
+                MaxWidth = maxWidth,
+                MaxHeight = maxHeight
+            };
+
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
+
+            var htmlOptions = new HtmlOptions
+            {
+                IsResourcesEmbedded = Utils.IsImage(fileName) ? true : false,
+                HtmlResourcePrefix = string.Format(
+                "/GetResourceForHtml.aspx?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
+                Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor, request.WatermarkPosition, request.WatermarkWidth)
+            };
+
+            if (request.PreloadPagesCount.HasValue && request.PreloadPagesCount.Value > 0)
+            {
+                htmlOptions.PageNumber = 1;
+                htmlOptions.CountPagesToConvert = request.PreloadPagesCount.Value;
+            }
+
+            List<string> cssList;
+            var htmlPages = GetHtmlPages(fileName, htmlOptions, out cssList);
+            result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
+            result.pageCss = new[] { string.Join(" ", cssList) };
+
+            //NOTE: Fix for incomplete cells document
+            for (var i = 0; i < result.pageHtml.Length; i++)
+            {
+                var html = result.pageHtml[i];
+                var indexOfScript = html.IndexOf("script", StringComparison.InvariantCultureIgnoreCase);
+                if (indexOfScript > 0)
+                    result.pageHtml[i] = html.Substring(0, indexOfScript);
+            }
+        }
+        private static List<PageHtml> GetHtmlPages(string filePath, HtmlOptions htmlOptions, out List<string> cssList)
+        {
+            var htmlPages = _htmlHandler.GetPages(filePath, htmlOptions);
+
+            cssList = new List<string>();
+            foreach (var page in htmlPages)
+            {
+                var indexOfBodyOpenTag = page.HtmlContent.IndexOf("<body>", StringComparison.InvariantCultureIgnoreCase);
+
+                if (indexOfBodyOpenTag > 0)
+                    page.HtmlContent = page.HtmlContent.Substring(indexOfBodyOpenTag + "<body>".Length);
+
+                var indexOfBodyCloseTag = page.HtmlContent.IndexOf("</body>", StringComparison.InvariantCultureIgnoreCase);
+
+                if (indexOfBodyCloseTag > 0)
+                    page.HtmlContent = page.HtmlContent.Substring(0, indexOfBodyCloseTag);
+
+                foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Style))
+                {
+                    var cssStream = _htmlHandler.GetResource(filePath, resource);
+                    var text = new StreamReader(cssStream).ReadToEnd();
+
+                    var needResave = false;
+                    if (text.IndexOf("url(\"", StringComparison.Ordinal) >= 0 &&
+                        text.IndexOf("url(\"/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
+                    {
+                        needResave = true;
+                        text = text.Replace("url(\"",
+                        string.Format("url(\"/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
+                        filePath, page.PageNumber));
+                    }
+
+                    if (text.IndexOf("url('", StringComparison.Ordinal) >= 0 &&
+                        text.IndexOf("url('/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
+                    {
+                        needResave = true;
+                        text = text.Replace("url('",
+                            string.Format(
+                                "url('/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
+                                filePath, page.PageNumber));
+                    }
+
+                    cssList.Add(text);
+
+                    if (needResave)
+                    {
+                        var fullPath = Path.Combine(_tempPath, filePath, "html", "resources",
+                            string.Format("page{0}", page.PageNumber), resource.ResourceName);
+
+                        System.IO.File.WriteAllText(fullPath, text);
+                    }
+                }
+            }
+            return htmlPages;
+        }
+        private static string DownloadToStorage(string url)
+        {
+            var fileNameFromUrl = Utils.GetFilenameFromUrl(url);
+            var filePath = Path.Combine(_storagePath, fileNameFromUrl);
+
+            using (new InterProcessLock(filePath))
+                Utils.DownloadFile(url, filePath);
+
+            return fileNameFromUrl;
+        }
+
+        private static string SaveStreamToStorage(string key)
+        {
+            var stream = _streams[key];
+            var savePath = Path.Combine(_storagePath, key);
+
+            using (new InterProcessLock(savePath))
+            {
+                using (var fileStream = System.IO.File.Create(savePath))
+                {
+                    if (stream.CanSeek)
+                        stream.Seek(0, SeekOrigin.Begin);
+                    stream.CopyTo(fileStream);
+                }
+
+                return savePath;
+            }
+        }
+
+    
 
     }
 }
