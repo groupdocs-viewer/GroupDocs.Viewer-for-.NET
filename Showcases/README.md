@@ -1,5 +1,6 @@
 # Showcases
 
+In GroupDocs.Viewer 3.x the Front-End has been disintegrated. So the GroupDocs.Viewer has become a UI-Less back end API. Therefore, the front-ends has been published as open sourced sample projects/showcases. Users can seek the knwoledge about implementation of the project and make the changes according to their needs. Users can also enjoy the free scripts and skins of the viewer front-ends for their own projects. The list of the published front-ends has been written below  
 
 
 Directory | Description
