@@ -22,7 +22,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region ViewerHtmlPresentation
             
             //Render a power point presentation in html form
-            //ViewGenerator.RenderDocumentAsHtml("word.doc");
+           // ViewGenerator.RenderDocumentAsHtml("test.docx");
            
             //Render a spreadsheet in html form
             //ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx");
@@ -50,7 +50,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // ViewGenerator.RenderDocumentAsImages("word.doc",1,2);
             
             //Render a word document in images form and also apply a text as watermark on each page.
-            // ViewGenerator.RenderDocumentAsImages("word.doc", "Show me as watermark", Color.Purple);
+            // ViewGenerator.RenderDocumentAsImages("f1.pdf", "Show me as watermark", Color.Purple);
             
             //Render a word document in images form and set the rotation angle to display the rotated page.
             // ViewGenerator.RenderDocumentAsImages("word.doc", 180);
@@ -62,7 +62,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region GeneralRepresentation
             //Render the word document in the form of pdf markup
-             ViewGenerator.RenderDocumentAsPDF("test.pdf");
+          //   ViewGenerator.RenderDocumentAsPDF("test.pdf");
 
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
@@ -73,6 +73,20 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ViewGenerator.RenderDocFromAzure("word.doc");
             //Render a document from ftp location 
             //ViewGenerator.RenderDocFromAzure("word.doc");
+            #endregion
+
+            #region OtherImprovements
+            //Show grid lines for Excel files in html representation 
+            //ViewGenerator.RenderWithGridLinesInExcel("spreadsheet.xlsx");
+            //Multiple pages per sheet 
+           // ViewGenerator.RenderMultiExcelSheetsInOnePage("testcc1.xlsx");
+            //Show hidden sheets for Excel files in image representation 
+           // ViewGenerator.RenderWithHiddenSheetsInExcel("spreadsheet.xlsx");
+            //Render a document from ftp location 
+            //ViewGenerator.RenderWithLocales("word.doc");
+            //Get all supported document formats 
+            //ViewGenerator.ShowAllSupportedFormats();
+
             #endregion
 
 

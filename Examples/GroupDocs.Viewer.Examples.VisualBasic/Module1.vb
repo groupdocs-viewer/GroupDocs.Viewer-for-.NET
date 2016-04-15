@@ -24,7 +24,7 @@ Namespace GroupDocs.Viewer.Examples
             '#Region "ViewerHtmlPresentation"
 
             'Render a power point presentation in html form
-            ViewGenerator.RenderDocumentAsHtml("sample.pptx")
+            'ViewGenerator.RenderDocumentAsHtml("sample.pptx")
 
             'Render a spreadsheet in html form
             'ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx")
@@ -77,6 +77,19 @@ Namespace GroupDocs.Viewer.Examples
             'ViewGenerator.RenderDocFromAzure("word.doc");
             '#End Region
 
+            ' #Region "OtherImprovements"
+            'Show grid lines for Excel files in html representation 
+            'ViewGenerator.RenderWithGridLinesInExcel("spreadsheet.xlsx");
+            'Multiple pages per sheet 
+            ' ViewGenerator.RenderMultiExcelSheetsInOnePage("testcc1.xlsx");
+            'Show hidden sheets for Excel files in image representation 
+            ' ViewGenerator.RenderWithHiddenSheetsInExcel("spreadsheet.xlsx");
+            'Render a document from ftp location 
+            'ViewGenerator.RenderWithLocales("word.doc");
+            'Get all supported document formats 
+            'ViewGenerator.ShowAllSupportedFormats();
+
+            '#End Region
         End Sub
     End Module
 End Namespace

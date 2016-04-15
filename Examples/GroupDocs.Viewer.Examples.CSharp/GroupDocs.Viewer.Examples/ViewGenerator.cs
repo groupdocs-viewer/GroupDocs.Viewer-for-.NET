@@ -13,6 +13,7 @@ using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Containers;
 using System.IO;
 using GroupDocs.Viewer.Handler.Input;
+using System.Globalization;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -33,7 +34,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Create html handler
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-
             
             // Guid implies that unique document name 
             string guid = DocumentName;
@@ -47,7 +47,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Set password if document is password protected. 
             if(!String.IsNullOrEmpty(DocumentPassword))
             options.Password = DocumentPassword;
-            options.PageNumbersToConvert = Enumerable.Range(1, 3).ToList();
+          //  options.PageNumbersToConvert = Enumerable.Range(1, 3).ToList();
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
 
@@ -175,7 +175,68 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderRemoteDocAsHtml
         }
-       
+
+        public static void RenderLargeDocumentAsHtml(String DocumentName, String DocumentPassword = null)
+        {
+            //ExStart:RenderAsHtml
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //to get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = true;
+
+            // Set password if document is password protected. 
+            if (!String.IsNullOrEmpty(DocumentPassword))
+                options.Password = DocumentPassword;
+            //Get Pre Render info
+            int allPages = htmlHandler.GetDocumentInfo(new DocumentInfoOptions(guid)).Pages.Count;
+
+            int pageNumber = 1;
+
+            // Get total iterations and remainder
+            int totalIterations = allPages / 5;
+            int remainder = allPages % 5;
+
+            for (int i = 1; i <= totalIterations; i++)
+            {
+                // Set range of the pages
+                options.PageNumbersToConvert = Enumerable.Range(pageNumber, 5).ToList();
+                // Get pages
+                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+                //Save each page at disk
+                foreach (PageHtml page in pages)
+                {
+                    //Save each page at disk
+                    Utilities.SaveAsHtml("it" + i + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
+                }
+                pageNumber += 5;
+
+            }
+            if (remainder > 0)
+            {
+                options.PageNumbersToConvert = Enumerable.Range(pageNumber, remainder).ToList();
+                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+                //Save each page at disk
+                foreach (PageHtml page in pages)
+                {
+                    //Save each page at disk
+                    Utilities.SaveAsHtml("it" + (totalIterations + 1) + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
+                }
+                pageNumber += 5;
+            }
+
+            //ExEnd:RenderAsHtml
+        }
         #endregion
 
         #region ImageRepresentation
@@ -471,11 +532,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
         public static void RenderDocFromAzure(String DocumentName)
         {
             // Setup GroupDocs.Viewer config
-            ViewerConfig config = new ViewerConfig();
-            config.StoragePath = @"C:\storage";
+            ViewerConfig config = Utilities.GetConfigurations();
+           
 
             // File guid
-            string guid = @"word.doc";
+            string guid = DocumentName;
 
             // Use custom IInputDataHandler implementation
             IInputDataHandler inputDataHandler = new AzureInputDataHandler("<Account_Name>","<Account_Key>","<Container_Name>");
@@ -497,11 +558,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
         public static void RenderDocFromFTP(String DocumentName)
         {
             // Setup GroupDocs.Viewer config
-            ViewerConfig config = new ViewerConfig();
-            config.StoragePath = @"C:\storage";
-
+            ViewerConfig config = Utilities.GetConfigurations();
+           
             // File guid
-            string guid = @"word.doc";
+            string guid = DocumentName;
 
             // Use custom IInputDataHandler implementation
             IInputDataHandler inputDataHandler = new FtpInputDataHandler();
@@ -516,6 +576,138 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
+        #endregion
+
+        #region OtherImprovements
+
+        /* Working from 3.2.0*/
+       /// <summary>
+        /// Show grid lines for Excel files in html representation
+       /// </summary>
+       /// <param name="DocumentName"></param>
+        public static void RenderWithGridLinesInExcel(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+           
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+            //do same while using ImageOptions
+            options.CellsOptions.ShowGridLines = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+        /// <summary>
+        /// Multiple pages per sheet
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderMultiExcelSheetsInOnePage(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+           
+            // Create image or html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+            string guid = DocumentName;
+
+            // Set pdf file one page per sheet option to false, default value of this option is true
+            PdfFileOptions pdfFileOptions = new PdfFileOptions();
+            pdfFileOptions.Guid = guid;
+            pdfFileOptions.CellsOptions.OnePagePerSheet = false;
+
+            //Get pdf file
+            FileContainer fileContainer = imageHandler.GetPdfFile(pdfFileOptions);
+
+            Utilities.SaveFile("test.pdf", fileContainer.Stream);
+        }
+        /// <summary>
+        /// Get all supported document formats
+        /// </summary>
+        
+        public static void ShowAllSupportedFormats()
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create image or html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Get supported document formats
+            DocumentFormatsContainer documentFormatsContainer = imageHandler.GetSupportedDocumentFormats();
+            Dictionary<string, string> supportedDocumentFormats = documentFormatsContainer.SupportedDocumentFormats;
+
+            foreach (KeyValuePair<string, string> supportedDocumentFormat in supportedDocumentFormats)
+            {
+                Console.WriteLine(string.Format("Extension: '{0}'; Document format: '{1}'", supportedDocumentFormat.Key, supportedDocumentFormat.Value));
+            }
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// Show hidden sheets for Excel files in image representation
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWithHiddenSheetsInExcel(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+            //do same while using ImageOptions
+            options.CellsOptions.ShowHiddenSheets = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+        /// <summary>
+        /// create and use file with localized string
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWithLocales(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+            config.LocalesPath = @"D:\from office working\for aspose\GroupDocsViewer\GroupDocs.Viewer.Examples\Data\Locale";
+
+            CultureInfo cultureInfo = new CultureInfo("fr-FR");
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo); 
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+            
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+
         #endregion
     }
 
