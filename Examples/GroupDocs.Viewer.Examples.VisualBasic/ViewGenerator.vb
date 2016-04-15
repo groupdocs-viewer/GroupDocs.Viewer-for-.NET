@@ -14,6 +14,7 @@ Imports GroupDocs.Viewer.Domain.Containers
 Imports System.IO
 Imports GroupDocs.Viewer.Domain.Transformation
 Imports GroupDocs.Viewer.Handler.Input
+Imports System.Globalization
 
 
 Namespace GroupDocs.Viewer.Examples
@@ -473,12 +474,133 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 #End Region
 
-        '=======================================================
-        'Service provided by Telerik (www.telerik.com)
-        'Conversion powered by NRefactory.
-        'Twitter: @telerik
-        'Facebook: facebook.com/telerik
-        '=======================================================
+
+#Region "OtherImprovements"
+
+        ' Working from 3.2.0
+
+        ''' <summary>
+        ''' Show grid lines for Excel files in html representation
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderWithGridLinesInExcel(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' File guid
+            Dim guid As String = DocumentName
+
+            ' Set html options to show grid lines
+            Dim options As New HtmlOptions()
+            'do same while using ImageOptions
+            options.CellsOptions.ShowGridLines = True
+
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+        End Sub
+        ''' <summary>
+        ''' Multiple pages per sheet
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderMultiExcelSheetsInOnePage(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create image or html handler
+            Dim imageHandler As New ViewerImageHandler(config)
+            Dim guid As String = DocumentName
+
+            ' Set pdf file one page per sheet option to false, default value of this option is true
+            Dim pdfFileOptions As New PdfFileOptions()
+            pdfFileOptions.Guid = guid
+            pdfFileOptions.CellsOptions.OnePagePerSheet = False
+
+            'Get pdf file
+            Dim fileContainer As FileContainer = imageHandler.GetPdfFile(pdfFileOptions)
+
+            Utilities.SaveFile("test.pdf", fileContainer.Stream)
+        End Sub
+        ''' <summary>
+        ''' Get all supported document formats
+        ''' </summary>
+
+        Public Shared Sub ShowAllSupportedFormats()
+            ' Setup GroupDocs.Viewer config
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create image or html handler
+            Dim imageHandler As New ViewerImageHandler(config)
+
+            ' Get supported document formats
+            Dim documentFormatsContainer As DocumentFormatsContainer = imageHandler.GetSupportedDocumentFormats()
+            Dim supportedDocumentFormats As Dictionary(Of String, String) = documentFormatsContainer.SupportedDocumentFormats
+
+            For Each supportedDocumentFormat As KeyValuePair(Of String, String) In supportedDocumentFormats
+                Console.WriteLine(String.Format("Extension: '{0}'; Document format: '{1}'", supportedDocumentFormat.Key, supportedDocumentFormat.Value))
+            Next
+            Console.ReadKey()
+        End Sub
+        ''' <summary>
+        ''' Show hidden sheets for Excel files in image representation
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderWithHiddenSheetsInExcel(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' File guid
+            Dim guid As String = DocumentName
+
+            ' Set html options to show grid lines
+            Dim options As New HtmlOptions()
+            'do same while using ImageOptions
+            options.CellsOptions.ShowHiddenSheets = True
+
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+        End Sub
+        ''' <summary>
+        ''' create and use file with localized string
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderWithLocales(DocumentName As [String])
+            ' Setup GroupDocs.Viewer config
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+            config.LocalesPath = "D:\from office working\for aspose\GroupDocsViewer\GroupDocs.Viewer.Examples\Data\Locale"
+
+            Dim cultureInfo As New CultureInfo("fr-FR")
+            Dim htmlHandler As New ViewerHtmlHandler(config, cultureInfo)
+
+            ' File guid
+            Dim guid As String = DocumentName
+
+            ' Set html options to show grid lines
+            Dim options As New HtmlOptions()
+
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+        End Sub
+
+#End Region
+
+
+
 
 
     End Class
