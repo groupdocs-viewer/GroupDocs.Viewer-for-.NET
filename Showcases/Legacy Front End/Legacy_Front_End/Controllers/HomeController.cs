@@ -1,5 +1,4 @@
-﻿using GroupDocs.Viewer;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace MvcSample.Controllers
 {
@@ -7,9 +6,6 @@ namespace MvcSample.Controllers
     {
         public ActionResult Index()
         {
-            // Apply product license.
-            License lic = new License();
-            lic.SetLicense(@"D:\GroupDocs.Viewer.lic");
             return View();
         }
     }

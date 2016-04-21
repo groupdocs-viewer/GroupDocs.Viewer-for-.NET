@@ -1522,11 +1522,11 @@ locale: locale
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetPrintableHtml' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 reorderPage: function (path, oldPosition, newPosition, successCallback, errorCallback, instanceIdToken) {
-var data = { path: path, oldPosition: oldPosition, newPosition: newPosition, instanceIdToken: instanceIdToken };
+    var data = { parameters: { path: path, oldPosition: oldPosition, newPosition: newPosition, instanceIdToken: instanceIdToken }};
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/ReorderPage' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 rotatePage: function (path, pageNumber, rotationAmount, successCallback, errorCallback, instanceIdToken) {
-var data = { path: path, pageNumber: pageNumber, rotationAmount: rotationAmount, instanceIdToken: instanceIdToken };
+    var data = { parameters: { path: path, pageNumber: pageNumber, rotationAmount: rotationAmount, instanceIdToken: instanceIdToken }};
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/RotatePage' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 _runServiceSync: function (url, data, useCache) {
@@ -2014,7 +2014,7 @@ locale
 reorderPage: function (fileId, oldPosition, newPosition, instanceIdToken, callback, errorCallback) {
 this._portalService.reorderPage(fileId, oldPosition, newPosition,
 function (response) {
-callback.apply(this, [response.data.d]);
+ callback.apply(this, [response.data.d]);
 },
 function (error) {
 errorCallback.apply(this, [error]);

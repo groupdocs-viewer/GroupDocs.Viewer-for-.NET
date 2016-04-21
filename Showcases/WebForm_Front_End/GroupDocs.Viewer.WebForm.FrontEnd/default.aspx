@@ -53,7 +53,7 @@
          $(function () {
              $('#viewerHtmlDiv').groupdocsViewer({
                  //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-                 filePath: 'John Wayne.docx',
+                 filePath: 'candy.pdf',
                  zoomToFitWidth: true,
                  showFolderBrowser: true,
                  showHeader: true,
@@ -63,16 +63,13 @@
                  useHtmlThumbnails: true,
                  width: 800,
                  height: 900,
-                 watermarkPosition: 'Diagonal',
-                 watermarkText: 'Attested',
-                 watermarkWidth: 7,
-                 isPrintable: true,
                  useHtmlBasedEngine: true,
                  showDownload: true,
                  downloadPdfFile: true,
                  showPrint: true,
                  usePdfPrinting: true,
-                 supportPageRotation:true
+                 supportPageRotation: true
+                 
              });
          });
          //For Image Representation

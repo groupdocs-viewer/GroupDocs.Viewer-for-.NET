@@ -1,5 +1,4 @@
-﻿using GroupDocs.Viewer.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MvcSample.Models
 {

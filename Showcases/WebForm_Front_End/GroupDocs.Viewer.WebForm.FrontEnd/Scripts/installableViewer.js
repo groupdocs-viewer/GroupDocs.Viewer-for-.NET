@@ -391,7 +391,7 @@
                     }
                 }
 
-                settings.supportPageReordering = false;
+                //settings.supportPageReordering = false;
             }
 
             var viewerWidth, viewerHeight;

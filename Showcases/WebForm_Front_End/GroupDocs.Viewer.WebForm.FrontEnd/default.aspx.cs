@@ -2,6 +2,7 @@
 using GroupDocs.Viewer.Config;
 using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Containers;
 using GroupDocs.Viewer.Domain.Html;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
@@ -52,7 +53,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             _htmlHandler = new ViewerHtmlHandler(_config);
             _imageHandler = new ViewerImageHandler(_config);
 
-           // _streams.Add("StreamExample_1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
+           // _streams.Add("Stream1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
             //_streams.Add("StreamExample_2.doc", HttpWebRequest.Create("http://www.acm.org/sigs/publications/pubform.doc").GetResponse().GetResponseStream());
 
         }
@@ -465,10 +466,48 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                     result.pageHtml[i] = html.Substring(0, indexOfScript);
             }
         }
+        [WebMethod]
+        [ScriptMethod]
+        public static RotatePageResponse RotatePage(RotatePageParameters parameters)
+        {
+            string guid = parameters.Path;
+            int pageIndex = parameters.PageNumber;
+
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
+
+            RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
+            RotatePageContainer rotatePageContainer = _imageHandler.RotatePage(rotatePageOptions);
+
+            RotatePageResponse response = new RotatePageResponse
+            {
+                resultAngle = rotatePageContainer.CurrentRotationAngle
+            };
+
+            return response;
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static ReorderPageResponse ReorderPage(ReorderPageParameters parameters)
+        {
+            string guid = parameters.Path;
+
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+
+            int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
+            int newPosition = parameters.NewPosition + 1;
+
+            ReorderPageOptions reorderPageOptions = new ReorderPageOptions(guid, pageNumber, newPosition);
+            _imageHandler.ReorderPage(reorderPageOptions);
+
+            return (new ReorderPageResponse());
+        }
         private static List<PageHtml> GetHtmlPages(string filePath, HtmlOptions htmlOptions, out List<string> cssList)
         {
             var htmlPages = _htmlHandler.GetPages(filePath, htmlOptions);
-
+            //System.IO.File.Move(@"D:\from office working\for aspose\GroupDocsViewer\WebForm.FrontEnd\GroupDocs.Viewer.WebForm.FrontEnd\App_Data\" + filePath, @"d:\" + filePath);
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
@@ -518,6 +557,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                     }
                 }
             }
+
             return htmlPages;
         }
         private static string DownloadToStorage(string url)
