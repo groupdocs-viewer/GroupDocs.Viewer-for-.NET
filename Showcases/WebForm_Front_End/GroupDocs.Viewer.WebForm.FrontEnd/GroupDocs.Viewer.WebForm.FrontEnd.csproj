@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="GroupDocs.Viewer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\GroupDocs.Viewer_3.0.0-NET (1)\bin\GroupDocs.Viewer.dll</HintPath>
+      <HintPath>..\..\GroupDocs.Viewer_3.2.0-NET\bin\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
@@ -65,6 +65,11 @@
     <Compile Include="BusinessLayer\FileDataJsonSerializer.cs" />
     <Compile Include="BusinessLayer\GetFileParameters.cs" />
     <Compile Include="BusinessLayer\GetImageUrlsParameters.cs" />
+    <Compile Include="BusinessLayer\GetResourceForHtmlParameters.cs" />
+    <Compile Include="BusinessLayer\Helpers\InterProcessLock.cs" />
+    <Compile Include="BusinessLayer\Helpers\Utils.cs" />
+    <Compile Include="BusinessLayer\ReorderPageParameters.cs" />
+    <Compile Include="BusinessLayer\RotatePageParameters.cs" />
     <Compile Include="BusinessLayer\ViewDocumentParameters.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -114,6 +119,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="default.aspx" />
     <Content Include="GetFile.aspx" />
+    <Content Include="GetResourceForHtml.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\GroupdocsViewer.all.js" />
     <Content Include="Scripts\GroupdocsViewer.all.min.js" />
@@ -1265,6 +1271,13 @@
     </Compile>
     <Compile Include="GetFile.aspx.designer.cs">
       <DependentUpon>GetFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetResourceForHtml.aspx.cs">
+      <DependentUpon>GetResourceForHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetResourceForHtml.aspx.designer.cs">
+      <DependentUpon>GetResourceForHtml.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
