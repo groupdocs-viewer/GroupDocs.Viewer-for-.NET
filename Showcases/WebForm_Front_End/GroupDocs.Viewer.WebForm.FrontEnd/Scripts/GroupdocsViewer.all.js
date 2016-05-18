@@ -1440,12 +1440,14 @@ embedImagesIntoHtmlForWordFiles,
 saveFontsInAllFormats,
 successCallback, errorCallback,
 instanceIdToken, locale) {
-var data = {
-path: path, pageIndex: pageIndex, usePngImages: usePngImages,
-embedImagesIntoHtmlForWordFiles: embedImagesIntoHtmlForWordFiles,
-instanceIdToken: instanceIdToken,
-locale: locale,
-saveFontsInAllFormats: saveFontsInAllFormats
+    var data = {
+        parameters: {
+            path: path, pageIndex: pageIndex, usePngImages: usePngImages,
+            embedImagesIntoHtmlForWordFiles: embedImagesIntoHtmlForWordFiles,
+            instanceIdToken: instanceIdToken,
+            locale: locale,
+            saveFontsInAllFormats: saveFontsInAllFormats
+        }
 };
 this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetDocumentPageHtml' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
@@ -2375,7 +2377,7 @@ this.useHtmlBasedEngine, this.supportPageRotation,
 this.instanceIdToken,
 function (response) {
 var imageUrls;
-if (response.d.imageUrls && typeof response.image_urls == "undefined")
+if (response.d.imageUrls && typeof response.d.image_urls == "undefined")
 imageUrls = response.d.imageUrls;
 else
 imageUrls = response.d.image_urls;

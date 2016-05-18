@@ -294,5 +294,20 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer.Helpers
                     throw new ArgumentOutOfRangeException();
             }
         }
+        public static List<string> GetCssClasses(string pageHtml)
+        {
+            var regex = new Regex("class=['\"]([a-zA-Z0-9\\s]+)['\"]", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            var matches = regex.Matches(pageHtml);
+
+            List<string> classes = new List<string>();
+            for (int i = 0; i < matches.Count; i++)
+            {
+                var values = matches[i].Groups[1].Value.Split(' ').ToList();
+                classes.AddRange(values);
+            }
+
+            return classes.Distinct().ToList();
+        }
     }
 }

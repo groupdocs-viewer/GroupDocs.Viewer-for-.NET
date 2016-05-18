@@ -17,7 +17,7 @@
     <script src="/Scripts/modernizr.2.6.2.Transform2d.min.js"></script>
     <script src="/Scripts/installableViewer.js"></script>
 
-     <script type='text/javascript'> $.ui.groupdocsViewer.prototype.applicationPath = 'http://localhost:11462/default.aspx';</script>
+     <script type='text/javascript'> $.ui.groupdocsViewer.prototype.applicationPath = '/default.aspx';</script>
     <script type='text/javascript'> $.ui.groupdocsViewer.prototype.useHttpHandlers = false;</script>
     <script src="/Scripts/GroupdocsViewer.all.js"></script>
     
@@ -29,16 +29,16 @@
     <h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
 
 <table style="width:100%">
-    <tr>
+    <%--<tr>
         <td style="text-align: center">
             <h4>View document</h4>
         </td>
       
-     </tr>
-    <tr>
-        <td style="text-align: center">
+     </tr>--%>
+    <tr style="width:100%">
+        <td >
            
-            <div id="viewerHtmlDiv"></div>
+            <div id="viewerHtmlDiv" style="width:100%"></div>
         </td>
        
     </tr>
@@ -50,25 +50,35 @@
 </body>
      <script>
          // For Html Representation
+
          $(function () {
+             var viewerSyle = {
+                 ScrollView: 1,
+                 DoublePageFlip: 2,
+                 OnePageInRow: 3,
+                 TwoPagesInRow: 4,
+                 CoverThenTwoPagesInRow: 5
+             };
              $('#viewerHtmlDiv').groupdocsViewer({
                  //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
                  filePath: 'candy.pdf',
                  zoomToFitWidth: true,
+                 //zoomToFitHeight: true,
                  showFolderBrowser: true,
                  showHeader: true,
                  showPaging: true,
                  showThumbnails: true,
                  showZoom: true,
-                 useHtmlThumbnails: true,
-                 width: 800,
+                 width: 650,
                  height: 900,
+                 isResourcesEmbedded:true,
                  useHtmlBasedEngine: true,
                  showDownload: true,
                  downloadPdfFile: true,
                  showPrint: true,
+                 preloadPagesCount: 1,
                  usePdfPrinting: true,
-                 supportPageRotation: true
+                 //supportPageRotation: true
                  
              });
          });

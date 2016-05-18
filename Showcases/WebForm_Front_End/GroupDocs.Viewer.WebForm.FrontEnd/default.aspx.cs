@@ -29,7 +29,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 {
     public partial class _default : System.Web.UI.Page
     {
-        private static  ViewerHtmlHandler _htmlHandler;
+        private static ViewerHtmlHandler _htmlHandler;
         private static ViewerImageHandler _imageHandler;
         private static readonly Dictionary<string, Stream> _streams = new Dictionary<string, Stream>();
 
@@ -41,23 +41,26 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
-      
+
             _config = new ViewerConfig
             {
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
-                UseCache = false
-              // CachePath=_CachePath 
+                UseCache = true
+                // CachePath=_CachePath 
             };
 
             _htmlHandler = new ViewerHtmlHandler(_config);
             _imageHandler = new ViewerImageHandler(_config);
 
-           // _streams.Add("Stream1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
+            HttpContext.Current.Session["imageHandler"] = _imageHandler;
+            HttpContext.Current.Session["htmlHandler"] = _htmlHandler;
+
+            // _streams.Add("Stream1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
             //_streams.Add("StreamExample_2.doc", HttpWebRequest.Create("http://www.acm.org/sigs/publications/pubform.doc").GetResponse().GetResponseStream());
 
         }
-       
+
         [WebMethod]
         [ScriptMethod]
         public static ViewDocumentResponse ViewDocument(ViewDocumentParameters request)
@@ -86,9 +89,9 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 ViewDocumentAsImage(request, result, fileName);
 
             return result;
-           
+
         }
-        
+
         [WebMethod]
         [ScriptMethod]
         public static FileBrowserTreeDataResponse LoadFileBrowserTreeData(LoadFileBrowserTreeDataParameters parameters)
@@ -107,64 +110,54 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 nodes = ToFileTreeNodes(parameters.Path, treeNodes).ToArray(),
                 count = tree.FileTree.Count
             };
-           
+
             return data;
 
         }
-        
+
         [WebMethod]
         [ScriptMethod]
         public static GetImageUrlsResponse GetImageUrls(GetImageUrlsParameters parameters)
         {
             if (string.IsNullOrEmpty(parameters.Path))
             {
-                GetImageUrlsResponse empty = new GetImageUrlsResponse { imageUrls = new string[0] };
-
-
+                var empty = new GetImageUrlsResponse { imageUrls = new string[0] };
                 return empty;
             }
 
-            var imageOptions = new ImageOptions();
-            var imagePages = _imageHandler.GetPages(parameters.Path, imageOptions);
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(parameters.Path);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
 
-            // Save images some where and provide urls
-            var urls = new List<string>();
-            var tempFolderPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), "Content", "TempStorage");
-
-            foreach (var pageImage in imagePages)
+            int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
+            for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
             {
-                var docFoldePath = Path.Combine(tempFolderPath, parameters.Path);
-
-                if (!Directory.Exists(docFoldePath))
-                    Directory.CreateDirectory(docFoldePath);
-
-                var pageImageName = string.Format("{0}\\{1}.png", docFoldePath, pageImage.PageNumber);
-
-                using (var stream = pageImage.Stream)
-                using (FileStream fileStream = new FileStream(pageImageName, FileMode.Create))
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    stream.CopyTo(fileStream);
-                }
-
-                var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
-                urls.Add(string.Format("{0}Content/TempStorage/{1}/{2}.png", baseUrl, parameters.Path, pageImage.PageNumber));
+                pageNumbers[i] = documentInfoContainer.Pages[i].Number;
             }
 
-            GetImageUrlsResponse result = new GetImageUrlsResponse { imageUrls = urls.ToArray() };
+            var applicationHost = GetApplicationHost();
 
+            string[] imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, parameters);
+
+            var result = new GetImageUrlsResponse
+            {
+                imageUrls = imageUrls
+            };
 
             return result;
         }
-        
+        private static string GetApplicationHost()
+        {
+            return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/');
+        }
+
         [WebMethod]
         [ScriptMethod]
         public static void GetFile(GetFileParameters parameters)
         {
             HttpContext.Current.Session["fileparams"] = parameters;
-         
+
         }
-       
+
         [WebMethod]
         [ScriptMethod]
         public static String GetPdfWithPrintDialog(GetFileParameters parameters)
@@ -363,56 +356,24 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
 
-            var imageOptions = new ImageOptions
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(request.Path);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+
+            int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
+            for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
             {
-                Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor, request.WatermarkPosition, request.WatermarkWidth)
-            };
-
-            // NOTE: imageOptions.JpegQuality available since 3.2.0 version
-            //if (request.Quality.HasValue)
-            //    imageOptions.JpegQuality = request.Quality.Value;
-
-            var imagePages = _imageHandler.GetPages(fileName, imageOptions);
-
-
-            // Provide images urls
-            var urls = new List<string>();
-
-            // If no cache - save images to temp folder
-            var tempFolderPath = Path.Combine(HttpContext.Current.Server.MapPath("~"), "Content", "TempStorage");
-
-            foreach (var pageImage in imagePages)
-            {
-                var docFoldePath = Path.Combine(tempFolderPath, Path.GetFileName(request.Path));
-
-                using (new InterProcessLock(docFoldePath))
-                {
-                    if (!Directory.Exists(docFoldePath))
-                        Directory.CreateDirectory(docFoldePath);
-                }
-
-
-                var pageImageName = string.Format("{0}\\{1}.png", docFoldePath, pageImage.PageNumber);
-
-                using (var stream = pageImage.Stream)
-                using (var fileStream = new FileStream(pageImageName, FileMode.Create))
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    stream.CopyTo(fileStream);
-                }
-
-                var baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority +
-                                HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
-                urls.Add(string.Format("{0}Content/TempStorage/{1}/{2}.png", baseUrl, request.Path,
-                    pageImage.PageNumber));
+                pageNumbers[i] = documentInfoContainer.Pages[i].Number;
             }
 
-            result.imageUrls = urls.ToArray();
+            string applicationHost = GetApplicationHost();
+            result.imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);
         }
 
         private static void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var htmlHandler= (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
+            
+            var docInfo = htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -440,10 +401,9 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             var htmlOptions = new HtmlOptions
             {
-                IsResourcesEmbedded = Utils.IsImage(fileName) ? true : false,
-                HtmlResourcePrefix = string.Format(
-                "/GetResourceForHtml.aspx?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
-                Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor, request.WatermarkPosition, request.WatermarkWidth)
+               // IsResourcesEmbedded = Utils.IsImage(fileName),
+                IsResourcesEmbedded=false,
+                HtmlResourcePrefix = string.Format("/GetResourceForHtml.aspx?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
             };
 
             if (request.PreloadPagesCount.HasValue && request.PreloadPagesCount.Value > 0)
@@ -453,18 +413,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             }
 
             List<string> cssList;
+
+            
+          
+          
             var htmlPages = GetHtmlPages(fileName, htmlOptions, out cssList);
+            
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
             result.pageCss = new[] { string.Join(" ", cssList) };
-
-            //NOTE: Fix for incomplete cells document
-            for (var i = 0; i < result.pageHtml.Length; i++)
-            {
-                var html = result.pageHtml[i];
-                var indexOfScript = html.IndexOf("script", StringComparison.InvariantCultureIgnoreCase);
-                if (indexOfScript > 0)
-                    result.pageHtml[i] = html.Substring(0, indexOfScript);
-            }
         }
         [WebMethod]
         [ScriptMethod]
@@ -489,6 +445,37 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         }
         [WebMethod]
         [ScriptMethod]
+        public static object GetDocumentPageHtml(GetDocumentPageHtmlParameters parameters)
+        {
+            if (Utils.IsValidUrl(parameters.Path))
+                parameters.Path = Utils.GetFilenameFromUrl(parameters.Path);
+
+            if (String.IsNullOrWhiteSpace(parameters.Path))
+                throw new ArgumentException("A document path must be specified", "path");
+
+            List<string> cssList;
+            int pageNumber = parameters.PageIndex + 1;
+
+            var htmlOptions = new HtmlOptions
+            {
+                PageNumber = parameters.PageIndex + 1,
+                CountPagesToConvert = 1,
+                IsResourcesEmbedded = false,
+                HtmlResourcePrefix = string.Format(
+                    "/GetResourceForHtml.aspx?documentPath={0}", parameters.Path) +
+                                     "&pageNumber={page-number}&resourceName=",
+            };
+
+            var htmlPages = GetHtmlPages(parameters.Path, htmlOptions, out cssList);
+
+            var pageHtml = htmlPages.Count > 0 ? htmlPages[0].HtmlContent : null;
+            var pageCss = cssList.Count > 0 ? new[] { string.Join(" ", cssList) } : null;
+
+            var result = new { pageHtml, pageCss };
+            return result;
+        }
+        [WebMethod]
+        [ScriptMethod]
         public static ReorderPageResponse ReorderPage(ReorderPageParameters parameters)
         {
             string guid = parameters.Path;
@@ -506,18 +493,17 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         }
         private static List<PageHtml> GetHtmlPages(string filePath, HtmlOptions htmlOptions, out List<string> cssList)
         {
-            var htmlPages = _htmlHandler.GetPages(filePath, htmlOptions);
-            //System.IO.File.Move(@"D:\from office working\for aspose\GroupDocsViewer\WebForm.FrontEnd\GroupDocs.Viewer.WebForm.FrontEnd\App_Data\" + filePath, @"d:\" + filePath);
+            var htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
+            var htmlPages = htmlHandler.GetPages(filePath, htmlOptions);
+            
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
                 var indexOfBodyOpenTag = page.HtmlContent.IndexOf("<body>", StringComparison.InvariantCultureIgnoreCase);
-
                 if (indexOfBodyOpenTag > 0)
                     page.HtmlContent = page.HtmlContent.Substring(indexOfBodyOpenTag + "<body>".Length);
 
                 var indexOfBodyCloseTag = page.HtmlContent.IndexOf("</body>", StringComparison.InvariantCultureIgnoreCase);
-
                 if (indexOfBodyCloseTag > 0)
                     page.HtmlContent = page.HtmlContent.Substring(0, indexOfBodyCloseTag);
 
@@ -556,8 +542,17 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                         System.IO.File.WriteAllText(fullPath, text);
                     }
                 }
-            }
 
+                List<string> cssClasses = Utils.GetCssClasses(page.HtmlContent);
+                foreach (var cssClass in cssClasses)
+                {
+                    var newCssClass = string.Format("page-{0}-{1}", page.PageNumber, cssClass);
+
+                    page.HtmlContent = page.HtmlContent.Replace(cssClass, newCssClass);
+                    for (int i = 0; i < cssList.Count; i++)
+                        cssList[i] = cssList[i].Replace(cssClass, newCssClass);
+                }
+            }
             return htmlPages;
         }
         private static string DownloadToStorage(string url)
@@ -589,7 +584,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             }
         }
 
-    
+
 
     }
 }

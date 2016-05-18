@@ -12,11 +12,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString()))
-            {
-                GroupDocs.Viewer.License lic = new GroupDocs.Viewer.License();
-                lic.SetLicense(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString());
-            }
+            License lic = new License();
+            lic.SetLicense(Server.MapPath("~/License/GroupDocs.Total.lic"));
         }
 
         protected void Session_Start(object sender, EventArgs e)
