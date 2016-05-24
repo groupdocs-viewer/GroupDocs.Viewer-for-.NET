@@ -256,7 +256,42 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:LoadFioleTree
 
         End Sub
+        ''' <summary>
+        ''' Get document stream
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param> 
+        Public Shared Function GetDocumentStream(DocumentName As String) As Stream
+            Try
+                'ExStart:GetDocumentStream
+                Dim fsSource As New FileStream(StoragePath & DocumentName, FileMode.Open, FileAccess.Read)
 
+                ' Read the source file into a byte array.
+                Dim bytes As Byte() = New Byte(fsSource.Length - 1) {}
+                Dim numBytesToRead As Integer = CInt(fsSource.Length)
+                Dim numBytesRead As Integer = 0
+                While numBytesToRead > 0
+                    ' Read may return anything from 0 to numBytesToRead.
+                    Dim n As Integer = fsSource.Read(bytes, numBytesRead, numBytesToRead)
+
+                    ' Break when the end of the file is reached.
+                    If n = 0 Then
+                        Exit While
+                    End If
+
+                    numBytesRead += n
+                    numBytesToRead -= n
+                End While
+                numBytesToRead = bytes.Length
+
+
+
+                'ExEnd:GetDocumentStream
+                Return fsSource
+            Catch ioEx As FileNotFoundException
+                Console.WriteLine(ioEx.Message)
+                Return Nothing
+            End Try
+        End Function
 #End Region
     End Class
 

@@ -523,6 +523,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         #endregion
 
+       
         #region InputDataHandlers
 
         /// <summary>
@@ -577,6 +578,346 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
         #endregion
+
+        #region OtherOperations
+        /// <summary>
+        /// Set custom fonts directory path
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void SetCustomFontDirectory(String DocumentName)
+        {
+            try
+            {
+                //ExStart:SetCustomFontDirectory
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Add custom fonts directories to FontDirectories list
+                config.FontDirectories.Add(@"/usr/admin/Fonts");
+                config.FontDirectories.Add(@"/home/admin/Fonts");
+
+                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+                // File guid
+                string guid = DocumentName;
+
+                List<PageHtml> pages = htmlHandler.GetPages(guid);
+
+                foreach (PageHtml page in pages)
+                {
+                    //Save each page at disk
+                    Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+                }
+                //ExEnd:SetCustomFontDirectory
+            }
+            catch(System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+        #endregion
+
+        #region EmailAttachments
+        /// <summary>
+        /// Get attached image with email message
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetEmailAttachments(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetEmailAttachments
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler handler = new ViewerImageHandler(config);
+                EmailAttachment attachment = new EmailAttachment(DocumentName, "attachment-image.png");
+
+                // Get attachment original file
+                FileContainer container = handler.GetFile(attachment);
+
+                Console.WriteLine("Attach name: {0}, Type: {1}", attachment.Name, attachment.FileType);
+                Console.WriteLine("Attach stream lenght: {0}", container.Stream.Length);
+                //ExEnd:GetEmailAttachments
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get attached file's html representation
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetEmailAttachmentHTMLRepresentation(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetEmailAttachmentHTMLRepresentation
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Setup html conversion options
+                HtmlOptions htmlOptions = new HtmlOptions();
+                htmlOptions.IsResourcesEmbedded = false;
+
+                // Init viewer html handler
+                ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+                DocumentInfoContainer info = handler.GetDocumentInfo(DocumentName);
+
+                // Iterate over the attachments collection
+                foreach (AttachmentBase attachment in info.Attachments)
+                {
+                    Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType);
+
+                    // Get attachment document html representation
+                    List<PageHtml> pages = handler.GetPages(attachment, htmlOptions);
+                    foreach (PageHtml page in pages)
+                    {
+                        Console.WriteLine("  Page: {0}, size: {1}", page.PageNumber, page.HtmlContent.Length);
+                        foreach (HtmlResource htmlResource in page.HtmlResources)
+                        {
+                            Stream resourceStream = handler.GetResource(attachment, htmlResource);
+                            Console.WriteLine("     Resource: {0}, size: {1}", htmlResource.ResourceName, resourceStream.Length);
+                        }
+                    }
+                }
+                //ExEnd:GetEmailAttachmentHTMLRepresentation
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get attached file's image representation
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetEmailAttachmentImageRepresentation(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetEmailAttachmentImageRepresentation
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Init viewer image handler
+                ViewerImageHandler handler = new ViewerImageHandler(config);
+
+                DocumentInfoContainer info = handler.GetDocumentInfo(DocumentName);
+
+                // Iterate over the attachments collection
+                foreach (AttachmentBase attachment in info.Attachments)
+                {
+                    Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType);
+
+                    // Get attachment document image representation
+                    List<PageImage> pages = handler.GetPages(attachment);
+                    foreach (PageImage page in pages)
+                        Console.WriteLine("  Page: {0}, size: {1}", page.PageNumber, page.Stream.Length);
+                }
+                //ExEnd:GetEmailAttachmentImageRepresentation
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+        #endregion 
+
+        #region DocumentInformation
+        /// <summary>
+        /// Get document information by guid
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetDocumentInfoByGuid(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetDocumentInfoByGuid
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+                string guid = DocumentName;
+                // Get document information
+                DocumentInfoOptions options = new DocumentInfoOptions();
+                DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(guid, options);
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
+                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("Guid: {0}", documentInfo.Guid);
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
+                Console.WriteLine("Name: {0}", documentInfo.Name);
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
+                Console.WriteLine("Size: {0}", documentInfo.Size);
+
+                foreach (PageData pageData in documentInfo.Pages)
+                {
+                    Console.WriteLine("Page number: {0}", pageData.Number);
+                    Console.WriteLine("Page name: {0}", pageData.Name);
+                }
+                //ExEnd:GetDocumentInfoByGuid
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get document information by Uri
+        /// </summary>
+        /// <param name="Uri">Uri of input document</param>
+        public static void GetDocumentInfoByUri(String Uri)
+        {
+            try
+            {
+                //ExStart:GetDocumentInfoByUri
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+                Uri uri = new Uri(Uri);
+
+                // Get document information
+                DocumentInfoOptions options = new DocumentInfoOptions();
+                DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(uri, options);
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
+                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("Guid: {0}", documentInfo.Guid);
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
+                Console.WriteLine("Name: {0}", documentInfo.Name);
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
+                Console.WriteLine("Size: {0}", documentInfo.Size);
+
+                foreach (PageData pageData in documentInfo.Pages)
+                {
+                    Console.WriteLine("Page number: {0}", pageData.Number);
+                    Console.WriteLine("Page name: {0}", pageData.Name);
+                }
+                //ExEnd:GetDocumentInfoByUri
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get document information by stream
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void GetDocumentInfoByStream(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetDocumentInfoByStream
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+                // Get document stream
+                Stream stream = Utilities.GetDocumentStream(DocumentName);
+                // Get document information
+                DocumentInfoOptions options = new DocumentInfoOptions();
+                DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(stream, options);
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
+                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("Guid: {0}", documentInfo.Guid);
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
+                Console.WriteLine("Name: {0}", documentInfo.Name);
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
+                Console.WriteLine("Size: {0}", documentInfo.Size);
+
+                foreach (PageData pageData in documentInfo.Pages)
+                {
+                    Console.WriteLine("Page number: {0}", pageData.Number);
+                    Console.WriteLine("Page name: {0}", pageData.Name);
+                }
+                stream.Close();
+                //ExEnd:GetDocumentInfoByStream
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        
+        #endregion
+
+        #region DocumentCache
+        /// <summary>
+        /// Remove cache files 
+        /// </summary>
+        public static void RemoveCacheFiles()
+        {
+            try
+            {
+                //ExStart:RemoveCacheFiles
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Init viewer image or html handler
+                ViewerHtmlHandler viewerImageHandler = new ViewerHtmlHandler(config);
+
+                //Clear all cache files 
+                viewerImageHandler.ClearCache();
+                //ExEnd:RemoveCacheFiles
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+        /// <summary>
+        /// Remove cache file older than specified date 
+        /// </summary>
+        public static void RemoveCacheFiles(TimeSpan OlderThanDays)
+        {
+            try
+            {
+                //ExStart:RemoveCacheFilesTimeSpan
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Init viewer image or html handler
+                ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
+
+                //Clear files from cache older than specified time interval 
+                viewerImageHandler.ClearCache(OlderThanDays);
+                //ExEnd:RemoveCacheFilesTimeSpan
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        #endregion
+
 
         #region OtherImprovements
 
