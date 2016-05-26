@@ -1,6 +1,8 @@
 ﻿using GroupDocs.Viewer.Config;
 using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Html;
+using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using System;
@@ -60,13 +62,26 @@ namespace GroupDocs.Viewer.Model
            /// <param name="options"></param>
            /// <param name="angle"></param>
            
-            public static void RotatePages(ref ViewerHandler handler,String guid,int PageNumber, int angle)
+            public static void RotatePages(ref ViewerHandler<PageHtml> handler,String guid,int PageNumber, int angle)
             {
                 //ExStart:rotationAngle
                 // Set the property of handler's rotate Page
                 handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
                 //ExEnd:rotationAngle
              }
+            /// <summary>
+            /// Rotate a Page before rendering
+            /// </summary>
+            /// <param name="options"></param>
+            /// <param name="angle"></param>
+
+            public static void RotatePages(ref ViewerHandler<PageImage> handler, String guid, int PageNumber, int angle)
+            {
+                //ExStart:rotationAngle
+                // Set the property of handler's rotate Page
+                handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
+                //ExEnd:rotationAngle
+            }
            /// <summary>
            /// Reorder a page before rendering
            /// </summary>
@@ -74,12 +89,28 @@ namespace GroupDocs.Viewer.Model
            /// <param name="guid">File name</param>
            /// <param name="currentPageNumber">Existing number of page</param>
            /// <param name="newPageNumber">New number of page</param>
-            public static void ReorderPage(ref ViewerHandler Handler, String guid, int currentPageNumber, int newPageNumber)
+            public static void ReorderPage(ref ViewerHandler<PageHtml> Handler, String guid, int currentPageNumber, int newPageNumber)
             {
                 //ExStart:reorderPage
                 //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
                 ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
                // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
+                Handler.ReorderPage(options);
+                //ExEnd:reorderPage
+            }
+            /// <summary>
+            /// Reorder a page before rendering
+            /// </summary>
+            /// <param name="Handler">Base class of handlers</param>
+            /// <param name="guid">File name</param>
+            /// <param name="currentPageNumber">Existing number of page</param>
+            /// <param name="newPageNumber">New number of page</param>
+            public static void ReorderPage(ref ViewerHandler<PageImage> Handler, String guid, int currentPageNumber, int newPageNumber)
+            {
+                //ExStart:reorderPage
+                //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
+                ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
+                // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
                 Handler.ReorderPage(options);
                 //ExEnd:reorderPage
             }
