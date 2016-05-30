@@ -2,12 +2,10 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Converter.Options;
-using System.Collections.Generic;
+using GroupDocs.Viewer.Domain;
 
-
-namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
+namespace MvcSample.Helpers
 {
     /// <summary>
     /// Class FileDataJsonSerializer.
@@ -116,7 +114,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
             {
                 PageData pageData = _fileData.Pages[i];
 
-                bool needSeparator = pageData.Number >= 1;
+                bool needSeparator = pageData.Number > 1;
                 if (needSeparator)
                     json.Append(",");
 
@@ -185,10 +183,11 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         /// <param name="json">The json.</param>
         private void AppendPage(PageData pageData, StringBuilder json)
         {
-            json.Append(string.Format("{{\"w\":{0},\"h\":{1},\"number\":{2}",
+            json.Append(string.Format("{{\"w\":{0},\"h\":{1},\"number\":{2},\"rotation\":{3}",
                 pageData.Width.ToString(_defaultCulture),
                 pageData.Height.ToString(_defaultCulture),
-                (pageData.Number - 1).ToString(_defaultCulture)));
+                (pageData.Number).ToString(_defaultCulture),
+                pageData.Angle));
         }
 
         /// <summary>

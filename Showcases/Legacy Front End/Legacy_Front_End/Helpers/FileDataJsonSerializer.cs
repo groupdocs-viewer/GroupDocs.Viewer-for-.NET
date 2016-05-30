@@ -114,7 +114,7 @@ namespace MvcSample.Helpers
             {
                 PageData pageData = _fileData.Pages[i];
 
-                bool needSeparator = pageData.Number >= 1;
+                bool needSeparator = pageData.Number > 1;
                 if (needSeparator)
                     json.Append(",");
 
