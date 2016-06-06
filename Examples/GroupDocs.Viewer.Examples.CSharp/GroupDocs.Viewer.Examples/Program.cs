@@ -16,7 +16,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            Utilities.ApplyLicense();
+            //Utilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
             #region ViewerHtmlPresentation

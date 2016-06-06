@@ -20,6 +20,6 @@ This Application allows a user to see the Html or Image Representation of a docu
 
 # Apply Licence
 
-* Open HomeController.cs.
-* Write license file path as the parameter of SetLicense method
+* Open Global.asax.cs.
+* Set license file path in _licensePath variable.
 
