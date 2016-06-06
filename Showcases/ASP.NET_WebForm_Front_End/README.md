@@ -20,5 +20,5 @@ This Application allows a user to see the Html or Image Representation of a docu
 
 # Apply Licence
 
-* Open Web.Config.
-* Write license file path as the value of LicenseFile Key
+* Open Global.asax.cs file.
+* Set license file in Application_Start function.
