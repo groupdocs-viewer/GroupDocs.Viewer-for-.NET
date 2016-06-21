@@ -25,7 +25,7 @@ The SharePoint plugin provides end users with tools needed for  convenient viewi
 * Open project properties, set your Site URL.
 * Set Site URL in defalut.aspx and set it as Start Page.
 * Set your license path in default.aspx.cs
-* Click Run
+* Click Run.
 
 
 
