@@ -1,32 +1,32 @@
-# GroupDocs.Viewer for Java Front End
+# SharePoint Plugin for GroupDocs.Viewer for .NET
 
-This application allows user to view document in Html and Image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
+This plugin permits SharePoint developers to explore and investigate GroupDocs.Viewer for .NET front end. It demonstrates how GroupDocs.Viewer for .NET front end can be integrated with SharePoint.
 
-# Pre-Requisites
+# Features
 
-* Eclipse Mars.
-* Java Verion 1.5 or above.
-* JDK Verison 1.5 or above.
-* Jetty Version 9.3.0.
-* Maven 4.0.0.
-* Spring Framework 4.2.5.
-* Any latest browsers (Firefox, Chrome ,IE9 or greater, Safari etc. )
-* GroupDocs.Viewer 3.0.0 for Java.
+The SharePoint plugin provides end users with tools needed for  convenient viewing and navigation of a documents in a browser. The  plugin provides all the most commonly used UI controls available in  native Adobe Reader’s plugin, including:
+* Scroll view, one page in a row, two pages in a row view, double page flipping.
+* Pagination.
+* Page zooming.
+* Page thumbnails.
+* Text selection and copying to the clipboard.
+* Text search with different match types.
+* Document downloading and printing.
+
+# SharePoint Plugin Requirements
+
+* SharePoint Server 2013
+* Visual Studio 2010, 2012, 2013, 2015
+* Any standard web-browser, including IE8+, Mozilla Firefox, Chrome, Opera, Safari5
 
 # How to Run Application
 
-1. Download the code, import as maven project in eclipse. 
-2. Download *GroupDocs.Viewer 3.0.0 for Java*.
-3. Update maven dependencies.
-4. Run As maven; Goals "Jetty:run".
-5. Goto browser and type "localhost:8080/action".
+* Open GroupDocs.Viewer SharePoint Plugin in your visual studio.
+* Open project properties, set your Site URL.
+* Set Site URL in defalut.aspx and set it as Start Page.
+* Set your license path in default.aspx.cs
+* Click Run
 
-# Apply Licence
-
-Follow below steps if you have product license
-
-1. Open ViewerController.java.
-2. Set "_licensePath" variable to your license path. 
 
 
 
