@@ -19,7 +19,7 @@ The SharePoint plugin provides end users with tools needed for  convenient viewi
 * Visual Studio 2010, 2012, 2013, 2015
 * Any standard web-browser, including IE8+, Mozilla Firefox, Chrome, Opera, Safari5
 
-# How to Run Application
+# How to Run Plugin
 
 * Open GroupDocs.Viewer SharePoint Plugin in your visual studio.
 * Open project properties, set your Site URL.
