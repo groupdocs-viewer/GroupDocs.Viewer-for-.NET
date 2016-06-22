@@ -1,9 +1,24 @@
-$(document).on('click','.btn_download',function(e){
+deparam = (function (d, x, params, pair, i) {
+    return function (qs) {
+        // start bucket; can't cheat by setting it in scope declaration or it overwrites
+        params = {};
+        // remove preceding non-querystring, correct spaces, and split
+        qs = qs.substring(qs.indexOf('?') + 1).replace(x, ' ').split('&');
+        // march and parse
+        for (i = qs.length; i > 0;) {
+            pair = qs[--i].split('=');
+            params[d(pair[0])] = d(pair[1]);
+        }
+
+        return params;
+    };
+})(decodeURIComponent, /\+/g);
+$(document).on('click', '.btn_download', function (e) {
 
     e.preventDefault();
     var url = $(this).attr('href');
     var data = url.split('?')[1];
-    data = $.deparam(data);
+    data = deparam(data);
     //  data = data.replace(/=/g, ':');
     //data = data.replace(/&/g, ',');
     //$(this).removeAttr('href');
@@ -15,11 +30,11 @@ $(document).on('click','.btn_download',function(e){
         contentType: "application/json; charset=utf-8",
         dataType: "json",//if you have parameters in your method
         success: function () {
-           // window.open('GetFile.aspx', '_newtab');
+            // window.open('GetFile.aspx', '_newtab');
             var iframe = document.createElement("iframe");
-             iframe.src = "GetFile.aspx";
+            iframe.src = "GetFile.aspx";
             iframe.style.display = "none";
-             document.body.appendChild(iframe);
+            document.body.appendChild(iframe);
         },
         error: function () { alert('error'); }
     });
@@ -2499,7 +2514,7 @@ this.watermarkScreenWidth = null;
 this.zoom(100);
 this.fileType = response.fileType;
 this.urlForResourcesInHtml = response.urlForResourcesInHtml;
-isTextDocument = (this.fileType == "Txt" || this.fileType == "Xml");
+isTextDocument = ((this.fileType == "Txt" && response.page_count < 2) || this.fileType == "Xml");
 this.isHtmlDocument(this.fileType == "Html" || this.fileType == "Htm" || isTextDocument);
 var isDocumentSinglePaged = (response.doc_type == "Cells" || this.isHtmlDocument());
 this.useTabsForPages(isDocumentSinglePaged);
