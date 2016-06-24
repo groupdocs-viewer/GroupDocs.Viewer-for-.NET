@@ -62,7 +62,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region GeneralRepresentation
             //Render the word document in the form of pdf markup
-            //   ViewGenerator.RenderDocumentAsPDF("test.pdf");
+            //ViewGenerator.RenderDocumentAsPDF("test.pdf");
 
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");

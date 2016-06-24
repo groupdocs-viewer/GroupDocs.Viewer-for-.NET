@@ -470,12 +470,15 @@ namespace GroupDocs.Viewer.Examples.CSharp
            
             // Guid implies that unique document name 
             options.Guid = DocumentName;
-            
+
+            // To Apply transformations on PDF file
+            // options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
             FileContainer container = imageHandler.GetPdfFile(options);
            
             //Change the extension of the file and assign to a string type variable filename
-            String filename=Path.GetFileNameWithoutExtension(DocumentName)+".pdf";
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
 
             //Save each image at disk
             Utilities.SaveFile(filename, container.Stream);

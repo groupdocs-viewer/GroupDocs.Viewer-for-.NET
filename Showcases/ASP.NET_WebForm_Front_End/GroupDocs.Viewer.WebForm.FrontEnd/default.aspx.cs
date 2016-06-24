@@ -8,6 +8,7 @@ using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer.Helpers;
+using MvcSample.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -124,9 +125,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 var empty = new GetImageUrlsResponse { imageUrls = new string[0] };
                 return empty;
             }
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(parameters.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(parameters.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
@@ -168,10 +168,13 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             var pdfFileOptions = new PdfFileOptions
             {
                 Guid = parameters.Path,
-                AddPrintAction = parameters.IsPrintable,
+               // AddPrintAction = parameters.IsPrintable,
                 Transformations = Transformation.Rotate | Transformation.Reorder,
                 Watermark = GetWatermark(parameters),
             };
+            if (parameters.IsPrintable)
+                pdfFileOptions.Transformations |= Transformation.AddPrintAction;
+
             var response = _htmlHandler.GetPdfFile(pdfFileOptions);
 
             string contentDispositionString = new ContentDisposition { FileName = displayName, Inline = true }.ToString();
@@ -330,7 +333,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         }
         private static void ViewDocumentAsImage(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _imageHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = _imageHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -355,9 +358,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(request.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(request.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
@@ -373,7 +375,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             var htmlHandler= (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
             
-            var docInfo = htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = htmlHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -428,9 +430,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             string guid = parameters.Path;
             int pageIndex = parameters.PageNumber;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
             int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
             RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
@@ -479,9 +480,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         public static ReorderPageResponse ReorderPage(ReorderPageParameters parameters)
         {
             string guid = parameters.Path;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
             int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
             int newPosition = parameters.NewPosition + 1;
