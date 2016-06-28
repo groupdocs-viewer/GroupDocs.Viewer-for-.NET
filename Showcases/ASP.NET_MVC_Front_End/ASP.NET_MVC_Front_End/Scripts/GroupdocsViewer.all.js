@@ -2462,7 +2462,7 @@ this.watermarkScreenWidth = null;
 this.zoom(100);
 this.fileType = response.fileType;
 this.urlForResourcesInHtml = response.urlForResourcesInHtml;
-isTextDocument = (this.fileType == "Txt" || this.fileType == "Xml");
+isTextDocument = ((this.fileType == "Txt" && response.page_count < 2) || this.fileType == "Xml");
 this.isHtmlDocument(this.fileType == "Html" || this.fileType == "Htm" || isTextDocument);
 var isDocumentSinglePaged = (response.doc_type == "Cells" || this.isHtmlDocument());
 this.useTabsForPages(isDocumentSinglePaged);
