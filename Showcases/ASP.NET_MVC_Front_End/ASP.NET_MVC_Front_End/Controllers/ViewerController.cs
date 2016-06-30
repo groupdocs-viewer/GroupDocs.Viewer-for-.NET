@@ -116,9 +116,8 @@ namespace MvcSample.Controllers
                 var empty = new GetImageUrlsResponse { imageUrls = new string[0] };
                 return ToJsonResult(empty);
             }
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(parameters.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(parameters.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
@@ -155,7 +154,7 @@ namespace MvcSample.Controllers
                 };
 
                 if (parameters.IsPrintable)
-                    options.AddPrintAction = true;
+                    options.Transformations |= Transformation.AddPrintAction;
 
                 if (parameters.SupportPageRotation)
                     options.Transformations |= Transformation.Rotate;
@@ -195,7 +194,7 @@ namespace MvcSample.Controllers
             };
 
             if (parameters.IsPrintable)
-                options.AddPrintAction = true;
+                options.Transformations |= Transformation.AddPrintAction;
 
             if (parameters.SupportPageRotation)
                 options.Transformations |= Transformation.Rotate;
@@ -313,9 +312,8 @@ namespace MvcSample.Controllers
             };
 
             if (parameters.Rotate && parameters.Width.HasValue)
-            {
-                DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-                DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            { 
+                DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
                 int side = parameters.Width.Value;
 
@@ -364,14 +362,13 @@ namespace MvcSample.Controllers
         {
             string guid = parameters.Path;
             int pageIndex = parameters.PageNumber;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
             int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
             RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
             RotatePageContainer rotatePageContainer = _imageHandler.RotatePage(rotatePageOptions);
-
+            
             RotatePageResponse response = new RotatePageResponse
             {
                 resultAngle = rotatePageContainer.CurrentRotationAngle
@@ -383,9 +380,8 @@ namespace MvcSample.Controllers
         public ActionResult ReorderPage(ReorderPageParameters parameters)
         {
             string guid = parameters.Path;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
             int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
             int newPosition = parameters.NewPosition + 1;
@@ -498,7 +494,7 @@ namespace MvcSample.Controllers
 
         private void ViewDocumentAsImage(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _imageHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = _imageHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -523,9 +519,8 @@ namespace MvcSample.Controllers
             result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(request.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+             
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(request.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
@@ -539,7 +534,7 @@ namespace MvcSample.Controllers
 
         private void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = _htmlHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;

@@ -1,10 +1,25 @@
-﻿(function ($) {
+﻿deparam = (function (d, x, params, pair, i) {
+    return function (qs) {
+        // start bucket; can't cheat by setting it in scope declaration or it overwrites
+        params = {};
+        // remove preceding non-querystring, correct spaces, and split
+        qs = qs.substring(qs.indexOf('?') + 1).replace(x, ' ').split('&');
+        // march and parse
+        for (i = qs.length; i > 0;) {
+            pair = qs[--i].split('=');
+            params[d(pair[0])] = d(pair[1]);
+        }
+
+        return params;
+    };
+})(decodeURIComponent, /\+/g);
+(function ($) {
     $(document).on('click', '.print_button', function (e) {
 
         e.preventDefault();
         var url = $(this).attr('href');
         var data = url.split('?')[1];
-        data = $.deparam(data);
+        data = deparam(data);
         //  data = data.replace(/=/g, ':');
         //data = data.replace(/&/g, ',');
         //$(this).removeAttr('href');
@@ -1262,7 +1277,7 @@
 
                 var url = this.pdfPrintUrl;
                 var data = url.split('?')[1];
-                data = $.deparam(data);
+                data = deparam(data);
                
                 datastr = '{parameters:' + JSON.stringify(data) + '}';
                 $.ajax({

@@ -407,6 +407,9 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             options.Guid = DocumentName
 
+            ' To Apply transformations on PDF file
+            'options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
             ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
             Dim container As FileContainer = imageHandler.GetPdfFile(options)
 
