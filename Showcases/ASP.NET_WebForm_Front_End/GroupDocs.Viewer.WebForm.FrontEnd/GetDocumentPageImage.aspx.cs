@@ -26,8 +26,6 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 {
     public partial class GetDocumentPageImage : System.Web.UI.Page
     {
-        private static ViewerHtmlHandler _htmlHandler;
-        private static ViewerImageHandler _imageHandler;
         private static string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString(); // App_Data folder path
         private static string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
         private static ViewerConfig _config;
@@ -40,9 +38,9 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 TempPath = _tempPath,
                 UseCache = true
             };
-         
-            _htmlHandler = new ViewerHtmlHandler(_config);
-            _imageHandler = new ViewerImageHandler(_config);
+
+            ViewerImageHandler imageHandler = (ViewerImageHandler)HttpContext.Current.Session["imageHandler"];
+            ViewerHtmlHandler htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
             GetDocumentPageImageParameters parameters = new GetDocumentPageImageParameters();
           
 
@@ -81,7 +79,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             if (parameters.Rotate && parameters.Width.HasValue)
             {
                 DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-                DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+                DocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(documentInfoOptions);
 
                 int side = parameters.Width.Value;
 
@@ -100,7 +98,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             using (new InterProcessLock(guid))
             {
-                List<PageImage> pageImages = _imageHandler.GetPages(guid, imageOptions);
+                List<PageImage> pageImages = imageHandler.GetPages(guid, imageOptions);
                 PageImage pageImage = pageImages.Single(_ => _.PageNumber == pageNumber);
                 var fileStream = pageImage.Stream;
                // return File(pageImage.Stream, GetContentType(_convertImageFileType));
@@ -117,9 +115,16 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                 HttpContext.Current.Response.AddHeader("Content-Disposition", contentDispositionString);
                 HttpContext.Current.Response.AddHeader("Content-Length", fileStream.Length.ToString());
-                HttpContext.Current.Response.OutputStream.Write(Bytes, 0, Bytes.Length);
-                HttpContext.Current.Response.Flush();
-                HttpContext.Current.Response.End();
+                try
+                {
+                    HttpContext.Current.Response.OutputStream.Write(Bytes, 0, Bytes.Length);
+                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.End();
+                }
+                catch (HttpException x)
+                {
+                    // Ignore it.
+                }
             }
 
         }
