@@ -1,0 +1,5 @@
+.nuget/
+GroupDocs.Viewer.WebForm.FrontEnd/App_Data/Temp/*
+*.bak
+*~
+*.lic
