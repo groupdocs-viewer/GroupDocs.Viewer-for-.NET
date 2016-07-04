@@ -5,15 +5,16 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace GroupDocs.Viewer.WebForm.FrontEnd
+namespace GroupDocs.Viewer.NewFrontEnd
 {
     public class Global : System.Web.HttpApplication
     {
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            License lic = new License();
-            lic.SetLicense(Server.MapPath("~/License/GroupDocs.Total.lic"));
+            GroupDocs.Viewer.Model.Utilities.Storage_Path = Server.MapPath("~/Uploads/");
+            if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString()))
+                GroupDocs.Viewer.Model.Utilities.ApplyLicense(System.Configuration.ConfigurationManager.AppSettings["LicenseFile"].ToString());
         }
 
         protected void Session_Start(object sender, EventArgs e)

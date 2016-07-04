@@ -60,7 +60,7 @@
                  CoverThenTwoPagesInRow: 5
              };
              var ImgextArr = ["jpg", "png", "bmp"];
-             var FilePath = "Bill Gates.jpg";
+             var FilePath = "test1.jpg";
              var isImage = $.inArray((FilePath.substr((FilePath.lastIndexOf('.') + 1))), ImgextArr) > -1 ? true : false;
              $('#viewerHtmlDiv').groupdocsViewer({
                  //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
