@@ -6,7 +6,7 @@ namespace MvcSample
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private string _licensePath = "D:\\GroupDocs.Viewer.lic";
+        private string _licensePath = "Z:\\GroupDocs.Total.lic";
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
