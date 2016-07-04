@@ -8,6 +8,7 @@ using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer.Helpers;
+using MvcSample.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -354,7 +355,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
             result.docType = docInfo.DocumentType;
-            result.fileType = docInfo.FileType;
+            result.fileType = docInfo.FileType; 
 
             DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(request.Path);
             DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);

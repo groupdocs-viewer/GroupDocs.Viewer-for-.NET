@@ -59,9 +59,12 @@
                  TwoPagesInRow: 4,
                  CoverThenTwoPagesInRow: 5
              };
+             var ImgextArr = ["jpg", "png", "bmp"];
+             var FilePath = "test1.jpg";
+             var isImage = $.inArray((FilePath.substr((FilePath.lastIndexOf('.') + 1))), ImgextArr) > -1 ? true : false;
              $('#viewerHtmlDiv').groupdocsViewer({
                  //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-                 filePath: 'candy.pdf',
+                 filePath: FilePath,
                  zoomToFitWidth: true,
                  //zoomToFitHeight: true,
                  showFolderBrowser: true,
@@ -78,6 +81,7 @@
                  showPrint: true,
                  preloadPagesCount: 1,
                  usePdfPrinting: true,
+                 useEmScaling: isImage, 
                  //supportPageRotation: true
                  
              });
