@@ -209,9 +209,13 @@
                         '<div class="viewer_header header_sidescroll" ' + headerStyle + '>' +
                         '   <div class="viewer_header_wrapper">' +
                         '      <a class="btnOpen new_head_tools_btn h_t_i_browser" data-tooltip="Open File" data-localize-tooltip="OpenFile"></a>' +
+                        '          <a class="new_head_tools_btn h_t_i_nav3 next_document" data-tooltip="Next Document" data-localize-tooltip="Next Document"></a>' +
+                        '          <a class="new_head_tools_btn h_t_i_nav2 previous_document" data-tooltip="Previous Document" data-localize-tooltip="Previous Document"></a>' +
+
                         '      <div name="printAndDownloadToolbar" class="new_head_tools_wrapper left">' +
                         '          <a class="new_head_tools_btn h_t_i_download btn_download" data-tooltip="Download" data-localize-tooltip="Download"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_print print_button" data-tooltip="Print" data-localize-tooltip="Print"></a>' +
+                 
                         '      </div>' +
                         '      <div class="navigation-bar' + (browserIsIE8 ? " ie8" : "") + '">' +
                         '      </div>' +
@@ -666,8 +670,12 @@
             groupdocsViewerWrapper.find(".btnOpen").click(function () {
                 self._showFileOpenDialog();
             });
-
-
+            groupdocsViewerWrapper.find(".next_document").click(function (e) {
+                viewerAdapter.docViewerViewModel.loadDocument(GetNextFileName(e.currentTarget.offsetParent.offsetParent.parentElement.firstChild.className));
+            });
+            groupdocsViewerWrapper.find(".previous_document").click(function (e) {
+                viewerAdapter.docViewerViewModel.loadDocument(GetPrevioustFileName(e.currentTarget.offsetParent.offsetParent.parentElement.firstChild.className));
+            });
             groupdocsViewerWrapper.find("[name=rotateClockwise]").click(function () {
                 self._rotatePage(90);
             });
@@ -709,6 +717,8 @@
             container.find(".navigation-bar").css('display', (settings.showPaging ? '' : 'none'));
             zoomingWrapper.css('display', (settings.showZoom ? '' : 'none'));
             container.find(".btn_download").css('display', (settings.showDownload ? '' : 'none'));
+            container.find(".next_document").css('display', (settings.showDocumentNavigation ? '' : 'none'));
+            container.find(".previous_document").css('display', (settings.showDocumentNavigation ? '' : 'none'));
             container.find(".print_button").css('display', (settings.showPrint ? '' : 'none'));
             container.find(".viewTypeMenu").css('display', (settings.showViewerStyleControl ? '' : 'none'));
             if (settings.showPrint === false && settings.showDownload === false)
