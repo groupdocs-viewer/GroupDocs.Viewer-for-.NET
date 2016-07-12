@@ -32,7 +32,6 @@ function GetNextFileName(sender) {
     }
 }
 function GetPrevioustFileName(sender) {
-    alert(sender);
     if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer1") {
         fileCount--;
         if (fileCount > fileBrowserData.length - 1) {
