@@ -1,5 +1,4 @@
 ﻿<h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
-
 <table>
     <tr>
         <td style="text-align: center">
@@ -45,6 +44,7 @@
                 width: 650,
                 height: 900,
                 useHtmlBasedEngine: true,
+                showDocumentNavigation: true,
                 showDownload: true,
                 downloadPdfFile: true,
                 showPrint: true,
@@ -54,8 +54,8 @@
                 viewerStyle: viewerSyle.ScrollView //Layout type
             });
 
-            // EnableRightClickMenu = false
-            $('#viewerHtmlDiv')[0].oncontextmenu = function () { return false; };
+            EnableRightClickMenu = false;
+            $('#viewerHtmlDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
         });
 
         $(function () {
@@ -71,6 +71,7 @@
                 height: 900,
                 watermarkPosition: 'Diagonal',
                 watermarkText: 'Watermark for image',
+                showDocumentNavigation: true,
                 useHtmlBasedEngine: false,
                 showDownload: true,
                 downloadPdfFile: false,
@@ -81,6 +82,8 @@
                 openThumbnails: true,
                 supportPageReordering: true
             });
+            EnableRightClickMenu = false;
+            $('#viewerImageDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
         });
     </script>
 }
