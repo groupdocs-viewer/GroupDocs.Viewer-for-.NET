@@ -12,9 +12,9 @@ deparam = (function (d, x, params, pair, i) {
 
         return params;
     };
-})(decodeURIComponent, /\+/g);
+})
+(decodeURIComponent, /\+/g);
 $(document).on('click', '.btn_download', function (e) {
-
     e.preventDefault();
     var url = $(this).attr('href');
     var data = url.split('?')[1];
@@ -23,6 +23,7 @@ $(document).on('click', '.btn_download', function (e) {
     //data = data.replace(/&/g, ',');
     //$(this).removeAttr('href');
     datastr = '{parameters:' + JSON.stringify(data) + '}';
+
     $.ajax({
         type: "POST",
         url: 'default.aspx/GetFile', //url to point your webmethod
@@ -40,109 +41,116 @@ $(document).on('click', '.btn_download', function (e) {
     });
     return false;
 });
-
 if (!window.jGroupdocs)
-window.jGroupdocs = {};
+    window.jGroupdocs = {};
 window.jGroupdocs.stringExtensions = {
-format: function (sourceString) {
-var s = sourceString,
-i = arguments.length;
-while (--i) {
-s = s.replace(new RegExp('\\{' + (i - 1) + '\\}', 'gm'), arguments[i]);
-}
-return s;
-},
-trim: function (string, target) {
-var regex = new RegExp("^[" + target + "]+|[" + target + "]+$", "g");
-return string.replace(regex, '');
-},
-trimStart: function (string, target) {
-var regex = new RegExp("^[" + target + "]+", "g");
-return string.replace(regex, '');
-},
-trimEnd: function (string, target) {
-var regex = new RegExp("[" + target + "]+$", "g");
-return string.replace(regex, '');
-},
-getAccentInsensitiveRegexFromString: function (text) {
-var accents = [
-["A", 'ÀÁÂÃÄÅÆ'],
-["C", 'Ç'],
-["E", 'ÈÉÊËÆ'],
-["I", 'ÌÍÎÏ'],
-["N", 'Ñ'],
-["O", 'ÒÓÔÕÖØ'],
-["S", 'ß'],
-["U", 'ÙÚÛÜ'],
-["Y", 'Ÿ'],
-["У", 'Ў'], // cyrilllic
-["a", 'àáâãäåæ'],
-["c", 'ç'],
-["e", 'èéêëæ'],
-["i", 'ìíîï'],
-["n", 'ñ'],
-["o", 'òóôõöø'],
-["s", 'ß'],
-["u", 'ùúûü'],
-["y", 'ÿ'],
-["у", 'ў'] // cyrilllic
-];
-var charNum;
-var charsToBeReplaced = "";
-for (charNum = 0; charNum < accents.length; charNum++)
-charsToBeReplaced += accents[charNum][0];
-var charsRegex = new RegExp("[" + charsToBeReplaced + "]", "g");
-function makeComp(input) {
-return input.replace(charsRegex, function (c) {
-var replacementChars = null;
-for (charNum = 0; charNum < accents.length; charNum++) {
-if (accents[charNum][0] == c) {
-replacementChars = accents[charNum][1];
-break;
-}
-}
-if (replacementChars === null)
-replacementChars = "";
-return '[' + c + replacementChars + ']';
-});
-};
-return makeComp(text);
-},
-_padWithLeadingZeros: function (string) {
-return new Array(5 - string.length).join("0") + string;
-},
-_unicodeCharEscape: function (charCode) {
-return "\\u" + this._padWithLeadingZeros(charCode.toString(16));
-},
-unicodeEscape: function (string) {
-var self = this;
-return string.split("")
-.map(function (character) {
-var charCode = character.charCodeAt(0);
-return charCode > 127 ? self._unicodeCharEscape(charCode) : character;
-})
-.join("");
-}
+    format: function (sourceString) {
+        var s = sourceString,
+            i = arguments.length;
+        while (--i) {
+            s = s.replace(new RegExp('\\{' + (i - 1) + '\\}', 'gm'), arguments[i]);
+        }
+        return s;
+    },
+    trim: function (string, target) {
+        var regex = new RegExp("^[" + target + "]+|[" + target + "]+$", "g");
+        return string.replace(regex, '');
+    },
+    trimStart: function (string, target) {
+        var regex = new RegExp("^[" + target + "]+", "g");
+        return string.replace(regex, '');
+    },
+    trimEnd: function (string, target) {
+        var regex = new RegExp("[" + target + "]+$", "g");
+        return string.replace(regex, '');
+    },
+    getAccentInsensitiveRegexFromString: function (text) {
+        var accents = [
+            ["A", 'Ã€ÃÃ‚ÃƒÃ„Ã…Ã†'],
+            ["C", 'Ã‡'],
+            ["E", 'ÃˆÃ‰ÃŠÃ‹Ã†'],
+            ["I", 'ÃŒÃÃŽÃ'],
+            ["N", 'Ã‘'],
+            ["O", 'Ã’Ã“Ã”Ã•Ã–Ã˜'],
+            ["S", 'ÃŸ'],
+            ["U", 'Ã™ÃšÃ›Ãœ'],
+            ["Y", 'Å¸'],
+            ["Ð£", 'ÐŽ'], // cyrilllic
+            ["a", 'Ã Ã¡Ã¢Ã£Ã¤Ã¥Ã¦'],
+            ["c", 'Ã§'], ["e", 'Ã¨Ã©ÃªÃ«Ã¦'],
+            ["i", 'Ã¬Ã­Ã®Ã¯'],
+            ["n", 'Ã±'],
+            ["o", 'Ã²Ã³Ã´ÃµÃ¶Ã¸'],
+            ["s", 'ÃŸ'],
+            ["u", 'Ã¹ÃºÃ»Ã¼'],
+            ["y", 'Ã¿'],
+            ["Ñƒ", 'Ñž'] // cyrilllic
+        ];
+        var charNum;
+        var charsToBeReplaced = "";
+        for (charNum = 0; charNum < accents.length; charNum++)
+            charsToBeReplaced += accents[charNum][0];
+        var charsRegex = new RegExp("[" + charsToBeReplaced + "]", "g");
+        function makeComp(input) {
+            return input.replace(charsRegex, function (c) {
+                var replacementChars = null;
+                for (charNum = 0; charNum < accents.length; charNum++) {
+                    if (accents[charNum][0] == c) {
+                        replacementChars = accents[charNum][1];
+                        break;
+                    }
+                }
+                if (replacementChars === null)
+                    replacementChars = "";
+                return '[' + c + replacementChars + ']';
+            });
+        };
+        return makeComp(text);
+    },
+
+    padWithLeadingZeros: function (string) {
+        return new Array(5 - string.length).join("0") + string;
+    },
+    _unicodeCharEscape: function (charCode) {
+        return "\\u" + this._padWithLeadingZeros(charCode.toString(16));
+    },
+    unicodeEscape: function (string) {
+        var self = this;
+        return string.split("")
+            .map(function (character) {
+                var charCode = character.charCodeAt(0);
+                return charCode > 127 ? self._unicodeCharEscape(charCode) : character;
+            })
+            .join("");
+    }
 };
 window.jGroupdocs.http = {
-splitUrl: (function () {
-var regex = new RegExp("(\\w+)://([^/]+)([^\?]*)([\?].+)?");
-return function (url) {
-var matches = url.match(regex);
-var path = (matches.length > 3 ? matches[3] : null);
-var query = (matches.length > 4 ? matches[4] : null);
-return {
-"schema": matches[1],
-"authority": (matches.length > 2 ? matches[2] : null),
-"path": path,
-"query": query,
-"queryDict": $.fn.q(query),
-"pathAndQuery": (query ? (path + query) : path)
+    splitUrl: (function () {
+        var regex = new RegExp("(\\w+)://([^/]+)([^\?]*)([\?].+)?");
+        return function (url) {
+            var matches = url.match(regex);
+            var path = (matches.length > 3 ? matches[3] : null);
+            var query = (matches.length > 4 ? matches[4] : null);
+            return {
+                "schema": matches[1],
+                "authority": (matches.length > 2 ? matches[2] : null),
+                "path": path,
+                "query": query,
+                "queryDict": $.fn.q(query),
+                "pathAndQuery": (query ? (path + query) : path)
+            };
+        };
+    })()
 };
+JsInject = {
+    Container: function () {
+        this.serviceEntries = []; this.disposables = []
+    }
 };
-})()
+JsInject.Container.prototype.Resolve = function (a, c, b, d, e, f, g, h, i, j) {
+    return this.ResolveInternal(a, !0, c, b, d, e, f, g, h, i, j)
 };
-JsInject={Container:function(){this.serviceEntries=[];this.disposables=[]}};JsInject.Container.prototype.Resolve=function(a,c,b,d,e,f,g,h,i,j){return this.ResolveInternal(a,!0,c,b,d,e,f,g,h,i,j)};JsInject.Container.prototype.TryResolve=function(a,c,b,d,e,f,g,h,i,j){return this.ResolveInternal(a,!1,c,b,d,e,f,g,h,i,j)};
+JsInject.Container.prototype.TryResolve = function (a, c, b, d, e, f, g, h, i, j) { return this.ResolveInternal(a, !1, c, b, d, e, f, g, h, i, j) };
 JsInject.Container.prototype.RegisterInternal=function(a,c,b,d){if(this.RegisteredInternal(a))throw"Factory with name '"+a+"' alredy registered";this.serviceEntries[a]={factory:c,scope:b,owner:d,instance:null}};JsInject.Container.prototype.Dispose=function(){for(var a in this.disposables)this.disposables[a].Dispose()};
 JsInject.Container.prototype.ResolveInternal=function(a,c,b,d,e,f,g,h,i,j,k){if(!this.RegisteredInternal(a))if(c)throw"Factory with name '"+a+"' is not registered";else return null;a=this.serviceEntries[a];if(a.scope==="container"){if(a.instance===null)a.instance=this.CreateInstanceInternal(a.factory,a.owner,b,d,e,f,g,h,i,j,k);return a.instance}return this.CreateInstanceInternal(a.factory,a.owner,b,d,e,f,g,h,i,j,k)};
 JsInject.Container.prototype.CreateInstanceInternal=function(a,c,b,d,e,f,g,h,i,j,k){a=a(this,b,d,e,f,g,h,i,j,k);c==="container"&&typeof a.Dispose==="function"&&this.disposables.push(a);return a};JsInject.Container.prototype.RegisteredInternal=function(a){return this.serviceEntries[a]!==void 0};JsInject.Registration=function(a,c){this.name=a;this.factory=c;this.scope="none";this.owner="consumer"};JsInject.Registration.prototype.Reused=function(){this.scope="container";this.Owned();return this};
@@ -1482,11 +1490,11 @@ successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOp
             passwordForOpening: passwordForOpening
         }
     };
-this._runServiceAsync(this.applicationPath + this.urlPrefix + '/ViewDocument' + this._urlSuffix, data, successCallback, errorCallback, useCache != null ? useCache : false);
+    this._runServiceAsync(this.applicationPath + this.urlPrefix + '/ViewDocument' + this._urlSuffix, data, successCallback, errorCallback, useCache != null ? useCache : false);
 },
 getPdf2JavaScript: function (userId, privateKey, path, descForHtmlBasedEngine, successCallback, errorCallback) {
-var data = { path: path, descForHtmlBasedEngine: descForHtmlBasedEngine };
-return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetPdf2JavaScript' + this._urlSuffix, data, successCallback, errorCallback, false);
+    var data = { path: path, descForHtmlBasedEngine: descForHtmlBasedEngine };
+    return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetPdf2JavaScript' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 getImageUrlsAsync: function (userId, privateKey, path, width, token, firstPage, pageCount, quality, usePdf, docVersion,
 watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
@@ -1517,7 +1525,7 @@ instanceIdToken, locale) {
             locale: locale
         }
     };
-return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetImageUrls' + this._urlSuffix, data, successCallback, errorCallback, false);
+    return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetImageUrls' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 loadFileBrowserTreeData: function (userId, privateKey, path, pageIndex, pageSize, orderBy, orderAsc, filter, fileTypes, extended, successCallback, errorCallback, useCache, instanceIdToken) {
     var data = { parameters: { userId: userId, privateKey: privateKey, path: path, pageIndex: pageIndex, pageSize: pageSize, orderBy: orderBy, orderAsc: orderAsc, filter: filter, fileTypes: fileTypes, extended: extended, instanceIdToken: instanceIdToken } };
@@ -1834,6 +1842,9 @@ if (this.options.useEmScaling)
 htmlPageContents = htmlPageContentsWithEmScaling;
 else
 htmlPageContents = htmlPageContentsWithTransformScaling;
+
+
+
 var pagesContainerElementHtml;
 var useHtmlBasedEngine = (this.options.pageContentType == "html");
 if (useHtmlBasedEngine && this.options.useEmScaling) {
@@ -2173,16 +2184,17 @@ this.autoHeight = ko.observable(false);
 this.isHtmlDocument = ko.observable(false);
 this.alwaysShowLoadingSpinner = ko.observable(false);
 this.rotatedWidth = ko.computed(function () {
-if (this.useTabsForPages()) {
-var width;
-width = this.pageWidth();
-if (this.autoHeight())
-return "auto";
-return width / this.zoom() * 100.0 + "px";
-}
-else
-return "auto";
-}, this);
+    if (this.useTabsForPages()) {
+        var width;
+        width = this.pageWidth();
+        if (this.autoHeight())
+            return "auto";
+        return width / this.zoom() * 100.0 + "px";
+    }
+    else
+        return "auto";
+},
+this);
 this.layout = ko.observable(this.viewerLayout);
 this.firstVisiblePageForVirtualMode = ko.observable(0)
 .extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 400 } });;
@@ -2453,449 +2465,458 @@ this._pdf2XmlWrapper = new jSaaspose.Pdf2XmlWrapper(options);
 }
 },
 _onDocumentLoaded: function (response) {
-this.isDocumentLoaded = true;
-if (this.useJavaScriptDocumentDescription) {
-response.page_count = this._pdf2XmlWrapper.getPageCount();
-}
-else if (typeof response.page_count == "undefined" && response.documentDescription) {
-var documentDescription = JSON.parse(response.documentDescription);
-if (documentDescription.pages && typeof documentDescription.pages.length != "undefined")
-response.page_count = documentDescription.pages.length;
-// for compatibility with Comparison which does not use Pdf2JavaScriptWrapper
-}
-if (response.docType && typeof response.doc_type == "undefined")
-response.doc_type = response.docType;
-if (response.imageUrls && typeof response.image_urls == "undefined")
-response.image_urls = response.imageUrls;
-if (response.path && typeof response.guid == "undefined")
-response.guid = response.path;
-if (!response.page_size)
-response.page_size = {};
-$(this).trigger('onDocumentLoaded', response);
-var self = this;
-this._sessionToken = response.token;
-this.docGuid = response.guid;
-this.pageCount(response.page_count);
-this.documentName(response.name);
-this.docType(response.doc_type);
-this.password(response.password);
-this.matchesCount = 0;
-$(this).trigger('getPagesCount', response.page_count);
-if (this.variableHeightPageSupport) {
-response.documentDescription = this._pdf2XmlWrapper.documentDescription;
-}
-var pages = null;
-var pageSize = null;
-var i;
-var rotationFromServer;
-var isTextDocument;
-var scaleRatio;
-if (this.supportListOfContentControls)
-this.contentControls = this._pdf2XmlWrapper.getContentControls();
-if (this.supportListOfBookmarks)
-this.bookmarks = this._pdf2XmlWrapper.getBookmarks();
-if (this.pageContentType == "image") {
-if (this.use_pdf != 'false' || this.variableHeightPageSupport) {
-pageSize = this._pdf2XmlWrapper.getPageSize();
-if (this.variableHeightPageSupport) {
-response.page_size.Width = pageSize.width;
-response.page_size.Height = pageSize.height;
-}
-this.scale(this.pageImageWidth * (this.initialZoom / 100) / pageSize.width);
-this.unscaledPageHeight = Number(pageSize.height);
-this.unscaledPageWidth = Number(pageSize.width);
-}
-this.heightWidthRatio = parseFloat(response.page_size.Height / response.page_size.Width);
-this.pageHeight(Math.round(this.pageImageWidth * this.heightWidthRatio * (this.initialZoom / 100)));
-$(this).trigger('_onProcessPages', response);
-}
-else if (this.pageContentType == "html") {
-this.watermarkScreenWidth = null;
-this.zoom(100);
-this.fileType = response.fileType;
-this.urlForResourcesInHtml = response.urlForResourcesInHtml;
-isTextDocument = ((this.fileType == "Txt" && response.page_count < 2) || this.fileType == "Xml");
-this.isHtmlDocument(this.fileType == "Html" || this.fileType == "Htm" || isTextDocument);
-var isDocumentSinglePaged = (response.doc_type == "Cells" || this.isHtmlDocument());
-this.useTabsForPages(isDocumentSinglePaged);
-isDocumentSinglePaged |= (response.doc_type == "Image");
-this.documentSpace.trigger("isDocumentSinglePaged.groupdocs", isDocumentSinglePaged);
-this.alwaysShowLoadingSpinner(!isDocumentSinglePaged);
-var browserIsChrome = $.browser.webkit && !!window.chrome;
-var isChromium = window.chrome;
-var vendorName = window.navigator.vendor;
-var isOpera = window.navigator.userAgent.indexOf("OPR") > -1;
-if (!!isChromium && vendorName === "Google Inc." && isOpera == false)
-browserIsChrome = true;
-this.browserIsChrome(browserIsChrome);
-var pageCss = response.pageCss[0];
-if (!pageCss)
-pageCss = "";
-if (this.pageCssElement)
-this.pageCssElement.remove();
-this.urlForImagesInHtml = response.urlForImagesInHtml;
-this.urlForFontsInHtml = response.urlForFontsInHtml;
-this.pageCssElement = $([]);
-this.preloadedPages = { html: response.pageHtml, css: response.pageCss };
-var firstPageHtml = response.pageHtml[0];
-var firstPage = this.pages()[0];
-pages = this._pdf2XmlWrapper.documentDescription.pages;
-this.autoHeight(this.useTabsForPages());
-var element;
-if (this.useTabsForPages()) {
-this.pageCount(1);
-if (this.isHtmlDocument()) {
-var bodyContents;
-if (isTextDocument) {
-bodyContents = "<div class='text_document_wrapper'>" + firstPageHtml + "</div>";
-}
-else {
-var headContents = this.getHtmlElementContents(firstPageHtml, "head");
-if (headContents) {
-var styleElementContents = this.getHtmlElements(headContents, "style");
-var linkElementContents = this.getHtmlElementAttributess(headContents, "link");
-if (linkElementContents != null) {
-this.linkElementsToLoad = 0;
-for (i = 0; i < linkElementContents.length; i++) {
-element = $(linkElementContents[i]);
-var rel = element.attr("rel");
-if (rel == "stylesheet") {
-this.linkElementsToLoad++;
-var uri = element.attr("href");
-$.get(uri,
-function (response) {
-var styleElement = $("<style type='text/css'>" + response + "</style>");
-self.pageCssElement = self.pageCssElement.add(styleElement);
-styleElement.prependTo("head");
-self.linkElementsToLoad--;
-if (self.linkElementsToLoad == 0) {
-self.autoHeight(true);
-self._calculatePageSizeFromDOM();
-self.adjustInitialZoom();
-}
-})
-.fail(function () {
-self.linkElementsToLoad--;
-if (self.linkElementsToLoad == 0) {
-self.autoHeight(true);
-self._calculatePageSizeFromDOM();
-self.adjustInitialZoom();
-}
-});
-}
-}
-}
-if (styleElementContents) {
-for (i = 0; i < styleElementContents.length; i++) {
-var css = styleElementContents[i];
-pageCss += css;
-}
-}
-}
-bodyContents = this.getPageBodyContentsWithReplace(firstPageHtml);
-}
-var bodyContentsElement = $(bodyContents);
-bodyContentsElement.find("script").remove();
-bodyContentsElement.addClass('html_document_wrapper');
-firstPageHtml = bodyContentsElement[0].outerHTML;
-var fontSizeStyle = ".grpdx .ie .doc-page .html_page_contents > div {font-size:1em;}";
-pageCss += fontSizeStyle;
-}
-}
-else {
-pageSize = this._pdf2XmlWrapper.getPageSize();
-firstPage.prop(pages[0].h / pages[0].w);
-scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pages[0].w, pages[0].h);
-firstPage.heightRatio(scaleRatio);
-this.documentSpace.css("background-color", "inherit");
-}
-element = $("<style>" + pageCss + "</style>");
-this.pageCssElement = this.pageCssElement.add(element);
-element.appendTo("head");
-var sharedCss = response.sharedCss;
-if (sharedCss) {
-var sharedElement = $("<style>" + sharedCss + "</style>");
-this.pageCssElement = this.pageCssElement.add(sharedElement);
-sharedElement.appendTo("head");
-}
-this.calculatePointToPixelRatio();
-var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
-firstPage.htmlContent(firstPageHtml);
-firstPage.visible(true);
-this.clearContentControls();
-this.markContentControls(0);
-this.tabs.removeAll();
-if (this.useTabsForPages()) {
-var sheets = this._pdf2XmlWrapper.documentDescription.sheets;
-if (sheets) {
-for (i = 0; i < sheets.length; i++) {
-this.tabs.push({
-name: sheets[i].name,
-visible: ko.observable(false),
-htmlContent: ko.observable(""),
-searchText: ko.observable(null)
-});
-}
-}
-this.activeTab(0);
-this.documentSpace.css("background-color", "white");
-}
-if (this.useTabsForPages() && this.tabs().length > 0)
-this.documentSpace.addClass("doc_viewer_tabs");
-else
-this.documentSpace.removeClass("doc_viewer_tabs");
-var pageElement = htmlPageContents.children("div,table,img");
-var pageElementWidth;
-if (this.useTabsForPages()) {
-pageElementWidth = pageElement.width();
-var pageElementHeight = pageElement.height();
-firstPage.prop(pageElementHeight / pageElementWidth);
-pageSize = { width: pageElementWidth, height: pageElementHeight };
-firstPage.heightRatio(1);
-}
-if (this.supportPageRotation) {
-if (pages)
-rotationFromServer = pages[0].rotation;
-else
-rotationFromServer = 0;
-if (typeof rotationFromServer == "undefined")
-rotationFromServer = 0;
-this.applyPageRotationInBrowser(0, firstPage, rotationFromServer);
-}
-this.imageHorizontalMargin = 7;
-response.page_size.Width = pageSize.width;
-response.page_size.Height = pageSize.height;
-var pageWidthFromServer = pageSize.width;
-var onlyImageInHtml = false;
-var pageElementChildren = pageElement.children();
-if (pageElementChildren.length == 1 && pageElementChildren.filter("img").length == 1)
-onlyImageInHtml = true;
-var oldWidth = null;
-if (!onlyImageInHtml && !this.useTabsForPages()) {
-oldWidth = pageElement.css("width");
-pageElement.css("width", pageWidthFromServer + "pt");
-}
-if (this.isHtmlDocument())
-pageElementWidth = this.getFitWidth();
-else
-pageElementWidth = pageElement.width();
-this.heightWidthRatio = parseFloat(response.page_size.Height / response.page_size.Width);
-if (!this.useTabsForPages() || !this.supportPageRotation || firstPage.rotation % 180 == 0)
-this.pageWidth(pageElementWidth);
-if (oldWidth !== null && typeof oldWidth != "undefined")
-pageElement.css("width", oldWidth);
-this.pageHeight(Math.round(this.pageWidth() * this.heightWidthRatio));
-this.initialWidth = this.pageWidth();
-}
-var pageCount = this.pageCount();
-if (!response.lic && pageCount > 3)
-pageCount = 3;
-var pagesNotObservable = [];
-var pageDescription;
-if (this.pageContentType == "image") {
-//this.pages.removeAll();
-var pageImageUrl, pageDescriptionCount;
-if (this.variableHeightPageSupport) {
-this.serverPages = pages = this._pdf2XmlWrapper.documentDescription.pages;
-pageDescriptionCount = this._pdf2XmlWrapper.getPageCount();
-//pageDescriptionCount = pages.length;
-}
-for (i = 0; i < pageCount; i++) {
-if (i < response.image_urls.length)
-pageImageUrl = response.image_urls[i];
-else
-pageImageUrl = "";
-pageDescription = {
-number: i + 1,
-visible: ko.observable(false),
-url: ko.observable(pageImageUrl)
-};
-if (this.variableHeightPageSupport) {
-if (i < pageDescriptionCount && pages)
-pageDescription.prop = ko.observable(pages[i].h / pages[i].w);
-else
-pageDescription.prop = ko.observable(this.pageHeight() / this.pageWidth());
-}
-if (this.supportPageRotation) {
-rotationFromServer = this.serverPages[i].rotation;
-if (typeof rotationFromServer == "undefined")
-rotationFromServer = 0;
-pageDescription.rotation = ko.observable(rotationFromServer);
-this.applyPageRotationInBrowser(i, pageDescription, rotationFromServer);
-}
-if (this.useVirtualScrolling) {
-pageDescription.left = 0;
-pageDescription.top = ko.observable(0);
-}
-pagesNotObservable.push(pageDescription);
-}
-}
-else if (this.pageContentType == "html") {
-this.serverPages = pages = this._pdf2XmlWrapper.documentDescription.pages;
-//this.pages.splice(1, this.pages().length - 1);
-//var documentHeight = 0;
-//var pageTop = 0;
-pageWidth = this.pageWidth();
-pageDescription = this.pages()[0];
-//var layout = this.layout();
-//if (layout != this.Layouts.TwoPagesInRow)
-//    pageTop += pageWidth * pageDescription.prop();
-//documentHeight += pageWidth * pageDescription.prop();
-pagesNotObservable.push(pageDescription);
-var proportion;
-//var cssForAllPages = "";
-for (i = 1; i < pageCount; i++) {
-scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pages[i].w, pages[i].h);
-proportion = pages[i].h / pages[i].w;
-pageDescription = {
-number: i + 1,
-visible: ko.observable(false),
-htmlContent: ko.observable(""),
-prop: ko.observable(proportion),
-heightRatio: ko.observable(scaleRatio),
-searchText: ko.observable(null)
-};
-//var pageHtml = this.preloadedPages && this.preloadedPages.html[i];
-//if (pageHtml) {
-//    pageDescription.htmlContent(pageHtml);
-//    if (this.preloadedPages.css[i])
-//        cssForAllPages += this.preloadedPages.css[i];
-//    pageDescription.visible(true);
-//}
-if (this.supportPageRotation) {
-rotationFromServer = this.serverPages[i].rotation;
-if (typeof rotationFromServer == "undefined")
-rotationFromServer = 0;
-pageDescription.rotation = ko.observable(rotationFromServer);
-this.applyPageRotationInBrowser(i, pageDescription, rotationFromServer);
-}
-if (this.useVirtualScrolling) {
-pageDescription.left = 0;
-pageDescription.top = ko.observable(0);
-}
-//    if (layout == this.Layouts.OnePageInRow
-//        || (layout == this.Layouts.TwoPagesInRow && i % 2 == 1)
-//        || (layout == this.Layouts.CoverThenTwoPagesInRow && i % 2 == 0)) {
-//        pageTop += pageWidth * proportion;
-//        documentHeight = pageTop;
-//    }
-//    else
-//        documentHeight = pageTop + pageHeight;
-//    //pageTop += pageWidth * proportion * scaleRatio;
-//}
-pagesNotObservable.push(pageDescription);
-}
-//if (this.useVirtualScrolling)
-//    this.documentHeight(documentHeight);
-if (isDocumentSinglePaged)
-response.page_count = 0; // for thumbnails after rotation
-this.documentSpace.trigger('_onProcessPages', [response, pagesNotObservable, this.getDocumentPageHtml, this, this.pointToPixelRatio, this.docViewerId]);
-}
-this.pages(pagesNotObservable);
-this.calculatePagePositionsForVirtualMode();
-this._firstPage = this.documentSpace.find("#" + this.pagePrefix + "1");
-if (this.pages().length > 0 && this._firstPage.length == 0 && !this.useVirtualScrolling) // viewer destroyed while loading document
-return;
-$(this).trigger('onProcessPages', [this.docGuid]);
-this.inprogress(false);
-if (this.pageContentType == "image") {
-this.recalculatePageLeft();
-}
-//var hCount = Math.floor(this.pagesContainerElement.width() / this._firstPage.width());
-var hCount = Math.floor(this.pagesContainerElement.width() / this.pageWidth());
-if (hCount == 0)
-hCount = 1;
-if (this.layout() == this.Layouts.OnePageInRow)
-hCount = 1;
-if (this._pdf2XmlWrapper && this._pdf2XmlWrapper._setTextPositionsCalculationFinished)
-this._isTextPositionsCalculationFinished = false;
-var scale = this.scale();
-this._dvselectable = this.pagesContainerElement.dvselectable({
-txtarea: this.selectionContent,
-pdf2XmlWrapper: this._pdf2XmlWrapper,
-startNumbers: this.getVisiblePagesNumbers(),
-pagesCount: this.pageCount(),
-proportion: scale,
-pageHeight: this.getPageHeight(),
-horizontalPageCount: hCount,
-docSpace: this.documentSpace,
-pagePrefix: this.pagePrefix,
-searchPartialWords: this.searchPartialWords,
-storeAnnotationCoordinatesRelativeToPages: this.storeAnnotationCoordinatesRelativeToPages,
-initializeStorageOnly: this.pageContentType == "html",
-preventTouchEventsBubbling: this.preventTouchEventsBubbling,
-highlightColor: this.options.highlightColor,
-useVirtualScrolling: this.useVirtualScrolling,
-pageLocations: (this.useVirtualScrolling ? this.pages() : null),
-initStorageOnMouseStart: this.initStorageOnMouseStart
-});
-this._dvselectable.dvselectable("setVisiblePagesNumbers", this.getVisiblePagesNumbers());
-if (!this.docWasLoadedInViewer && (this.usePageNumberInUrlHash === undefined || this.usePageNumberInUrlHash == true)) {
-var firstPageLocation = location.pathname;
-if (location.hash.substring(1, this.hashPagePrefix.length + 1) != this.hashPagePrefix)
-this.setPage(1);
-Sammy(function () {
-this.get(/\#page(.*)/i, openPath);
-this.get(firstPageLocation, openFirstPage);
-function openFirstPage() {
-if (self.pageInd() != 1)
-self.setPage(1);
-}
-function openPath() {
-if (!self.changedUrlHash) {
-if (this.params.splat.length == 0 || this.params.splat[0].length == 0) {
-}
-else {
-var hashString = this.params.splat[0];
-//hashString = hashString.substring(1);
-var newPageIndex = Number(hashString);
-if (isNaN(newPageIndex))
-newPageIndex = 1;
-if (newPageIndex > self.pageCount())
-newPageIndex = self.pageCount();
-if (newPageIndex < 1)
-newPageIndex = 1;
-self.setPage(newPageIndex);
-}
-}
-}
-}).run();
-}
-else {
-this.setPage(1);
-}
-if (!this.zoomToFitHeight)
-this.loadImagesForVisiblePages(true);
-this.adjustInitialZoom();
-this.docWasLoadedInViewer = true;
-// get a list of document hyperlinks from the server
-if (this.pageContentType == "image" && this._mode != "webComponent" && this._mode != "annotatedDocument") {
-this._loadHyperlinks();
-}
-if (this.preloadPagesOnBrowserSide) {
-var preloadPagesCount = this.preloadPagesCount;
-if (preloadPagesCount === null || preloadPagesCount > this.pageCount())
-preloadPagesCount = this.pageCount();
-this.loadImagesForPages(1, preloadPagesCount);
-}
-$(this).trigger('onScrollDocView', { pi: 1, direction: "up", position: 0 });
-$(this).trigger("onDocumentLoadComplete", [response, this._pdf2XmlWrapper]);
-if (this._isTextPositionsCalculationFinished)
-this.raiseDocumentLoadCompletedEvent();
+    this.isDocumentLoaded = true;
+    if (this.useJavaScriptDocumentDescription) {
+        response.page_count = this._pdf2XmlWrapper.getPageCount();
+    }
+    else if (typeof response.page_count == "undefined" && response.documentDescription) {
+        var documentDescription = JSON.parse(response.documentDescription);
+        if (documentDescription.pages && typeof documentDescription.pages.length != "undefined")
+            response.page_count = documentDescription.pages.length;
+        // for compatibility with Comparison which does not use Pdf2JavaScriptWrapper
+    }
+    if (response.docType && typeof response.doc_type == "undefined")
+        response.doc_type = response.docType;
+    if (response.imageUrls && typeof response.image_urls == "undefined")
+        response.image_urls = response.imageUrls;
+    if (response.path && typeof response.guid == "undefined")
+        response.guid = response.path;
+    if (!response.page_size)
+        response.page_size = {};
+    $(this).trigger('onDocumentLoaded', response);
+    var self = this;
+    this._sessionToken = response.token;
+    this.docGuid = response.guid;
+    this.pageCount(response.page_count);
+    this.documentName(response.name);
+    this.docType(response.doc_type);
+    this.password(response.password);
+    this.matchesCount = 0;
+    $(this).trigger('getPagesCount', response.page_count);
+    if (this.variableHeightPageSupport) {
+        response.documentDescription = this._pdf2XmlWrapper.documentDescription;
+    }
+    var pages = null;
+    var pageSize = null;
+    var i;
+    var rotationFromServer;
+    var isTextDocument;
+    var scaleRatio;
+    if (this.supportListOfContentControls)
+        this.contentControls = this._pdf2XmlWrapper.getContentControls();
+    if (this.supportListOfBookmarks)
+        this.bookmarks = this._pdf2XmlWrapper.getBookmarks();
+    if (this.pageContentType == "image") {
+        if (this.use_pdf != 'false' || this.variableHeightPageSupport) {
+            pageSize = this._pdf2XmlWrapper.getPageSize();
+            if (this.variableHeightPageSupport) {
+                response.page_size.Width = pageSize.width;
+                response.page_size.Height = pageSize.height;
+            }
+            this.scale(this.pageImageWidth * (this.initialZoom / 100) / pageSize.width);
+            this.unscaledPageHeight = Number(pageSize.height);
+            this.unscaledPageWidth = Number(pageSize.width);
+        }
+        this.heightWidthRatio = parseFloat(response.page_size.Height / response.page_size.Width);
+        this.pageHeight(Math.round(this.pageImageWidth * this.heightWidthRatio * (this.initialZoom / 100)));
+        $(this).trigger('_onProcessPages', response);
+    }
+    else if (this.pageContentType == "html") {
+        this.watermarkScreenWidth = null;
+        this.zoom(100);
+        this.fileType = response.fileType;
+        this.urlForResourcesInHtml = response.urlForResourcesInHtml;
+        isTextDocument = ((this.fileType == "Txt" && response.page_count < 2) || this.fileType == "Xml");
+        this.isHtmlDocument(this.fileType == "Html" || this.fileType == "Htm" || isTextDocument);
+        var isDocumentSinglePaged = (response.doc_type == "Cells" || this.isHtmlDocument());
+        this.useTabsForPages(isDocumentSinglePaged);
+        isDocumentSinglePaged |= (response.doc_type == "Image");
+        this.documentSpace.trigger("isDocumentSinglePaged.groupdocs", isDocumentSinglePaged);
+        this.alwaysShowLoadingSpinner(!isDocumentSinglePaged);
+        var browserIsChrome = $.browser.webkit && !!window.chrome;
+        var isChromium = window.chrome;
+        var vendorName = window.navigator.vendor;
+        var isOpera = window.navigator.userAgent.indexOf("OPR") > -1;
+        if (!!isChromium && vendorName === "Google Inc." && isOpera == false)
+            browserIsChrome = true;
+        this.browserIsChrome(browserIsChrome);
+        var pageCss = response.pageCss[0];
+        if (!pageCss)
+            pageCss = "";
+        if (this.pageCssElement)
+            this.pageCssElement.remove();
+        this.urlForImagesInHtml = response.urlForImagesInHtml;
+        this.urlForFontsInHtml = response.urlForFontsInHtml;
+        this.pageCssElement = $([]);
+        this.preloadedPages = { html: response.pageHtml, css: response.pageCss };
+        var firstPageHtml = response.pageHtml[0];
+        var firstPage = this.pages()[0];
+        pages = this._pdf2XmlWrapper.documentDescription.pages;
+        this.autoHeight(this.useTabsForPages());
+        var element;
+        if (this.useTabsForPages()) {
+            this.pageCount(1);
+            if (this.isHtmlDocument()) {
+                var bodyContents;
+                if (isTextDocument) {
+                    bodyContents = "<div class='text_document_wrapper'>" + firstPageHtml + "</div>";
+                }
+                else {
+                    var headContents = this.getHtmlElementContents(firstPageHtml, "head");
+                    if (headContents) {
+                        var styleElementContents = this.getHtmlElements(headContents, "style");
+                        var linkElementContents = this.getHtmlElementAttributess(headContents, "link");
+                        if (linkElementContents != null) {
+                            this.linkElementsToLoad = 0;
+                            for (i = 0; i < linkElementContents.length; i++) {
+                                element = $(linkElementContents[i]);
+                                var rel = element.attr("rel");
+                                if (rel == "stylesheet") {
+                                    this.linkElementsToLoad++;
+                                    var uri = element.attr("href");
+                                    $.get(uri, function (response) {
+                                        var styleElement = $("<style type='text/css'>" + response + "</style>");
+                                        self.pageCssElement = self.pageCssElement.add(styleElement);
+                                        styleElement.prependTo("head");
+                                        self.linkElementsToLoad--;
+                                        if (self.linkElementsToLoad == 0) {
+                                            self.autoHeight(true);
+                                            self._calculatePageSizeFromDOM();
+                                            self.adjustInitialZoom();
+                                        }
+                                    })
+                                        .fail(function () {
+                                            self.linkElementsToLoad--;
+                                            if (self.linkElementsToLoad == 0) {
+                                                self.autoHeight(true);
+                                                self._calculatePageSizeFromDOM();
+                                                self.adjustInitialZoom();
+                                            }
+                                        });
+                                }
+                            }
+                        }
+                        if (styleElementContents) {
+                            for (i = 0; i < styleElementContents.length; i++) {
+                                var css = styleElementContents[i];
+                                pageCss += css;
+                            }
+                        }
+                    }
+                    bodyContents = this.getPageBodyContentsWithReplace(firstPageHtml);
+                }
+                var bodyContentsElement = $(bodyContents);
+                bodyContentsElement.find("script").remove();
+                bodyContentsElement.addClass('html_document_wrapper');
+                firstPageHtml = bodyContentsElement[0].outerHTML;
+                var fontSizeStyle = ".grpdx .ie .doc-page .html_page_contents > div {font-size:1em;}";
+                pageCss += fontSizeStyle;
+            }
+        }
+        else {
+            pageSize = this._pdf2XmlWrapper.getPageSize();
+            firstPage.prop(pages[0].h / pages[0].w);
+            scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pages[0].w, pages[0].h);
+
+            firstPage.heightRatio(scaleRatio);
+            this.documentSpace.css("background-color", "inherit");
+            window.imgScale = scaleRatio;
+        }
+        element = $("<style>" + pageCss + "</style>");
+        this.pageCssElement = this.pageCssElement.add(element);
+        element.appendTo("head");
+        var sharedCss = response.sharedCss;
+        if (sharedCss) {
+            var sharedElement = $("<style>" + sharedCss + "</style>");
+            this.pageCssElement = this.pageCssElement.add(sharedElement);
+            sharedElement.appendTo("head");
+        }
+        this.calculatePointToPixelRatio();
+        var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
+        firstPage.htmlContent(firstPageHtml);
+        firstPage.visible(true);
+        this.clearContentControls();
+        this.markContentControls(0);
+        this.tabs.removeAll();
+        if (this.useTabsForPages()) {
+            var sheets = this._pdf2XmlWrapper.documentDescription.sheets;
+            if (sheets) {
+                for (i = 0; i < sheets.length; i++) {
+                    this.tabs.push({
+                        name: sheets[i].name,
+                        visible: ko.observable(false),
+                        htmlContent: ko.observable(""),
+                        searchText: ko.observable(null)
+                    });
+                }
+            }
+            this.activeTab(0);
+            this.documentSpace.css("background-color", "white");
+        }
+        if (this.useTabsForPages() && this.tabs().length > 0)
+            this.documentSpace.addClass("doc_viewer_tabs");
+        else
+            this.documentSpace.removeClass("doc_viewer_tabs");
+        var pageElement = htmlPageContents.children("div,table,img");
+        var pageElementWidth;
+        if (this.useTabsForPages()) {
+            pageElementWidth = pageElement.width();
+            var pageElementHeight = pageElement.height();
+            firstPage.prop(pageElementHeight / pageElementWidth);
+            pageSize = { width: pageElementWidth, height: pageElementHeight };
+            firstPage.heightRatio(1);
+        }
+        if (this.supportPageRotation) {
+            if (pages)
+                rotationFromServer = pages[0].rotation;
+            else
+                rotationFromServer = 0;
+            if (typeof rotationFromServer == "undefined")
+                rotationFromServer = 0;
+            this.applyPageRotationInBrowser(0, firstPage, rotationFromServer);
+        }
+        this.imageHorizontalMargin = 7;
+        response.page_size.Width = pageSize.width;
+        response.page_size.Height = pageSize.height;
+        var pageWidthFromServer = pageSize.width;
+        var onlyImageInHtml = false;
+        var pageElementChildren = pageElement.children();
+        if (pageElementChildren.length == 1 && pageElementChildren.filter("img").length == 1)
+            onlyImageInHtml = true;
+        var oldWidth = null;
+        if (!onlyImageInHtml && !this.useTabsForPages()) {
+            oldWidth = pageElement.css("width");
+            //oldWidth = pageWidthFromServer;
+            pageElement.css("width", pageWidthFromServer + "pt");
+        }
+        if (this.isHtmlDocument())
+            pageElementWidth = this.getFitWidth();
+        else
+            pageElementWidth = pageElement.width();
+        this.heightWidthRatio = parseFloat(response.page_size.Height / response.page_size.Width);
+        if (!this.useTabsForPages() || !this.supportPageRotation || firstPage.rotation % 180 == 0)
+            this.pageWidth(pageElementWidth);
+        if (oldWidth !== null && typeof oldWidth != "undefined")
+            pageElement.css("width", oldWidth);
+        if (this.fileType == "Jpg" || this.fileType == "Png") {
+            window.fldImg = true;
+            window.pgElement = pageElement;
+            window.pgWidth = pageSize.width;
+            //window.pgElement.css("width", pageSize.width);
+        }
+
+        this.pageHeight(Math.round(this.pageWidth() * this.heightWidthRatio));
+        this.initialWidth = this.pageWidth();
+    }
+    var pageCount = this.pageCount();
+    if (!response.lic && pageCount > 3)
+        pageCount = 3;
+    var pagesNotObservable = [];
+    var pageDescription;
+    if (this.pageContentType == "image") {
+        var pageImageUrl, pageDescriptionCount;
+        if (this.variableHeightPageSupport) {
+            this.serverPages = pages = this._pdf2XmlWrapper.documentDescription.pages;
+            pageDescriptionCount = this._pdf2XmlWrapper.getPageCount();
+        }
+        for (i = 0; i < pageCount; i++) {
+            if (i < response.image_urls.length)
+                pageImageUrl = response.image_urls[i];
+            else
+                pageImageUrl = "";
+            pageDescription = {
+                number: i + 1,
+                visible: ko.observable(false),
+                url: ko.observable(pageImageUrl)
+            };
+            if (this.variableHeightPageSupport) {
+                if (i < pageDescriptionCount && pages)
+                    pageDescription.prop = ko.observable(pages[i].h / pages[i].w);
+                else
+                    pageDescription.prop = ko.observable(this.pageHeight() / this.pageWidth());
+            }
+            if (this.supportPageRotation) {
+                rotationFromServer = this.serverPages[i].rotation;
+                if (typeof rotationFromServer == "undefined")
+                    rotationFromServer = 0;
+                pageDescription.rotation = ko.observable(rotationFromServer);
+                this.applyPageRotationInBrowser(i, pageDescription, rotationFromServer);
+            }
+            if (this.useVirtualScrolling) {
+                pageDescription.left = 0;
+                pageDescription.top = ko.observable(0);
+            }
+            pagesNotObservable.push(pageDescription);
+        }
+    }
+    else if (this.pageContentType == "html") {
+        this.serverPages = pages = this._pdf2XmlWrapper.documentDescription.pages
+        //this.pages.splice(1, this.pages().length - 1);
+        //var documentHeight = 0;
+        //var pageTop = 0;
+        pageWidth = this.pageWidth();
+        pageDescription = this.pages()[0];
+        //var layout = this.layout();
+        //if (layout != this.Layouts.TwoPagesInRow)
+        //    pageTop += pageWidth * pageDescription.prop();
+        //documentHeight += pageWidth * pageDescription.prop();
+        pagesNotObservable.push(pageDescription);
+        var proportion;
+        //var cssForAllPages = "";
+        for (i = 1; i < pageCount; i++) {
+            scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pages[i].w, pages[i].h);
+            proportion = pages[i].h / pages[i].w;
+            pageDescription = {
+                number: i + 1,
+                visible: ko.observable(false),
+                htmlContent: ko.observable(""),
+                prop: ko.observable(proportion),
+                heightRatio: ko.observable(scaleRatio),
+                searchText: ko.observable(null)
+            };
+            //var pageHtml = this.preloadedPages && this.preloadedPages.html[i];
+            //if (pageHtml) {
+            //    pageDescription.htmlContent(pageHtml);
+            //    if (this.preloadedPages.css[i])
+            //        cssForAllPages += this.preloadedPages.css[i];
+            //    pageDescription.visible(true);
+            //}
+            if (this.supportPageRotation) {
+                rotationFromServer = this.serverPages[i].rotation;
+                if (typeof rotationFromServer == "undefined")
+                    rotationFromServer = 0;
+                pageDescription.rotation = ko.observable(rotationFromServer);
+                this.applyPageRotationInBrowser(i, pageDescription, rotationFromServer);
+            }
+            if (this.useVirtualScrolling) {
+                pageDescription.left = 0;
+                pageDescription.top = ko.observable(0);
+            }
+            //    if (layout == this.Layouts.OnePageInRow
+            //        || (layout == this.Layouts.TwoPagesInRow && i % 2 == 1)
+            //        || (layout == this.Layouts.CoverThenTwoPagesInRow && i % 2 == 0)) {
+            //        pageTop += pageWidth * proportion;
+            //        documentHeight = pageTop;
+            //    }
+            //    else
+            //        documentHeight = pageTop + pageHeight;
+            //    //pageTop += pageWidth * proportion * scaleRatio;
+            //}
+            pagesNotObservable.push(pageDescription);
+        }
+        //if (this.useVirtualScrolling)
+        //    this.documentHeight(documentHeight);
+        if (isDocumentSinglePaged)
+            response.page_count = 0; // for thumbnails after rotation
+        this.documentSpace.trigger('_onProcessPages', [response, pagesNotObservable, this.getDocumentPageHtml, this, this.pointToPixelRatio, this.docViewerId]);
+    }
+    this.pages(pagesNotObservable);
+    this.calculatePagePositionsForVirtualMode();
+    this._firstPage = this.documentSpace.find("#" + this.pagePrefix + "1");
+    if (this.pages().length > 0 && this._firstPage.length == 0 && !this.useVirtualScrolling) // viewer destroyed while loading document
+        return;
+    $(this).trigger('onProcessPages', [this.docGuid]);
+    this.inprogress(false);
+    if (this.pageContentType == "image") {
+        this.recalculatePageLeft();
+    }
+    //var hCount = Math.floor(this.pagesContainerElement.width() / this._firstPage.width());
+    var hCount = Math.floor(this.pagesContainerElement.width() / this.pageWidth());
+    if (hCount == 0)
+        hCount = 1;
+    if (this.layout() == this.Layouts.OnePageInRow)
+        hCount = 1;
+    if (this._pdf2XmlWrapper && this._pdf2XmlWrapper._setTextPositionsCalculationFinished)
+        this._isTextPositionsCalculationFinished = false;
+    var scale = this.scale();
+    this._dvselectable = this.pagesContainerElement.dvselectable({
+        txtarea: this.selectionContent,
+        pdf2XmlWrapper: this._pdf2XmlWrapper,
+        startNumbers: this.getVisiblePagesNumbers(),
+        pagesCount: this.pageCount(),
+        proportion: scale,
+        pageHeight: this.getPageHeight(),
+        horizontalPageCount: hCount,
+        docSpace: this.documentSpace,
+        pagePrefix: this.pagePrefix,
+        searchPartialWords: this.searchPartialWords,
+        storeAnnotationCoordinatesRelativeToPages: this.storeAnnotationCoordinatesRelativeToPages,
+        initializeStorageOnly: this.pageContentType == "html",
+        preventTouchEventsBubbling: this.preventTouchEventsBubbling,
+        highlightColor: this.options.highlightColor,
+        useVirtualScrolling: this.useVirtualScrolling,
+        pageLocations: (this.useVirtualScrolling ? this.pages() : null),
+        initStorageOnMouseStart: this.initStorageOnMouseStart
+    });
+    this._dvselectable.dvselectable("setVisiblePagesNumbers", this.getVisiblePagesNumbers());
+    if (!this.docWasLoadedInViewer && (this.usePageNumberInUrlHash === undefined || this.usePageNumberInUrlHash == true)) {
+        var firstPageLocation = location.pathname;
+        if (location.hash.substring(1, this.hashPagePrefix.length + 1) != this.hashPagePrefix)
+            this.setPage(1);
+        Sammy(function () {
+            this.get(/\#page(.*)/i, openPath);
+            this.get(firstPageLocation, openFirstPage);
+            function openFirstPage() {
+                if (self.pageInd() != 1)
+                    self.setPage(1);
+            }
+            function openPath() {
+                if (!self.changedUrlHash) {
+                    if (this.params.splat.length == 0 || this.params.splat[0].length == 0) {
+                    }
+                    else {
+                        var hashString = this.params.splat[0];
+                        //hashString = hashString.substring(1);
+                        var newPageIndex = Number(hashString);
+                        if (isNaN(newPageIndex))
+                            newPageIndex = 1;
+                        if (newPageIndex > self.pageCount())
+                            newPageIndex = self.pageCount();
+                        if (newPageIndex < 1)
+                            newPageIndex = 1;
+                        self.setPage(newPageIndex);
+                    }
+                }
+            }
+        }).run();
+    }
+    else {
+        this.setPage(1);
+    }
+    if (!this.zoomToFitHeight)
+        this.loadImagesForVisiblePages(true);
+    this.adjustInitialZoom();
+    this.docWasLoadedInViewer = true;
+    // get a list of document hyperlinks from the server
+    if (this.pageContentType == "image" && this._mode != "webComponent" && this._mode != "annotatedDocument") {
+        this._loadHyperlinks();
+    }
+    if (this.preloadPagesOnBrowserSide) {
+        var preloadPagesCount = this.preloadPagesCount;
+        if (preloadPagesCount === null || preloadPagesCount > this.pageCount())
+            preloadPagesCount = this.pageCount();
+        this.loadImagesForPages(1, preloadPagesCount);
+    }
+    
+    $(this).trigger('onScrollDocView', { pi: 1, direction: "up", position: 0 });
+    $(this).trigger("onDocumentLoadComplete", [response, this._pdf2XmlWrapper]);
+    
+    if (this._isTextPositionsCalculationFinished)
+        this.raiseDocumentLoadCompletedEvent();
 },
 _onDocumentHyperlinksLoaded: function (response) {
-if (!response || !response.links) {
-this.hyperlinks.removeAll();
-return;
-}
-var links = [];
-var self = this;
-var selectable = this.getSelectableInstance();
-$.each(response.links, function () {
-var l = {
-url: this.Url,
-pageNumber: this.PageNumber,
-targetPage: this.TargetPage,
+    if (!response || !response.links) {
+        this.hyperlinks.removeAll();
+        return;
+    }
+    var links = [];
+    var self = this;
+    var selectable = this.getSelectableInstance();
+    $.each(response.links, function () {
+        var l = {
+            url: this.Url,
+            pageNumber: this.PageNumber,
+            targetPage: this.TargetPage,
 rect: new jSaaspose.Rect(this.Bounds.X, this.Bounds.Y, this.Bounds.X + this.Bounds.Width, this.Bounds.Y + this.Bounds.Height)
 };
 l.frame = ko.observable(selectable != null ? selectable.convertPageAndRectToScreenCoordinates(l.pageNumber, l.rect) : l.rect);
@@ -2937,6 +2958,7 @@ viewerWidth = this.viewerWidth;
 else
 viewerWidth = this.documentSpace.width();
 var scrollbarWidth = this.getScrollbarWidth();
+//alert(scrollbarWidth);
 var fittingWidth = viewerWidth - scrollbarWidth - 2 * (this.imageHorizontalMargin + 1);
 if (!this.useTabsForPages()) {
 var layout = this.layout();
@@ -3674,375 +3696,375 @@ this._onError(error);
 }.bind(this));
 },
 applyPageRotationInBrowser: function (pageNumber, page, angle) {
-if (!this.supportPageRotation)
-return;
-var oldRotation = page.rotation();
-if (oldRotation == 0 && angle == 0)
-return;
-if (this.pageContentType == "image" && oldRotation != angle) {
-page.visible(false);
-this.addSuffixToImageUrl(page);
-page.visible(true);
-}
-page.rotation(angle);
-var newAngle = page.rotation() % 180;
-var pagesFromServer = this._pdf2XmlWrapper.documentDescription.pages;
-var pageSize, pageFromServer;
-var pageWidth, pageHeight, maxPageHeight;
-if (this.useTabsForPages()) {
-var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
-var pageElement = htmlPageContents.children("div,table");
-pageWidth = pageElement.width();
-pageHeight = pageElement.height();
-this.initialWidth = pageWidth;
-if (newAngle > 0) {
-maxPageHeight = pageWidth;
-//this.pageWidth(pageHeight * this.zoom() / 100);
-}
-else {
-maxPageHeight = pageHeight;
-//this.pageWidth(pageWidth * this.zoom() / 100);
-}
-this.pageWidth(pageWidth * this.zoom() / 100);
-return;
-}
-else {
-if (pagesFromServer) {
-pageSize = this.getPageSize();
-pageFromServer = pagesFromServer[pageNumber];
-pageFromServer.rotation = angle;
-pageWidth = pageFromServer.w;
-pageHeight = pageFromServer.h;
-maxPageHeight = pageSize.height;
-}
-else
-return;
-}
-var scaleRatio;
-if (newAngle > 0) {
-page.prop(pageWidth / pageHeight);
-if (this.pageContentType == "html") {
-scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pageHeight, pageWidth);
-page.heightRatio(scaleRatio);
-}
-}
-else {
-page.prop(pageHeight / pageWidth);
-if (this.pageContentType == "html") {
-scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pageWidth, pageHeight);
-page.heightRatio(scaleRatio);
-}
-}
-this.calculatePagePositionsForVirtualMode();
-this.reInitSelectable();
-var selectable = this.getSelectableInstance();
-if (selectable != null)
-selectable.clearSelectionOnPage(pageNumber);
-this.loadImagesForVisiblePages(true);
+    if (!this.supportPageRotation)
+        return;
+    var oldRotation = page.rotation();
+    if (oldRotation == 0 && angle == 0)
+        return;
+    if (this.pageContentType == "image" && oldRotation != angle) {
+        page.visible(false);
+        this.addSuffixToImageUrl(page);
+        page.visible(true);
+    }
+    page.rotation(angle);
+    var newAngle = page.rotation() % 180;
+    var pagesFromServer = this._pdf2XmlWrapper.documentDescription.pages;
+    var pageSize, pageFromServer;
+    var pageWidth, pageHeight, maxPageHeight;
+    if (this.useTabsForPages()) {
+        var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
+        var pageElement = htmlPageContents.children("div,table");
+        pageWidth = pageElement.width();
+        pageHeight = pageElement.height();
+        this.initialWidth = pageWidth;
+        if (newAngle > 0) {
+            maxPageHeight = pageWidth;
+            //this.pageWidth(pageHeight * this.zoom() / 100);
+        }
+        else {
+            maxPageHeight = pageHeight;
+            //this.pageWidth(pageWidth * this.zoom() / 100);
+        }
+        this.pageWidth(pageWidth * this.zoom() / 100);
+        return;
+    }
+    else {
+        if (pagesFromServer) {
+            pageSize = this.getPageSize();
+            pageFromServer = pagesFromServer[pageNumber];
+            pageFromServer.rotation = angle;
+            pageWidth = pageFromServer.w;
+            pageHeight = pageFromServer.h;
+            maxPageHeight = pageSize.height;
+        }
+        else
+            return;
+    }
+    var scaleRatio;
+    if (newAngle > 0) {
+        page.prop(pageWidth / pageHeight);
+        if (this.pageContentType == "html") {
+            scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pageHeight, pageWidth);
+            page.heightRatio(scaleRatio);
+        }
+    }
+    else {
+        page.prop(pageHeight / pageWidth);
+        if (this.pageContentType == "html") {
+            scaleRatio = this.getScaleRatioForPage(pageSize.width, pageSize.height, pageWidth, pageHeight);
+            page.heightRatio(scaleRatio);
+        }
+    }
+    this.calculatePagePositionsForVirtualMode();
+    this.reInitSelectable();
+    var selectable = this.getSelectableInstance();
+    if (selectable != null)
+    selectable.clearSelectionOnPage(pageNumber);
+    this.loadImagesForVisiblePages(true);
 },
 _calculatePageSizeFromDOM: function () {
-var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
-var pageElement = htmlPageContents.children("div,table,img");
-if (this.autoHeight()) {
-var pageWidth = pageElement.width();
-this.initialWidth = pageWidth;
-}
-this.pageWidth(this.initialWidth * this.zoom() / 100);
-var dimensions = pageElement[0].getBoundingClientRect();
-var reserveHeight = 0;
-this.autoHeight(true);
-var page = this.pages()[0];
-var screenWidth;
-var screenHeight;
-if (typeof dimensions.width == "undefined") // IE8
-screenWidth = dimensions.right - dimensions.left;
-else
-screenWidth = dimensions.width;
-if (typeof dimensions.height == "undefined") // IE8
-screenHeight = dimensions.bottom - dimensions.top;
-else
-screenHeight = dimensions.height;
-if (page && page.rotation && page.rotation() % 180 > 0) {
-var t = screenWidth;
-screenWidth = screenHeight;
-screenHeight = t;
-}
-screenHeight += reserveHeight;
-page.prop(screenHeight / screenWidth);
-this.autoHeight(false);
+    var htmlPageContents = this.documentSpace.find(".html_page_contents:first");
+    var pageElement = htmlPageContents.children("div,table,img");
+    if (this.autoHeight()) {
+        var pageWidth = pageElement.width();
+        this.initialWidth = pageWidth;
+    }
+    this.pageWidth(this.initialWidth * this.zoom() / 100);
+    var dimensions = pageElement[0].getBoundingClientRect();
+    var reserveHeight = 0;
+    this.autoHeight(true);
+    var page = this.pages()[0];
+    var screenWidth;
+    var screenHeight;
+    if (typeof dimensions.width == "undefined") // IE8
+        screenWidth = dimensions.right - dimensions.left;
+    else
+        screenWidth = dimensions.width;
+    if (typeof dimensions.height == "undefined") // IE8
+        screenHeight = dimensions.bottom - dimensions.top;
+    else
+        screenHeight = dimensions.height;
+    if (page && page.rotation && page.rotation() % 180 > 0) {
+        var t = screenWidth;
+        screenWidth = screenHeight;
+        screenHeight = t;
+    }
+    screenHeight += reserveHeight;
+    page.prop(screenHeight / screenWidth);
+    this.autoHeight(false);
 },
 reflowPagesInChrome: function (async) {
 /* a hack to make Chrome reflow pages after changing their size
 when SVG watermarks are enabled */
-if (this.browserIsChrome() && this.watermarkText && !this.useVirtualScrolling) {
-var self = this;
-var internalReflow = function () {
-self.pagesContainerElement.children().each(function () {
-$(this).css("top", 0).css("left", 0);
-});
-};
-if (async)
-window.setTimeout(internalReflow, 10);
-else
-internalReflow();
-}
+    if (this.browserIsChrome() && this.watermarkText && !this.useVirtualScrolling) {
+        var self = this;
+        var internalReflow = function () {
+            self.pagesContainerElement.children().each(function () {
+                $(this).css("top", 0).css("left", 0);
+            });
+        };
+        if (async)
+            window.setTimeout(internalReflow, 10);
+        else
+            internalReflow();
+    }
 },
 getHtmlElements: function (pageHtml, tagName) {
-var contentsRegex = new RegExp("<" + tagName + "[^>]*>(?:.|\\r?\\n)*?<\\/" + tagName + ">", "gi");
-var contentsFromHtml = pageHtml.match(contentsRegex);
-return contentsFromHtml;
+    var contentsRegex = new RegExp("<" + tagName + "[^>]*>(?:.|\\r?\\n)*?<\\/" + tagName + ">", "gi");
+    var contentsFromHtml = pageHtml.match(contentsRegex);
+    return contentsFromHtml;
 },
 getHtmlElementContents: function (pageHtml, tagName) {
-var contentsRegex = new RegExp("<" + tagName + "[^>]*>((?:.|\\r?\\n)*?)<\\/" + tagName + ">", "i");
-var match = pageHtml.match(contentsRegex);
-var contentsFromHtml = null;
-if (match)
-contentsFromHtml = match[1];
-return contentsFromHtml;
+    var contentsRegex = new RegExp("<" + tagName + "[^>]*>((?:.|\\r?\\n)*?)<\\/" + tagName + ">", "i");
+    var match = pageHtml.match(contentsRegex);
+    var contentsFromHtml = null;
+    if (match)
+        contentsFromHtml = match[1];
+    return contentsFromHtml;
 },
 getHtmlElementAttributess: function (pageHtml, tagName) {
-var contentsRegex = new RegExp("<" + tagName + "[^>]*/?>", "gi");
-var contentsFromHtml = pageHtml.match(contentsRegex);
-return contentsFromHtml;
+    var contentsRegex = new RegExp("<" + tagName + "[^>]*/?>", "gi");
+    var contentsFromHtml = pageHtml.match(contentsRegex);
+    return contentsFromHtml;
 },
 getPageBodyContents: function (pageHtml) {
-var bodyContentsFromHtml = pageHtml.match(/<body[^>]*>((?:.|\r?\n)*?)<\/body>/)[1];
-return bodyContentsFromHtml;
+    var bodyContentsFromHtml = pageHtml.match(/<body[^>]*>((?:.|\r?\n)*?)<\/body>/)[1];
+    return bodyContentsFromHtml;
 },
 getPageBodyContentsWithReplace: function (pageHtml) {
 //var matches = pageHtml.match(/(<body)([^>]*>)((?:.|\r?\n)*?)(<\/body>)/);
-//var bodyContentsFromHtml = "<div" + matches[2] + matches[3] + "</div>";
-var bodStartTag = "<body";
-var bodyTagStartPos = pageHtml.indexOf(bodStartTag);
-var bodyStartPos = bodyTagStartPos + bodStartTag.length;
-var bodyEndPos = pageHtml.indexOf("/body>");
-var bodyContentsFromHtml = "<div" + pageHtml.substr(bodyStartPos, bodyEndPos - bodyStartPos) + "/div>";
-return bodyContentsFromHtml;
+    //var bodyContentsFromHtml = "<div" + matches[2] + matches[3] + "</div>";
+    var bodStartTag = "<body";
+    var bodyTagStartPos = pageHtml.indexOf(bodStartTag);
+    var bodyStartPos = bodyTagStartPos + bodStartTag.length;
+    var bodyEndPos = pageHtml.indexOf("/body>");
+    var bodyContentsFromHtml = "<div" + pageHtml.substr(bodyStartPos, bodyEndPos - bodyStartPos) + "/div>";
+    return bodyContentsFromHtml;
 },
 isPageVisible: function (pageNumber) {
-return this.pages()[pageNumber].visible();
+    return this.pages()[pageNumber].visible();
 },
 getPageLocations: function () {
-return this.getSelectableInstance().pageLocations;
+    return this.getSelectableInstance().pageLocations;
 },
 getPageSize: function () {
-var pageSize = this._pdf2XmlWrapper.getPageSize();
-return pageSize;
+    var pageSize = this._pdf2XmlWrapper.getPageSize();
+    return pageSize;
 },
 fixImageReferencesInHtml: function (pageHtml) {
-var bodyContentsFromHtml = this.getPageBodyContents(pageHtml);
-//var pageElement = $("<div/>").hide();
-//pageElement.html(bodyContentsFromHtml);
-//var imagesInPage = pageElement.find("object[type='image/svg+xml']");
-//var svgPath;
-//var urlForImagesInHtml = this.urlForImagesInHtml;
-//imagesInPage.each(function () {
-//    var that = $(this);
-//    svgPath = that.attr("data");
-//    svgPath = urlForImagesInHtml.replace("(0)", svgPath);
-//    that.attr("data", svgPath);
-//    var embeddedChild = that.children();
-//    embeddedChild.attr("data", svgPath);
-//    embeddedChild.attr("src", svgPath);
-//});
-//var bodyContentsWithFixedUrls = pageElement.html();
-//return bodyContentsWithFixedUrls;
-return bodyContentsFromHtml;
+    var bodyContentsFromHtml = this.getPageBodyContents(pageHtml);
+    //var pageElement = $("<div/>").hide();
+    //pageElement.html(bodyContentsFromHtml);
+    //var imagesInPage = pageElement.find("object[type='image/svg+xml']");
+    //var svgPath;
+    //var urlForImagesInHtml = this.urlForImagesInHtml;
+    //imagesInPage.each(function () {
+    //    var that = $(this);
+    //    svgPath = that.attr("data");
+    //    svgPath = urlForImagesInHtml.replace("(0)", svgPath);
+    //    that.attr("data", svgPath);
+    //    var embeddedChild = that.children();
+    //    embeddedChild.attr("data", svgPath);
+    //    embeddedChild.attr("src", svgPath);
+    //});
+    //var bodyContentsWithFixedUrls = pageElement.html();
+    //return bodyContentsWithFixedUrls;
+    return bodyContentsFromHtml;
 },
 calculatePointToPixelRatio: function () {
-var pointWidth = 100;
-var testElement = $("<div/>").css("width", pointWidth + "pt").css("height", "0");
-testElement.appendTo(this.documentSpace);
-var pixelWidth = testElement.width();
-this.pointToPixelRatio = pixelWidth / pointWidth;
-testElement.remove();
+    var pointWidth = 100;
+    var testElement = $("<div/>").css("width", pointWidth + "pt").css("height", "0");
+    testElement.appendTo(this.documentSpace);
+    var pixelWidth = testElement.width();
+    this.pointToPixelRatio = pixelWidth / pointWidth;
+    testElement.remove();
 },
 activateTab: function (number) {
-var tab = this.tabs()[number];
-var self = this;
-function activateLoadedTab() {
-var pages = self.pages();
-var page = pages[0];
-page.htmlContent(tab.htmlContent());
-var htmlPageContents = self.documentSpace.find(".html_page_contents:first");
-var pageElement = htmlPageContents.children("div,table");
-var pageWidth = pageElement.width();
-self.initialWidth = pageWidth;
-page.prop(pageElement.height() / pageWidth);
-self.pageWidth(pageWidth * self.zoom() / 100);
-self.activeTab(number);
-if (self.supportPageRotation)
-self.applyPageRotationInBrowser(0, page, page.rotation());
-}
-if (tab.visible()) {
-activateLoadedTab();
-}
-else {
-this.getDocumentPageHtml(number, function () {
-activateLoadedTab();
-});
-}
+    var tab = this.tabs()[number];
+    var self = this;
+    function activateLoadedTab() {
+        var pages = self.pages();
+        var page = pages[0];
+        page.htmlContent(tab.htmlContent());
+        var htmlPageContents = self.documentSpace.find(".html_page_contents:first");
+        var pageElement = htmlPageContents.children("div,table");
+        var pageWidth = pageElement.width();
+        self.initialWidth = pageWidth;
+        page.prop(pageElement.height() / pageWidth);
+        self.pageWidth(pageWidth * self.zoom() / 100);
+        self.activeTab(number);
+        if (self.supportPageRotation)
+            self.applyPageRotationInBrowser(0, page, page.rotation());
+    }
+    if (tab.visible()) {
+        activateLoadedTab();
+    }
+    else {
+        this.getDocumentPageHtml(number, function () {
+            activateLoadedTab();
+        });
+    }
 },
 adjustInitialZoom: function () {
-var zoomIsSet = false;
-if (this.zoomToFitHeight) {
-zoomIsSet = true;
-this.setZoom(this.getFitHeightZoom());
-}
-else if (this.pageContentType == "html" && this.zoomToFitWidth) {
-//this.initialWidth = this.pageImageWidth = this.getFitWidth();
-var fittingWidth = this.getFitWidth();
-var originalPageWidth = this.pageWidth();
-if (!this.onlyShrinkLargePages || originalPageWidth > fittingWidth) {
-var zoom = fittingWidth / originalPageWidth * 100;
-zoomIsSet = true;
-this.setZoom(zoom);
-}
-}
-if (!zoomIsSet && this.useTabsForPages()) {
-this._calculatePageSizeFromDOM();
-}
+    var zoomIsSet = false;
+    if (this.zoomToFitHeight) {
+        zoomIsSet = true;
+        this.setZoom(this.getFitHeightZoom());
+    }
+    else if (this.pageContentType == "html" && this.zoomToFitWidth) {
+        //this.initialWidth = this.pageImageWidth = this.getFitWidth();
+        var fittingWidth = this.getFitWidth();
+        var originalPageWidth = this.pageWidth();
+        if (!this.onlyShrinkLargePages || originalPageWidth > fittingWidth) {
+            var zoom = fittingWidth / originalPageWidth * 100;
+            zoomIsSet = true;
+            this.setZoom(zoom);
+        }
+    }
+    if (!zoomIsSet && this.useTabsForPages()) {
+        this._calculatePageSizeFromDOM();
+    }
 },
 intToColor: function (num) {
-if (num === null)
-num = 0xFFFF0000; // default is red
-else
-num >>>= 0;
-var b = num & 0xFF,
-g = (num & 0xFF00) >>> 8,
-r = (num & 0xFF0000) >>> 16,
-a = ((num & 0xFF000000) >>> 24) / 255;
-return "rgba(" + [r, g, b, a].join(",") + ")";
+    if (num === null)
+        num = 0xFFFF0000; // default is red
+    else
+        num >>>= 0;
+    var b = num & 0xFF,
+        g = (num & 0xFF00) >>> 8,
+        r = (num & 0xFF0000) >>> 16,
+        a = ((num & 0xFF000000) >>> 24) / 255;
+    return "rgba(" + [r, g, b, a].join(",") + ")";
 },
 watermarkTransform: function (page, element) {
-var rotation = 0;
-if (page.rotation)
-rotation = page.rotation();
-var pageProportion = page.prop();
-var top = "Top", bottom = "Bottom", diagonal = "Diagonal";
-var left = "Left", center = "Center", right = "Right";
-var vertical = "", horizontal = center;
-if (this.watermarkPosition.indexOf(top) == 0)
-vertical = top;
-else if (this.watermarkPosition.indexOf(bottom) == 0)
-vertical = bottom;
-else if (this.watermarkPosition.indexOf(diagonal) == 0) {
-vertical = diagonal;
-horizontal = center;
-}
-if (vertical != diagonal) {
-if (this.watermarkPosition.indexOf(left) != -1)
-horizontal = left;
-else if (this.watermarkPosition.indexOf(center) != -1)
-horizontal = center;
-else if (this.watermarkPosition.indexOf(right) != -1)
-horizontal = right;
-}
-var returnValue = "translate";
-//var widthWithoutMargin = this.pageWidth();
-//var pageWidth = widthWithoutMargin + this.imageHorizontalMargin;
-//var pageHeight = widthWithoutMargin * pageProportion;
-var fontHeight = 10;
-var pageWidth = 100;
-var pageHeight = pageWidth * pageProportion;
-var textWidth;
-if (this.watermarkScreenWidth == null) {
-var textSize = element.getBBox();
-this.watermarkScreenWidth = textSize.width;
-}
-textWidth = this.watermarkScreenWidth;
-var scale;
-if (this.watermarkWidth == 0)
-scale = 1;
-else
-scale = this.watermarkWidth / 100.;
-var smallerSide = pageWidth;
-if (vertical == diagonal && pageHeight < pageWidth) {
-smallerSide = pageHeight;
-}
-var watermarkWidth = smallerSide * scale;
-var scaleToFitIntoPageWidth = smallerSide / textWidth;
-if (rotation % 180 != 0 && vertical != diagonal) {
-watermarkWidth = pageHeight * scale;
-scaleToFitIntoPageWidth = pageHeight / textWidth;
-}
-scale *= scaleToFitIntoPageWidth;
-var horizontalCenter = pageWidth / 2;
-var verticalCenter = pageHeight / 2;
-var horizontalShift = 0;
-switch (horizontal) {
-case center:
-horizontalShift = ((pageWidth - watermarkWidth) / 2);
-break;
-case left:
-horizontalShift = 0;
-break;
-case right:
-horizontalShift = pageWidth - watermarkWidth;
-break;
-}
-//Adjust vertical shift in order to eliminate text cropping
-var verticalShift;
-if (vertical === bottom) {
-verticalShift = (pageHeight - pageHeight * scale - 8);
-}
-else if (vertical === diagonal) {
-verticalShift = (pageHeight - pageHeight * scale);
-}
-else {//(vertical == top)
-verticalShift = 0;
-}
-returnValue += '(' + horizontalShift + "," + verticalShift + ')' +
-'scale(' + scale + ')';
-if (vertical == diagonal)
-returnValue += 'translate(0,' + (-verticalCenter / scale) + ') rotate(' + (-50 + rotation) + ',' + (horizontalCenter - horizontalShift) / scale + ',' + pageHeight + ') ';
-if (!page.rotation || vertical == diagonal)
-return returnValue;
-//var screenCenterMinusFontHeight = screenCenter - 10;
-var firstShift = 0, secondShift = 0, secondHorizontalShift = 0;
-var rotationCenterX, rotationCenterY = 0;
-if (horizontal == center) {
-rotationCenterX = (horizontalCenter - horizontalShift) / scale;
-if (vertical == top) {
-rotationCenterY = 0;
-}
-else {
-rotationCenterY = pageHeight;
-}
-}
-else if (horizontal == left) {
-rotationCenterX = horizontalCenter / scale;
-if (rotation % 180 != 0)
-secondHorizontalShift = (horizontalCenter - verticalCenter) / scale;
-if (vertical == top) {
-rotationCenterY = 0;
-}
-else {
-rotationCenterY = pageHeight;
-}
-}
-else if (horizontal == right) {
-rotationCenterX = -(horizontalShift - horizontalCenter) / scale;
-if (rotation % 180 != 0)
-secondHorizontalShift = -(horizontalCenter - verticalCenter) / scale;
-if (vertical == top) {
-rotationCenterY = 0;
-}
-else {
-rotationCenterY = pageHeight;
-}
-}
-switch (rotation) {
-case 90:
-if (vertical == top) {
-firstShift = verticalCenter / scale;
-secondShift = -horizontalCenter / scale;
-}
-else {
-firstShift = -verticalCenter / scale;
-secondShift = horizontalCenter / scale;
-}
-break;
+    var rotation = 0;
+    if (page.rotation)
+        rotation = page.rotation();
+    var pageProportion = page.prop();
+    var top = "Top", bottom = "Bottom", diagonal = "Diagonal";
+    var left = "Left", center = "Center", right = "Right";
+    var vertical = "", horizontal = center;
+    if (this.watermarkPosition.indexOf(top) == 0)
+        vertical = top;
+    else if (this.watermarkPosition.indexOf(bottom) == 0)
+        vertical = bottom;
+    else if (this.watermarkPosition.indexOf(diagonal) == 0) {
+        vertical = diagonal;
+        horizontal = center;
+    }
+    if (vertical != diagonal) {
+        if (this.watermarkPosition.indexOf(left) != -1)
+            horizontal = left;
+        else if (this.watermarkPosition.indexOf(center) != -1)
+            horizontal = center;
+        else if (this.watermarkPosition.indexOf(right) != -1)
+            horizontal = right;
+    }
+    var returnValue = "translate";
+    //var widthWithoutMargin = this.pageWidth();
+    //var pageWidth = widthWithoutMargin + this.imageHorizontalMargin;
+    //var pageHeight = widthWithoutMargin * pageProportion;
+    var fontHeight = 10;
+    var pageWidth = 100;
+    var pageHeight = pageWidth * pageProportion;
+    var textWidth;
+    if (this.watermarkScreenWidth == null) {
+        var textSize = element.getBBox();
+        this.watermarkScreenWidth = textSize.width;
+    }
+    textWidth = this.watermarkScreenWidth;
+    var scale;
+    if (this.watermarkWidth == 0)
+        scale = 1;
+    else
+    scale = this.watermarkWidth / 100.;
+    var smallerSide = pageWidth;
+    if (vertical == diagonal && pageHeight < pageWidth) {
+        smallerSide = pageHeight;
+    }
+    var watermarkWidth = smallerSide * scale;
+    var scaleToFitIntoPageWidth = smallerSide / textWidth;
+    if (rotation % 180 != 0 && vertical != diagonal) {
+        watermarkWidth = pageHeight * scale;
+        scaleToFitIntoPageWidth = pageHeight / textWidth;
+    }
+    scale *= scaleToFitIntoPageWidth;
+    var horizontalCenter = pageWidth / 2;
+    var verticalCenter = pageHeight / 2;
+    var horizontalShift = 0;
+    switch (horizontal) {
+        case center:
+            horizontalShift = ((pageWidth - watermarkWidth) / 2);
+            break;
+        case left:
+            horizontalShift = 0;
+            break;
+        case right:
+            horizontalShift = pageWidth - watermarkWidth;
+            break;
+    }
+    //Adjust vertical shift in order to eliminate text cropping
+    var verticalShift;
+    if (vertical === bottom) {
+        verticalShift = (pageHeight - pageHeight * scale - 8);
+    }
+    else if (vertical === diagonal) {
+        verticalShift = (pageHeight - pageHeight * scale);
+    }
+    else {//(vertical == top)
+        verticalShift = 0;
+    }
+    returnValue += '(' + horizontalShift + "," + verticalShift + ')' +
+        'scale(' + scale + ')';
+    if (vertical == diagonal)
+    returnValue += 'translate(0,' + (-verticalCenter / scale) + ') rotate(' + (-50 + rotation) + ',' + (horizontalCenter - horizontalShift) / scale + ',' + pageHeight + ') ';
+    if (!page.rotation || vertical == diagonal)
+        return returnValue;
+    //var screenCenterMinusFontHeight = screenCenter - 10;
+    var firstShift = 0, secondShift = 0, secondHorizontalShift = 0;
+    var rotationCenterX, rotationCenterY = 0;
+    if (horizontal == center) {
+        rotationCenterX = (horizontalCenter - horizontalShift) / scale;
+        if (vertical == top) {
+            rotationCenterY = 0;
+        }
+        else {
+            rotationCenterY = pageHeight;
+        }
+    }
+    else if (horizontal == left) {
+        rotationCenterX = horizontalCenter / scale;
+        if (rotation % 180 != 0)
+            secondHorizontalShift = (horizontalCenter - verticalCenter) / scale;
+        if (vertical == top) {
+            rotationCenterY = 0;
+        }
+        else {
+            rotationCenterY = pageHeight;
+        }
+    }
+    else if (horizontal == right) {
+        rotationCenterX = -(horizontalShift - horizontalCenter) / scale;
+        if (rotation % 180 != 0)
+            secondHorizontalShift = -(horizontalCenter - verticalCenter) / scale;
+        if (vertical == top) {
+            rotationCenterY = 0;
+        }
+        else {
+            rotationCenterY = pageHeight;
+        }
+    }
+    switch (rotation) {
+        case 90:
+            if (vertical == top) {
+                firstShift = verticalCenter / scale;
+                secondShift = -horizontalCenter / scale;
+            }
+            else {
+                firstShift = -verticalCenter / scale;
+                secondShift = horizontalCenter / scale;
+            }
+            break;
 case 180:
 if (vertical == top) {
 firstShift = verticalCenter / scale;
@@ -4697,7 +4719,7 @@ this.searchViewModel = searchViewModel;
 this.embedSourceViewModel = embedSourceViewModel;
 docViewer.bind('getPagesCount', function (e, pagesCount) {
 if (navigation) {
-navigationViewModel.setPagesCount(pagesCount);
+    navigationViewModel.setPagesCount(pagesCount);
 }
 } .bind(this));
 docViewer.bind("onDocumentloadingStarted", function (e) {
@@ -4711,7 +4733,7 @@ thumbnailsViewModel.showThumbnails(true);
 }
 } .bind(this));
 docViewer.bind('_onProcessPages', function (e, data, pages, getDocumentPageHtmlCallback, viewerViewModel, pointToPixelRatio, docViewerId) {
-if (thumbnails) {
+    if (thumbnails) {
 thumbnailsViewModel.onProcessPages(data, pages, getDocumentPageHtmlCallback, viewerViewModel, pointToPixelRatio, docViewerId);
 }
 } .bind(this));
@@ -5121,7 +5143,7 @@ var locations;
 if (this.options.useVirtualScrolling) {
 this.pageLocations = $.map(this.options.pageLocations,
 function (page) {
-return new jSaaspose.Point(page.left, page.top());
+    return new jSaaspose.Point(page.left, page.top());
 });
 }
 else
@@ -6338,13 +6360,14 @@ getPageSize: function () {
 var width = this.documentDescription.widthForMaxHeight;
 var height = this.documentDescription.maxPageHeight;
 if (typeof width === "undefined" || typeof height === "undefined") {
-if (this.documentDescription.pages) {
-var page = this.documentDescription.pages[0];
-width = page.w;
-height = page.h;
-}
-else
-width = height = null;
+    if (this.documentDescription.pages) {
+        var page = this.documentDescription.pages[0];
+        width = page.w;
+        height = page.h;
+    }
+    else {
+        width = height = null;
+    }
 }
 return { width: width, height: height };
 },
@@ -6355,45 +6378,58 @@ getBookmarks: function () {
 return this.documentDescription.bookmarks;
 },
 getPages: function (prop, pagesLocation, startPage0, endPage0, synchronousWorkOuter, callCompletionCallback) {
-if (!this.documentDescription.pages)
-return null;
-var pages0 = [];
-var totalChars = 0;
-this.proportion = prop;
-var pageCount = this.documentDescription.pages.length;
-if (pageCount > 0 && pagesLocation.length < pageCount
-&& pagesLocation.length < endPage0 - startPage0 + 1) // document destroyed while initializing
-return null;
-var stepLength = 100;
-var numberOfSteps = Math.ceil(pageCount / stepLength);
-var currentImageWidth = prop * this.documentDescription.widthForMaxHeight;
-var step0 = 0;
-var executeStep = function (pages, step, scale, startPage, endPage, synchronousWork) {
-var mustBreak = false;
-for (var index = step * stepLength; index < pageCount && index < (step + 1) * stepLength; index++) {
-var page = this.documentDescription.pages[index];
-var ploc;
-if (typeof startPage !== "undefined") {
-if (index < startPage)
-continue;
-if (index > endPage) {
-mustBreak = true;
-break;
-}
-ploc = pagesLocation[index - startPage];
-}
-else
-ploc = pagesLocation[index];
-var pageId = page.number;
-scale = currentImageWidth / page.w;
-var pageRotation = page.rotation;
-if (typeof pageRotation == "undefined")
-pageRotation = 0;
-var pageWidth = page.w;
-var pageHeight = page.h;
-if (pageRotation % 180 != 0) {
-scale *= pageWidth / pageHeight;
-}
+    if (!this.documentDescription.pages)
+        return null;
+    var pages0 = [];
+    var totalChars = 0;
+    this.proportion = prop;
+    var pageCount = this.documentDescription.pages.length;
+    if (pageCount > 0 && pagesLocation.length < pageCount && pagesLocation.length < endPage0 - startPage0 + 1) // document destroyed while initializing
+        return null;
+    var stepLength = 100;
+    var numberOfSteps = Math.ceil(pageCount / stepLength);
+    var currentImageWidth = prop * this.documentDescription.widthForMaxHeight;
+    var step0 = 0;
+    var executeStep = function (pages, step, scale, startPage, endPage, synchronousWork) {
+        var mustBreak = false;
+        for (var index = step * stepLength; index < pageCount && index < (step + 1) * stepLength; index++) {
+            var page = this.documentDescription.pages[index];
+            var ploc;
+            if (typeof startPage !== "undefined") {
+                if (index < startPage)
+                    continue;
+                if (index > endPage) {
+                    mustBreak = true;
+                    break;
+                }
+                ploc = pagesLocation[index - startPage];
+            }
+            else
+                ploc = pagesLocation[index];
+            var pageId = page.number;
+            scale = currentImageWidth / page.w;
+            var pageRotation = page.rotation;
+            if (typeof pageRotation == "undefined")
+                pageRotation = 0;
+            var pageWidth = page.w;
+            var pageHeight = page.h;
+            if (window.fldImg) {
+                if ($("#viewerHtmlDiv").children().width() < page.w) {
+                    window.pgElement.css("width", $("#viewerHtmlDiv").children().width() - 17);
+                }
+                else if ($("#viewerHtmlDiv").children().width() > page.w && $("#viewerHtmlDiv").children().height() < page.h) {
+                    window.pgElement.css("width", page.w);
+                }
+                else {
+                    window.pgElement.css("width", page.w);
+                    window.pgElement.css("height", page.h);
+                }
+                window.pgElement.closest("div").css("transform", "scale(1.00)");
+                window.fldImg = false;
+            }               
+            if (pageRotation % 180 != 0) {
+                scale *= pageWidth / pageHeight;
+            }
 var pageRows = this.getRows(page, pageId, scale, totalChars, ploc);
 //if (pageRows.length) {
 //    var lastRowWords = pageRows[pageRows.length - 1].words;
@@ -6906,99 +6942,99 @@ this._viewModel = this._createViewModel();
 return this._viewModel;
 },
 onProcessPages: function (data, pages, getDocumentPageHtmlCallback, viewerViewModel, pointToPixelRatio, docViewerId) {
-this._sessionToken = data.token;
-this._docGuid = data.guid;
-this._docVersion = data.version;
-this._viewModel.pageCount(data.page_count);
-if (!data.lic && this._viewModel.pageCount() > 3)
-this._viewModel.pageCount(3);
-this._heightWidthRatio = parseFloat(data.page_size.Height / data.page_size.Width);
-var width = this._thumbnailWidth;
-var variablePageSizeSupport = false, pageDescriptions = null, maxPageHeight, widthForMaxHeight;
-var thumbnailWrapperHeight = null;
-var baseScale;
-if (data.documentDescription && data.documentDescription.pages) {
-variablePageSizeSupport = true;
-pageDescriptions = data.documentDescription.pages;
-maxPageHeight = data.documentDescription.maxPageHeight;
-widthForMaxHeight = data.documentDescription.widthForMaxHeight;
-thumbnailWrapperHeight = maxPageHeight / widthForMaxHeight * this._thumbnailWidth;
-baseScale = (thumbnailWrapperHeight / maxPageHeight) / pointToPixelRatio;
-if (this.useHtmlThumbnails) {
-this.getDocumentPageHtmlCallback = getDocumentPageHtmlCallback;
-this.viewerViewModel = viewerViewModel;
-this._viewModel.docViewerId = docViewerId;
-var thumbnailContainerWidth = this.element.width();
-//this._viewModel.thumbLeftCoord = (thumbnailContainerWidth - width) / 2;
-}
-}
-//this._viewModel.thumbnails.removeAll();
-var notObservableThumbnails = [];
-var thumbnailDescription, verticalPadding, thumbnailWidth, thumbnailHeight, backgroundColor;
-var spinnerHeight = 47;
-var pageCount = this._viewModel.pageCount();
-var pageWidth, pageHeight, scaleRatio;
-var thumbLeftCoord;
-for (var i = 0; i < pageCount; i++) {
-thumbnailDescription = {
-number: i + 1,
-busy: ko.observable(true),
-visible: ko.observable(false),
-url: ko.observable(this.emptyImageUrl)
-};
-if (variablePageSizeSupport) {
-if (i < pageDescriptions.length) {
-pageWidth = pageDescriptions[i].w;
-pageHeight = pageDescriptions[i].h;
-var prop = pageHeight / pageWidth;
-var rotation = pageDescriptions[i].rotation;
-if (typeof rotation == "undefined")
-rotation = 0;
-if (rotation % 180 != 0)
-prop = 1 / prop;
-thumbnailWidth = this._thumbnailWidth;
-thumbnailHeight = this._thumbnailWidth * prop;
-if (thumbnailHeight > thumbnailWrapperHeight) {
-scaleRatio = thumbnailWrapperHeight / thumbnailHeight;
-thumbnailHeight = thumbnailWrapperHeight;
-thumbnailWidth = this._thumbnailWidth * scaleRatio;
-}
-}
-else {
-thumbnailWidth = this._thumbnailWidth;
-thumbnailHeight = 215;
-}
-thumbnailDescription.width = ko.observable(thumbnailWidth);
-thumbnailDescription.height = ko.observable(thumbnailHeight);
-verticalPadding = 0;
-backgroundColor = "";
-if (thumbnailHeight < spinnerHeight) {
-verticalPadding = ((spinnerHeight - thumbnailHeight) / 2).toString();
-backgroundColor = "white";
-}
-thumbnailDescription.verticalPadding = ko.observable(verticalPadding);
-thumbnailDescription.backgroundColor = ko.observable(backgroundColor);
-thumbnailDescription.wrapperHeight = thumbnailWrapperHeight;
-//thumbnailDescription.scale = ko.observable(baseScale * pageDescriptions[i].h / maxPageHeight);
-thumbnailDescription.scale = ko.observable((thumbnailHeight / pageDescriptions[i].h) / pointToPixelRatio);
-thumbLeftCoord = (thumbnailContainerWidth - thumbnailWidth) / 2;
-thumbnailDescription.thumbLeftCoord = ko.observable(thumbLeftCoord);
-if (this.useHtmlThumbnails) {
-thumbnailDescription.htmlContent = pages[i].htmlContent;
-}
-}
-notObservableThumbnails.push(thumbnailDescription);
-}
-this._viewModel.thumbnails(notObservableThumbnails);
-var height = parseInt(this._heightWidthRatio * width);
-var thumbCss = "";
-if (variablePageSizeSupport) {
-//thumbCss = "div.thumbnailsContainer ul li img{background-color:white}";
-}
-else {
-thumbCss = ".grpdx .thumbnailsContainer .thumb-page{min-height:" + height.toString() + "px}";
-}
-this.loadThumbnails();
+    this._sessionToken = data.token;
+    this._docGuid = data.guid;
+    this._docVersion = data.version;
+    this._viewModel.pageCount(data.page_count);
+    if (!data.lic && this._viewModel.pageCount() > 3)
+        this._viewModel.pageCount(3);
+    this._heightWidthRatio = parseFloat(data.page_size.Height / data.page_size.Width);
+    var width = this._thumbnailWidth;
+    var variablePageSizeSupport = false, pageDescriptions = null, maxPageHeight, widthForMaxHeight;
+    var thumbnailWrapperHeight = null;
+    var baseScale;
+    if (data.documentDescription && data.documentDescription.pages) {
+        variablePageSizeSupport = true;
+        pageDescriptions = data.documentDescription.pages;
+        maxPageHeight = data.documentDescription.maxPageHeight;
+        widthForMaxHeight = data.documentDescription.widthForMaxHeight;
+        thumbnailWrapperHeight = maxPageHeight / widthForMaxHeight * this._thumbnailWidth;
+        baseScale = (thumbnailWrapperHeight / maxPageHeight) / pointToPixelRatio;
+        if (this.useHtmlThumbnails) {
+            this.getDocumentPageHtmlCallback = getDocumentPageHtmlCallback;
+            this.viewerViewModel = viewerViewModel;
+            this._viewModel.docViewerId = docViewerId;
+            var thumbnailContainerWidth = this.element.width();
+            //this._viewModel.thumbLeftCoord = (thumbnailContainerWidth - width) / 2;
+        }
+    }
+    //this._viewModel.thumbnails.removeAll();
+    var notObservableThumbnails = [];
+    var thumbnailDescription, verticalPadding, thumbnailWidth, thumbnailHeight, backgroundColor;
+    var spinnerHeight = 47;
+    var pageCount = this._viewModel.pageCount();
+    var pageWidth, pageHeight, scaleRatio;
+    var thumbLeftCoord;
+    for (var i = 0; i < pageCount; i++) {
+        thumbnailDescription = {
+            number: i + 1,
+            busy: ko.observable(true),
+            visible: ko.observable(false),
+            url: ko.observable(this.emptyImageUrl)
+        };
+        if (variablePageSizeSupport) {
+            if (i < pageDescriptions.length) {
+                pageWidth = pageDescriptions[i].w;
+                pageHeight = pageDescriptions[i].h;
+                var prop = pageHeight / pageWidth;
+                var rotation = pageDescriptions[i].rotation;
+                if (typeof rotation == "undefined")
+                    rotation = 0;
+                if (rotation % 180 != 0)
+                    prop = 1 / prop;
+                thumbnailWidth = this._thumbnailWidth;
+                thumbnailHeight = this._thumbnailWidth * prop;
+                if (thumbnailHeight > thumbnailWrapperHeight) {
+                    scaleRatio = thumbnailWrapperHeight / thumbnailHeight;
+                    thumbnailHeight = thumbnailWrapperHeight;
+                    thumbnailWidth = this._thumbnailWidth * scaleRatio;
+                }
+            }
+            else {
+                thumbnailWidth = this._thumbnailWidth;
+                thumbnailHeight = 215;
+            }
+            thumbnailDescription.width = ko.observable(thumbnailWidth);
+            thumbnailDescription.height = ko.observable(thumbnailHeight);
+            verticalPadding = 0;
+            backgroundColor = "";
+            if (thumbnailHeight < spinnerHeight) {
+                verticalPadding = ((spinnerHeight - thumbnailHeight) / 2).toString();
+                backgroundColor = "white";
+            }
+            thumbnailDescription.verticalPadding = ko.observable(verticalPadding);
+            thumbnailDescription.backgroundColor = ko.observable(backgroundColor);
+            thumbnailDescription.wrapperHeight = thumbnailWrapperHeight;
+            //thumbnailDescription.scale = ko.observable(baseScale * pageDescriptions[i].h / maxPageHeight);
+            thumbnailDescription.scale = ko.observable((thumbnailHeight / pageDescriptions[i].h) / pointToPixelRatio);
+            thumbLeftCoord = (thumbnailContainerWidth - thumbnailWidth) / 2;
+            thumbnailDescription.thumbLeftCoord = ko.observable(thumbLeftCoord);
+            if (this.useHtmlThumbnails) {
+                thumbnailDescription.htmlContent = pages[i].htmlContent;
+            }
+        }
+        notObservableThumbnails.push(thumbnailDescription);
+    }
+    this._viewModel.thumbnails(notObservableThumbnails);
+    var height = parseInt(this._heightWidthRatio * width);
+    var thumbCss = "";
+    if (variablePageSizeSupport) {
+        //thumbCss = "div.thumbnailsContainer ul li img{background-color:white}";
+    }
+    else {
+        thumbCss = ".grpdx .thumbnailsContainer .thumb-page{min-height:" + height.toString() + "px}";
+    }
+    this.loadThumbnails();
 },
 loadThumbnails: function () {
 // var countToShow = Math.ceil($('#thumbnails-container').height() / $('#thumb-1').height()); // count of visible thumbs
@@ -8462,7 +8498,7 @@ _action = text;
 return _action;
 },
 _createIFrame: function () {
-var iframe = $('<iframe src="javascript:false;" name="iframe" style="display:none" />').appendTo('body');
+    var iframe = $('<iframe src="javascript:false;" name="iframe" style="display:none" />').appendTo('body');
 return iframe;
 },
 _getIframeContentJSON: function (iframe) {
