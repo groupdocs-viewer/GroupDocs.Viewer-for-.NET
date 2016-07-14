@@ -125,7 +125,9 @@ namespace MvcSample.Helpers
                 urlBuilder.Append("&");
             }
             urlBuilder.Remove(urlBuilder.Length - 1, 1);//remove last character '&'
-            return urlBuilder.ToString();
+            var result = HttpUtility.UrlDecode(urlBuilder.ToString());
+            //return urlBuilder.ToString();
+            return result;
         }
     }
 }
