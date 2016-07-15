@@ -59,9 +59,10 @@
                  TwoPagesInRow: 4,
                  CoverThenTwoPagesInRow: 5
              };
+             
              $('#viewerHtmlDiv').groupdocsViewer({
                  //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-                 filePath: 'candy.pdf',
+                 filePath: "candy.pdf",
                  zoomToFitWidth: true,
                  //zoomToFitHeight: true,
                  showFolderBrowser: true,

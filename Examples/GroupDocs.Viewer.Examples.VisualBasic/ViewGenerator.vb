@@ -407,6 +407,9 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             options.Guid = DocumentName
 
+            ' To Apply transformations on PDF file
+            'options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
             ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
             Dim container As FileContainer = imageHandler.GetPdfFile(options)
 
@@ -474,6 +477,302 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 #End Region
 
+#Region "OtherOperations"
+        ''' <summary>
+        ''' Set custom fonts directory path
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param>
+        Public Shared Sub SetCustomFontDirectory(DocumentName As [String])
+            Try
+                'ExStart:SetCustomFontDirectory
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Add custom fonts directories to FontDirectories list
+                config.FontDirectories.Add("/usr/admin/Fonts")
+                config.FontDirectories.Add("/home/admin/Fonts")
+
+                Dim htmlHandler As New ViewerHtmlHandler(config)
+
+                ' File guid
+                Dim guid As String = DocumentName
+
+                Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid)
+
+                For Each page As PageHtml In pages
+                    'Save each page at disk
+                    Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+                    'ExEnd:SetCustomFontDirectory
+                Next
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+#End Region
+
+#Region "EmailAttachments"
+        ''' <summary>
+        ''' Get attached image with email message
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param>
+        Public Shared Sub GetEmailAttachments(DocumentName As [String])
+            Try
+                'ExStart:GetEmailAttachments
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Create image handler
+                Dim handler As New ViewerImageHandler(config)
+                Dim attachment As New EmailAttachment(DocumentName, "attachment-image.png")
+
+                ' Get attachment original file
+                Dim container As FileContainer = handler.GetFile(attachment)
+
+                Console.WriteLine("Attach name: {0}, Type: {1}", attachment.Name, attachment.FileType)
+                'ExEnd:GetEmailAttachments
+                Console.WriteLine("Attach stream lenght: {0}", container.Stream.Length)
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Get attached file's html representation
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param>
+        Public Shared Sub GetEmailAttachmentHTMLRepresentation(DocumentName As [String])
+            Try
+                'ExStart:GetEmailAttachmentHTMLRepresentation
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Setup html conversion options
+                Dim htmlOptions As New HtmlOptions()
+                htmlOptions.IsResourcesEmbedded = False
+
+                ' Init viewer html handler
+                Dim handler As New ViewerHtmlHandler(config)
+
+                Dim info As DocumentInfoContainer = handler.GetDocumentInfo(DocumentName)
+
+                ' Iterate over the attachments collection
+                For Each attachment As AttachmentBase In info.Attachments
+                    Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType)
+
+                    ' Get attachment document html representation
+                    Dim pages As List(Of PageHtml) = handler.GetPages(attachment, htmlOptions)
+                    For Each page As PageHtml In pages
+                        Console.WriteLine("  Page: {0}, size: {1}", page.PageNumber, page.HtmlContent.Length)
+                        For Each htmlResource As HtmlResource In page.HtmlResources
+                            Dim resourceStream As Stream = handler.GetResource(attachment, htmlResource)
+                            Console.WriteLine("     Resource: {0}, size: {1}", htmlResource.ResourceName, resourceStream.Length)
+                        Next
+                    Next
+                    'ExEnd:GetEmailAttachmentHTMLRepresentation
+                Next
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Get attached file's image representation
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param>
+        Public Shared Sub GetEmailAttachmentImageRepresentation(DocumentName As [String])
+            Try
+                'ExStart:GetEmailAttachmentImageRepresentation
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Init viewer image handler
+                Dim handler As New ViewerImageHandler(config)
+
+                Dim info As DocumentInfoContainer = handler.GetDocumentInfo(DocumentName)
+
+                ' Iterate over the attachments collection
+                For Each attachment As AttachmentBase In info.Attachments
+                    Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType)
+
+                    ' Get attachment document image representation
+                    Dim pages As List(Of PageImage) = handler.GetPages(attachment)
+                    For Each page As PageImage In pages
+                        Console.WriteLine("  Page: {0}, size: {1}", page.PageNumber, page.Stream.Length)
+                    Next
+                    'ExEnd:GetEmailAttachmentImageRepresentation
+                Next
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+#End Region
+
+#Region "DocumentInformation"
+        ''' <summary>
+        ''' Get document information by guid
+        ''' </summary>
+        ''' <param name="DocumentName">Input document name</param>
+        Public Shared Sub GetDocumentInfoByGuid(DocumentName As [String])
+            Try
+                'ExStart:GetDocumentInfoByGuid
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Create html handler
+                Dim htmlHandler As New ViewerHtmlHandler(config)
+
+                Dim guid As String = DocumentName
+                ' Get document information
+                Dim options As New DocumentInfoOptions()
+                Dim documentInfo As DocumentInfoContainer = htmlHandler.GetDocumentInfo(guid, options)
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated)
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType)
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat)
+                Console.WriteLine("Extension: {0}", documentInfo.Extension)
+                Console.WriteLine("FileType: {0}", documentInfo.FileType)
+                Console.WriteLine("Guid: {0}", documentInfo.Guid)
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate)
+                Console.WriteLine("Name: {0}", documentInfo.Name)
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count)
+                Console.WriteLine("Size: {0}", documentInfo.Size)
+
+                For Each pageData As PageData In documentInfo.Pages
+                    Console.WriteLine("Page number: {0}", pageData.Number)
+                    Console.WriteLine("Page name: {0}", pageData.Name)
+                    'ExEnd:GetDocumentInfoByGuid
+                Next
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Get document information by Uri
+        ''' </summary>
+        ''' <param name="Uri">Uri of input document</param>
+        Public Shared Sub GetDocumentInfoByUri(Uri__1 As [String])
+            Try
+                'ExStart:GetDocumentInfoByUri
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Create html handler
+                Dim htmlHandler As New ViewerHtmlHandler(config)
+
+                Dim uri__2 As New Uri(Uri__1)
+
+                ' Get document information
+                Dim options As New DocumentInfoOptions()
+                Dim documentInfo As DocumentInfoContainer = htmlHandler.GetDocumentInfo(uri__2, options)
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated)
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType)
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat)
+                Console.WriteLine("Extension: {0}", documentInfo.Extension)
+                Console.WriteLine("FileType: {0}", documentInfo.FileType)
+                Console.WriteLine("Guid: {0}", documentInfo.Guid)
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate)
+                Console.WriteLine("Name: {0}", documentInfo.Name)
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count)
+                Console.WriteLine("Size: {0}", documentInfo.Size)
+
+                For Each pageData As PageData In documentInfo.Pages
+                    Console.WriteLine("Page number: {0}", pageData.Number)
+                    Console.WriteLine("Page name: {0}", pageData.Name)
+                    'ExEnd:GetDocumentInfoByUri
+                Next
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Get document information by stream
+        ''' </summary>
+        ''' <param name="DocumentName">Name of input document</param>
+        Public Shared Sub GetDocumentInfoByStream(DocumentName As [String])
+            Try
+                'ExStart:GetDocumentInfoByStream
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Create html handler
+                Dim htmlHandler As New ViewerHtmlHandler(config)
+
+                ' Get document stream
+                Dim stream As Stream = Utilities.GetDocumentStream(DocumentName)
+                ' Get document information
+                Dim options As New DocumentInfoOptions()
+                Dim documentInfo As DocumentInfoContainer = htmlHandler.GetDocumentInfo(stream, options)
+
+                Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated)
+                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType)
+                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat)
+                Console.WriteLine("Extension: {0}", documentInfo.Extension)
+                Console.WriteLine("FileType: {0}", documentInfo.FileType)
+                Console.WriteLine("Guid: {0}", documentInfo.Guid)
+                Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate)
+                Console.WriteLine("Name: {0}", documentInfo.Name)
+                Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count)
+                Console.WriteLine("Size: {0}", documentInfo.Size)
+
+                For Each pageData As PageData In documentInfo.Pages
+                    Console.WriteLine("Page number: {0}", pageData.Number)
+                    Console.WriteLine("Page name: {0}", pageData.Name)
+                Next
+                stream.Close()
+                'ExEnd:GetDocumentInfoByStream
+
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+
+#End Region
+
+#Region "DocumentCache"
+        ''' <summary>
+        ''' Remove cache files 
+        ''' </summary>
+        Public Shared Sub RemoveCacheFiles()
+            Try
+                'ExStart:RemoveCacheFiles
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Init viewer image or html handler
+                Dim viewerImageHandler As New ViewerHtmlHandler(config)
+
+                'Clear all cache files 
+                'ExEnd:RemoveCacheFiles
+                viewerImageHandler.ClearCache()
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+        ''' <summary>
+        ''' Remove cache file older than specified date 
+        ''' </summary>
+        Public Shared Sub RemoveCacheFiles(OlderThanDays As TimeSpan)
+            Try
+                'ExStart:RemoveCacheFilesTimeSpan
+                ' Setup GroupDocs.Viewer config
+                Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+                ' Init viewer image or html handler
+                Dim viewerImageHandler As New ViewerImageHandler(config)
+
+                'Clear files from cache older than specified time interval 
+                'ExEnd:RemoveCacheFilesTimeSpan
+                viewerImageHandler.ClearCache(OlderThanDays)
+            Catch exp As System.Exception
+                Console.WriteLine(exp.Message)
+            End Try
+        End Sub
+
+#End Region
 
 #Region "OtherImprovements"
 

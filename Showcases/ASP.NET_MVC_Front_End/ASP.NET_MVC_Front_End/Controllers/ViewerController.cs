@@ -30,7 +30,7 @@ namespace MvcSample.Controllers
 
         // App_Data folder path
         private readonly string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-        private readonly string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
+        private readonly string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\temp";
 
         private readonly ConvertImageFileType _convertImageFileType = ConvertImageFileType.JPG;
         private readonly bool _usePdfInImageEngine = true;
@@ -53,13 +53,13 @@ namespace MvcSample.Controllers
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
                 UseCache = true,
-                UsePdf = _usePdfInImageEngine
+                // UsePdf = _usePdfInImageEngine
             };
 
             _imageHandler = new ViewerImageHandler(imageConfig);
 
-            _streams.Add("ProcessFileFromStreamExample_1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
-            _streams.Add("ProcessFileFromStreamExample_2.doc", HttpWebRequest.Create("http://www.acm.org/sigs/publications/pubform.doc").GetResponse().GetResponseStream());
+            // _streams.Add("ProcessFileFromStreamExample_1.pdf", HttpWebRequest.Create("http://unfccc.int/resource/docs/convkp/kpeng.pdf").GetResponse().GetResponseStream());
+            // _streams.Add("ProcessFileFromStreamExample_2.doc", HttpWebRequest.Create("http://www.acm.org/sigs/publications/pubform.doc").GetResponse().GetResponseStream());
         }
 
         [HttpPost]
@@ -111,14 +111,14 @@ namespace MvcSample.Controllers
 
         public ActionResult GetImageUrls(GetImageUrlsParameters parameters)
         {
+            var docPath = parameters.Path;
             if (string.IsNullOrEmpty(parameters.Path))
             {
                 var empty = new GetImageUrlsResponse { imageUrls = new string[0] };
                 return ToJsonResult(empty);
             }
 
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(parameters.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(parameters.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
@@ -130,11 +130,46 @@ namespace MvcSample.Controllers
 
             string[] imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, parameters);
 
-            var result = new GetImageUrlsResponse
+            string[] attachmentUrls = new string[0];
+            foreach (AttachmentBase attachment in documentInfoContainer.Attachments)
             {
-                imageUrls = imageUrls
-            };
-            return ToJsonResult(result);
+
+                List<PageImage> pages = _imageHandler.GetPages(attachment);
+                var attachmentInfo = _imageHandler.GetDocumentInfo(_tempPath + "\\" + Path.GetFileNameWithoutExtension(docPath) + Path.GetExtension(docPath).Replace(".", "_") + "\\attachments\\" + attachment.Name);
+
+                GetImageUrlsParameters attachmentResponse = parameters;
+                attachmentResponse.Path = attachmentInfo.Guid;
+                int[] attachmentPageNumbers = new int[pages.Count];
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    attachmentPageNumbers[i] = pages[i].PageNumber;
+                }
+                Array.Resize<string>(ref attachmentUrls, (attachmentUrls.Length + pages.Count));
+                string[] attachmentImagesUrls = new string[pages.Count];
+                attachmentImagesUrls = ImageUrlHelper.GetImageUrls(applicationHost, attachmentPageNumbers, attachmentResponse);
+                attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
+
+            }
+            if (documentInfoContainer.Attachments.Count > 0)
+            {
+                var imagesUrls = new string[attachmentUrls.Length + imageUrls.Length];
+                imageUrls.CopyTo(imagesUrls, 0);
+                attachmentUrls.CopyTo(imagesUrls, imageUrls.Length);
+
+                var result = new GetImageUrlsResponse
+                {
+                    imageUrls = imagesUrls
+                };
+                return ToJsonResult(result);
+            }
+            else
+            {
+                var result = new GetImageUrlsResponse
+                {
+                    imageUrls = imageUrls
+                };
+                return ToJsonResult(result);
+            }
         }
 
         public ActionResult GetFile(GetFileParameters parameters)
@@ -155,7 +190,7 @@ namespace MvcSample.Controllers
                 };
 
                 if (parameters.IsPrintable)
-                    options.AddPrintAction = true;
+                    options.Transformations |= Transformation.AddPrintAction;
 
                 if (parameters.SupportPageRotation)
                     options.Transformations |= Transformation.Rotate;
@@ -195,7 +230,7 @@ namespace MvcSample.Controllers
             };
 
             if (parameters.IsPrintable)
-                options.AddPrintAction = true;
+                options.Transformations |= Transformation.AddPrintAction;
 
             if (parameters.SupportPageRotation)
                 options.Transformations |= Transformation.Rotate;
@@ -314,8 +349,7 @@ namespace MvcSample.Controllers
 
             if (parameters.Rotate && parameters.Width.HasValue)
             {
-                DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-                DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+                DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
                 int side = parameters.Width.Value;
 
@@ -365,8 +399,7 @@ namespace MvcSample.Controllers
             string guid = parameters.Path;
             int pageIndex = parameters.PageNumber;
 
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
             int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
             RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
@@ -384,8 +417,7 @@ namespace MvcSample.Controllers
         {
             string guid = parameters.Path;
 
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
             int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
             int newPosition = parameters.NewPosition + 1;
@@ -403,6 +435,7 @@ namespace MvcSample.Controllers
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
+                var test = page.HtmlResources;
                 var indexOfBodyOpenTag = page.HtmlContent.IndexOf("<body>", StringComparison.InvariantCultureIgnoreCase);
                 if (indexOfBodyOpenTag > 0)
                     page.HtmlContent = page.HtmlContent.Substring(indexOfBodyOpenTag + "<body>".Length);
@@ -498,7 +531,7 @@ namespace MvcSample.Controllers
 
         private void ViewDocumentAsImage(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _imageHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = _imageHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -519,27 +552,55 @@ namespace MvcSample.Controllers
                 MaxWidth = maxWidth,
                 MaxHeight = maxHeight
             };
-
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
-            result.docType = docInfo.DocumentType;
-            result.fileType = docInfo.FileType;
-
-            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(request.Path);
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(documentInfoOptions);
-
+            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(request.Path);
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
             {
                 pageNumbers[i] = documentInfoContainer.Pages[i].Number;
             }
-
             string applicationHost = GetApplicationHost();
-            result.imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);
+            var documentUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);
+
+            string[] attachmentUrls = new string[0];
+            foreach (AttachmentBase attachment in docInfo.Attachments)
+            {
+                List<PageImage> pages = _imageHandler.GetPages(attachment);
+                var attachmentInfo = _imageHandler.GetDocumentInfo(_tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name);
+                fileData.PageCount += pages.Count;
+                fileData.Pages.AddRange(attachmentInfo.Pages);
+
+                ViewDocumentParameters attachmentResponse = request;
+                attachmentResponse.Path = attachmentInfo.Guid;
+                int[] attachmentPageNumbers = new int[pages.Count];
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    attachmentPageNumbers[i] = pages[i].PageNumber;
+                }
+                Array.Resize<string>(ref attachmentUrls, (attachmentUrls.Length + pages.Count));
+                string[] attachmentImagesUrls = new string[pages.Count];
+                attachmentImagesUrls = ImageUrlHelper.GetImageUrls(applicationHost, attachmentPageNumbers, attachmentResponse);
+                attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
+
+            }
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
+            if (docInfo.Attachments.Count > 0)
+            {
+                var imagesUrls = new string[attachmentUrls.Length + documentUrls.Length];
+                documentUrls.CopyTo(imagesUrls, 0);
+                attachmentUrls.CopyTo(imagesUrls, documentUrls.Length);
+                result.imageUrls = imagesUrls;
+            }
+            else
+            {
+                result.imageUrls = documentUrls;
+            }
         }
 
         private void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var docInfo = _htmlHandler.GetDocumentInfo(new DocumentInfoOptions(request.Path));
+            var docInfo = _htmlHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
             var maxHeight = 0;
@@ -561,13 +622,9 @@ namespace MvcSample.Controllers
                 MaxHeight = maxHeight
             };
 
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
-            result.docType = docInfo.DocumentType;
-            result.fileType = docInfo.FileType;
-
-            var htmlOptions = new HtmlOptions
+            var htmlOptions = new HtmlOptions()
             {
-                IsResourcesEmbedded = Utils.IsImage(fileName),
+                IsResourcesEmbedded = false,
                 HtmlResourcePrefix = string.Format(
                 "/document-viewer/GetResourceForHtml?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
             };
@@ -577,9 +634,33 @@ namespace MvcSample.Controllers
                 htmlOptions.PageNumber = 1;
                 htmlOptions.CountPagesToConvert = request.PreloadPagesCount.Value;
             }
-
+            /////
             List<string> cssList;
             var htmlPages = GetHtmlPages(fileName, htmlOptions, out cssList);
+
+            foreach (AttachmentBase attachment in docInfo.Attachments)
+            {
+                var attachmentPath = _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name;
+                var attachmentHtmlOptions = new HtmlOptions()
+                {
+                    IsResourcesEmbedded = Utils.IsImage(fileName),
+                    HtmlResourcePrefix = string.Format("/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(attachmentPath)) + "&pageNumber={page-number}&resourceName=",
+                };
+                List<PageHtml> pages = _htmlHandler.GetPages(attachment, attachmentHtmlOptions);
+                var attachmentInfo = _htmlHandler.GetDocumentInfo(attachmentPath);
+                fileData.PageCount += attachmentInfo.Pages.Count;
+                fileData.Pages.AddRange(attachmentInfo.Pages);
+                List<string> attachmentCSSList;
+                var attachmentPages = GetHtmlPages(attachmentInfo.Guid, attachmentHtmlOptions, out attachmentCSSList);
+                cssList.AddRange(attachmentCSSList);
+                htmlPages.AddRange(attachmentPages);
+
+            }
+            /////
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
+
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
             result.pageCss = new[] { string.Join(" ", cssList) };
         }

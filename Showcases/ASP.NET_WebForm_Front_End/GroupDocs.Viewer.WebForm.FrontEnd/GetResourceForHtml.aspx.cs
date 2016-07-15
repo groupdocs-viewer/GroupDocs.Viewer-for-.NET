@@ -20,16 +20,15 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 {
     public partial class GetResourceForHtml : System.Web.UI.Page
     {
-        private static ViewerHtmlHandler _htmlHandler;
         private static ViewerConfig _config;
         private static string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString(); // App_Data folder path
         private static string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
 
         protected void Page_Load(object sender, EventArgs e) 
         {
-           
 
-            _htmlHandler = (ViewerHtmlHandler)Session["htmlHandler"];
+
+            ViewerHtmlHandler _htmlHandler = (ViewerHtmlHandler)Session["htmlHandler"];
 
             GetResourceForHtmlParameters parameters = new GetResourceForHtmlParameters();
            
