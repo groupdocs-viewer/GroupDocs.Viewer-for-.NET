@@ -16,7 +16,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            Utilities.ApplyLicense();
+            //Utilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
             #region ViewerHtmlPresentation
@@ -62,7 +62,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region GeneralRepresentation
             //Render the word document in the form of pdf markup
-            //   ViewGenerator.RenderDocumentAsPDF("test.pdf");
+            //ViewGenerator.RenderDocumentAsPDF("test.pdf");
 
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");

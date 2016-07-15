@@ -1,3 +1,65 @@
+var fileBrowserData;
+var fileCount = 0;
+var fileCount1 = 0;
+var defaultFileName;
+function GetNextFileName(sender) {
+    if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer1") {
+        fileCount++;
+        if (fileCount > fileBrowserData.length - 1) {
+            fileCount = 1;
+        }
+        if (fileBrowserData[fileCount].type == "folder") {
+            GetNextFileName(sender);
+        }
+        else {
+
+            return fileBrowserData[fileCount].path;
+        }
+    }
+    else if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer2") {
+        fileCount1++;
+        if (fileCount1 > fileBrowserData.length - 1) {
+            fileCount1 = 1;
+        }
+        if (fileBrowserData[fileCount1].type == "folder") {
+            GetNextFileName(sender);
+        }
+        else {
+
+            return fileBrowserData[fileCount1].path;
+        }
+
+    }
+}
+function GetPrevioustFileName(sender) {
+    if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer1") {
+        fileCount--;
+        if (fileCount > fileBrowserData.length - 1) {
+            fileCount = 1;
+        }
+        if (fileBrowserData[fileCount].type == "folder") {
+            GetPrevioustFileName(sender);
+        }
+        else {
+
+            return fileBrowserData[fileCount].path;
+        }
+    }
+    else if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer2") {
+        fileCount1--;
+        if (fileCount1 > fileBrowserData.length - 1) {
+            fileCount1 = 1;
+        }
+        if (fileBrowserData[fileCount1].type == "folder") {
+            GetPrevioustFileName(sender);
+        }
+        else {
+
+            return fileBrowserData[fileCount1].path;
+        }
+    }
+}
+//
 if (!window.jGroupdocs)
 window.jGroupdocs = {};
 window.jGroupdocs.stringExtensions = {
@@ -1778,6 +1840,8 @@ var htmlPageContentsWithEmScaling =
 '                        css: {chrome: $root.browserIsChrome()} ">' +
 '            </div>';
 var htmlPageContents;
+//Getting Default File Name
+defaultFileName = this.options.fileId;
 if (this.options.useEmScaling)
 htmlPageContents = htmlPageContentsWithEmScaling;
 else
@@ -2462,7 +2526,7 @@ this.watermarkScreenWidth = null;
 this.zoom(100);
 this.fileType = response.fileType;
 this.urlForResourcesInHtml = response.urlForResourcesInHtml;
-isTextDocument = (this.fileType == "Txt" || this.fileType == "Xml");
+isTextDocument = ((this.fileType == "Txt" && response.page_count < 2) || this.fileType == "Xml");
 this.isHtmlDocument(this.fileType == "Html" || this.fileType == "Htm" || isTextDocument);
 var isDocumentSinglePaged = (response.doc_type == "Cells" || this.isHtmlDocument());
 this.useTabsForPages(isDocumentSinglePaged);
@@ -7455,6 +7519,13 @@ this._entitiesLoaded += response.data.nodes.length;
 //but it helps us logically determine whether there are other
 //entities to load, see loadMore for more details
 this._entitiesTotal = response.data.count;
+fileBrowserData = response.data.nodes;
+for (i = 0; i < fileBrowserData.length ; i++) {
+    if (fileBrowserData[i].path == defaultFileName) {
+        fileCount = i;
+        fileCount1 = i;
+    }
+}
 callback.apply(this, [path, response.data.nodes]);
 }
 else {
