@@ -15,9 +15,17 @@ namespace MvcSample.Models
         public string Locale { get; set; }
         public string Callback { get; set; }
     }
-
     public class GetImageUrlsResponse : OperationStatusResponse
     {
+        public string[] imageUrls { get; set; }
+    }
+    public class GetImageUrlsResult : OperationStatusResponse
+    {
+        public GetImageUrlsResult(string[] imageUrls)
+        {
+            this.imageUrls = imageUrls;
+        }
+
         public string[] imageUrls { get; set; }
     }
 }

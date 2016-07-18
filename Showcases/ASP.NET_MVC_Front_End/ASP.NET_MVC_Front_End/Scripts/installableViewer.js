@@ -368,7 +368,7 @@
                     }
                 }
 
-                settings.supportPageReordering = false;
+                //settings.supportPageReordering = false;
             }
 
             var viewerWidth, viewerHeight;
@@ -516,7 +516,7 @@
                 watermarkColor: settings.watermarkColor,
                 watermarkPosition: settings.watermarkPosition,
                 watermarkWidth: settings.watermarkWidth,
-
+                watermarkOpacity: settings.watermarkOpacity,
                 preventTouchEventsBubbling: settings.preventTouchEventsBubbling,
                 searchForSeparateWords: settings.searchForSeparateWords,
                 treatPhrasesInDoubleQuotesAsExact: settings.treatPhrasesInDoubleQuotesAsExact,
@@ -1283,6 +1283,7 @@
                     watermarkText = this.watermarkText;
                     watermarkColor = this.watermarkColor;
                     watermarkWidth = this.watermarkWidth;
+                    watermarkOpacity = this.watermarkOpacity;
                 }
 
                 if (printFrame.length == 0) {
@@ -1303,7 +1304,7 @@
                     this._model.getPrintableHtml(this.documentPath, useHtmlContentBasedPrinting, fileDisplayName,
                         this.quality, this.supportTextSelection,
                         watermarkText, watermarkColor,
-                        watermarkPosition, watermarkWidth,
+                        watermarkPosition, watermarkWidth,watermarkOpacity,
                         this.ignoreDocumentAbsence,
                         this.instanceIdToken,
                         function (responseData) {
@@ -1575,14 +1576,14 @@
         getPrintableHtml: function (documentPath, useHtmlBasedEngine, fileDisplayName,
                                     quality, supportTextSelection,
                                     watermarkText, watermarkColor,
-                                    watermarkPosition, watermarkWidth,
+                                    watermarkPosition, watermarkWidth,watermarkOpacity,
                                     ignoreDocumentAbsence,
                                     instanceIdToken,
                                     callback, errorCallback, locale) {
 
             this._portalService.getImageUrlsAsync(
                                               null, null, documentPath, /*width*/null, null, 0, /*imageCount*/null, quality, supportTextSelection, /*this.fileVersion*/null,
-                                              watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+                                              watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
                                               ignoreDocumentAbsence,
                                               useHtmlBasedEngine, /*supportPageRotation*/false,
                 function (response) {

@@ -186,7 +186,7 @@ namespace MvcSample.Controllers
                 var options = new PdfFileOptions
                 {
                     Guid = parameters.Path,
-                    Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth),
+                    Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity),
                 };
 
                 if (parameters.IsPrintable)
@@ -226,7 +226,7 @@ namespace MvcSample.Controllers
             var options = new PdfFileOptions
             {
                 Guid = parameters.Path,
-                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth)
+                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity)
             };
 
             if (parameters.IsPrintable)
@@ -248,7 +248,7 @@ namespace MvcSample.Controllers
 
         public string GetFileUrl(string path, bool getPdf, bool isPrintable, string fileDisplayName = null,
           string watermarkText = null, int? watermarkColor = null,
-          WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0,
+          WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0,byte? watermarkOpacity=255,
           bool ignoreDocumentAbsence = false,
           bool useHtmlBasedEngine = false,
           bool supportPageRotation = false)
@@ -267,6 +267,7 @@ namespace MvcSample.Controllers
             {
                 queryString["watermarkText"] = watermarkText;
                 queryString["watermarkColor"] = watermarkColor.ToString();
+                queryString["watermarkOpacity"] = watermarkOpacity.ToString();
 
                 if (watermarkPosition.HasValue)
                     queryString["watermarkPosition"] = watermarkPosition.ToString();
@@ -342,9 +343,13 @@ namespace MvcSample.Controllers
             var imageOptions = new ImageOptions
             {
                 ConvertImageFileType = _convertImageFileType,
-                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
-                    parameters.WatermarkPosition, parameters.WatermarkWidth),
-                Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None
+                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, 
+                parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity),
+                Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None,
+                CountPagesToConvert = 1,
+                PageNumber = pageNumber,
+                JpegQuality = parameters.Quality.GetValueOrDefault(),
+                
             };
 
             if (parameters.Rotate && parameters.Width.HasValue)
@@ -665,6 +670,7 @@ namespace MvcSample.Controllers
             result.pageCss = new[] { string.Join(" ", cssList) };
         }
 
+
         private string GetFileUrl(ViewDocumentParameters request)
         {
             return GetFileUrl(request.Path, false, false, request.FileDisplayName);
@@ -674,7 +680,7 @@ namespace MvcSample.Controllers
         {
             return GetFileUrl(request.Path, true, true, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
-                request.WatermarkPosition, request.WatermarkWidth,
+                request.WatermarkPosition, request.WatermarkWidth,request.WatermarkOpacity,
                 request.IgnoreDocumentAbsence,
                 request.UseHtmlBasedEngine, request.SupportPageRotation);
         }
@@ -683,7 +689,7 @@ namespace MvcSample.Controllers
         {
             return GetFileUrl(request.Path, true, false, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
-                request.WatermarkPosition, request.WatermarkWidth,
+                request.WatermarkPosition, request.WatermarkWidth,request.WatermarkOpacity,
                 request.IgnoreDocumentAbsence,
                 request.UseHtmlBasedEngine, request.SupportPageRotation);
         }
