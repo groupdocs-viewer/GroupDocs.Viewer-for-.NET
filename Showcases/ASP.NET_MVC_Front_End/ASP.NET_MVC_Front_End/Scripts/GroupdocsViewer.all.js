@@ -1442,7 +1442,7 @@ this.useJSONP = true;
 },
 viewDocumentAsHtml: function (userId, privateKey, path, preloadPagesCount, fileDisplayName, usePngImagesForHtmlBasedEngine,
 convertWordDocumentsCompletely,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence, supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
 embedImagesIntoHtmlForWordFiles,
@@ -1457,7 +1457,7 @@ convertWordDocumentsCompletely: convertWordDocumentsCompletely,
 ignoreDocumentAbsence: ignoreDocumentAbsence,
 supportPageRotation: supportPageRotation,
 supportListOfContentControls: supportListOfContentControls, supportListOfBookmarks: supportListOfBookmarks,
-watermarkText: watermarkText, watermarkColor: watermarkColor, watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,
+watermarkText: watermarkText, watermarkColor: watermarkColor, watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,watermarkOpacity:watermarkOpacity,
 embedImagesIntoHtmlForWordFiles: embedImagesIntoHtmlForWordFiles,
 instanceIdToken: instanceIdToken,
 locale: locale,
@@ -1481,13 +1481,13 @@ saveFontsInAllFormats: saveFontsInAllFormats
 this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetDocumentPageHtml' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 viewDocument: function (path, width, quality, usePdf, preloadPagesCount, password, fileDisplayName,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence, supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
 successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOpening) {
 var data = {
 path: path, width: width, quality: quality, usePdf: usePdf, preloadPagesCount: preloadPagesCount, password: password, fileDisplayName: fileDisplayName,
-watermarkText: watermarkText, watermarkColor: watermarkColor, watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,
+watermarkText: watermarkText, watermarkColor: watermarkColor, watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,watermarkOpacity:watermarkOpacity,
 ignoreDocumentAbsence: ignoreDocumentAbsence, supportPageRotation: supportPageRotation,
 supportListOfContentControls: supportListOfContentControls, supportListOfBookmarks: supportListOfBookmarks,
 instanceIdToken: instanceIdToken,
@@ -1501,7 +1501,7 @@ var data = { path: path, descForHtmlBasedEngine: descForHtmlBasedEngine };
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetPdf2JavaScript' + this._urlSuffix, data, successCallback, errorCallback, false);
 },
 getImageUrlsAsync: function (userId, privateKey, path, width, token, firstPage, pageCount, quality, usePdf, docVersion,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence,
 useHtmlBasedEngine, supportPageRotation,
 successCallback, errorCallback,
@@ -1521,6 +1521,7 @@ watermarkText: watermarkText,
 watermarkColor: watermarkColor,
 watermarkPosition: watermarkPosition,
 watermarkWidth: watermarkWidth,
+watermarkOpacity:watermarkOpacity,
 ignoreDocumentAbsence: ignoreDocumentAbsence,
 useHtmlBasedEngine: useHtmlBasedEngine,
 supportPageRotation: supportPageRotation,
@@ -1534,14 +1535,14 @@ var data = { userId: userId, privateKey: privateKey, path: path, pageIndex: page
 return this._runServiceAsync(this.applicationPath + this.urlPrefix + '/LoadFileBrowserTreeData' + this._urlSuffix, data, successCallback, errorCallback, useCache != null ? useCache : true);
 },
 getPrintableHtml: function (path, useHtmlBasedEngine, fileDisplayName,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence,
 successCallback, errorCallback,
 instanceIdToken, locale) {
 var data = {
 path: path, useHtmlBasedEngine: useHtmlBasedEngine, displayName: fileDisplayName,
 watermarkText: watermarkText, watermarkColor: watermarkColor,
-watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,
+watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth,watermarkOpacity:watermarkOpacity,
 ignoreDocumentAbsence: ignoreDocumentAbsence,
 instanceIdToken: instanceIdToken,
 locale: locale
@@ -1903,7 +1904,7 @@ _init: function () {
 this._portalService = Container.Resolve("PortalService");
 },
 loadDocument: function (fileId, pagesCountToShow, imageWidth, password, fileDisplayName,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence,
 supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
@@ -1934,7 +1935,7 @@ this._portalService.viewEmbedDocumentAllAsync(this.userId, this.userKey, fileId,
 break;
 case 'webComponent':
 this._portalService.viewDocument(fileId, imageWidth, this.quality, this.usePdf, this.preloadPagesCount, password, fileDisplayName,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence, supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
 onSucceded, errorCallback,
@@ -1953,7 +1954,7 @@ break;
 }
 },
 loadDocumentAsHtml: function (fileId, pagesCountToShow, fileDisplayName, usePngImages, convertWordDocumentsCompletely,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence, supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
 embedImagesIntoHtmlForWordFiles,
@@ -1962,7 +1963,7 @@ saveFontsInAllFormats,
 callback, errorCallback, locale, passwordForOpening) {
 this._portalService.viewDocumentAsHtml(this.userId, this.userKey, fileId, this.preloadPagesCount, fileDisplayName, usePngImages,
 convertWordDocumentsCompletely,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence, supportPageRotation,
 supportListOfContentControls, supportListOfBookmarks,
 embedImagesIntoHtmlForWordFiles,
@@ -2001,7 +2002,7 @@ errorCallback.apply(this, [error]);
 },
 retrieveImageUrls: function (fileId, token, imageCount, pagesDimension,
 watermarkText, watermarkColor,
-watermarkPosition, watermarkWidth,
+watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence,
 useHtmlBasedEngine,
 supportPageRotation,
@@ -2009,7 +2010,7 @@ instanceIdToken,
 callback, errorCallback,
 locale) {
 this._portalService.getImageUrlsAsync(this.userId, this.userKey, fileId, pagesDimension, token, 0, imageCount, this.quality == null ? '' : this.quality, this.use_pdf, this.fileVersion,
-watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
 ignoreDocumentAbsence,
 useHtmlBasedEngine, supportPageRotation,
 function (response) {
@@ -2113,6 +2114,7 @@ fileDisplayName: null,
 hyperlinks: null,
 watermarkText: null,
 watermarkWidth: null,
+watermarkOpacity:null,
 watermarkColor: null,
 watermarkLeft: null,
 watermarkTop: null,
@@ -2260,7 +2262,7 @@ pageWidth = this.minimumImageWidth;
 else
 pageWidth = Math.round(this.pageImageWidth * this.initialZoom / 100);
 this._model.loadDocument(fileId || this.fileId, pageCountToShow, pageWidth, this.password(), this.fileDisplayName,
-this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,
+this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,this.watermarkOpacity,
 this.ignoreDocumentAbsence, this.supportPageRotation,
 this.supportListOfContentControls, this.supportListOfBookmarks,
 this.instanceIdToken,
@@ -2283,7 +2285,7 @@ this.passwordForOpening
 else if (this.pageContentType == "html") {
 this._model.loadDocumentAsHtml(fileId || this.fileId, pageCountToShow, this.fileDisplayName, this.usePngImagesForHtmlBasedEngine,
 this.convertWordDocumentsCompletely,
-this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,
+this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,this.watermarkOpacity,
 this.ignoreDocumentAbsence, this.supportPageRotation,
 this.supportListOfContentControls, this.supportListOfBookmarks,
 this.embedImagesIntoHtmlForWordFiles,
@@ -2398,7 +2400,7 @@ else
 pageWidth = this.pageWidth();
 pageDimension = Math.floor(pageWidth) + "x";
 this._model.retrieveImageUrls(this.fileId, this._sessionToken, imageCount, (this._mode == 'webComponent' ? Math.floor(pageWidth) : pageDimension),
-this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,
+this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth,this.watermarkOpacity,
 this.ignoreDocumentAbsence,
 this.useHtmlBasedEngine, this.supportPageRotation,
 this.instanceIdToken,
@@ -2695,7 +2697,16 @@ this.heightWidthRatio = parseFloat(response.page_size.Height / response.page_siz
 if (!this.useTabsForPages() || !this.supportPageRotation || firstPage.rotation % 180 == 0)
 this.pageWidth(pageElementWidth);
 if (oldWidth !== null && typeof oldWidth != "undefined")
-pageElement.css("width", oldWidth);
+    pageElement.css("width", oldWidth);
+
+if (this.fileType == "Jpg" || this.fileType == "Png" || this.fileType == "Msg") {
+    window.fldImg = true;
+    if(this.fileType="Msg")
+        window.emailmsg=true;
+    window.pgElement = pageElement;
+    window.pgWidth = pageSize.width;
+    //window.pgElement.css("width", pageSize.width);
+}
 this.pageHeight(Math.round(this.pageWidth() * this.heightWidthRatio));
 this.initialWidth = this.pageWidth();
 }
@@ -6403,6 +6414,25 @@ if (typeof pageRotation == "undefined")
 pageRotation = 0;
 var pageWidth = page.w;
 var pageHeight = page.h;
+if (window.fldImg) {
+    if ($("#viewerHtmlDiv").children().width() < page.w) {
+        window.pgElement.css("width", $("#viewerHtmlDiv").children().width() - 17);
+    }
+    else if ($("#viewerHtmlDiv").children().width() > page.w && $("#viewerHtmlDiv").children().height() < page.h) {
+        window.pgElement.css("width", page.w);
+    }
+    else {
+        window.pgElement.css("width", page.w);
+        window.pgElement.css("height", page.h);
+    }
+    if (window.emailmsg) {
+        window.pgElement.closest("div").parent("div").css("transform", "none");
+        window.pgElement.closest("div").parent("div").parent("div").css("height", window.pgElement.closest("div").height());
+        window.emailmsg = false;
+    }
+    window.pgElement.closest("div").css("transform", "scale(1.00)");
+    window.fldImg = false;
+}
 if (pageRotation % 180 != 0) {
 scale *= pageWidth / pageHeight;
 }
@@ -7023,7 +7053,7 @@ this.retrieveImageUrls(this._viewModel.pageCount());
 retrieveImageUrls: function (imageCount) {
 this._portalService.getImageUrlsAsync(this.options.userId, this.options.userKey, this._docGuid,
 (this.options._mode == 'webComponent' ? this._thumbnailWidth : this._thumbnailWidth.toString() + "x"), this._sessionToken, 0, imageCount,
-this.options.quality, this.options.use_pdf, this._docVersion, null, null, null, null,
+this.options.quality, this.options.use_pdf, this._docVersion, null, null, null, null,null,
 this.options.ignoreDocumentAbsence,
 this.options.useHtmlBasedEngine, this.options.supportPageRotation,
 function (response) {
