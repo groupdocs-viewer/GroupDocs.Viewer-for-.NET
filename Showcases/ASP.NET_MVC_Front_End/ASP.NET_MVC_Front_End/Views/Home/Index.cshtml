@@ -69,8 +69,11 @@
                 showPaging: true,
                 width: 650,
                 height: 900,
+                quality:100,
                 watermarkPosition: 'Diagonal',
                 watermarkText: 'Watermark for image',
+                watermarkColor: 897656,
+                watermarkOpacity:50,
                 showDocumentNavigation: true,
                 useHtmlBasedEngine: false,
                 showDownload: true,
@@ -80,7 +83,10 @@
                 supportPageRotation: true,
                 showThumbnails: true,
                 openThumbnails: true,
-                supportPageReordering: true
+                supportPageReordering: true,
+                showSearch: true,
+                supportTextSelection: true,
+
             });
             EnableRightClickMenu = false;
             $('#viewerImageDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
