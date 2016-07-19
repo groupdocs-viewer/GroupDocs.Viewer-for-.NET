@@ -12,7 +12,7 @@ namespace MvcSample.Helpers
         {
             return GetImageUrls(applicationHost, parameters.Path, parameters.FirstPage, pageNumbers.Length, parameters.Width,
                 parameters.Quality, parameters.UsePdf,
-                parameters.WatermarkText, parameters.WatermarkColor,
+                parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkOpacity,
                 parameters.WatermarkPosition,
                 parameters.WatermarkWidth,
                 parameters.IgnoreDocumentAbsence,
@@ -26,7 +26,7 @@ namespace MvcSample.Helpers
         {
             return GetImageUrls(applicationHost, parameters.Path, 0, pageNumbers.Length, parameters.Width,
                 parameters.Quality, parameters.UsePdf,
-                parameters.WatermarkText, parameters.WatermarkColor,
+                parameters.WatermarkText, parameters.WatermarkColor,parameters.WatermarkOpacity,
                 parameters.WatermarkPosition,
                 parameters.WatermarkWidth,
                 parameters.IgnoreDocumentAbsence,
@@ -37,7 +37,7 @@ namespace MvcSample.Helpers
         }
 
         private static string[] GetImageUrls(string applicationHost, string path, int startingPageNumber, int pageCount, int? pageWidth, int? quality, bool usePdf = true,
-                                             string watermarkText = null, int? watermarkColor = null,
+                                             string watermarkText = null, int? watermarkColor = null,int? watermarkOpacity=255,
                                              WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0,
                                              bool ignoreDocumentAbsence = false,
                                              bool useHtmlBasedEngine = false,
@@ -67,6 +67,7 @@ namespace MvcSample.Helpers
                 routeValueDictionary.Add("watermarkColor", watermarkColor);
                 routeValueDictionary.Add("watermarkPosition", watermarkPosition);
                 routeValueDictionary.Add("watermarkWidth", watermarkWidth);
+                routeValueDictionary.Add("watermarkOpacity", watermarkOpacity);
             }
 
             if (!string.IsNullOrWhiteSpace(instanceId))
@@ -125,7 +126,9 @@ namespace MvcSample.Helpers
                 urlBuilder.Append("&");
             }
             urlBuilder.Remove(urlBuilder.Length - 1, 1);//remove last character '&'
-            return urlBuilder.ToString();
+            var result = HttpUtility.UrlDecode(urlBuilder.ToString());
+            //return urlBuilder.ToString();
+            return result;
         }
     }
 }

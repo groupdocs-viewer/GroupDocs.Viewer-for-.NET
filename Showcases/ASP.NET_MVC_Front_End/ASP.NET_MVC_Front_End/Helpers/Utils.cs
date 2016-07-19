@@ -254,15 +254,26 @@ namespace MvcSample.Helpers
                 .ToList();
         }
 
-        public static Watermark GetWatermark(string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, float? watermarkWidth)
+        public static Watermark GetWatermark(string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, float? watermarkWidth,byte watermarkOpacity)
         {
             if (string.IsNullOrWhiteSpace(watermarkText))
                 return null;
 
+            byte red = 0;
+            byte green = 0;
+            byte blue = 0;
+            byte opacity = 255;
+            if (watermarkColor.HasValue)
+            {
+                 red = Color.FromArgb(watermarkColor.Value).R;
+                 green = Color.FromArgb(watermarkColor.Value).G;
+                 blue = Color.FromArgb(watermarkColor.Value).B;
+                 opacity = watermarkOpacity;
+            }
             return new Watermark(watermarkText)
             {
                 Color = watermarkColor.HasValue
-                    ? Color.FromArgb(watermarkColor.Value)
+                    ? Color.FromArgb(opacity, red, green, blue)
                     : Color.Red,
                 Position = ToWatermarkPosition(watermarkPosition),
                 Width = watermarkWidth
