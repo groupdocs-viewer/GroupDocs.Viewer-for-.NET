@@ -2698,8 +2698,10 @@ _onDocumentLoaded: function (response) {
             this.pageWidth(pageElementWidth);
         if (oldWidth !== null && typeof oldWidth != "undefined")
             pageElement.css("width", oldWidth);
-        if (this.fileType == "Jpg" || this.fileType == "Png") {
+        if (this.fileType == "Jpg" || this.fileType == "Png" || this.fileType == "Msg") {
             window.fldImg = true;
+            if (this.fileType = "Msg")
+                window.emailmsg = true;
             window.pgElement = pageElement;
             window.pgWidth = pageSize.width;
             //window.pgElement.css("width", pageSize.width);
@@ -6424,9 +6426,14 @@ getPages: function (prop, pagesLocation, startPage0, endPage0, synchronousWorkOu
                     window.pgElement.css("width", page.w);
                     window.pgElement.css("height", page.h);
                 }
+                if (window.emailmsg) {
+                    window.pgElement.closest("div").parent("div").css("transform", "none");
+                    window.pgElement.closest("div").parent("div").parent("div").css("height", window.pgElement.closest("div").height());
+                    window.emailmsg = false;
+                }
                 window.pgElement.closest("div").css("transform", "scale(1.00)");
                 window.fldImg = false;
-            }               
+            }
             if (pageRotation % 180 != 0) {
                 scale *= pageWidth / pageHeight;
             }
