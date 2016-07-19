@@ -53,7 +53,7 @@ namespace MvcSample.Controllers
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
                 UseCache = true,
-                // UsePdf = _usePdfInImageEngine
+               UsePdf = _usePdfInImageEngine
             };
 
             _imageHandler = new ViewerImageHandler(imageConfig);
@@ -396,7 +396,7 @@ namespace MvcSample.Controllers
             if (stream == null || stream.Length == 0)
                 return new HttpStatusCodeResult((int)HttpStatusCode.Gone);
 
-            return File(stream, Utils.GetImageMimeTypeFromFilename(parameters.ResourceName));
+            return File(stream, Utils.GetMimeType(parameters.ResourceName));
         }
 
         public ActionResult RotatePage(RotatePageParameters parameters)
@@ -540,6 +540,8 @@ namespace MvcSample.Controllers
 
             var maxWidth = 0;
             var maxHeight = 0;
+           
+
             foreach (var pageData in docInfo.Pages)
             {
                 if (pageData.Height > maxHeight)
@@ -587,7 +589,15 @@ namespace MvcSample.Controllers
                 attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
 
             }
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
+            
+            SerializationOptions serializationOptions = new SerializationOptions
+            {
+                UsePdf = request.UsePdf,
+                SupportListOfBookmarks = request.SupportListOfBookmarks,
+                SupportListOfContentControls = request.SupportListOfContentControls
+            };
+            var documentInfoJson = new DocumentInfoJsonSerializer(docInfo, serializationOptions).Serialize();
+            result.documentDescription = documentInfoJson;
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
             if (docInfo.Attachments.Count > 0)
