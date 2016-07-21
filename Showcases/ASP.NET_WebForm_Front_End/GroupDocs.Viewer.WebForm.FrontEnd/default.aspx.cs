@@ -478,21 +478,22 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             }
 
             List<string> cssList;
-            var htmlPages = GetHtmlPages(fileName, htmlOptions, out cssList);
+            var htmlPages = GetHtmlPages(fileName,fileName, htmlOptions, out cssList);
             foreach (AttachmentBase attachment in docInfo.Attachments)
             {
-                var attachmentPath = @_tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name;
+                var attachmentPath = _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name;
+                var attachmentResourcePath = HttpUtility.UrlEncode(  _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(".","_"));
                 var attachmentHtmlOptions = new HtmlOptions()
                 {
                     IsResourcesEmbedded = Utils.IsImage(fileName),
-                    HtmlResourcePrefix = string.Format("/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(attachmentPath)) + "&pageNumber={page-number}&resourceName=",
+                    HtmlResourcePrefix = string.Format("/GetResourceForHtml.aspx?documentPath={0}", HttpUtility.UrlEncode(attachmentPath)) + "&pageNumber={page-number}&resourceName=",
                 };
                 List<PageHtml> pages = _htmlHandler.GetPages(attachment, attachmentHtmlOptions);
                 var attachmentInfo = _htmlHandler.GetDocumentInfo(attachmentPath);
                 fileData.PageCount += attachmentInfo.Pages.Count;
                 fileData.Pages.AddRange(attachmentInfo.Pages);
                 List<string> attachmentCSSList;
-                var attachmentPages = GetHtmlPages(attachmentPath, attachmentHtmlOptions, out attachmentCSSList);
+                var attachmentPages = GetHtmlPages(attachmentPath, attachmentResourcePath, attachmentHtmlOptions, out attachmentCSSList);
                 cssList.AddRange(attachmentCSSList);
                 htmlPages.AddRange(attachmentPages);
 
@@ -546,7 +547,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                                      "&pageNumber={page-number}&resourceName=",
             };
 
-            var htmlPages = GetHtmlPages(parameters.Path, htmlOptions, out cssList);
+            var htmlPages = GetHtmlPages(parameters.Path,parameters.Path, htmlOptions, out cssList);
 
             var pageHtml = htmlPages.Count > 0 ? htmlPages[0].HtmlContent : null;
             var pageCss = cssList.Count > 0 ? new[] { string.Join(" ", cssList) } : null;
@@ -570,11 +571,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             return (new ReorderPageResponse());
         }
-        private static List<PageHtml> GetHtmlPages(string filePath, HtmlOptions htmlOptions, out List<string> cssList)
+        private static List<PageHtml> GetHtmlPages(string filePath, string resourcePath, HtmlOptions htmlOptions, out List<string> cssList)
         {
             var htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
             var htmlPages = htmlHandler.GetPages(filePath, htmlOptions);
-            
+           
+           
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
@@ -588,38 +590,39 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                 foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Style))
                 {
-                    var cssStream = _htmlHandler.GetResource(filePath, resource);
+                   
+                    var cssStream = htmlHandler.GetResource(filePath, resource);
                     var text = new StreamReader(cssStream).ReadToEnd();
 
                     var needResave = false;
-                    //if (text.IndexOf("url(\"", StringComparison.Ordinal) >= 0 &&
-                    //    text.IndexOf("url(\"/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
-                    //{
-                    //    needResave = true;
-                    //    text = text.Replace("url(\"",
-                    //    string.Format("url(\"/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
-                    //    filePath, page.PageNumber));
-                    //}
+                    if (text.IndexOf("url(\"", StringComparison.Ordinal) >= 0 &&
+                        text.IndexOf("url(\"/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
+                    {
+                        needResave = true;
+                        text = text.Replace("url(\"",
+                        string.Format("url(\"/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
+                        HttpUtility.UrlEncode(filePath), page.PageNumber));
+                    }
 
-                    //if (text.IndexOf("url('", StringComparison.Ordinal) >= 0 &&
-                    //    text.IndexOf("url('/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
-                    //{
-                    //    needResave = true;
-                    //    text = text.Replace("url('",
-                    //        string.Format(
-                    //            "url('/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
-                    //            filePath, page.PageNumber));
-                    //}
+                    if (text.IndexOf("url('", StringComparison.Ordinal) >= 0 &&
+                        text.IndexOf("url('/GetResourceForHtml.aspx?documentPath=", StringComparison.Ordinal) < 0)
+                    {
+                        needResave = true;
+                        text = text.Replace("url('",
+                            string.Format(
+                                "url('/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
+                                HttpUtility.UrlEncode(filePath), page.PageNumber));
+                    }
 
                     cssList.Add(text);
 
-                    //if (needResave)
-                    //{
-                    //    var fullPath = Path.Combine(_tempPath, filePath, "html", "resources",
-                    //        string.Format("page{0}", page.PageNumber), resource.ResourceName);
+                    if (needResave)
+                    {
+                        var fullPath = Path.Combine(_tempPath, HttpUtility.UrlDecode( resourcePath), "html", "resources",
+                            string.Format("page{0}", page.PageNumber), resource.ResourceName);
 
-                    //    System.IO.File.WriteAllText(fullPath, text);
-                    //}
+                        System.IO.File.WriteAllText(fullPath, text);
+                    }
                 }
 
                 List<string> cssClasses = Utils.GetCssClasses(page.HtmlContent);
