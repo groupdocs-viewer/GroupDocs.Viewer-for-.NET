@@ -4,6 +4,7 @@ using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Containers;
 using GroupDocs.Viewer.Domain.Html;
+using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler;
 using GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer;
@@ -36,7 +37,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
         private static string _licensePath = @"";
         private static string _storagePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString(); // App_Data folder path
-        private static string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\Temp";
+        private static string _tempPath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\temp";
         private static string _CachePath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\umar";
         private static ViewerConfig _config;
 
@@ -120,12 +121,13 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         [ScriptMethod]
         public static GetImageUrlsResponse GetImageUrls(GetImageUrlsParameters parameters)
         {
+            var docPath = parameters.Path;
             if (string.IsNullOrEmpty(parameters.Path))
             {
                 var empty = new GetImageUrlsResponse { imageUrls = new string[0] };
                 return empty;
             }
-             
+
             DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(parameters.Path);
 
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
@@ -138,12 +140,46 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             string[] imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, parameters);
 
-            var result = new GetImageUrlsResponse
+            string[] attachmentUrls = new string[0];
+            foreach (AttachmentBase attachment in documentInfoContainer.Attachments)
             {
-                imageUrls = imageUrls
-            };
 
-            return result;
+                List<PageImage> pages = _imageHandler.GetPages(attachment);
+                var attachmentInfo = _imageHandler.GetDocumentInfo(_tempPath + "\\" + Path.GetFileNameWithoutExtension(docPath) + Path.GetExtension(docPath).Replace(".", "_") + "\\attachments\\" + attachment.Name);
+
+                GetImageUrlsParameters attachmentResponse = parameters;
+                attachmentResponse.Path = attachmentInfo.Guid;
+                int[] attachmentPageNumbers = new int[pages.Count];
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    attachmentPageNumbers[i] = pages[i].PageNumber;
+                }
+                Array.Resize<string>(ref attachmentUrls, (attachmentUrls.Length + pages.Count));
+                string[] attachmentImagesUrls = new string[pages.Count];
+                attachmentImagesUrls = ImageUrlHelper.GetImageUrls(applicationHost, attachmentPageNumbers, attachmentResponse);
+                attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
+
+            }
+            if (documentInfoContainer.Attachments.Count > 0)
+            {
+                var imagesUrls = new string[attachmentUrls.Length + imageUrls.Length];
+                imageUrls.CopyTo(imagesUrls, 0);
+                attachmentUrls.CopyTo(imagesUrls, imageUrls.Length);
+
+                var result = new GetImageUrlsResponse
+                {
+                    imageUrls = imagesUrls
+                };
+                return result;
+            }
+            else
+            {
+                var result = new GetImageUrlsResponse
+                {
+                    imageUrls = imageUrls
+                };
+                return result;
+            }
         }
         private static string GetApplicationHost()
         {
@@ -354,21 +390,50 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 MaxWidth = maxWidth,
                 MaxHeight = maxHeight
             };
-
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
-            result.docType = docInfo.DocumentType;
-            result.fileType = docInfo.FileType;
-            
             DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(request.Path);
-
             int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
             for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
             {
                 pageNumbers[i] = documentInfoContainer.Pages[i].Number;
             }
-
             string applicationHost = GetApplicationHost();
-            result.imageUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);
+            var documentUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);
+
+            string[] attachmentUrls = new string[0];
+            foreach (AttachmentBase attachment in docInfo.Attachments)
+            {
+                List<PageImage> pages = _imageHandler.GetPages(attachment);
+                var attachmentInfo = _imageHandler.GetDocumentInfo(_tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name);
+                fileData.PageCount += pages.Count;
+                fileData.Pages.AddRange(attachmentInfo.Pages);
+
+                ViewDocumentParameters attachmentResponse = request;
+                attachmentResponse.Path = attachmentInfo.Guid;
+                int[] attachmentPageNumbers = new int[pages.Count];
+                for (int i = 0; i < pages.Count; i++)
+                {
+                    attachmentPageNumbers[i] = pages[i].PageNumber;
+                }
+                Array.Resize<string>(ref attachmentUrls, (attachmentUrls.Length + pages.Count));
+                string[] attachmentImagesUrls = new string[pages.Count];
+                attachmentImagesUrls = ImageUrlHelper.GetImageUrls(applicationHost, attachmentPageNumbers, attachmentResponse);
+                attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
+
+            }
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
+            if (docInfo.Attachments.Count > 0)
+            {
+                var imagesUrls = new string[attachmentUrls.Length + documentUrls.Length];
+                documentUrls.CopyTo(imagesUrls, 0);
+                attachmentUrls.CopyTo(imagesUrls, documentUrls.Length);
+                result.imageUrls = imagesUrls;
+            }
+            else
+            {
+                result.imageUrls = documentUrls;
+            }
         }
 
         private static void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
@@ -397,9 +462,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 MaxHeight = maxHeight
             };
 
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
-            result.docType = docInfo.DocumentType;
-            result.fileType = docInfo.FileType;
+            
 
             var htmlOptions = new HtmlOptions
             {
@@ -415,12 +478,29 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             }
 
             List<string> cssList;
+            var htmlPages = GetHtmlPages(fileName,fileName, htmlOptions, out cssList);
+            foreach (AttachmentBase attachment in docInfo.Attachments)
+            {
+                var attachmentPath = _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name;
+                var attachmentResourcePath = HttpUtility.UrlEncode(  _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(".","_"));
+                var attachmentHtmlOptions = new HtmlOptions()
+                {
+                    IsResourcesEmbedded = Utils.IsImage(fileName),
+                    HtmlResourcePrefix = string.Format("/GetResourceForHtml.aspx?documentPath={0}", HttpUtility.UrlEncode(attachmentPath)) + "&pageNumber={page-number}&resourceName=",
+                };
+                List<PageHtml> pages = _htmlHandler.GetPages(attachment, attachmentHtmlOptions);
+                var attachmentInfo = _htmlHandler.GetDocumentInfo(attachmentPath);
+                fileData.PageCount += attachmentInfo.Pages.Count;
+                fileData.Pages.AddRange(attachmentInfo.Pages);
+                List<string> attachmentCSSList;
+                var attachmentPages = GetHtmlPages(attachmentPath, attachmentResourcePath, attachmentHtmlOptions, out attachmentCSSList);
+                cssList.AddRange(attachmentCSSList);
+                htmlPages.AddRange(attachmentPages);
 
-            
-          
-          
-            var htmlPages = GetHtmlPages(fileName, htmlOptions, out cssList);
-            
+            }
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
+            result.docType = docInfo.DocumentType;
+            result.fileType = docInfo.FileType;
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
             result.pageCss = new[] { string.Join(" ", cssList) };
         }
@@ -467,7 +547,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                                      "&pageNumber={page-number}&resourceName=",
             };
 
-            var htmlPages = GetHtmlPages(parameters.Path, htmlOptions, out cssList);
+            var htmlPages = GetHtmlPages(parameters.Path,parameters.Path, htmlOptions, out cssList);
 
             var pageHtml = htmlPages.Count > 0 ? htmlPages[0].HtmlContent : null;
             var pageCss = cssList.Count > 0 ? new[] { string.Join(" ", cssList) } : null;
@@ -491,11 +571,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             return (new ReorderPageResponse());
         }
-        private static List<PageHtml> GetHtmlPages(string filePath, HtmlOptions htmlOptions, out List<string> cssList)
+        private static List<PageHtml> GetHtmlPages(string filePath, string resourcePath, HtmlOptions htmlOptions, out List<string> cssList)
         {
             var htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
             var htmlPages = htmlHandler.GetPages(filePath, htmlOptions);
-            
+           
+           
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
@@ -509,7 +590,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                 foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Style))
                 {
-                    var cssStream = _htmlHandler.GetResource(filePath, resource);
+                   
+                    var cssStream = htmlHandler.GetResource(filePath, resource);
                     var text = new StreamReader(cssStream).ReadToEnd();
 
                     var needResave = false;
@@ -519,7 +601,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                         needResave = true;
                         text = text.Replace("url(\"",
                         string.Format("url(\"/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
-                        filePath, page.PageNumber));
+                        HttpUtility.UrlEncode(filePath), page.PageNumber));
                     }
 
                     if (text.IndexOf("url('", StringComparison.Ordinal) >= 0 &&
@@ -529,14 +611,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                         text = text.Replace("url('",
                             string.Format(
                                 "url('/GetResourceForHtml.aspx?documentPath={0}&pageNumber={1}&resourceName=",
-                                filePath, page.PageNumber));
+                                HttpUtility.UrlEncode(filePath), page.PageNumber));
                     }
 
                     cssList.Add(text);
 
                     if (needResave)
                     {
-                        var fullPath = Path.Combine(_tempPath, filePath, "html", "resources",
+                        var fullPath = Path.Combine(_tempPath, HttpUtility.UrlDecode( resourcePath), "html", "resources",
                             string.Format("page{0}", page.PageNumber), resource.ResourceName);
 
                         System.IO.File.WriteAllText(fullPath, text);
