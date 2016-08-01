@@ -43,7 +43,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             
             //to get html representations of pages with embedded resources
             options.IsResourcesEmbedded = true;
-
+                       
             // Set password if document is password protected. 
             if(!String.IsNullOrEmpty(DocumentPassword))
             options.Password = DocumentPassword;
@@ -199,7 +199,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
             //Get Pre Render info
-            int allPages = htmlHandler.GetDocumentInfo(new DocumentInfoOptions(guid)).Pages.Count;
+            int allPages = htmlHandler.GetDocumentInfo(guid).Pages.Count;
 
             int pageNumber = 1;
 
@@ -263,6 +263,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
+
+            // Set one page per sheet option to false for Multiple pages per sheet in Excel documents, default value of this option is true
+            // options.CellsOptions.OnePagePerSheet = false;
 
             //Get document pages in image form
             List<PageImage> Images = imageHandler.GetPages(guid, options);
@@ -465,17 +468,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create/initialize image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
-           //Initialize PdfFileOptions object
-            PdfFileOptions options = new PdfFileOptions();
-           
-            // Guid implies that unique document name 
-            options.Guid = DocumentName;
-
             // To Apply transformations on PDF file
             // options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
 
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
-            FileContainer container = imageHandler.GetPdfFile(options);
+            FileContainer container = imageHandler.GetPdfFile(DocumentName);
            
             //Change the extension of the file and assign to a string type variable filename
             String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
@@ -485,6 +482,81 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsPdf
 
         }
+
+        /// <summary>
+        /// Render a document in PDF Form with watermark 
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        /// <param name="WatermarkText"></param>
+        public static void RenderDocumentAsPDF(String DocumentName, String WatermarkText)
+        {
+            //ExStart:RenderAsPdf
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            // Set watermark properties
+            Watermark watermark = new Watermark(WatermarkText);
+            watermark.Color = System.Drawing.Color.Blue;
+            watermark.Position = WatermarkPosition.Diagonal;
+            watermark.Width = 100;
+
+            PdfFileOptions options = new PdfFileOptions();
+            options.Watermark = watermark;
+            
+            // To Apply transformations on PDF file
+            // options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+            
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderAsPdf
+
+        }
+
+        /// <summary>
+        /// Render a document in PDF Form with watermark 
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        /// <param name="WatermarkText"></param>
+        /// <param name="WatermarkFontName"></param>
+        public static void RenderDocumentAsPDF(String DocumentName, String WatermarkText, String WatermarkFontName = "MS Gothic")
+        {
+            //ExStart:RenderAsPdf
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            // Set watermark properties
+            Watermark watermark = new Watermark(WatermarkText);
+            watermark.Color = System.Drawing.Color.Blue;
+            watermark.Position = WatermarkPosition.Diagonal;
+            watermark.Width = 100;
+
+            // Set watermark font name which contains Japanese characters
+            watermark.FontName = WatermarkFontName;
+
+            PdfFileOptions options = new PdfFileOptions();
+            options.Watermark = watermark;
+
+            // To Apply transformations on PDF file
+            // options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderAsPdf
+
+        }
+
         /// <summary>
         /// Load directory structure as file tree
         /// </summary>
@@ -966,12 +1038,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             string guid = DocumentName;
 
             // Set pdf file one page per sheet option to false, default value of this option is true
-            PdfFileOptions pdfFileOptions = new PdfFileOptions();
-            pdfFileOptions.Guid = guid;
+            PdfFileOptions pdfFileOptions = new PdfFileOptions(); 
             pdfFileOptions.CellsOptions.OnePagePerSheet = false;
 
             //Get pdf file
-            FileContainer fileContainer = imageHandler.GetPdfFile(pdfFileOptions);
+            FileContainer fileContainer = imageHandler.GetPdfFile(DocumentName, pdfFileOptions);
 
             Utilities.SaveFile("test.pdf", fileContainer.Stream);
         }

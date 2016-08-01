@@ -131,6 +131,8 @@ Namespace GroupDocs.Viewer.Examples
                 watermark.Position = position
                 'set an integer value as watermark width 
                 watermark.Width = width
+                ' Set font name
+                watermark.FontName = "MS Gothic"
                 'Assign intialized and populated watermark object to ImageOptions or HtmlOptions objects
                 options.Watermark = watermark
                 'ExEnd:AddWatermark
@@ -149,6 +151,7 @@ Namespace GroupDocs.Viewer.Examples
                 watermark.Color = color
                 watermark.Position = position
                 watermark.Width = width
+                watermark.FontName = """Comic Sans MS"", cursive, sans-serif"
                 options.Watermark = watermark
             End Sub
 

@@ -206,12 +206,15 @@ Namespace GroupDocs.Viewer.Examples
                 options.Password = DocumentPassword
             End If
 
+            ' Set one page per sheet option to false for Multiple pages per sheet in Excel documents, default value of this option is true
+            ' options.CellsOptions.OnePagePerSheet = false;
+
             'Get document pages in image form
             Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, options)
 
             For Each image As PageImage In Images
                 'Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber + "_" & DocumentName, image.Stream)
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream)
             Next
             'ExEnd:RenderAsImage
 
@@ -252,7 +255,7 @@ Namespace GroupDocs.Viewer.Examples
 
             For Each image As PageImage In Images
                 'Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber & "_" & DocumentName, image.Stream)
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream)
             Next
             'ExEnd:RenderAsImageWithWaterMark
         End Sub
@@ -274,7 +277,9 @@ Namespace GroupDocs.Viewer.Examples
             Dim guid As String = DocumentName
 
             'Initialize ImageOptions Object and setting Rotate Transformation
-            Dim options As New ImageOptions() With {.Transformations = Transformation.Rotate}
+            Dim options As New ImageOptions() With { _
+                 .Transformations = Transformation.Rotate _
+            }
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
@@ -314,9 +319,10 @@ Namespace GroupDocs.Viewer.Examples
             ' Guid implies that unique document name 
             Dim guid As String = DocumentName
 
-
             'Initialize ImageOptions Object and setting Reorder Transformation
-            Dim options As New ImageOptions() With {.Transformations = Transformation.Reorder}
+            Dim options As New ImageOptions() With { _
+                .Transformations = Transformation.Reorder _
+            }
 
             ' Set password if document is password protected. 
             If Not [String].IsNullOrEmpty(DocumentPassword) Then
@@ -334,7 +340,7 @@ Namespace GroupDocs.Viewer.Examples
 
             For Each image As PageImage In Images
                 'Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber & "_" & DocumentName, image.Stream)
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream)
             Next
             'ExEnd:RenderAsImageAndReorderPage
         End Sub
@@ -364,11 +370,10 @@ Namespace GroupDocs.Viewer.Examples
 
             For Each image As PageImage In Images
                 'Save each image at disk
-                Utilities.SaveAsImage(image.PageNumber & "_" & Path.GetFileName(DocumentURL.LocalPath), image.Stream)
+                Utilities.SaveAsImage(image.PageNumber + "_" + Path.GetFileName(DocumentURL.LocalPath), image.Stream)
             Next
             'ExEnd:RenderRemoteDocAsImages
         End Sub
-
 #End Region
 
 #Region "GeneralRepresentation"
@@ -401,24 +406,118 @@ Namespace GroupDocs.Viewer.Examples
             ' Create/initialize image handler 
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
 
-            'Initialize PdfFileOptions object
-            Dim options As New PdfFileOptions()
-
-            ' Guid implies that unique document name 
-            options.Guid = DocumentName
-
             ' To Apply transformations on PDF file
-            'options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+            ' options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
 
             ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
-            Dim container As FileContainer = imageHandler.GetPdfFile(options)
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName)
 
             'Change the extension of the file and assign to a string type variable filename
-            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) & ".pdf"
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
 
             'Save each image at disk
             Utilities.SaveFile(filename, container.Stream)
             'ExEnd:RenderAsPdf
+
+        End Sub
+
+        ''' <summary>
+        ''' Render a document in PDF Form with watermark 
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        ''' <param name="WatermarkText"></param>
+        Public Shared Sub RenderDocumentAsPDF(DocumentName As [String], WatermarkText As [String])
+            'ExStart:RenderAsPdf
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Set watermark properties
+            Dim watermark As New Watermark(WatermarkText)
+            watermark.Color = System.Drawing.Color.Blue
+            watermark.Position = WatermarkPosition.Diagonal
+            watermark.Width = 100
+
+            Dim options As New PdfFileOptions()
+            options.Watermark = watermark
+
+            ' To Apply transformations on PDF file
+            ' options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, options)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+            'ExEnd:RenderAsPdf
+
+        End Sub
+
+        ''' <summary>
+        ''' Render a document in PDF Form with watermark 
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        ''' <param name="WatermarkText"></param>
+        ''' <param name="WatermarkFontName"></param>
+        Public Shared Sub RenderDocumentAsPDF(DocumentName As [String], WatermarkText As [String], Optional WatermarkFontName As [String] = "MS Gothic")
+            'ExStart:RenderAsPdf
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Set watermark properties
+            Dim watermark As New Watermark(WatermarkText)
+            watermark.Color = System.Drawing.Color.Blue
+            watermark.Position = WatermarkPosition.Diagonal
+            watermark.Width = 100
+
+            ' Set watermark font name which contains Japanese characters
+            watermark.FontName = WatermarkFontName
+
+            Dim options As New PdfFileOptions()
+            options.Watermark = watermark
+
+            ' To Apply transformations on PDF file
+            ' options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, options)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+            'ExEnd:RenderAsPdf
+
+        End Sub
+
+        ''' <summary>
+        ''' Load directory structure as file tree
+        ''' </summary>
+        ''' <param name="Path"></param>
+        Public Shared Sub LoadFileTree(Path As [String])
+            'ExStart:LoadFileTree
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Load file tree list for custom path 
+            Dim options = New FileTreeOptions(Path)
+
+            ' Load file tree list for ViewerConfig.StoragePath
+            Dim container As FileTreeContainer = imageHandler.LoadFileTree(options)
+
+            For Each node As Object In container.FileTree
+                If node.IsDirectory Then
+                    Console.WriteLine("Guid: {0} | Name: {1} | LastModificationDate: {2}", node.Guid, node.Name, node.LastModificationDate)
+                Else
+                    Console.WriteLine("Guid: {0} | Name: {1} | Document type: {2} | File type: {3} | Extension: {4} | Size: {5} | LastModificationDate: {6}", node.Guid, node.Name, node.DocumentType, node.FileType, node.Extension, _
+                        node.Size, node.LastModificationDate)
+                End If
+            Next
+
+            'ExEnd:LoadFileTree
 
         End Sub
 
