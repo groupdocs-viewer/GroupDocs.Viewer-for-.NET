@@ -9,7 +9,7 @@ function GetNextFileName(sender) {
             fileCount = 1;
         }
         if (fileBrowserData[fileCount].type == "folder") {
-            GetNextFileName(sender);
+            fileCount = 1;
         }
         else {
 
@@ -22,7 +22,7 @@ function GetNextFileName(sender) {
             fileCount1 = 1;
         }
         if (fileBrowserData[fileCount1].type == "folder") {
-            GetNextFileName(sender);
+            fileCount1 = 1;
         }
         else {
 
@@ -34,29 +34,25 @@ function GetNextFileName(sender) {
 function GetPrevioustFileName(sender) {
     if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer1") {
         fileCount--;
-        if (fileCount > fileBrowserData.length - 1) {
-            fileCount = 1;
+        if (fileCount < 0) {
+            fileCount = fileBrowserData.length - 1;
         }
         if (fileBrowserData[fileCount].type == "folder") {
-            GetPrevioustFileName(sender);
+            fileCount = fileBrowserData.length - 1;
         }
-        else {
+        return fileBrowserData[fileCount].path;
 
-            return fileBrowserData[fileCount].path;
-        }
     }
     else if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer2") {
         fileCount1--;
-        if (fileCount1 > fileBrowserData.length - 1) {
-            fileCount1 = 1;
+        if (fileCount1 < 0) {
+            fileCount1 = fileBrowserData.length - 1;
         }
         if (fileBrowserData[fileCount1].type == "folder") {
-            GetPrevioustFileName(sender);
+            fileCount1 = fileBrowserData.length - 1;
         }
-        else {
+        return fileBrowserData[fileCount1].path;
 
-            return fileBrowserData[fileCount1].path;
-        }
     }
 }
 //
