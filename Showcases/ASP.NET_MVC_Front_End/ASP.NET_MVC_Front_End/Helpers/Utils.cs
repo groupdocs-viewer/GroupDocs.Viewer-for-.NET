@@ -298,7 +298,8 @@ namespace MvcSample.Helpers
                     ? Color.FromArgb(opacity, red, green, blue)
                     : Color.Red,
                 Position = ToWatermarkPosition(watermarkPosition),
-                Width = watermarkWidth
+                Width = watermarkWidth,
+                FontName = "MS Gothic"
             };
         }
 
