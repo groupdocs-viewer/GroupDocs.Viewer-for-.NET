@@ -44,23 +44,16 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var htmlConfig = new ViewerConfig
+            _config = new ViewerConfig
             {
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
                 UseCache = true
+                // CachePath=_CachePath 
             };
 
-            _htmlHandler = new ViewerHtmlHandler(htmlConfig);
-
-            var imageConfig = new ViewerConfig
-            {
-                StoragePath = _storagePath,
-                TempPath = _tempPath,
-                UseCache = true,
-                UsePdf = true
-            };
-            _imageHandler = new ViewerImageHandler(imageConfig);
+            _htmlHandler = new ViewerHtmlHandler(_config);
+            _imageHandler = new ViewerImageHandler(_config);
 
             HttpContext.Current.Session["imageHandler"] = _imageHandler;
             HttpContext.Current.Session["htmlHandler"] = _htmlHandler;
@@ -211,7 +204,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             var pdfFileOptions = new PdfFileOptions
             {
                 Guid = parameters.Path,
-                // AddPrintAction = parameters.IsPrintable,
+               // AddPrintAction = parameters.IsPrintable,
                 Transformations = Transformation.Rotate | Transformation.Reorder,
                 Watermark = GetWatermark(parameters),
             };
@@ -427,15 +420,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
 
             }
-            SerializationOptions serializationOptions = new SerializationOptions
-            {
-                UsePdf = request.UsePdf,
-                SupportListOfBookmarks = request.SupportListOfBookmarks,
-                SupportListOfContentControls = request.SupportListOfContentControls
-            };
-            var documentInfoJson = new DocumentInfoJsonSerializer(docInfo, serializationOptions).Serialize();
-            result.documentDescription = documentInfoJson;
-
+            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(true);
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
             if (docInfo.Attachments.Count > 0)
@@ -453,8 +438,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
         private static void ViewDocumentAsHtml(ViewDocumentParameters request, ViewDocumentResponse result, string fileName)
         {
-            var htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
-
+            var htmlHandler= (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
+            
             var docInfo = htmlHandler.GetDocumentInfo(request.Path);
 
             var maxWidth = 0;
@@ -477,12 +462,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 MaxHeight = maxHeight
             };
 
-
+            
 
             var htmlOptions = new HtmlOptions
             {
-                // IsResourcesEmbedded = Utils.IsImage(fileName),
-                IsResourcesEmbedded = false,
+               // IsResourcesEmbedded = Utils.IsImage(fileName),
+                IsResourcesEmbedded=false,
                 HtmlResourcePrefix = string.Format("/GetResourceForHtml.aspx?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
             };
 
@@ -493,11 +478,11 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             }
 
             List<string> cssList;
-            var htmlPages = GetHtmlPages(fileName, fileName, htmlOptions, out cssList);
+            var htmlPages = GetHtmlPages(fileName,fileName, htmlOptions, out cssList);
             foreach (AttachmentBase attachment in docInfo.Attachments)
             {
                 var attachmentPath = _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name;
-                var attachmentResourcePath = HttpUtility.UrlEncode(_tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(".", "_"));
+                var attachmentResourcePath = HttpUtility.UrlEncode(  _tempPath + "\\" + Path.GetFileNameWithoutExtension(docInfo.Guid) + Path.GetExtension(docInfo.Guid).Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(".","_"));
                 var attachmentHtmlOptions = new HtmlOptions()
                 {
                     IsResourcesEmbedded = Utils.IsImage(fileName),
@@ -525,7 +510,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             string guid = parameters.Path;
             int pageIndex = parameters.PageNumber;
-
+             
             DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
             int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
@@ -562,7 +547,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                                      "&pageNumber={page-number}&resourceName=",
             };
 
-            var htmlPages = GetHtmlPages(parameters.Path, parameters.Path, htmlOptions, out cssList);
+            var htmlPages = GetHtmlPages(parameters.Path,parameters.Path, htmlOptions, out cssList);
 
             var pageHtml = htmlPages.Count > 0 ? htmlPages[0].HtmlContent : null;
             var pageCss = cssList.Count > 0 ? new[] { string.Join(" ", cssList) } : null;
@@ -575,7 +560,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         public static ReorderPageResponse ReorderPage(ReorderPageParameters parameters)
         {
             string guid = parameters.Path;
-
+             
             DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
 
             int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
@@ -590,8 +575,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             var htmlHandler = (ViewerHtmlHandler)HttpContext.Current.Session["htmlHandler"];
             var htmlPages = htmlHandler.GetPages(filePath, htmlOptions);
-
-
+           
+           
             cssList = new List<string>();
             foreach (var page in htmlPages)
             {
@@ -605,7 +590,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                 foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Style))
                 {
-
+                   
                     var cssStream = htmlHandler.GetResource(filePath, resource);
                     var text = new StreamReader(cssStream).ReadToEnd();
 
@@ -633,7 +618,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                     if (needResave)
                     {
-                        var fullPath = Path.Combine(_tempPath, HttpUtility.UrlDecode(resourcePath), "html", "resources",
+                        var fullPath = Path.Combine(_tempPath, HttpUtility.UrlDecode( resourcePath), "html", "resources",
                             string.Format("page{0}", page.PageNumber), resource.ResourceName);
 
                         System.IO.File.WriteAllText(fullPath, text);
