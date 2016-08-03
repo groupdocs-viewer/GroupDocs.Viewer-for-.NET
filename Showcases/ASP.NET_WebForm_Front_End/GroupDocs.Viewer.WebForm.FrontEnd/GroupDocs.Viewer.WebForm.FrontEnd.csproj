@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,7 @@
     <Compile Include="BusinessLayer\GetFileParameters.cs" />
     <Compile Include="BusinessLayer\GetImageUrlsParameters.cs" />
     <Compile Include="BusinessLayer\GetResourceForHtmlParameters.cs" />
+    <Compile Include="BusinessLayer\Helpers\DocumentInfoJsonSerializer.cs" />
     <Compile Include="BusinessLayer\Helpers\ImageUrlHelper.cs" />
     <Compile Include="BusinessLayer\Helpers\InterProcessLock.cs" />
     <Compile Include="BusinessLayer\Helpers\Utils.cs" />

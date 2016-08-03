@@ -37,9 +37,12 @@
      </tr>--%>
         <tr style="width: 100%">
             <td>
-
                 <div id="viewerHtmlDiv" style="width: 100%"></div>
             </td>
+              <td style="width:30px"></td>
+        <td>
+            <div id="viewerImageDiv"></div>
+        </td>
 
         </tr>
     </table>
@@ -73,7 +76,7 @@
             width: 650,
             height: 900,
             isResourcesEmbedded: true,
-            useHtmlBasedEngine: true,
+            useHtmlBasedEngine: false,
             showDownload: true,
             downloadPdfFile: true,
             showPrint: true,
@@ -87,7 +90,7 @@
         $('#viewerHtmlDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
     });
     //For Image Representation
-    /*  $(function () {
+      $(function () {
           $('#viewerImageDiv').groupdocsViewer({
               filePath: 'demo.docx',
               zoomToFitWidth: true,
@@ -98,15 +101,14 @@
               showPaging: true,
               width: 650,
               height: 900,
-              watermarkPosition: 'Diagonal',
-              watermarkText: '全角',
-              watermarkWidth: 10,
+              showSearch: true,
+              supportTextSelection : true,
               useHtmlBasedEngine: false,
               showDownload: true,
               downloadPdfFile: false,
               showPrint: true,
               usePdfPrinting: false
           });
-      });*/
+      });
 </script>
 </html>
