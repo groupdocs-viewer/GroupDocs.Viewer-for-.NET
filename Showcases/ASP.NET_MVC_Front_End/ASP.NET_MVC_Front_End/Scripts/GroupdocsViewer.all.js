@@ -2980,8 +2980,10 @@ viewerHeight = this.documentSpace.parent().height();
 return viewerHeight;
 },
 getFitHeightZoom: function () {
-var viewerHeight = this.getViewerHeight();
-return (viewerHeight - (this.imageVerticalMargin + 2)) / Math.round(this.initialWidth * this.heightWidthRatio) * 100;
+    var viewerHeight = this.getViewerHeight();
+    return this.getFitWidth() / this.initialWidth * 100;
+
+//return (viewerHeight - (this.imageVerticalMargin + 2)) / Math.round(this.initialWidth * this.heightWidthRatio) * 100;
 //return viewerHeight / Math.round(this.pageImageWidth * this.heightWidthRatio) * 100;
 },
 getScrollbarWidth: function () {
