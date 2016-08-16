@@ -184,8 +184,7 @@ namespace MvcSample.Controllers
                 displayName = Path.ChangeExtension(displayName, "pdf");
 
                 var options = new PdfFileOptions
-                {
-                    Guid = parameters.Path,
+                { 
                     Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity),
                 };
 
@@ -197,7 +196,7 @@ namespace MvcSample.Controllers
 
                 options.Transformations |= Transformation.Reorder;
 
-                var pdfFileResponse = _htmlHandler.GetPdfFile(options);
+                var pdfFileResponse = _htmlHandler.GetPdfFile(parameters.Path, options);
                 fileStream = pdfFileResponse.Stream;
             }
             else
@@ -224,8 +223,7 @@ namespace MvcSample.Controllers
                 : Uri.EscapeDataString(parameters.DisplayName);
 
             var options = new PdfFileOptions
-            {
-                Guid = parameters.Path,
+            { 
                 Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity)
             };
 
@@ -238,7 +236,7 @@ namespace MvcSample.Controllers
             options.Transformations |= Transformation.Reorder;
 
 
-            var response = _htmlHandler.GetPdfFile(options);
+            var response = _htmlHandler.GetPdfFile(parameters.Path, options);
 
             var contentDispositionString = new ContentDisposition { FileName = displayName, Inline = true }.ToString();
             Response.AddHeader("Content-Disposition", contentDispositionString);
