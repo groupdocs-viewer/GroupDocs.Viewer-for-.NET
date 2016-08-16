@@ -50,13 +50,17 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
                 var getPdfFileRequest = new PdfFileOptions
                 {
-                    Guid = parameters.Path,
-                    AddPrintAction = parameters.IsPrintable,
+                      
                     Transformations = Transformation.Rotate | Transformation.Reorder,
                     Watermark = GetWatermark(parameters),
                 };
 
-                var pdfFileResponse = _htmlHandler.GetPdfFile(getPdfFileRequest);
+                if (parameters.IsPrintable)
+                {
+                    getPdfFileRequest.Transformations |= Transformation.AddPrintAction;
+                }
+
+                var pdfFileResponse = _htmlHandler.GetPdfFile(parameters.Path, getPdfFileRequest);
                 fileStream = pdfFileResponse.Stream;
             }
             else

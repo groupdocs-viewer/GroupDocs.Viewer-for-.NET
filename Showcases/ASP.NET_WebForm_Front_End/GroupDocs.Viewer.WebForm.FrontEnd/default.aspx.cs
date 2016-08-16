@@ -210,7 +210,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             var pdfFileOptions = new PdfFileOptions
             {
-                Guid = parameters.Path,
+                
                 // AddPrintAction = parameters.IsPrintable,
                 Transformations = Transformation.Rotate | Transformation.Reorder,
                 Watermark = GetWatermark(parameters),
@@ -218,7 +218,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             if (parameters.IsPrintable)
                 pdfFileOptions.Transformations |= Transformation.AddPrintAction;
 
-            var response = _htmlHandler.GetPdfFile(pdfFileOptions);
+            var response = _htmlHandler.GetPdfFile(parameters.Path, pdfFileOptions);
 
             string contentDispositionString = new ContentDisposition { FileName = displayName, Inline = true }.ToString();
             HttpContext.Current.Response.AddHeader("Content-Disposition", contentDispositionString);
