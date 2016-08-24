@@ -1466,12 +1466,12 @@ getDocumentPageHtml: function (path, pageIndex, usePngImages,
 embedImagesIntoHtmlForWordFiles,
 saveFontsInAllFormats,
 successCallback, errorCallback,
-instanceIdToken, locale) {
+instanceIdToken, locale, watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity) {
 var data = {
 path: path, pageIndex: pageIndex, usePngImages: usePngImages,
 embedImagesIntoHtmlForWordFiles: embedImagesIntoHtmlForWordFiles,
 instanceIdToken: instanceIdToken,
-locale: locale,
+locale: locale, watermarkText: watermarkText, watermarkColor: watermarkColor, watermarkPosition: watermarkPosition, watermarkWidth: watermarkWidth, watermarkOpacity: watermarkOpacity,
 saveFontsInAllFormats: saveFontsInAllFormats
 };
 this._runServiceAsync(this.applicationPath + this.urlPrefix + '/GetDocumentPageHtml' + this._urlSuffix, data, successCallback, errorCallback, false);
@@ -2023,7 +2023,7 @@ getDocumentPageHtml: function (fileId, pageNumber, usePngImages,
 embedImagesIntoHtmlForWordFiles,
 instanceIdToken,
 saveFontsInAllFormats,
-callback, errorCallback, locale) {
+callback, errorCallback, locale, watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity) {
 this._portalService.getDocumentPageHtml(fileId, pageNumber, usePngImages,
 embedImagesIntoHtmlForWordFiles,
 saveFontsInAllFormats,
@@ -2034,7 +2034,7 @@ function (error) {
 errorCallback.apply(this, [error]);
 },
 instanceIdToken,
-locale
+locale, watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity
 );
 },
 reorderPage: function (fileId, oldPosition, newPosition, instanceIdToken, callback, errorCallback) {
@@ -2334,7 +2334,7 @@ function (error) {
 page.startedDownloadingPage = false;
 this._onError(error);
 }.bind(this),
-this.locale
+this.locale, this.watermarkText, this.watermarkColor, this.watermarkPosition, this.watermarkWidth, this.watermarkOpacity
 );
 }
 },

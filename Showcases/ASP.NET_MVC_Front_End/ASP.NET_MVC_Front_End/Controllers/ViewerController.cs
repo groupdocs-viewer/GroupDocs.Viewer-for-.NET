@@ -53,7 +53,7 @@ namespace MvcSample.Controllers
                 StoragePath = _storagePath,
                 TempPath = _tempPath,
                 UseCache = true,
-               UsePdf = _usePdfInImageEngine
+                UsePdf = _usePdfInImageEngine
             };
 
             _imageHandler = new ViewerImageHandler(imageConfig);
@@ -184,8 +184,8 @@ namespace MvcSample.Controllers
                 displayName = Path.ChangeExtension(displayName, "pdf");
 
                 var options = new PdfFileOptions
-                { 
-                    Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity),
+                {
+                    Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity),
                 };
 
                 if (parameters.IsPrintable)
@@ -223,8 +223,8 @@ namespace MvcSample.Controllers
                 : Uri.EscapeDataString(parameters.DisplayName);
 
             var options = new PdfFileOptions
-            { 
-                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity)
+            {
+                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity)
             };
 
             if (parameters.IsPrintable)
@@ -246,7 +246,7 @@ namespace MvcSample.Controllers
 
         public string GetFileUrl(string path, bool getPdf, bool isPrintable, string fileDisplayName = null,
           string watermarkText = null, int? watermarkColor = null,
-          WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0,byte? watermarkOpacity=255,
+          WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0, byte? watermarkOpacity = 255,
           bool ignoreDocumentAbsence = false,
           bool useHtmlBasedEngine = false,
           bool supportPageRotation = false)
@@ -309,6 +309,8 @@ namespace MvcSample.Controllers
                 HtmlResourcePrefix = string.Format(
                     "/document-viewer/GetResourceForHtml?documentPath={0}", parameters.Path) +
                                      "&pageNumber={page-number}&resourceName=",
+                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
+parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity),
             };
 
             var htmlPages = GetHtmlPages(parameters.Path, htmlOptions, out cssList);
@@ -341,13 +343,13 @@ namespace MvcSample.Controllers
             var imageOptions = new ImageOptions
             {
                 ConvertImageFileType = _convertImageFileType,
-                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor, 
-                parameters.WatermarkPosition, parameters.WatermarkWidth,parameters.WatermarkOpacity),
+                Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
+                parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity),
                 Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None,
                 CountPagesToConvert = 1,
                 PageNumber = pageNumber,
                 JpegQuality = parameters.Quality.GetValueOrDefault(),
-                
+
             };
 
             if (parameters.Rotate && parameters.Width.HasValue)
@@ -538,7 +540,7 @@ namespace MvcSample.Controllers
 
             var maxWidth = 0;
             var maxHeight = 0;
-           
+
 
             foreach (var pageData in docInfo.Pages)
             {
@@ -587,7 +589,7 @@ namespace MvcSample.Controllers
                 attachmentImagesUrls.CopyTo(attachmentUrls, (attachmentUrls.Length - pages.Count));
 
             }
-            
+
             SerializationOptions serializationOptions = new SerializationOptions
             {
                 UsePdf = request.UsePdf,
@@ -640,6 +642,8 @@ namespace MvcSample.Controllers
                 IsResourcesEmbedded = false,
                 HtmlResourcePrefix = string.Format(
                 "/document-viewer/GetResourceForHtml?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
+                Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor,
+request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
             };
 
             if (request.PreloadPagesCount.HasValue && request.PreloadPagesCount.Value > 0)
@@ -688,7 +692,7 @@ namespace MvcSample.Controllers
         {
             return GetFileUrl(request.Path, true, true, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
-                request.WatermarkPosition, request.WatermarkWidth,request.WatermarkOpacity,
+                request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity,
                 request.IgnoreDocumentAbsence,
                 request.UseHtmlBasedEngine, request.SupportPageRotation);
         }
@@ -697,7 +701,7 @@ namespace MvcSample.Controllers
         {
             return GetFileUrl(request.Path, true, false, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
-                request.WatermarkPosition, request.WatermarkWidth,request.WatermarkOpacity,
+                request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity,
                 request.IgnoreDocumentAbsence,
                 request.UseHtmlBasedEngine, request.SupportPageRotation);
         }

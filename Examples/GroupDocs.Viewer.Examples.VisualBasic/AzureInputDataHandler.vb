@@ -61,6 +61,9 @@ Namespace GroupDocs.Viewer.Examples
                 Throw New System.Exception("Unable to recognize that Account Name/Account Key.", e)
             End Try
         End Sub
+        Public Sub SaveDocument(cachedDocumentDescription As CachedDocumentDescription, documentStream As Stream) Implements IInputDataHandler.SaveDocument
+            'TODO
+        End Sub
         ''' <summary>
         ''' Gets the file description.
         ''' </summary>
@@ -177,6 +180,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim emptyDate As New DateTime(1, 1, 1)
             Return If(dateTimeOffset.HasValue, dateTimeOffset.Value.DateTime, emptyDate)
         End Function
+        
     End Class
 End Namespace
 
