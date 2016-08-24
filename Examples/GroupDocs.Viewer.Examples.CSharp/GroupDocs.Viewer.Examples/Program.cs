@@ -36,6 +36,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render a document located at a web location
             // ViewGenerator.RenderDocumentAsHtml(new Uri("http://www.example.com/sample.doc"));
 
+            //Render a document in html form with resource prefix
+            //ViewGenerator.RenderDocumentAsHtmlWithResourcePrefix("word.doc");
+            
+            //Render hidden pages in Visio file in html form 
+            //ViewGenerator.RenderHiddenPagesOfVisioAsHtml("sample.vdx");
+
+            //Render Excel document in html form with internal hyperlink prefix
+            //ViewGenerator.RenderExcelAsHtmlWithInternalHyperlinkPrefix("sample.xlsx");
             #endregion
 
             #region ViewerImagePresentation
@@ -57,6 +65,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render a document located at a web location
             // ViewGenerator.RenderDocumentAsImages(new Uri("http://www.example.com/sample.doc"));
+
+            //Render hidden pages in Visio file in image form 
+            //ViewGenerator.RenderHiddenPagesOfVisioAsImage("sample.vdx");
 
             #endregion
 

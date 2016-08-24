@@ -95,5 +95,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             request.Method = method;
             return request;
         }
+
+        public void SaveDocument(CachedDocumentDescription description, Stream stream)
+        { 
+            //TODO
+        }
     }
 }
