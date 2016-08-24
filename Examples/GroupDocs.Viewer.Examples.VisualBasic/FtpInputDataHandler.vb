@@ -87,9 +87,6 @@ Namespace GroupDocs.Viewer.Examples
             target = value
             Return value
         End Function
-        Public Sub SaveDocument(description As CachedDocumentDescription, stream As Stream) Implements IInputDataHandler.SaveDocument
-            'TODO
-        End Sub
     End Class
 End Namespace
 

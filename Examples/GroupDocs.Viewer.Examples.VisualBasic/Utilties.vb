@@ -44,24 +44,7 @@ Namespace GroupDocs.Viewer.Examples
 
         End Function
 
-        ''' <summary>
-        ''' Initialize, populate and return the ViewerConfig object
-        ''' </summary>
-        ''' <param name="DefaultFontName">Font Name</param>
-        ''' <returns>Populated ViewerConfig Object</returns>
-        Public Shared Function GetConfigurations(DefaultFontName As String) As ViewerConfig
-            'ExStart:ConfigurationsWithDefaultFontName
-            Dim config As New ViewerConfig()
-            'set the storage path
-            config.StoragePath = StoragePath
-            'Uncomment the below line for cache purpose
-            'config.UseCache = true;
-            'Set default font name
-            config.DefaultFontName = DefaultFontName
-            Return config
-            'ExEnd:ConfigurationsWithDefaultFontName
 
-        End Function
 
 
 

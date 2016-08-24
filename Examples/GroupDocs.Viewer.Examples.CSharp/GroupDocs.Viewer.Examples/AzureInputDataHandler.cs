@@ -215,9 +215,5 @@ namespace GroupDocs.Viewer.Examples.CSharp
             DateTime emptyDate = new DateTime(1, 1, 1);
             return dateTimeOffset.HasValue ? dateTimeOffset.Value.DateTime : emptyDate;
         }
-        public void SaveDocument(CachedDocumentDescription description, Stream stream)
-        {
-            //TODO
-        }
     }
 }
