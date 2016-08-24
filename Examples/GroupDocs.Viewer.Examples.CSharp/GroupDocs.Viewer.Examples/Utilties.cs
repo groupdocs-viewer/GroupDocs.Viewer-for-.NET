@@ -44,7 +44,25 @@ namespace GroupDocs.Viewer.Examples
 
         }
 
+        /// <summary>
+        /// Initialize, populate and return the ViewerConfig object
+        /// </summary>
+        /// <param name="DefaultFontName">Font Name</param>
+        /// <returns>Populated ViewerConfig Object</returns>
+        public static ViewerConfig GetConfigurations(string DefaultFontName)
+        {
+            //ExStart:ConfigurationsWithDefaultFontName
+            ViewerConfig config = new ViewerConfig();
+            //set the storage path
+            config.StoragePath = StoragePath;
+            //Uncomment the below line for cache purpose
+            //config.UseCache = true;
+            //Set default font name
+            config.DefaultFontName = DefaultFontName;
+            return config;
+            //ExEnd:ConfigurationsWithDefaultFontName
 
+        }
 
 
 
