@@ -27,7 +27,6 @@ Namespace GroupDocs.Viewer.Examples
 #Region "Configurations"
 
 
-
         ''' <summary>
         ''' Initialize, populate and return the ViewerConfig object
         ''' </summary>

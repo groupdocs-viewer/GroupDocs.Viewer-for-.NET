@@ -26,7 +26,6 @@ namespace GroupDocs.Viewer.Examples
         #region Configurations
 
 
-
         /// <summary>
         /// Initialize, populate and return the ViewerConfig object
         /// </summary>

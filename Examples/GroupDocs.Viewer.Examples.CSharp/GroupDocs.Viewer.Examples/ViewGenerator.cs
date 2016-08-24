@@ -20,6 +20,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
     public static class ViewGenerator
     {
 
+
         #region HTMLRepresentation
         /// <summary>
         /// Render simple document in html representation
