@@ -19,6 +19,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Utilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
+
             #region ViewerHtmlPresentation
 
             //Render a power point presentation in html form

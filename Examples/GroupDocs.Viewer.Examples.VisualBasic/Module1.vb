@@ -21,6 +21,7 @@ Namespace GroupDocs.Viewer.Examples
 
             'ExEnd:ApplyingLicense
 
+
             '#Region "ViewerHtmlPresentation"
 
             'Render a power point presentation in html form

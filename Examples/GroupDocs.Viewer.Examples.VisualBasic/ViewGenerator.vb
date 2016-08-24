@@ -25,7 +25,6 @@ Namespace GroupDocs.Viewer.Examples
 #Region "HTMLRepresentation"
 
 
-
         ''' <summary>
         ''' Render simple document in html representation
         ''' </summary>
