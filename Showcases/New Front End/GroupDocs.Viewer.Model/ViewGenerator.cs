@@ -513,11 +513,8 @@ namespace GroupDocs.Viewer.Model
            //Initialize PdfFileOptions object
             PdfFileOptions options = new PdfFileOptions();
            
-            // Guid implies that unique document name 
-            options.Guid = DocumentName;
-
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
-            FileContainer container = imageHandler.GetPdfFile(options);
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
            
             //Change the extension of the file and assign to a string type variable filename
             String filename=Path.GetFileNameWithoutExtension(DocumentName)+".pdf";

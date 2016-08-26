@@ -530,11 +530,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
             RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
-            RotatePageContainer rotatePageContainer = _imageHandler.RotatePage(rotatePageOptions);
+            _imageHandler.RotatePage(rotatePageOptions);
+            DocumentInfoContainer container = _imageHandler.GetDocumentInfo(guid);
+
+            PageData pageData = container.Pages.Single(_ => _.Number == pageNumber);
 
             RotatePageResponse response = new RotatePageResponse
             {
-                resultAngle = rotatePageContainer.CurrentRotationAngle
+                resultAngle = pageData.Angle
             };
 
             return response;
