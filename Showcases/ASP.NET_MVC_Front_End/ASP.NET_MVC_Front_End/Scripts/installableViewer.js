@@ -8,13 +8,17 @@
         },
 
         _create: function () {
+            this._viewer = this.element.find('.doc_viewer').groupdocsViewer(
             $.extend(this.options, {
                 element: this.element,
                 applicationPath: $.ui.groupdocsViewer.prototype.applicationPath,
                 widgetInstance: this
-            });
+            })
+            );
             this._viewModel = this.getViewModel();
+            this.initControlsAndHandlers();
         },
+
 
         getViewModel: function () {
             if (this._viewModel == null) {
@@ -112,6 +116,53 @@
             this._viewModel.loadDocument(documentPath);
         },
 
+        initControlsAndHandlers: function () {
+            this.initializErrorModal(this.element, this._viewer, this._viewModel);
+        },
+        initializErrorModal:  function (annotationWidget, annotationsViewer, annotationsViewerVM) {
+
+            // initialize error modal dialog
+            window.jerror = function (msg, handler, title) {
+                $(annotationWidget).trigger("error.groupdocs", msg);
+
+                if (annotationsViewerVM.enableStandardErrorHandling) {
+                    var ttl = title || 'Error';
+
+                    if (!msg) msg = 'Sorry, we\'re unable to perform your request right now. Please try again later.';
+
+                    $('#jerrormodal h3').text(ttl);
+                    $('#jerrormodalText').text(msg.Reason ? msg.Reason : msg);
+
+                    if (handler) {
+                        $('#jerrormodal').one('hidden', handler);
+                    }
+
+                    $('#jerrormodal').modal('show');
+                }
+            }
+
+
+            if ($('#jerrormodal').length > 0)
+                return;
+
+            $("<div class='grpdx jerrorwrapper'> <div id='jerrormodal' class='modal fade modal2' style='z-index: 9999'>" +
+                "  <div class='modal_inner_wrapper'>" +
+                "      <a class='popclose' data-dismiss='modal'></a>" +
+                "      <div class='modal_header'>" +
+                "          <h3>Error</h3>" +
+                "      </div>" +
+                "      <div class='modal_content'>" +
+                "          <div class='modal_input_wrap_left'>" +
+                "              <p id='jerrormodalText' class='modaltext left'>An unexpected error occured. Please contact Support team for the assistance.</p>" +
+                "          </div>" +
+                "      </div>" +
+                "  </div>" +
+                "</div></div>").appendTo('body');
+
+            $('#jerrormodal').modal({ show: false });
+
+        },
+
         rotateCurrentPage: function (rotationAmount) {
             this._viewModel._rotatePage(rotationAmount);
         },
@@ -131,6 +182,7 @@
         destroy: function () {
             this._viewModel.destroy();
         }
+
     });
 
     if (!window.groupdocs)
@@ -211,12 +263,12 @@
                         '      <a class="btnOpen new_head_tools_btn h_t_i_browser" data-tooltip="Open File" data-localize-tooltip="OpenFile"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_nav2 previous_document" data-tooltip="Previous Document" data-localize-tooltip="Previous Document"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_nav3 next_document" data-tooltip="Next Document" data-localize-tooltip="Next Document"></a>' +
-                      
+
 
                         '      <div name="printAndDownloadToolbar" class="new_head_tools_wrapper left">' +
                         '          <a class="new_head_tools_btn h_t_i_download btn_download" data-tooltip="Download" data-localize-tooltip="Download"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_print print_button" data-tooltip="Print" data-localize-tooltip="Print"></a>' +
-                 
+
                         '      </div>' +
                         '      <div class="navigation-bar' + (browserIsIE8 ? " ie8" : "") + '">' +
                         '      </div>' +
@@ -483,8 +535,8 @@
             var thumbnailQuality;
             if (settings.useHtmlBasedEngine)
                 thumbnailQuality = 20;
-             else
-                 thumbnailQuality = settings.quality;
+            else
+                thumbnailQuality = settings.quality;
 
             var thumbnailsOptions = {
                 createHtml: true,
@@ -543,7 +595,8 @@
                 passwordForOpening: settings.passwordForOpening,
                 saveFontsInAllFormats: settings.saveFontsInAllFormats,
                 downloadButtonMode: settings.downloadButtonMode,
-                allowDocumentDownloadingOnFailure: settings.allowDocumentDownloadingOnFailure
+                allowDocumentDownloadingOnFailure: settings.allowDocumentDownloadingOnFailure,
+                printWithWatermark: settings.printWithWatermark
             };
 
             var menuClickedEvent = "onMenuClicked";
@@ -595,6 +648,7 @@
                     docViewerId: settings.docViewerId,
                     zoomToFitWidth: settings.zoomToFitWidth,
                     zoomToFitHeight: settings.zoomToFitHeight,
+                    printWithWatermark: settings.printWithWatermark,
                     navigation: navigationWrapper,
                     navigationOptions: { createHtml: true },
                     thumbnails: thumbnails,
@@ -815,12 +869,12 @@
                     if (settings.allowDocumentDownloadingOnFailure) {
                         var downloadUrl = jGroupdocs.stringExtensions.trimEnd(settings.applicationPath, '/') + '/document-viewer/GetFile' +
                             (settings.handlerUrlSuffix || '') + '?path=' + filePath + '&getPdf=false';
-                        messageHeaderDownloadLink.html('<a href="'+downloadUrl+'" target="_blank">Download original file "'+filePath+'"</a>');
-                        
+                        messageHeaderDownloadLink.html('<a href="' + downloadUrl + '" target="_blank">Download original file "' + filePath + '"</a>');
+
                     } else {
                         messageHeaderDownloadLink.remove();
                     }
-                    
+
                     var dialogWidth, dialogHeight;
                     if (msg.substring(0, 1) == "<") {
                         //jerrorElement.html(msg);
@@ -954,10 +1008,10 @@
                 } else {
                     finalDownloadUrl = this.downloadUrl;
                 }
-                
+
                 downloadButton.attr('href', finalDownloadUrl);
                 var targetValue;
-                switch(this.downloadButtonMode) {
+                switch (this.downloadButtonMode) {
                     case 2:
                         targetValue = '_self';
                         break;
@@ -971,15 +1025,15 @@
                 downloadButton.attr('target', targetValue);
                 onlyFireEventsInClickHandlerFlag = true;
             }
-            
+
             downloadButton.bind({
                 click: function () {
                     self._downloadDocument(onlyFireEventsInClickHandlerFlag);
                     return onlyFireEventsInClickHandlerFlag;
                 }
             });
-            
-            
+
+
             //var printFrameLoaded = false;
             printButton.bind({
                 click: function () {
@@ -1237,6 +1291,7 @@
 
         _printDocument: function () {
             var self = this;
+
             var message, title;
             if (this.usePdfPrinting) {
                 message = this._getLocalizedString("Printing", "Printing");
@@ -1304,7 +1359,7 @@
                     this._model.getPrintableHtml(this.documentPath, useHtmlContentBasedPrinting, fileDisplayName,
                         this.quality, this.supportTextSelection,
                         watermarkText, watermarkColor,
-                        watermarkPosition, watermarkWidth,watermarkOpacity,
+                        watermarkPosition, watermarkWidth, watermarkOpacity,
                         this.ignoreDocumentAbsence,
                         this.instanceIdToken,
                         function (responseData) {
@@ -1459,7 +1514,7 @@
             this._showFileOpenDialog();
         },
 
-        setViewerMode: function(mode) {
+        setViewerMode: function (mode) {
             switch (mode) {
                 case window.groupdocs.ScrollMode:
                     this.openScrollView();
@@ -1576,14 +1631,14 @@
         getPrintableHtml: function (documentPath, useHtmlBasedEngine, fileDisplayName,
                                     quality, supportTextSelection,
                                     watermarkText, watermarkColor,
-                                    watermarkPosition, watermarkWidth,watermarkOpacity,
+                                    watermarkPosition, watermarkWidth, watermarkOpacity,
                                     ignoreDocumentAbsence,
                                     instanceIdToken,
                                     callback, errorCallback, locale) {
 
             this._portalService.getImageUrlsAsync(
                                               null, null, documentPath, /*width*/null, null, 0, /*imageCount*/null, quality, supportTextSelection, /*this.fileVersion*/null,
-                                              watermarkText, watermarkColor, watermarkPosition, watermarkWidth,watermarkOpacity,
+                                              watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity,
                                               ignoreDocumentAbsence,
                                               useHtmlBasedEngine, /*supportPageRotation*/false,
                 function (response) {
