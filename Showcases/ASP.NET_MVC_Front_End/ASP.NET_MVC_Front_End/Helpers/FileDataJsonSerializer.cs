@@ -154,23 +154,7 @@ namespace MvcSample.Helpers
                 json.Append("}"); // page
             }
             json.Append("]"); // pages
-
-            bool includeContentControls = _options.UsePdf && wordsFileData.ContentControls.Count > 0;
-            if (includeContentControls)
-            {
-                json.Append(", \"contentControls\":[");
-                bool needSeparator = false;
-                foreach (ContentControl contentControl in wordsFileData.ContentControls)
-                {
-                    if (needSeparator)
-                        json.Append(',');
-
-                    AppendContentControl(contentControl, json);
-
-                    needSeparator = true;
-                }
-                json.Append("]"); //contentControls
-            }
+                        
             json.Append("}"); //document
 
             return json.ToString();
@@ -214,20 +198,7 @@ namespace MvcSample.Helpers
                 JsonEncode(rowData.Text),
                 string.Join(",", characterCoordinates)));
         }
-
-        /// <summary>
-        /// Appends the content control.
-        /// </summary>
-        /// <param name="contentControl">The content control.</param>
-        /// <param name="json">The json.</param>
-        private void AppendContentControl(ContentControl contentControl, StringBuilder json)
-        {
-            json.Append(string.Format("{{\"title\":\"{0}\", \"startPage\":{1}, \"endPage\":{2}}}",
-                JsonEncode(contentControl.Title),
-                contentControl.StartPageNumber.ToString(_defaultCulture),
-                contentControl.EndPageNumber.ToString(_defaultCulture)));
-        }
-
+        
         /// <summary>
         /// Jsons the encode.
         /// </summary>
