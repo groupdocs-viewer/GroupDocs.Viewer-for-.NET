@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\groupdocs-viewer-net\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,10 +140,12 @@
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Models\FileBrowserTreeDataResponse.cs" />
     <Compile Include="Models\GetDocumentPageHtmlParameters.cs" />
+    <Compile Include="Models\GetDocumentPageHtmlResult.cs" />
     <Compile Include="Models\GetDocumentPageImageParameters.cs" />
     <Compile Include="Models\GetFileParameters.cs" />
     <Compile Include="Models\GetImageUrlsParameters.cs" />
     <Compile Include="Models\GetResourceForHtmlParameters.cs" />
+    <Compile Include="Models\HtmlPageContent.cs" />
     <Compile Include="Models\ReorderPageParameters.cs" />
     <Compile Include="Models\RotatePageParameters.cs" />
     <Compile Include="Models\ViewDocumentParameters.cs" />
@@ -256,6 +259,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

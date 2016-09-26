@@ -154,23 +154,7 @@ namespace MvcSample.Helpers
                 json.Append("}"); // page
             }
             json.Append("]"); // pages
-
-            bool includeContentControls = _options.UsePdf && wordsFileData.ContentControls.Count > 0;
-            if (includeContentControls)
-            {
-                json.Append(", \"contentControls\":[");
-                bool needSeparator = false;
-                foreach (ContentControl contentControl in wordsFileData.ContentControls)
-                {
-                    if (needSeparator)
-                        json.Append(',');
-
-                    AppendContentControl(contentControl, json);
-
-                    needSeparator = true;
-                }
-                json.Append("]"); //contentControls
-            }
+            
             json.Append("}"); //document
 
             return json.ToString();

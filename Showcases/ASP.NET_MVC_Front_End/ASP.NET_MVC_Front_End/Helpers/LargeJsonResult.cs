@@ -11,13 +11,13 @@ namespace MvcSample.Helpers
 
         public LargeJsonResult()
         {
-            MaxJsonLength = 64 * 1024 * 1024;
-            RecursionLimit = 100;
+            _MaxJsonLength = 64 * 1024 * 1024;
+            _RecursionLimit = 100;
         }
 
-        public int MaxJsonLength { get; set; }
+        public int _MaxJsonLength { get; set; }
 
-        public int RecursionLimit { get; set; }
+        public int _RecursionLimit { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {
@@ -47,7 +47,7 @@ namespace MvcSample.Helpers
             }
             if (Data != null)
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer() { MaxJsonLength = MaxJsonLength, RecursionLimit = RecursionLimit };
+                JavaScriptSerializer serializer = new JavaScriptSerializer() { MaxJsonLength = _MaxJsonLength, RecursionLimit = _RecursionLimit };
                 string output = serializer.Serialize(Data);
                 response.Write(output);
             }
