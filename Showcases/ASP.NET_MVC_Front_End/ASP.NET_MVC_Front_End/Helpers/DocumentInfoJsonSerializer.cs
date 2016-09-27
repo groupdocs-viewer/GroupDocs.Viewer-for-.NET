@@ -49,9 +49,6 @@ namespace MvcSample.Helpers
         /// <returns>System.String.</returns>
         public string Serialize()
         {
-            if (_options.SupportListOfContentControls && _documentInfo.ContentControls.Any())
-                return SerializeWords();
-
             var isCellsFileData = _documentInfo.Pages.Any(_ => !string.IsNullOrEmpty(_.Name));
             if (isCellsFileData && _options.IsHtmlMode)
                 return SerializeCells();
@@ -144,64 +141,7 @@ namespace MvcSample.Helpers
             return json.ToString();
         }
 
-        /// <summary>
-        /// Serializes the specified words file data.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private string SerializeWords()
-        {
-            StringBuilder json = new StringBuilder();
-
-            var maxWidth = 0;
-            var maxHeight = 0;
-            foreach (var pageData in _documentInfo.Pages)
-            {
-                if (pageData.Height > maxHeight)
-                {
-                    maxHeight = pageData.Height;
-                    maxWidth = pageData.Width;
-                }
-            }
-            
-            json.Append("{\"pages\":[");
-
-            int pageCount = _documentInfo.Pages.Count;
-            for (int i = 0; i < pageCount; i++)
-            {
-                PageData pageData = _documentInfo.Pages[i];
-
-                bool needSeparator = pageData.Number >= 1;
-                if (needSeparator)
-                    json.Append(",");
-
-                AppendPage(pageData, json);
-
-                json.Append("}"); // page
-            }
-            json.Append("]"); // pages
-
-            if (_options.SupportListOfContentControls && _documentInfo.ContentControls.Any())
-            {
-                json.Append(", \"contentControls\":[");
-                bool needSeparator = false;
-                foreach (ContentControl contentControl in _documentInfo.ContentControls)
-                {
-                    if (needSeparator)
-                        json.Append(',');
-
-                    AppendContentControl(contentControl, json);
-
-                    needSeparator = true;
-                }
-                json.Append("]"); //contentControls
-            }
-
-            json.Append(string.Format(",\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
-                maxHeight, maxWidth));
-            json.Append("}"); //document
-
-            return json.ToString();
-        }
+        
 
         /// <summary>
         /// Appends the page.
@@ -252,19 +192,7 @@ namespace MvcSample.Helpers
                 string.Join(",", characterCoordinates)));
         }
 
-        /// <summary>
-        /// Appends the content control.
-        /// </summary>
-        /// <param name="contentControl">The content control.</param>
-        /// <param name="json">The json.</param>
-        private void AppendContentControl(ContentControl contentControl, StringBuilder json)
-        {
-            json.Append(string.Format("{{\"title\":\"{0}\", \"startPage\":{1}, \"endPage\":{2}}}",
-                JsonEncode(contentControl.Title),
-                contentControl.StartPageNumber.ToString(_defaultCulture),
-                contentControl.EndPageNumber.ToString(_defaultCulture)));
-        }
-
+        
         /// <summary>
         /// Jsons the encode.
         /// </summary>

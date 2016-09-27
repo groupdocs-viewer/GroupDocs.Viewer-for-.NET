@@ -49,9 +49,6 @@ namespace MvcSample.Helpers
         /// <returns>System.String.</returns>
         public string Serialize()
         {
-            if (_options.SupportListOfContentControls && _documentInfo.ContentControls.Any())
-                return SerializeWords();
-
             var isCellsFileData = _documentInfo.Pages.Any(_ => !string.IsNullOrEmpty(_.Name));
             if (isCellsFileData && _options.IsHtmlMode)
                 return SerializeCells();
@@ -179,23 +176,7 @@ namespace MvcSample.Helpers
                 json.Append("}"); // page
             }
             json.Append("]"); // pages
-
-            if (_options.SupportListOfContentControls && _documentInfo.ContentControls.Any())
-            {
-                json.Append(", \"contentControls\":[");
-                bool needSeparator = false;
-                foreach (ContentControl contentControl in _documentInfo.ContentControls)
-                {
-                    if (needSeparator)
-                        json.Append(',');
-
-                    AppendContentControl(contentControl, json);
-
-                    needSeparator = true;
-                }
-                json.Append("]"); //contentControls
-            }
-
+            
             json.Append(string.Format(",\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
                 maxHeight, maxWidth));
             json.Append("}"); //document
