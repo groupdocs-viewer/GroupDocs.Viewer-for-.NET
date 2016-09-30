@@ -886,7 +886,7 @@ Namespace GroupDocs.Viewer.Examples
         ''' <summary>
         ''' Get document information by Uri
         ''' </summary>
-        ''' <param name="Uri">Uri of input document</param>
+        ''' <param name="Uri__1">Uri of input document</param>
         Public Shared Sub GetDocumentInfoByUri(Uri__1 As [String])
             Try
                 'ExStart:GetDocumentInfoByUri
@@ -1053,11 +1053,11 @@ Namespace GroupDocs.Viewer.Examples
 
             ' Set pdf file one page per sheet option to false, default value of this option is true
             Dim pdfFileOptions As New PdfFileOptions()
-            pdfFileOptions.Guid = guid
+
             pdfFileOptions.CellsOptions.OnePagePerSheet = False
 
             'Get pdf file
-            Dim fileContainer As FileContainer = imageHandler.GetPdfFile(pdfFileOptions)
+            Dim fileContainer As FileContainer = imageHandler.GetPdfFile(guid)
 
             Utilities.SaveFile("test.pdf", fileContainer.Stream)
         End Sub
