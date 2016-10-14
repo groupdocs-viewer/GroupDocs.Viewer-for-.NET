@@ -106,7 +106,7 @@ Namespace GroupDocs.Viewer.Examples
         ''' <summary>
         ''' Loads files/folders structure for specified path
         ''' </summary>
-        ''' <param name="fileTreeOptions">The file tree options.</param>
+        ''' <param name="fileTreeOptions__1">The file tree options.</param>
         ''' <returns>System.Collections.Generic.List&lt;GroupDocs.Viewer.Domain.FileDescription&gt;.</returns>
         Public Function LoadFileTree(fileTreeOptions__1 As FileTreeOptions) As List(Of FileDescription) Implements IInputDataHandler.LoadFileTree
             Try
