@@ -1502,7 +1502,7 @@ $.extend(jSaaspose.PortalService.prototype, {
     supportListOfContentControls, supportListOfBookmarks,
     embedImagesIntoHtmlForWordFiles,
     saveFontsInAllFormats,
-    successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOpening) {
+    successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOpening, printWithWatermark) {
         var data = {
             request: {
                 userId: userId, privateKey: privateKey, path: path, useHtmlBasedEngine: true,
@@ -1518,7 +1518,8 @@ $.extend(jSaaspose.PortalService.prototype, {
                 instanceIdToken: instanceIdToken,
                 locale: locale,
                 passwordForOpening: passwordForOpening,
-                saveFontsInAllFormats: saveFontsInAllFormats
+                saveFontsInAllFormats: saveFontsInAllFormats,
+                printWithWatermark: printWithWatermark
             }
         };
         // var data1 = { req: { First: 'Muhammad', Last: 'Umar' }};
@@ -1544,7 +1545,7 @@ $.extend(jSaaspose.PortalService.prototype, {
     watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
     ignoreDocumentAbsence, supportPageRotation,
     supportListOfContentControls, supportListOfBookmarks,
-    successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOpening) {
+    successCallback, errorCallback, useCache, instanceIdToken, locale, passwordForOpening, printWithWatermark) {
         var data = {
             request: {
                 path: path, width: width, quality: quality, usePdf: usePdf, preloadPagesCount: preloadPagesCount, password: password, fileDisplayName: fileDisplayName,
@@ -1553,7 +1554,8 @@ $.extend(jSaaspose.PortalService.prototype, {
                 supportListOfContentControls: supportListOfContentControls, supportListOfBookmarks: supportListOfBookmarks,
                 instanceIdToken: instanceIdToken,
                 locale: locale,
-                passwordForOpening: passwordForOpening
+                passwordForOpening: passwordForOpening,
+                 printWithWatermark: printWithWatermark
             }
         };
         this._runServiceAsync(this.applicationPath + this.urlPrefix + '/ViewDocument' + this._urlSuffix, data, successCallback, errorCallback, useCache != null ? useCache : false);
@@ -2007,7 +2009,9 @@ $.extend(jSaaspose.PortalService.prototype, {
                     false,
                     instanceIdToken,
                     locale,
-                    passwordForOpening
+                    passwordForOpening,
+
+                    this.printWithWatermark
                     );
                     break;
                 case 'annotatedDocument':

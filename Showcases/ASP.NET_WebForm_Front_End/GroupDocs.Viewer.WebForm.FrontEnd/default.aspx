@@ -75,6 +75,11 @@
             showZoom: true,
             width: 650,
             height: 900,
+            printWithWatermark: true,
+            watermarkText: '透かし文字、Watermark for Html',
+
+        
+ 
             isResourcesEmbedded: true,
             useHtmlBasedEngine: false,
             showDownload: true,
@@ -94,6 +99,7 @@
           $('#viewerImageDiv').groupdocsViewer({
               filePath: 'demo.docx',
               zoomToFitWidth: true,
+          
               showFolderBrowser: true,
               showThumbnails: true,
               showZoom: true,
@@ -107,7 +113,9 @@
               showDownload: true,
               downloadPdfFile: false,
               showPrint: true,
-              usePdfPrinting: false
+              usePdfPrinting: false,
+              printWithWatermark: true,
+              watermarkText: '透かし文字、Watermark for Html',
           });
       });
 </script>

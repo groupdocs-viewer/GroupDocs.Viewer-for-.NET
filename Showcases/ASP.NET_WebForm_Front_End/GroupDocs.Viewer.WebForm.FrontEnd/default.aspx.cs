@@ -301,12 +301,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         }
         private static string GetFileUrl(ViewDocumentParameters request)
         {
-            return GetFileUrl(request.Path, false, false, request.FileDisplayName);
+            return GetFileUrl(request.Path,true, false, false, request.FileDisplayName);
         }
 
         private static string GetPdfPrintUrl(ViewDocumentParameters request)
         {
-            return GetFileUrl(request.Path, true, true, request.FileDisplayName,
+            return GetFileUrl(request.Path, request.PrintWithWatermark, true, true, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
                 request.WatermarkPosition, request.WatermarkWidth,
                 request.IgnoreDocumentAbsence,
@@ -315,14 +315,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
         private static string GetPdfDownloadUrl(ViewDocumentParameters request)
         {
-            return GetFileUrl(request.Path, true, false, request.FileDisplayName,
+            return GetFileUrl(request.Path,true, true, false, request.FileDisplayName,
                 request.WatermarkText, request.WatermarkColor,
                 request.WatermarkPosition, request.WatermarkWidth,
                 request.IgnoreDocumentAbsence,
                 request.UseHtmlBasedEngine, request.SupportPageRotation);
         }
 
-        public static string GetFileUrl(string path, bool getPdf, bool isPrintable, string fileDisplayName = null,
+        public static string GetFileUrl(string path, bool printWithWaterMark, bool getPdf, bool isPrintable, string fileDisplayName = null,
                                string watermarkText = null, int? watermarkColor = null,
                                WatermarkPosition? watermarkPosition = WatermarkPosition.Diagonal, float? watermarkWidth = 0,
                                bool ignoreDocumentAbsence = false,
@@ -338,7 +338,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                     queryString["displayName"] = fileDisplayName;
             }
 
-            if (watermarkText != null)
+            if (watermarkText != null && printWithWaterMark == true)
             {
                 queryString["watermarkText"] = watermarkText;
                 queryString["watermarkColor"] = watermarkColor.ToString();
