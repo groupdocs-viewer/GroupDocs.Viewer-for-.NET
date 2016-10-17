@@ -27,6 +27,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd.BusinessLayer
         public string PasswordForOpening { get; set; }
         public bool SaveFontsInAllFormats { get; set; }
         public string Callback { get; set; }
+        public bool PrintWithWatermark { get; set; }
     }
 
     public abstract class WatermarkedDocumentParameters : DocumentParameters

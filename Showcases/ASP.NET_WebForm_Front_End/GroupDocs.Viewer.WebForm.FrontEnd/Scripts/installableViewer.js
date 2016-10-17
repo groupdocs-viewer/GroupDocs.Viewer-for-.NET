@@ -557,7 +557,7 @@
                 watermarkColor: settings.watermarkColor,
                 watermarkPosition: settings.watermarkPosition,
                 watermarkWidth: settings.watermarkWidth,
-
+                watermarkOpacity: settings.watermarkOpacity,
                 preventTouchEventsBubbling: settings.preventTouchEventsBubbling,
                 searchForSeparateWords: settings.searchForSeparateWords,
                 treatPhrasesInDoubleQuotesAsExact: settings.treatPhrasesInDoubleQuotesAsExact,
@@ -584,7 +584,8 @@
                 passwordForOpening: settings.passwordForOpening,
                 saveFontsInAllFormats: settings.saveFontsInAllFormats,
                 downloadButtonMode: settings.downloadButtonMode,
-                allowDocumentDownloadingOnFailure: settings.allowDocumentDownloadingOnFailure
+                allowDocumentDownloadingOnFailure: settings.allowDocumentDownloadingOnFailure,
+                printWithWatermark: settings.printWithWatermark
             };
 
             var menuClickedEvent = "onMenuClicked";
@@ -636,6 +637,7 @@
                     docViewerId: settings.docViewerId,
                     zoomToFitWidth: settings.zoomToFitWidth,
                     zoomToFitHeight: settings.zoomToFitHeight,
+                    printWithWatermark: settings.printWithWatermark,
                     navigation: navigationWrapper,
                     navigationOptions: { createHtml: true },
                     thumbnails: thumbnails,
