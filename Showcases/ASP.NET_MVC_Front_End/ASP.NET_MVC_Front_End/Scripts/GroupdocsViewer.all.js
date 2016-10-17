@@ -2710,7 +2710,7 @@ $.extend(jSaaspose.PortalService.prototype, {
                 if (oldWidth !== null && typeof oldWidth != "undefined")
                     pageElement.css("width", oldWidth);
 
-                if (this.fileType == "Jpg" || this.fileType == "Png" || this.fileType == "Msg") {
+                if (this.fileType == "Jpg" || this.fileType == "Png" || this.fileType == "Msg" || this.fileType == "Vsd" ) {
                     window.fldImg = true;
                     if (this.fileType = "Msg")
                         window.emailmsg = true;
