@@ -2,7 +2,7 @@ var fileBrowserData;
 var fileCount = 0;
 var fileCount1 = 0;
 var defaultFileName;
-
+var vsdFile;
 
 function GetNextFileName(sender) {
     if (sender == "groupdocs_viewer_wrapper grpdx grpdxdocViewer1") {
@@ -1471,6 +1471,10 @@ $.extend(jSaaspose.PortalService.prototype, {
             saveFontsInAllFormats: saveFontsInAllFormats,
             printWithWatermark: printWithWatermark
         };
+        var extension = path.substr((path.lastIndexOf('.') + 1));
+        if( extension == "vsd"){
+            vsdFile = true;
+        }
         this._runServiceAsync(this.applicationPath + this.urlPrefix + '/ViewDocument' + this._urlSuffix, data, successCallback, errorCallback, useCache != null ? useCache : false);
     },
     getDocumentPageHtml: function (path, pageIndex, usePngImages,
@@ -2712,10 +2716,14 @@ $.extend(jSaaspose.PortalService.prototype, {
 
                 if (this.fileType == "Jpg" || this.fileType == "Png" || this.fileType == "Msg" || this.fileType == "Vsd" ) {
                     window.fldImg = true;
-                    if (this.fileType = "Msg")
+                    if (this.fileType == true) {
+                        vsdFile = true;
+                    }
+                    if (this.fileType == "Msg")
                         window.emailmsg = true;
                     window.pgElement = pageElement;
                     window.pgWidth = pageSize.width;
+                  
                     //window.pgElement.css("width", pageSize.width);
                 }
                 this.pageHeight(Math.round(this.pageWidth() * this.heightWidthRatio));
@@ -8719,9 +8727,15 @@ var OverrideMode = {
         },
         setZoomWithoutEvent: function (zoom) {
             var index = this._indexOfZoom(zoom);
-            if (index >= 0) {
+            if (index >= 0 ) {
                 this._currentZoom(zoom);
-                this._currentZoomIndex = index;
+                if (vsdFile == true) {
+                    this._currentZoomIndex -= 1;
+                }
+                else {
+                    this._currentZoomIndex = index;
+                }
+               
             }
         },
         zoomIn: function () {
