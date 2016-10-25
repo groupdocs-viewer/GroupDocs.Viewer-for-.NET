@@ -257,9 +257,9 @@
 
                 container.each(function () {
                     $(
-                    '<div dir="ltr" class="groupdocs_viewer_wrapper grpdx ' + classWithNumber + /*browserDependentCssClass + */'">' +
-                        '<div class="viewer_header header_sidescroll" ' + headerStyle + '>' +
-                        '   <div class="viewer_header_wrapper">' +
+                    '<div dir="ltr" class="col-lg-12 col-md-10 col-sm-10 col-xs-10 groupdocs_viewer_wrapper grpdx ' + classWithNumber + /*browserDependentCssClass + */'">' +
+                        '<div class="col-lg-12 col-md-10 col-sm-10 col-xs-10 viewer_header header_sidescroll" ' + headerStyle + '>' +
+                        '   <div class="col-lg-12 col-md-10 col-sm-10 col-xs-10 viewer_header_wrapper">' +
                         '      <a class="btnOpen new_head_tools_btn h_t_i_browser" data-tooltip="Open File" data-localize-tooltip="OpenFile"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_nav2 previous_document" data-tooltip="Previous Document" data-localize-tooltip="Previous Document"></a>' +
                         '          <a class="new_head_tools_btn h_t_i_nav3 next_document" data-tooltip="Next Document" data-localize-tooltip="Next Document"></a>' +
@@ -369,7 +369,7 @@
                         '   <div class="modal_dialog_header">' +
                         '      <span name="alwaysVisibleTitlePdf">Printing </span>' +
                         '   </div>' +
-                        '   <div class="modal_dialog_content">' +
+                        '   <div class="col-lg-12 col-md-10 col-sm-10 col-xs-10 modal_dialog_content">' +
                         '      <p data-localize="PreparingPages" name="messagePdf">Preparing the pages</p>' +
                         '   </div>' +
                         '</div>' +
@@ -446,7 +446,7 @@
                 viewerWidth = settings.width;
             else
                 viewerWidth = container.width();
-            groupdocsViewerWrapper.width(viewerWidth);
+            //groupdocsViewerWrapper.width(viewerWidth);
 
             if (settings.height)
                 viewerHeight = settings.height;

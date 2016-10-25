@@ -1,6 +1,27 @@
 ﻿@using MvcSample.Helpers
-<h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
-<table>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="wrapper container">
+    <h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
+    <div class="row" style="height:1000px">
+        <h3 style="text-align: center">Viewer Html div</h3>
+           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div id="viewerHtmlDiv" class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:100%; "></div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
+    <br /><br />
+    <div class="row" style="height:1000px">
+        <h3 style="text-align: center">Viewer Image div</h3>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <div id="viewerImageDiv" class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:100%; "></div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
+ </div>
+
+
+
+
+@*<table>   
     <tr>
         <td style="text-align: center">
             <h4>View document in HTML mode</h4>
@@ -19,7 +40,7 @@
             <div id="viewerImageDiv"></div>
         </td>
     </tr>
-</table>
+</table>*@
 
 @section scripts{
     <script>
@@ -35,7 +56,7 @@
 
             $('#viewerHtmlDiv').groupdocsViewer({
                 //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-                filePath: 'BldgPlan.vsd',
+                filePath: 'demo.docx',
                 //filePath: 'ProcessFileFromStreamExample_1.pdf',
                 //filePath: 'ProcessFileFromStreamExample_2.doc',
                 zoomToFitWidth: false,
@@ -44,8 +65,8 @@
                 showFolderBrowser: true,
                 showHeader: true,
                 showPaging: true,
-                width: 650,
-                height: 900,
+               // width: 650,
+               //height: 900,
                 //watermarkPosition: 'Diagonal',
                 //watermarkText: '透かし文字、Watermark for Html',
                 //watermarkColor: 16711680,
@@ -77,8 +98,8 @@
                 showZoom: true,
                 showHeader: true,
                 showPaging: true,
-                width: 650,
-                height: 900,
+               // width: 650,
+                //height: 900,
                 quality:100,
                 watermarkPosition: 'Diagonal',
                 watermarkText: '透かし文字、Watermark for image',
