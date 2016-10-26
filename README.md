@@ -1,4 +1,4 @@
-# GroupDocs_Viewer_NET
+# GroupDocs.Viewer for .NET
 
 This package contains [Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples) and  [Showcases](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases) for [GroupDocs.Viewer for .NET](http://groupdocs.com/dot-net/document-viewer-library) that will help you in understanding the API's working and writing your own applications.
 
