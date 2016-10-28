@@ -411,8 +411,8 @@ namespace MvcSample.Controllers
                     CountPagesToConvert = 1,
                     PageNumber = pageNumber,
                     JpegQuality = parameters.Quality.GetValueOrDefault(),
-
-                };
+                    PageNumbersToConvert = new List<int>(new int[] { pageNumber })
+            };
 
                 if (parameters.Rotate && parameters.Width.HasValue)
                 {

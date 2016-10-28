@@ -369,7 +369,7 @@
                         '   <div class="modal_dialog_header">' +
                         '      <span name="alwaysVisibleTitlePdf">Printing </span>' +
                         '   </div>' +
-                        '   <div class="modal_dialog_content">' +
+                        '   <div class="col-lg-12 col-md-10 col-sm-10 col-xs-10 modal_dialog_content">' +
                         '      <p data-localize="PreparingPages" name="messagePdf">Preparing the pages</p>' +
                         '   </div>' +
                         '</div>' +
@@ -446,7 +446,7 @@
                 viewerWidth = settings.width;
             else
                 viewerWidth = container.width();
-            groupdocsViewerWrapper.width(viewerWidth);
+            //groupdocsViewerWrapper.width(viewerWidth);
 
             if (settings.height)
                 viewerHeight = settings.height;

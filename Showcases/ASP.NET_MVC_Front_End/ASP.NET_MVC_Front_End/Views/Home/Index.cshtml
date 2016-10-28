@@ -1,6 +1,22 @@
 ﻿@using MvcSample.Helpers
-<h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
-<table>
+<div class="wrapper container">
+    <h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
+    <div class="row">
+        <h3 style="text-align: center">View document in HTML mode</h3>
+           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div id="viewerHtmlDiv" class="col-lg-10 col-md-10 col-sm-10 col-xs-10"></div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <h3 style="text-align: center">View document in image mode</h3>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <div id="viewerImageDiv" class="col-lg-10 col-md-10 col-sm-10 col-xs-10"></div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    </div>
+ </div>
+
+@*<table>   
     <tr>
         <td style="text-align: center">
             <h4>View document in HTML mode</h4>
@@ -19,7 +35,7 @@
             <div id="viewerImageDiv"></div>
         </td>
     </tr>
-</table>
+</table>*@
 
 @section scripts{
     <script>
@@ -35,7 +51,7 @@
 
             $('#viewerHtmlDiv').groupdocsViewer({
                 //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-                filePath: 'BldgPlan.vsd',
+                filePath: 'demo.docx',
                 //filePath: 'ProcessFileFromStreamExample_1.pdf',
                 //filePath: 'ProcessFileFromStreamExample_2.doc',
                 zoomToFitWidth: false,
@@ -44,7 +60,7 @@
                 showFolderBrowser: true,
                 showHeader: true,
                 showPaging: true,
-                width: 650,
+               //width: 650,
                 height: 900,
                 //watermarkPosition: 'Diagonal',
                 //watermarkText: '透かし文字、Watermark for Html',
@@ -77,7 +93,7 @@
                 showZoom: true,
                 showHeader: true,
                 showPaging: true,
-                width: 650,
+               //width: 650,
                 height: 900,
                 quality:100,
                 watermarkPosition: 'Diagonal',
