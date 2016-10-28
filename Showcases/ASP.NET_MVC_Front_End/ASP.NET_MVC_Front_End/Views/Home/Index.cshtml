@@ -1,14 +1,12 @@
 ﻿@using MvcSample.Helpers
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 <div class="wrapper container">
     <h2 style="text-align: center">GroupDocs.Viewer for .NET Sample</h2>
-    @*<div class="row">
+    <div class="row">
         <h3 style="text-align: center">View document in HTML mode</h3>
            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
             <div id="viewerHtmlDiv" class="col-lg-10 col-md-10 col-sm-10 col-xs-10"></div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-    </div>*@
+    </div>
     <br /><br />
     <div class="row">
         <h3 style="text-align: center">View document in image mode</h3>
@@ -17,9 +15,6 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
     </div>
  </div>
-
-
-
 
 @*<table>   
     <tr>
@@ -44,7 +39,7 @@
 
 @section scripts{
     <script>
-        @*$(function () {
+        $(function () {
             var viewerSyle = {
                 ScrollView: 1,
                 DoublePageFlip: 2,
@@ -86,7 +81,7 @@
 
             EnableRightClickMenu = false;
             $('#viewerHtmlDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
-        });*@
+        });
 
         $(function () {
             $('#viewerImageDiv').groupdocsViewer({
