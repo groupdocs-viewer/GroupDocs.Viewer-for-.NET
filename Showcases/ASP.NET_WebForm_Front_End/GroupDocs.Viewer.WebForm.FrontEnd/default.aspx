@@ -76,12 +76,13 @@
             width: 650,
             height: 900,
             printWithWatermark: true,
-            watermarkText: '透かし文字、Watermark for Html',
-
-        
+            //watermarkPosition: 'Diagonal',
+            //watermarkText: '透かし文字、Watermark for Html',
+            //watermarkColor: 16711680,
+            //watermarkOpacity: 255,        
  
             isResourcesEmbedded: true,
-            useHtmlBasedEngine: false,
+            useHtmlBasedEngine: true,
             showDownload: true,
             downloadPdfFile: true,
             showPrint: true,
@@ -115,7 +116,10 @@
               showPrint: true,
               usePdfPrinting: false,
               printWithWatermark: true,
-              watermarkText: '透かし文字、Watermark for Html',
+              //watermarkPosition: 'Diagonal',
+              //watermarkText: '透かし文字、Watermark for Html',
+              //watermarkColor: 16711680,
+              //watermarkOpacity: 255,
           });
       });
 </script>
