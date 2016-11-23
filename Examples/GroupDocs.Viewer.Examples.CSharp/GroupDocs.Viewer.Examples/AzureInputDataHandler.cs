@@ -220,5 +220,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
         {
             //TODO
         }
+        public void AddFile(string guid, Stream content)
+        {
+            //TODO
+        }
+        public List<FileDescription> GetEntities(string path)
+        {
+            //TODO
+            return new List<FileDescription>();
+        }
     }
 }
