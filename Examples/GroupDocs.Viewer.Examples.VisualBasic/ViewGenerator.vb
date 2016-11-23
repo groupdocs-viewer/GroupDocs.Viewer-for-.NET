@@ -639,13 +639,19 @@ Namespace GroupDocs.Viewer.Examples
             ' Create/initialize image handler 
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
 
-            ' Load file tree list for custom path 
-            Dim options = New FileTreeOptions(Path)
+            ' Load file list for custom path 
+            Dim options As New FileListOptions(Path)
 
-            ' Load file tree list for ViewerConfig.StoragePath
-            Dim container As FileTreeContainer = imageHandler.LoadFileTree(options)
+            ' Load file list sorted by Name and ordered Ascending for custom path
+            Dim options1 As New FileListOptions(Path, FileListOptions.FileListSortBy.Name, FileListOptions.FileListOrderBy.Ascending)
 
-            For Each node As Object In container.FileTree
+            ' Load file list for ViewerConfig.StoragePath
+            Dim container As FileListContainer = imageHandler.GetFileList()
+
+            ' Load file list for custom path
+            Dim container1 As FileListContainer = imageHandler.GetFileList(options)
+
+            For Each node As Object In container.Files
                 If node.IsDirectory Then
                     Console.WriteLine("Guid: {0} | Name: {1} | LastModificationDate: {2}", node.Guid, node.Name, node.LastModificationDate)
                 Else
@@ -653,7 +659,6 @@ Namespace GroupDocs.Viewer.Examples
                         node.Size, node.LastModificationDate)
                 End If
             Next
-
             'ExEnd:LoadFileTree
 
         End Sub

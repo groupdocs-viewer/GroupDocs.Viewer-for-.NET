@@ -713,13 +713,19 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Create/initialize image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
-            // Load file tree list for custom path 
-            var options = new FileTreeOptions(Path);
+            // Load file list for custom path 
+            FileListOptions options = new FileListOptions(Path);
 
-            // Load file tree list for ViewerConfig.StoragePath
-            FileTreeContainer container = imageHandler.LoadFileTree(options);
+            // Load file list sorted by Name and ordered Ascending for custom path
+            FileListOptions options1 = new FileListOptions(Path, FileListOptions.FileListSortBy.Name, FileListOptions.FileListOrderBy.Ascending);
 
-            foreach (var node in container.FileTree)
+            // Load file list for ViewerConfig.StoragePath
+            FileListContainer container = imageHandler.GetFileList();
+
+            // Load file list for custom path
+            FileListContainer container1 = imageHandler.GetFileList(options);            
+
+            foreach (var node in container.Files)
             {
                 if (node.IsDirectory)
                 {
@@ -738,7 +744,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
                         node.Size,
                         node.LastModificationDate);
             }
-
             //ExEnd:LoadFileTree
 
         }

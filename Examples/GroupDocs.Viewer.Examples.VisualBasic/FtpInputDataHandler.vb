@@ -90,6 +90,13 @@ Namespace GroupDocs.Viewer.Examples
         Public Sub SaveDocument(description As CachedDocumentDescription, stream As Stream) Implements IInputDataHandler.SaveDocument
             'TODO
         End Sub
+        Public Sub AddFile(guid As String, content As Stream) Implements IInputDataHandler.AddFile
+            'TODO
+        End Sub
+        Public Function GetEntities(path As String) As List(Of FileDescription) Implements IInputDataHandler.GetEntities
+            'TODO
+            Return New List(Of FileDescription)()
+        End Function
     End Class
 End Namespace
 

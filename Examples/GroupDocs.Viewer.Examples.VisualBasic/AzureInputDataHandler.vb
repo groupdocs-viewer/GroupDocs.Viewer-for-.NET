@@ -180,7 +180,13 @@ Namespace GroupDocs.Viewer.Examples
             Dim emptyDate As New DateTime(1, 1, 1)
             Return If(dateTimeOffset.HasValue, dateTimeOffset.Value.DateTime, emptyDate)
         End Function
-        
+        Public Sub AddFile(guid As String, content As Stream) Implements IInputDataHandler.AddFile
+            'TODO
+        End Sub
+        Public Function GetEntities(path As String) As List(Of FileDescription) Implements IInputDataHandler.GetEntities
+            'TODO
+            Return New List(Of FileDescription)()
+        End Function
     End Class
 End Namespace
 
