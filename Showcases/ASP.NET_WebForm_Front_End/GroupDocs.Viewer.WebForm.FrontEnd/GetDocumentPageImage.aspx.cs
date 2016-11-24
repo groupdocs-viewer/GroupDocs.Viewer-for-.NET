@@ -34,8 +34,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             _config = new ViewerConfig
             {
-                StoragePath = _storagePath,
-                TempPath = _tempPath,
+                StoragePath = _storagePath, 
                 UseCache = true
             };
 
@@ -77,9 +76,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             };
 
             if (parameters.Rotate && parameters.Width.HasValue)
-            {
-                DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
-                DocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(documentInfoOptions);
+            { 
+                DocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(guid);
 
                 int side = parameters.Width.Value;
 

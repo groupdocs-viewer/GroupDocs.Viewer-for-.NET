@@ -29,8 +29,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
         {
             _config = new ViewerConfig
             {
-                StoragePath = _storagePath,
-                TempPath = _tempPath,
+                StoragePath = _storagePath, 
                 UseCache = true
             };
 

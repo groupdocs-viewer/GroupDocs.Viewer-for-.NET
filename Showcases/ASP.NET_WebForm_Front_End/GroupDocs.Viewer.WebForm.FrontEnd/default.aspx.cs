@@ -46,8 +46,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             var htmlConfig = new ViewerConfig
             {
-                StoragePath = _storagePath,
-                TempPath = _tempPath,
+                StoragePath = _storagePath, 
                 UseCache = true
             };
 
@@ -55,8 +54,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
             var imageConfig = new ViewerConfig
             {
-                StoragePath = _storagePath,
-                TempPath = _tempPath,
+                StoragePath = _storagePath, 
                 UseCache = true,
                 UsePdf = true
             };
@@ -112,12 +110,12 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
 
 
 
-            var tree = _htmlHandler.LoadFileTree(new FileTreeOptions(path));
-            var treeNodes = tree.FileTree;
+            var tree = _htmlHandler.GetFileList(new FileListOptions(path));
+            var treeNodes = tree.Files;
             var data = new FileBrowserTreeDataResponse
             {
                 nodes = ToFileTreeNodes(parameters.Path, treeNodes).ToArray(),
-                count = tree.FileTree.Count
+                count = tree.Files.Count
             };
 
             return data;
