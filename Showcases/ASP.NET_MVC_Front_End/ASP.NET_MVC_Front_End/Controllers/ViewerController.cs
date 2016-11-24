@@ -109,13 +109,13 @@ namespace MvcSample.Controllers
                 if (!string.IsNullOrEmpty(parameters.Path))
                     path = Path.Combine(path, parameters.Path);
 
-                var request = new FileTreeOptions(path);
-                var tree = _htmlHandler.LoadFileTree(request);
+                var request = new FileListOptions(path);
+                var tree = _htmlHandler.GetFileList(request);
 
                 var result = new FileBrowserTreeDataResponse
                 {
-                    nodes = Utils.ToFileTreeNodes(parameters.Path, tree.FileTree).ToArray(),
-                    count = tree.FileTree.Count
+                    nodes = Utils.ToFileTreeNodes(parameters.Path, tree.Files).ToArray(),
+                    count = tree.Files.Count
                 };
 
                 return ToJsonResult(result);
