@@ -395,11 +395,11 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 MaxWidth = maxWidth,
                 MaxHeight = maxHeight
             };
-            DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(request.Path);
-            int[] pageNumbers = new int[documentInfoContainer.Pages.Count];
-            for (int i = 0; i < documentInfoContainer.Pages.Count; i++)
+
+            int[] pageNumbers = new int[docInfo.Pages.Count];
+            for (int i = 0; i < docInfo.Pages.Count; i++)
             {
-                pageNumbers[i] = documentInfoContainer.Pages[i].Number;
+                pageNumbers[i] = docInfo.Pages[i].Number;
             }
             string applicationHost = GetApplicationHost();
             var documentUrls = ImageUrlHelper.GetImageUrls(applicationHost, pageNumbers, request);

@@ -10,10 +10,10 @@ using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Domain.Options;
 using System.Drawing;
 using GroupDocs.Viewer.Domain;
-using GroupDocs.Viewer.Domain.Containers;
 using System.IO;
 using GroupDocs.Viewer.Model.BusinessObjects;
 using System.Text.RegularExpressions;
+using GroupDocs.Viewer.Domain.Containers;
 
 namespace GroupDocs.Viewer.Model
 {
@@ -535,12 +535,12 @@ namespace GroupDocs.Viewer.Model
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
             // Load file tree list for custom path 
-            var options = new FileTreeOptions(Path);
+            var options = new FileListOptions(Path);
 
            // Load file tree list for ViewerConfig.StoragePath
-            FileTreeContainer container = imageHandler.LoadFileTree(options);
+            FileListContainer container = imageHandler.GetFileList(options);
 
-            foreach (var node in container.FileTree)
+            foreach (var node in container.Files)
             {
                 if (node.IsDirectory)
                 {
