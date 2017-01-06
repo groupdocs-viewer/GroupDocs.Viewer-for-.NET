@@ -41,8 +41,9 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupDocs.Viewer">
-      <HintPath>..\..\SharePointProject2\packages\groupdocs-viewer-dotnet.3.3.0\lib\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=16.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\groupdocs-viewer-dotnet.16.12.0\lib\GroupDocs.Viewer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -120,6 +121,7 @@
     <None Include="Layouts\GroupDocs-Viewer-SharePoint\Storage\demo.docx" />
     <None Include="Layouts\GroupDocs-Viewer-SharePoint\Storage\sample.pptx" />
     <None Include="Layouts\GroupDocs-Viewer-SharePoint\Storage\sample.xlsx" />
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{990680bf-e74a-4200-a126-82f6de71fd57}</PackageId>
     </None>
