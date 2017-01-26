@@ -23,7 +23,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region HTMLRepresentation
         /// <summary>
-        /// Render simple document in html representation
+        /// Renders simple document in html representation
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
@@ -61,7 +61,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsHtml
         }
         /// <summary>
-        /// Render document in html representation with watermark
+        /// Renders document in html representation with watermark
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="WatermarkText">watermark text</param>
@@ -103,7 +103,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsHtmlWithWaterMark
         }
         /// <summary>
-        ///  document in html representation and reorder a page
+        ///  Renders document in html representation and reorder a page
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="CurrentPageNumber">Page existing order number</param>
@@ -148,7 +148,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsHtmlAndReorderPage
         }
         /// <summary>
-        /// Render a document in html representation whom located at web/remote location.
+        /// Renders a document in html representation whom located at web/remote location.
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
@@ -282,7 +282,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render hidden pages of Visio file as Html.
+        /// Renders hidden pages of Visio file as Html.
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderHiddenPagesOfVisioAsHtml(string DocumentName)
@@ -316,7 +316,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render Excel file as Html with internal hyperlink prefix.
+        /// Renders Excel file as Html with internal hyperlink prefix.
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderExcelAsHtmlWithInternalHyperlinkPrefix(string DocumentName)
@@ -347,6 +347,81 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderExcelAsHtmlWithInternalHyperlinkPrefix
 
+        }
+
+        /// <summary>
+        /// Renders Excel file as Html specifying number of rows per page.
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderExcelAsHtmlWithCountRowsPerPage(string DocumentName)
+        {
+
+            //ExStart:RenderExcelAsHtmlWithCountRowsPerPage
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.OnePagePerSheet = false;
+            
+            // Set count rows to render into one page. Default value is 50.
+            options.CellsOptions.CountRowsPerPage = 50;
+            
+            // Get pages
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderExcelAsHtmlWithCountRowsPerPage
+
+        }
+
+
+        /// <summary>
+        /// Renders simple document into html with PreventGlyphsGrouping settings
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        /// <param name="DocumentPassword">Optional</param>
+        public static void RenderDocumentAsHtmlWithPreventGlyphsGrouping(String DocumentName, String DocumentPassword = null)
+        {
+            //ExStart:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //to get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = true;
+
+            // Set password if document is password protected. 
+            if (!String.IsNullOrEmpty(DocumentPassword))
+                options.Password = DocumentPassword;
+
+            // Set pdf options to render content without glyphs grouping
+            options.PdfOptions.PreventGlyphsGrouping = true; // Default value is false
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlWithPreventGlyphsGrouping
         }
         #endregion
 
@@ -584,7 +659,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region GeneralRepresentation
         /// <summary>
-        /// Render a document as it is (original form)
+        /// Renders a document as it is (original form)
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocumentAsOriginal(String DocumentName)
@@ -605,7 +680,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
         /// <summary>
-        /// Render a document in PDF Form
+        /// Renders a document in PDF Form
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocumentAsPDF(String DocumentName)
@@ -630,7 +705,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render a document in PDF Form with watermark 
+        /// Renders a document in PDF Form with watermark 
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="WatermarkText"></param>
@@ -665,7 +740,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render a document in PDF Form with watermark 
+        /// Renders a document in PDF Form with watermark 
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="WatermarkText"></param>
@@ -704,7 +779,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Load directory structure as file tree
+        /// Loads directory structure as file tree
         /// </summary>
         /// <param name="Path"></param>
         public static void LoadFileTree(String Path)
@@ -753,7 +828,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         #region InputDataHandlers
 
         /// <summary>
-        /// Render a document from Azure Storage 
+        /// Renders a document from Azure Storage 
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocFromAzure(String DocumentName)
@@ -779,7 +854,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
         /// <summary>
-        /// Render a document from FTP location 
+        /// Renders a document from FTP location 
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocFromFTP(String DocumentName)
@@ -807,7 +882,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region OtherOperations
         /// <summary>
-        /// Set custom fonts directory path
+        /// Sets custom fonts directory path
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void SetCustomFontDirectory(String DocumentName)
@@ -845,7 +920,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region EmailAttachments
         /// <summary>
-        /// Get attached image with email message
+        /// Gets attached image with email message
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachments(String DocumentName)
@@ -874,7 +949,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Get attached file's html representation
+        /// Gets attached file's html representation
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachmentHTMLRepresentation(String DocumentName)
@@ -920,7 +995,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Get attached file's image representation
+        /// Gets attached file's image representation
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachmentImageRepresentation(String DocumentName)
@@ -957,7 +1032,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region DocumentInformation
         /// <summary>
-        /// Get document information by guid
+        /// Gets document information by guid
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetDocumentInfoByGuid(String DocumentName)
@@ -1001,7 +1076,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Get document information by Uri
+        /// Gets document information by Uri
         /// </summary>
         /// <param name="Uri">Uri of input document</param>
         public static void GetDocumentInfoByUri(String Uri)
@@ -1046,7 +1121,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Get document information by stream
+        /// Gets document information by stream
         /// </summary>
         /// <param name="DocumentName">Name of input document</param>
         public static void GetDocumentInfoByStream(String DocumentName)
@@ -1096,7 +1171,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region DocumentCache
         /// <summary>
-        /// Remove cache files 
+        /// Removes cache files 
         /// </summary>
         public static void RemoveCacheFiles()
         {
@@ -1119,7 +1194,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
         /// <summary>
-        /// Remove cache file older than specified date 
+        /// Removes cache file older than specified date 
         /// </summary>
         public static void RemoveCacheFiles(TimeSpan OlderThanDays)
         {
@@ -1149,7 +1224,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         /* Working from 3.2.0*/
         /// <summary>
-        /// Show grid lines for Excel files in html representation
+        /// Shows grid lines for Excel files in html representation
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderWithGridLinesInExcel(String DocumentName)
@@ -1176,7 +1251,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
         /// <summary>
-        /// Multiple pages per sheet
+        /// Renders multiple pages per sheet
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderMultiExcelSheetsInOnePage(String DocumentName)
@@ -1198,7 +1273,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Utilities.SaveFile("test.pdf", fileContainer.Stream);
         }
         /// <summary>
-        /// Get all supported document formats
+        /// Gets all supported document formats
         /// </summary>
 
         public static void ShowAllSupportedFormats()
@@ -1220,7 +1295,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.ReadKey();
         }
         /// <summary>
-        /// Show hidden sheets for Excel files in image representation
+        /// Shows hidden sheets for Excel files in image representation
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderWithHiddenSheetsInExcel(String DocumentName)
@@ -1247,7 +1322,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
         /// <summary>
-        /// create and use file with localized string
+        /// Creates and uses file with localized string
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderWithLocales(String DocumentName)

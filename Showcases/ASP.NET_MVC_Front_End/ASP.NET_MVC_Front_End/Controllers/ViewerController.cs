@@ -43,7 +43,7 @@ namespace MvcSample.Controllers
             var htmlConfig = new ViewerConfig
             {
                 StoragePath = _storagePath,
-                TempPath = _tempPath,
+                CachePath = _tempPath,
                 UseCache = true
             };
 
@@ -52,7 +52,7 @@ namespace MvcSample.Controllers
             var imageConfig = new ViewerConfig
             {
                 StoragePath = _storagePath,
-                TempPath = _tempPath,
+                CachePath = _tempPath,
                 UseCache = true,
                 UsePdf = _usePdfInImageEngine
             };
