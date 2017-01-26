@@ -45,6 +45,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render Excel document in html form with internal hyperlink prefix
             //ViewGenerator.RenderExcelAsHtmlWithInternalHyperlinkPrefix("sample.xlsx");
+
+            //Render simple document into html with PreventGlyphsGrouping settings
+            //ViewGenerator.RenderDocumentAsHtmlWithPreventGlyphsGrouping("sample.pdf");
+
+            //Render Excel file as Html specifying number of rows per page
+            //ViewGenerator.RenderExcelAsHtmlWithCountRowsPerPage("sample.xlsx");
             #endregion
 
             #region ViewerImagePresentation

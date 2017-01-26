@@ -282,6 +282,79 @@ Namespace GroupDocs.Viewer.Examples
 
         End Sub
 
+        ''' <summary>
+        ''' Renders Excel file as Html specifying number of rows per page.
+        ''' </summary>
+        ''' <param name="DocumentName">file/document name</param>
+        Public Shared Sub RenderExcelAsHtmlWithCountRowsPerPage(DocumentName As String)
+
+            'ExStart:RenderExcelAsHtmlWithCountRowsPerPage
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+            Dim guid As String = DocumentName
+
+            ' Set html options to show grid lines
+            Dim options As New HtmlOptions()
+            options.CellsOptions.OnePagePerSheet = False
+
+            ' Set count rows to render into one page. Default value is 50.
+            options.CellsOptions.CountRowsPerPage = 50
+
+            ' Get pages
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(Convert.ToString(page.PageNumber + "_") & DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderExcelAsHtmlWithCountRowsPerPage
+
+        End Sub
+
+
+        ''' <summary>
+        ''' Renders simple document into html with PreventGlyphsGrouping settings
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param>
+        ''' <param name="DocumentPassword">Optional</param>
+        Public Shared Sub RenderDocumentAsHtmlWithPreventGlyphsGrouping(DocumentName As [String], Optional DocumentPassword As [String] = Nothing)
+            'ExStart:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            'Instantiate the HtmlOptions object
+            Dim options As New HtmlOptions()
+
+            'to get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = True
+
+            ' Set password if document is password protected. 
+            If Not [String].IsNullOrEmpty(DocumentPassword) Then
+                options.Password = DocumentPassword
+            End If
+
+            ' Set pdf options to render content without glyphs grouping
+            options.PdfOptions.PreventGlyphsGrouping = True
+            ' Default value is false
+            'Get document pages in html form
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+        End Sub
+
+
 
 #End Region
 
