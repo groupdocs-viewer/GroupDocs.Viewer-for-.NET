@@ -550,7 +550,18 @@ namespace MvcSample.Controllers
                 var indexOfBodyCloseTag = page.HtmlContent.IndexOf("</body>", StringComparison.InvariantCultureIgnoreCase);
                 if (indexOfBodyCloseTag > 0)
                     page.HtmlContent = page.HtmlContent.Substring(0, indexOfBodyCloseTag);
+                if (Path.GetExtension(filePath) == ".msg")
+                {
+                    foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Image))
+                    {
+                        string imagePath = string.Format("resources\\page{0}\\{1}",
+                            page.PageNumber, resource.ResourceName);
 
+                        page.HtmlContent = page.HtmlContent.Replace(resource.ResourceName,
+                            string.Format("/document-viewer/GetResourceForHtml?documentPath={0}&pageNumber={1}&resourceName={2}",
+                            filePath, page.PageNumber, resource.ResourceName));
+                    }
+                }
                 foreach (var resource in page.HtmlResources.Where(_ => _.ResourceType == HtmlResourceType.Style))
                 {
                     var cssStream = _htmlHandler.GetResource(filePath, resource);
@@ -575,6 +586,8 @@ namespace MvcSample.Controllers
                                 "url('/document-viewer/GetResourceForHtml?documentPath={0}&pageNumber={1}&resourceName=",
                                 filePath, page.PageNumber));
                     }
+                    // update path to image resource
+                  
 
                     cssList.Add(text);
 
