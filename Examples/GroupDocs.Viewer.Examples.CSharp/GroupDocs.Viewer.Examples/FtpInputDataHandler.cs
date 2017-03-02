@@ -1,6 +1,8 @@
 ﻿using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Options;
 using GroupDocs.Viewer.Handler.Input;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,17 +56,21 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 return response.LastModified;
         }
 
-        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
+        /// <summary>
+        /// Gets files and folders for specified path.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>System.Collections.Generic.List&lt;GroupDocs.Viewer.Domain.FileDescription&gt;.</returns>
+        public List<FileDescription> GetEntities(string path)
         {
-            Uri uri = Uri.IsWellFormedUriString(fileTreeOptions.Path, UriKind.Absolute) ? new Uri(fileTreeOptions.Path) : GetUriFromGuid(fileTreeOptions.Path);
+            Uri uri = Uri.IsWellFormedUriString(path, UriKind.Absolute)
+            ? new Uri(path)
+            : GetUriFromGuid(path);
             FtpWebRequest request = GetFtpRequest(uri, WebRequestMethods.Ftp.ListDirectory);
-
             List<FileDescription> result = new List<FileDescription>();
-
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             {
                 Stream responseStream = response.GetResponseStream();
-
                 if (responseStream != null)
                 {
                     using (StreamReader reader = new StreamReader(responseStream))
@@ -77,7 +83,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     }
                 }
             }
-
             return result;
         }
 
@@ -100,15 +105,25 @@ namespace GroupDocs.Viewer.Examples.CSharp
         { 
             //TODO
         }
+        /// <summary>
+        /// Adds file to storage.
+        /// </summary>
+        /// <param name="guid">This is user defined key that identifies file in the storage.</param>
+        /// <param name="content">Stream to save data to storage.</param>
         public void AddFile(string guid, Stream content)
-        { 
+        {
             //TODO
         }
-        public List<FileDescription> GetEntities(string path)
+        public List<FileDescription> LoadFileTree(FileListOptions fileListOptions)
         {
             //TODO
             return new List<FileDescription>();
         }
-
+        [Obsolete]
+        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
+        {
+            //TODO
+            return new List<FileDescription>();
+        }
     }
 }

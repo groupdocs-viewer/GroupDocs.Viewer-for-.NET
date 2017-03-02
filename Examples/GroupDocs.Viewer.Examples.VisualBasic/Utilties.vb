@@ -38,6 +38,7 @@ Namespace GroupDocs.Viewer.Examples
             config.StoragePath = StoragePath
             'Uncomment the below line for cache purpose
             'config.UseCache = true;
+            config.CacheFolderName = "CacheFolder"
             Return config
             'ExEnd:Configurations
 
@@ -82,7 +83,7 @@ Namespace GroupDocs.Viewer.Examples
             Public Shared Sub RotatePages(ByRef handler As ViewerHandler(Of PageHtml), guid As [String], PageNumber As Integer, angle As Integer)
                 'ExStart:rotationAngle
                 ' Set the property of handler's rotate Page
-                handler.RotatePage(New RotatePageOptions(guid, PageNumber, angle))
+                handler.RotatePage(guid, New RotatePageOptions(PageNumber, angle))
                 'ExEnd:rotationAngle
             End Sub
             ''' <summary>
@@ -96,7 +97,7 @@ Namespace GroupDocs.Viewer.Examples
             Public Shared Sub RotatePages(ByRef handler As ViewerHandler(Of PageImage), guid As [String], PageNumber As Integer, angle As Integer)
                 'ExStart:rotationAngle
                 ' Set the property of handler's rotate Page
-                handler.RotatePage(New RotatePageOptions(guid, PageNumber, angle))
+                handler.RotatePage(guid, New RotatePageOptions(PageNumber, angle))
                 'ExEnd:rotationAngle
             End Sub
             ''' <summary>
@@ -109,9 +110,9 @@ Namespace GroupDocs.Viewer.Examples
             Public Shared Sub ReorderPage(ByRef Handler As ViewerHandler(Of PageHtml), guid As [String], currentPageNumber As Integer, newPageNumber As Integer)
                 'ExStart:reorderPage
                 'Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
-                Dim options As New ReorderPageOptions(guid, currentPageNumber, newPageNumber)
+                Dim options As New ReorderPageOptions(currentPageNumber, newPageNumber)
                 ' call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
-                Handler.ReorderPage(options)
+                Handler.ReorderPage(guid, options)
                 'ExEnd:reorderPage
             End Sub
             ''' <summary>
@@ -124,9 +125,9 @@ Namespace GroupDocs.Viewer.Examples
             Public Shared Sub ReorderPage(ByRef Handler As ViewerHandler(Of PageImage), guid As [String], currentPageNumber As Integer, newPageNumber As Integer)
                 'ExStart:reorderPage
                 'Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
-                Dim options As New ReorderPageOptions(guid, currentPageNumber, newPageNumber)
+                Dim options As New ReorderPageOptions(currentPageNumber, newPageNumber)
                 ' call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
-                Handler.ReorderPage(options)
+                Handler.ReorderPage(guid, options)
                 'ExEnd:reorderPage
             End Sub
             ''' <summary>
@@ -258,12 +259,12 @@ Namespace GroupDocs.Viewer.Examples
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
 
             ' Load file tree list for custom path 
-            Dim options = New FileTreeOptions(Path)
+            Dim options = New FileListOptions(Path)
 
             ' Load file tree list for ViewerConfig.StoragePath
-            Dim container As FileTreeContainer = imageHandler.LoadFileTree(options)
+            Dim container As FileListContainer = imageHandler.GetFileList(options)
 
-            For Each node In container.FileTree
+            For Each node In container.Files
                 If node.IsDirectory Then
                     Console.WriteLine("Guid: {0} | Name: {1} | LastModificationDate: {2}", node.Guid, node.Name, node.LastModificationDate)
                 Else
