@@ -233,19 +233,7 @@ namespace MvcSample.Helpers
                 string.Join(",", characterCoordinates)));
         }
 
-        /// <summary>
-        /// Appends the content control.
-        /// </summary>
-        /// <param name="contentControl">The content control.</param>
-        /// <param name="json">The json.</param>
-        private void AppendContentControl(ContentControl contentControl, StringBuilder json)
-        {
-            json.Append(string.Format("{{\"title\":\"{0}\", \"startPage\":{1}, \"endPage\":{2}}}",
-                JsonEncode(contentControl.Title),
-                contentControl.StartPageNumber.ToString(_defaultCulture),
-                contentControl.EndPageNumber.ToString(_defaultCulture)));
-        }
-
+         
         /// <summary>
         /// Jsons the encode.
         /// </summary>
