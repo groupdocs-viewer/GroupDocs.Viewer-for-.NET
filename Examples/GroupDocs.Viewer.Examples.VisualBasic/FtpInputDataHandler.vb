@@ -50,7 +50,11 @@ Namespace GroupDocs.Viewer.Examples
                 Return response.LastModified
             End Using
         End Function
-
+        Public Function LoadFileTree(fileListOptions As FileListOptions) As List(Of FileDescription)
+            'TODO
+            Return New List(Of FileDescription)()
+        End Function
+        <Obsolete("Don't use this anymore.")>
         Public Function LoadFileTree(fileTreeOptions As FileTreeOptions) As List(Of FileDescription) Implements IInputDataHandler.LoadFileTree
             Dim uri__1 As Uri = If(Uri.IsWellFormedUriString(fileTreeOptions.Path, UriKind.Absolute), New Uri(fileTreeOptions.Path), GetUriFromGuid(fileTreeOptions.Path))
             Dim request As FtpWebRequest = GetFtpRequest(uri__1, WebRequestMethods.Ftp.ListDirectory)
@@ -87,6 +91,7 @@ Namespace GroupDocs.Viewer.Examples
             target = value
             Return value
         End Function
+        <Obsolete("Don't use this anymore.")>
         Public Sub SaveDocument(description As CachedDocumentDescription, stream As Stream) Implements IInputDataHandler.SaveDocument
             'TODO
         End Sub

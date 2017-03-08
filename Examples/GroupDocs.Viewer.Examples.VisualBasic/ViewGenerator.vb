@@ -179,6 +179,63 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
+        ''' Renders PDF document's layers separately
+        ''' </summary>
+        ''' <param name="DocumentName">Name of the document</param>
+        Public Shared Sub RenderPDFLayersSeparately(DocumentName As [String])
+            'ExStart:RenderPDFLayersSeparately
+            'Get Configurations 
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Set pdf options to render pdf layers into separate html elements
+            Dim options As New HtmlOptions()
+            options.PdfOptions.RenderLayersSeparately = True
+            ' Default value is false
+            'Get document pages in html form
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(DocumentName, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderPDFLayersSeparately
+        End Sub
+
+        ''' <summary>
+        ''' Gets printable HTML of the source document
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param>
+        ''' <param name="DocumentPassword">Optional</param>
+        Public Shared Sub GetPrintableHTML(DocumentName As [String], Optional DocumentPassword As [String] = Nothing)
+            'ExStart:GetPrintableHTML
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Setup watermark and style
+            Dim watermark As New Watermark("Watermark text")
+            Dim css As String = "a { color: hotpink; }"
+
+            ' Setup printable options
+            Dim options = New PrintableHtmlOptions()
+            options.Watermark = watermark
+            options.Css = css
+
+            ' Get document html for print with custom css and watermark
+            Dim container = htmlHandler.GetPrintableHtml(guid, options)
+
+            Console.WriteLine("Html content: {0}", container.HtmlContent)
+            'ExEnd:GetPrintableHTML
+        End Sub
+        ''' <summary>
         ''' Render a document in html representation with specifying resource prefix.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
@@ -200,7 +257,8 @@ Namespace GroupDocs.Viewer.Examples
             options.IsResourcesEmbedded = False
 
             'Set resource prefix
-            options.HtmlResourcePrefix = "http://contoso.com/api/getResource?name="
+            options.HtmlResourcePrefix = "http://example.com/api/pages/{page-number}/resources/{resource-name}"
+            'The {page-number} and {resource-name} patterns will be replaced with current processing page number and resource name accordingly.
 
             'To ignore resource prefix in CSS 
             'options.IgnoreResourcePrefixForCss = true;

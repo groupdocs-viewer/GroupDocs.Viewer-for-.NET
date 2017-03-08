@@ -119,43 +119,63 @@ namespace GroupDocs.Viewer.Examples.CSharp
             return fileDescription.LastModificationDate;
         }
         /// <summary>
-        /// Loads files/folders structure for specified path
+        /// Gets files and folders for specified path.
         /// </summary>
-        /// <param name="fileTreeOptions">The file tree options.</param>
+        /// <param name="path">The path.</param>
         /// <returns>System.Collections.Generic.List&lt;GroupDocs.Viewer.Domain.FileDescription&gt;.</returns>
-        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
+        public List<FileDescription> GetEntities(string path)
         {
             try
             {
-                string path = GetNormalizedBlobName(fileTreeOptions.Path);
-                List<FileDescription> fileTree = GetFileTree(path);
-                switch (fileTreeOptions.OrderBy)
-                {
-                    case FileTreeOptions.FileTreeOrderBy.Name:
-                        fileTree = fileTreeOptions.OrderAsc
-                            ? fileTree.OrderBy(_ => _.Name).ToList()
-                            : fileTree.OrderByDescending(_ => _.Name).ToList();
-                        break;
-                    case FileTreeOptions.FileTreeOrderBy.LastModificationDate:
-                        fileTree = fileTreeOptions.OrderAsc
-                            ? fileTree.OrderBy(_ => _.LastModificationDate).ToList()
-                            : fileTree.OrderByDescending(_ => _.LastModificationDate).ToList();
-                        break;
-                    case FileTreeOptions.FileTreeOrderBy.Size:
-                        fileTree = fileTreeOptions.OrderAsc
-                            ? fileTree.OrderBy(_ => _.Size).ToList()
-                            : fileTree.OrderByDescending(_ => _.Size).ToList();
-                        break;
-                    default:
-                        break;
-                }
-                return fileTree;
+                string normalizedPath = GetNormalizedBlobName(path);
+                return GetFilesAndDirectories(normalizedPath);
             }
             catch (StorageException ex)
             {
                 throw new System.Exception("Failed to load file tree.", ex);
             }
         }
+
+        /// <summary>
+        /// Gets the file tree.
+        /// </summary>
+        /// <param name="blobName">The blob name.</param>
+        /// <returns>The file tree.</returns>
+        private List<FileDescription> GetFilesAndDirectories(string blobName)
+        {
+            CloudBlobDirectory directory = _container.GetDirectoryReference(blobName);
+            List<FileDescription> fileTree = new List<FileDescription>();
+            foreach (IListBlobItem blob in directory.ListBlobs())
+            {
+                FileDescription fileDescription;
+                CloudBlobDirectory blobDirectory = blob as CloudBlobDirectory;
+                if (blobDirectory != null)
+                {
+                    fileDescription = new FileDescription(blobDirectory.Prefix, true);
+                }
+                else
+                {
+                    ICloudBlob blobFile = (ICloudBlob)blob;
+                    fileDescription = new FileDescription(blobFile.Name, false)
+                    {
+                        Size = blobFile.Properties.Length,
+                        LastModificationDate = GetDateTimeOrEmptyDate(blobFile.Properties.LastModified)
+                    };
+                }
+                fileTree.Add(fileDescription);
+            }
+            return fileTree;
+        }
+        /// <summary>
+        /// Gets normalized blob name, updates guid from dir\\file.ext to dir/file.ext
+        /// </summary>
+        /// <param name="guid">The unique identifier.</param>
+        /// <returns>Normalized blob name.</returns>
+        private string GetNormalizedBlobName(string guid)
+        {
+            return Regex.Replace(guid, @"\\+", Delimiter.ToString()).Trim(Delimiter);
+        }
+
         /// <summary>
         /// Gets the endpoint e.g. https://youraccountname.blob.core.windows.net/
         /// </summary>
@@ -197,15 +217,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             return fileTree;
         }
         /// <summary>
-        /// Gets normalized blob name, updates guid from dir\\file.ext to dir/file.ext
-        /// </summary>
-        /// <param name="guid">The unique identifier.</param>
-        /// <returns>Normalized blob name.</returns>
-        private string GetNormalizedBlobName(string guid)
-        {
-            return Regex.Replace(guid, @"\\+", Delimiter.ToString()).Trim(Delimiter);
-        }
-        /// <summary>
         /// Gets date time or empty date.
         /// </summary>
         /// <param name="dateTimeOffset">The date time offset.</param>
@@ -220,11 +231,32 @@ namespace GroupDocs.Viewer.Examples.CSharp
         {
             //TODO
         }
+        /// <summary>
+        /// Adds file to storage.
+        /// </summary>
+        /// <param name="guid">This is user defined key that identifies file in the storage.</param>
+        /// <param name="content">Stream to save data to storage.</param>
         public void AddFile(string guid, Stream content)
         {
-            //TODO
+            try
+            {
+                string blobName = GetNormalizedBlobName(guid);
+                ICloudBlob blob = _container.GetBlockBlobReference(blobName);
+                blob.UploadFromStream(content);
+            }
+            catch (StorageException ex)
+            {
+                throw new System.Exception("Unabled to add file.", ex);
+            }
         }
-        public List<FileDescription> GetEntities(string path)
+
+        public List<FileDescription> LoadFileTree(FileListOptions fileListOptions)
+        {
+            //TODO
+            return new List<FileDescription>();
+        }
+        [Obsolete]
+        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
         {
             //TODO
             return new List<FileDescription>();

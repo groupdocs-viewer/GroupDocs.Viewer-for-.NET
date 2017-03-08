@@ -61,6 +61,7 @@ Namespace GroupDocs.Viewer.Examples
                 Throw New System.Exception("Unable to recognize that Account Name/Account Key.", e)
             End Try
         End Sub
+        <Obsolete("Don't use this anymore.")>
         Public Sub SaveDocument(cachedDocumentDescription As CachedDocumentDescription, documentStream As Stream) Implements IInputDataHandler.SaveDocument
             'TODO
         End Sub
@@ -108,27 +109,9 @@ Namespace GroupDocs.Viewer.Examples
         ''' </summary>
         ''' <param name="fileTreeOptions__1">The file tree options.</param>
         ''' <returns>System.Collections.Generic.List&lt;GroupDocs.Viewer.Domain.FileDescription&gt;.</returns>
+        <Obsolete("Don't use this anymore.")>
         Public Function LoadFileTree(fileTreeOptions__1 As FileTreeOptions) As List(Of FileDescription) Implements IInputDataHandler.LoadFileTree
-            Try
-                Dim path As String = GetNormalizedBlobName(fileTreeOptions__1.Path)
-                Dim fileTree As List(Of FileDescription) = GetFileTree(path)
-                Select Case fileTreeOptions__1.OrderBy
-                    Case FileTreeOptions.FileTreeOrderBy.Name
-                        'fileTree = If(fileTreeOptions__1.OrderAsc, fileTree.OrderBy( _ => _.Name).ToList(), fileTree.OrderByDescending(Function(_) _.Name).ToList())
-                        Exit Select
-                    Case FileTreeOptions.FileTreeOrderBy.LastModificationDate
-                        'fileTree = If(fileTreeOptions__1.OrderAsc, fileTree.OrderBy(Function(_) _.LastModificationDate).ToList(), fileTree.OrderByDescending(Function(_) _.LastModificationDate).ToList())
-                        Exit Select
-                    Case FileTreeOptions.FileTreeOrderBy.Size
-                        'fileTree = If(fileTreeOptions__1.OrderAsc, fileTree.OrderBy(Function(_) _.Size).ToList(), fileTree.OrderByDescending(Function(_) _.Size).ToList())
-                        Exit Select
-                    Case Else
-                        Exit Select
-                End Select
-                Return fileTree
-            Catch ex As StorageException
-                Throw New System.Exception("Failed to load file tree.", ex)
-            End Try
+            Return New List(Of FileDescription)()
         End Function
         ''' <summary>
         ''' Gets the endpoint e.g. https://youraccountname.blob.core.windows.net/

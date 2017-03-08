@@ -178,6 +178,108 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderRemoteDocAsHtml
         }
 
+        /// <summary>
+        /// Renders PDF document's layers separately
+        /// </summary>
+        /// <param name="DocumentName">Name of the document</param>
+        public static void RenderPDFLayersSeparately(String DocumentName)
+        {
+            //ExStart:RenderPDFLayersSeparately
+            //Get Configurations 
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            
+            // Set pdf options to render pdf layers into separate html elements
+            HtmlOptions options = new HtmlOptions();
+            options.PdfOptions.RenderLayersSeparately = true; // Default value is false
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(DocumentName, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderPDFLayersSeparately
+        }
+
+        /// <summary>
+        /// Gets printable HTML of the source document
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        /// <param name="DocumentPassword">Optional</param>
+        public static void GetPrintableHTML(String DocumentName, String DocumentPassword = null)
+        {
+            //ExStart:GetPrintableHTML
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Setup watermark and style
+            Watermark watermark = new Watermark("Watermark text");
+            string css = "a { color: hotpink; }";
+
+            // Setup printable options
+            var options = new PrintableHtmlOptions();
+            options.Watermark = watermark;
+            options.Css = css;
+
+            // Get document html for print with custom css and watermark
+            var container = htmlHandler.GetPrintableHtml(guid, options);
+
+            Console.WriteLine("Html content: {0}", container.HtmlContent);
+            //ExEnd:GetPrintableHTML
+        }
+        /// <summary>
+        /// Render a document in html representation with specifying resource prefix.
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderDocumentAsHtmlWithResourcePrefix(string DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlWithResourcePrefix
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            //Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            //Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //To get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = false;
+
+            //Set resource prefix
+            options.HtmlResourcePrefix = "http://example.com/api/pages/{page-number}/resources/{resource-name}";
+            //The {page-number} and {resource-name} patterns will be replaced with current processing page number and resource name accordingly.
+
+            //To ignore resource prefix in CSS 
+            //options.IgnoreResourcePrefixForCss = true;
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlWithResourcePrefix
+
+
+        }
+
         public static void RenderLargeDocumentAsHtml(String DocumentName, String DocumentPassword = null)
         {
             //ExStart:RenderAsHtml
@@ -212,7 +314,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             for (int i = 1; i <= totalIterations; i++)
             {
                 // Set range of the pages
-                options.PageNumbersToConvert = Enumerable.Range(pageNumber, 5).ToList();
+                options.PageNumbersToRender = Enumerable.Range(pageNumber, 5).ToList();
                 // Get pages
                 List<PageHtml> pages = htmlHandler.GetPages(guid, options);
                 //Save each page at disk
@@ -226,7 +328,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             if (remainder > 0)
             {
-                options.PageNumbersToConvert = Enumerable.Range(pageNumber, remainder).ToList();
+                options.PageNumbersToRender = Enumerable.Range(pageNumber, remainder).ToList();
                 List<PageHtml> pages = htmlHandler.GetPages(guid, options);
                 //Save each page at disk
                 foreach (PageHtml page in pages)
@@ -240,47 +342,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsHtml
         }
 
-        /// <summary>
-        /// Render a document in html representation with specifying resource prefix.
-        /// </summary>
-        /// <param name="DocumentName">file/document name</param>
-        public static void RenderDocumentAsHtmlWithResourcePrefix(string DocumentName)
-        {
-            //ExStart:RenderDocumentAsHtmlWithResourcePrefix
-            //Get Configurations
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            //Create html handler
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-
-            //Guid implies that unique document name 
-            string guid = DocumentName;
-
-            //Instantiate the HtmlOptions object
-            HtmlOptions options = new HtmlOptions();
-
-            //To get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = false;
-
-            //Set resource prefix
-            options.HtmlResourcePrefix = "http://contoso.com/api/getResource?name=";
-
-            //To ignore resource prefix in CSS 
-            //options.IgnoreResourcePrefixForCss = true;
-
-            //Get document pages in html form
-            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-            foreach (PageHtml page in pages)
-            {
-                //Save each page at disk
-                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-            }
-            //ExEnd:RenderDocumentAsHtmlWithResourcePrefix
-
-
-        }
-
+       
         /// <summary>
         /// Renders hidden pages of Visio file as Html.
         /// </summary>

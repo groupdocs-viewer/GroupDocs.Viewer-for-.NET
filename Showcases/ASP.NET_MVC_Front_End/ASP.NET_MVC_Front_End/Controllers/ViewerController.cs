@@ -356,7 +356,7 @@ namespace MvcSample.Controllers
                 var htmlOptions = new HtmlOptions
                 {
                     PageNumber = parameters.PageIndex + 1,
-                    CountPagesToConvert = 1,
+                    CountPagesToRender = 1,
                     IsResourcesEmbedded = false,
                     HtmlResourcePrefix = string.Format(
                         "/document-viewer/GetResourceForHtml?documentPath={0}", parameters.Path) +
@@ -408,10 +408,10 @@ namespace MvcSample.Controllers
                     Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
                     parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity),
                     Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None,
-                    CountPagesToConvert = 1,
+                    CountPagesToRender = 1,
                     PageNumber = pageNumber,
                     JpegQuality = parameters.Quality.GetValueOrDefault(),
-                    PageNumbersToConvert = new List<int>(new int[] { pageNumber })
+                    PageNumbersToRender = new List<int>(new int[] { pageNumber })
             };
 
                 if (parameters.Rotate && parameters.Width.HasValue)
@@ -488,9 +488,9 @@ namespace MvcSample.Controllers
                 DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
                 int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
-                RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, pageNumber, parameters.RotationAmount);
+                RotatePageOptions rotatePageOptions = new RotatePageOptions( pageNumber, parameters.RotationAmount);
 
-                _imageHandler.RotatePage(rotatePageOptions);
+                _imageHandler.RotatePage(guid, rotatePageOptions);
                 DocumentInfoContainer container = _imageHandler.GetDocumentInfo(guid);
 
                 PageData pageData = container.Pages.Single(_ => _.Number == pageNumber);
@@ -521,8 +521,8 @@ namespace MvcSample.Controllers
                 int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
                 int newPosition = parameters.NewPosition + 1;
 
-                ReorderPageOptions reorderPageOptions = new ReorderPageOptions(guid, pageNumber, newPosition);
-                _imageHandler.ReorderPage(reorderPageOptions);
+                ReorderPageOptions reorderPageOptions = new ReorderPageOptions( pageNumber, newPosition);
+                _imageHandler.ReorderPage(guid,reorderPageOptions);
 
                 return ToJsonResult(new ReorderPageResponse());
 
@@ -773,7 +773,7 @@ request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
             if (request.PreloadPagesCount.HasValue && request.PreloadPagesCount.Value > 0)
             {
                 htmlOptions.PageNumber = 1;
-                htmlOptions.CountPagesToConvert = request.PreloadPagesCount.Value;
+                htmlOptions.CountPagesToRender = request.PreloadPagesCount.Value;
             }
             /////
             List<string> cssList;

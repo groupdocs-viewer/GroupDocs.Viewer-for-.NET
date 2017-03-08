@@ -38,6 +38,7 @@ namespace GroupDocs.Viewer.Examples
             config.StoragePath = StoragePath;
             //Uncomment the below line for cache purpose
             config.UseCache = true;
+            config.CacheFolderName = "cachefolder";
             return config;
             //ExEnd:Configurations
 
@@ -81,7 +82,7 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:rotationAngle
                 // Set the property of handler's rotate Page
-                handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
+                handler.RotatePage(guid, new RotatePageOptions( PageNumber, angle));
                 //ExEnd:rotationAngle
             }
             /// <summary>
@@ -93,7 +94,7 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:rotationAngle
                 // Set the property of handler's rotate Page
-                handler.RotatePage(new RotatePageOptions(guid, PageNumber, angle));
+                handler.RotatePage(guid, new RotatePageOptions( PageNumber, angle));
                 //ExEnd:rotationAngle
             }
             /// <summary>
@@ -107,9 +108,9 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:reorderPage
                 //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
-                ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
+                ReorderPageOptions options = new ReorderPageOptions(currentPageNumber, newPageNumber);
                 // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
-                Handler.ReorderPage(options);
+                Handler.ReorderPage(guid, options);
                 //ExEnd:reorderPage
             }
             /// <summary>
