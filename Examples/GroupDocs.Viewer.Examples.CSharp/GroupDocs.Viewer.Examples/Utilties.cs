@@ -124,9 +124,9 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:reorderPage
                 //Initialize the ReorderPageOptions object by passing guid as document name, current Page Number, new page number
-                ReorderPageOptions options = new ReorderPageOptions(guid, currentPageNumber, newPageNumber);
+                ReorderPageOptions options = new ReorderPageOptions(currentPageNumber, newPageNumber);
                 // call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions object.
-                Handler.ReorderPage(options);
+                Handler.ReorderPage(guid, options);
                 //ExEnd:reorderPage
             }
             /// <summary>
