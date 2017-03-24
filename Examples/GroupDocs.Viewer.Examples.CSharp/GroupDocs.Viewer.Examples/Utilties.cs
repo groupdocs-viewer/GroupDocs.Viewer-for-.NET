@@ -190,6 +190,55 @@ namespace GroupDocs.Viewer.Examples
             lic.SetLicense(licensePath);
         }
 
+        /// <summary>
+        /// Set metered license 
+        /// </summary>
+        public static void ApplyMeteredLicense()
+        {
+            //ExStart:ApplyMeteredLicense
+            // Create new instance of GroupDocs.Viewer.Metered class
+            GroupDocs.Viewer.Metered metered = new GroupDocs.Viewer.Metered();
+
+            // Set public and private keys
+            string publicKey = "***";
+            string privateKey = "***";
+
+            // Set public and private keys to metered instance
+            metered.SetMeteredKey(publicKey, privateKey);
+            //ExEnd:ApplyMeteredLicense
+        }
+
+        /// <summary>
+        /// Get metered license consumption
+        /// </summary>
+        public static void GetMeteredLicenseConsumption()
+        {
+            //ExStart:GetMeteredLicenseConsumption
+            // Create new instance of GroupDocs.Viewer.Metered class
+            GroupDocs.Viewer.Metered metered = new GroupDocs.Viewer.Metered();
+
+            // Set public and private keys
+            string publicKey = "***";
+            string privateKey = "***";
+
+            // Set public and private keys to metered instance
+            metered.SetMeteredKey(publicKey, privateKey);
+
+            // Get metered value before usage of the comparison
+            decimal amountBefore = GroupDocs.Viewer.Metered.GetConsumptionQuantity();
+
+            Console.WriteLine("Amount (MB) consumed before:" + amountBefore);
+
+            // Get pages
+            GroupDocs.Viewer.Handler.ViewerHtmlHandler htmlHandler = new GroupDocs.Viewer.Handler.ViewerHtmlHandler();
+            List<GroupDocs.Viewer.Domain.Html.PageHtml> pages = htmlHandler.GetPages("input.pdf");
+
+            // Get metered value after usage of the comparison
+            decimal amountAfter = GroupDocs.Viewer.Metered.GetConsumptionQuantity();
+
+            Console.WriteLine("Amount (MB) consumed after: " + amountAfter);
+            //ExEnd:GetMeteredLicenseConsumption
+        }
         #endregion
 
         #region OutputHandling

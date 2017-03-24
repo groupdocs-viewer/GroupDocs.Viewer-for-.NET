@@ -185,7 +185,54 @@ Namespace GroupDocs.Viewer.Examples
             Dim lic As New License()
             lic.SetLicense(licensePath)
         End Sub
-        
+        ''' <summary>
+        ''' Set metered license 
+        ''' </summary>
+        Public Shared Sub ApplyMeteredLicense()
+            'ExStart:ApplyMeteredLicense
+            ' Create new instance of GroupDocs.Viewer.Metered class
+            Dim metered As New Global.GroupDocs.Viewer.Metered()
+
+            ' Set public and private keys
+            Dim publicKey As String = "***"
+            Dim privateKey As String = "***"
+
+            ' Set public and private keys to metered instance
+            metered.SetMeteredKey(publicKey, privateKey)
+            'ExEnd:ApplyMeteredLicense
+        End Sub
+
+        ''' <summary>
+        ''' Get metered license consumption
+        ''' </summary>
+        Public Shared Sub GetMeteredLicenseConsumption()
+            'ExStart:GetMeteredLicenseConsumption
+            ' Create new instance of GroupDocs.Viewer.Metered class
+            Dim metered As New Global.GroupDocs.Viewer.Metered()
+
+            ' Set public and private keys
+            Dim publicKey As String = "***"
+            Dim privateKey As String = "***"
+
+            ' Set public and private keys to metered instance
+            metered.SetMeteredKey(publicKey, privateKey)
+
+            ' Get metered value before usage of the comparison
+            Dim amountBefore As Decimal = Global.GroupDocs.Viewer.Metered.GetConsumptionQuantity()
+
+            Console.WriteLine("Amount (MB) consumed before:" + amountBefore)
+
+            ' Get pages
+            Dim htmlHandler As New Global.GroupDocs.Viewer.Handler.ViewerHtmlHandler()
+            Dim pages As List(Of Global.GroupDocs.Viewer.Domain.Html.PageHtml) = htmlHandler.GetPages("input.pdf")
+
+            ' Get metered value after usage of the comparison
+            Dim amountAfter As Decimal = Global.GroupDocs.Viewer.Metered.GetConsumptionQuantity()
+
+            Console.WriteLine("Amount (MB) consumed after: " + amountAfter)
+            'ExEnd:GetMeteredLicenseConsumption
+        End Sub
+
 
 #End Region
 
