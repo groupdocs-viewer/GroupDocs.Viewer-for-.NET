@@ -205,6 +205,62 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
+        ''' Renders PDF document without annotations
+        ''' </summary>
+        ''' <param name="DocumentName">Name of the document</param>
+        Public Shared Sub RenderPDFDocumentWithoutAnnotations(DocumentName As [String])
+            'ExStart:RenderPDFDocumentWithoutAnnotations
+            'Get Configurations 
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Set pdf options to render content without annotations
+            Dim options As New HtmlOptions()
+            options.PdfOptions.DeleteAnnotations = True
+            ' Default value is false
+            'Get document pages in html form
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(DocumentName, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderPDFDocumentWithoutAnnotations
+        End Sub
+
+        ''' <summary>
+        ''' Renders Word document in html representation with track changes
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param>
+        Public Shared Sub RenderWordDocumentAsHtmlWithTrackChanges(DocumentName As [String])
+            'ExStart:RenderWordDocumentAsHtmlWithTrackChanges
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            'Instantiate the HtmlOptions object
+            Dim options As New HtmlOptions()
+
+            options.WordsOptions.ShowTrackedChanges = True
+            ' Default value is false
+            'Get document pages in html form
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderWordDocumentAsHtmlWithTrackChanges
+        End Sub
+
+        ''' <summary>
         ''' Gets printable HTML of the source document
         ''' </summary>
         ''' <param name="DocumentName">File name</param>
@@ -642,6 +698,37 @@ Namespace GroupDocs.Viewer.Examples
 
 
         End Sub
+        ''' <summary>
+        ''' Render CAD document in image representation
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param>
+        Public Shared Sub RenderCADAsImages(DocumentName As [String])
+            'ExStart:RenderCADAsImages
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create image handler 
+            Dim imageHandler As New ViewerImageHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Set Cad options to render content with a specified size
+            Dim options As New ImageOptions()
+
+            options.CadOptions.Height = 750
+            options.CadOptions.Width = 450
+
+            'Get document pages in image form
+            Dim Images As List(Of PageImage) = imageHandler.GetPages(guid, options)
+
+            For Each image As PageImage In Images
+                'Save each image at disk
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream)
+            Next
+            'ExEnd:RenderCADAsImages
+
+        End Sub
 #End Region
 
 #Region "GeneralRepresentation"
@@ -686,6 +773,56 @@ Namespace GroupDocs.Viewer.Examples
             'Save each image at disk
             Utilities.SaveFile(filename, container.Stream)
             'ExEnd:RenderAsPdf
+
+        End Sub
+
+        ''' <summary>
+        ''' Renders a document in PDF without annotations
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderDocumentAsPDFWithoutAnnotations(DocumentName As [String])
+            'ExStart:RenderDocumentAsPDFWithoutAnnotations
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Set pdf options to get original file without annotations
+            Dim options As New PdfFileOptions()
+            options.PdfOptions.DeleteAnnotations = True
+            ' Default value is false
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, options)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+            'ExEnd:RenderDocumentAsPDFWithoutAnnotations
+
+        End Sub
+
+        ''' <summary>
+        ''' Renders Word document in PDF with tracked changes
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderWordDocumentAsPDFWithTrackedChanges(DocumentName As [String])
+            'ExStart:RenderWordDocumentAsPDFWithTrackedChanges
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Set pdf options to get original file without annotations
+            Dim options As New PdfFileOptions()
+            options.WordsOptions.ShowTrackedChanges = True
+            ' Default value is false
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, options)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+            'ExEnd:RenderWordDocumentAsPDFWithTrackedChanges
 
         End Sub
 

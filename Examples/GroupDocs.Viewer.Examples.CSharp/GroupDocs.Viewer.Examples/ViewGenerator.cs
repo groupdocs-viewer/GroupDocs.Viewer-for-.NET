@@ -207,6 +207,65 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
+        /// Renders PDF document without annotations
+        /// </summary>
+        /// <param name="DocumentName">Name of the document</param>
+        public static void RenderPDFDocumentWithoutAnnotations(String DocumentName)
+        {
+            //ExStart:RenderPDFDocumentWithoutAnnotations
+            //Get Configurations 
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Set pdf options to render content without annotations
+            HtmlOptions options = new HtmlOptions();
+            options.PdfOptions.DeleteAnnotations = true; // Default value is false
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(DocumentName, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderPDFDocumentWithoutAnnotations
+        }
+
+        /// <summary>
+        /// Renders Word document in html representation with track changes
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        public static void RenderWordDocumentAsHtmlWithTrackChanges(String DocumentName)
+        {
+            //ExStart:RenderWordDocumentAsHtmlWithTrackChanges
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            options.WordsOptions.ShowTrackedChanges = true; // Default value is false
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderWordDocumentAsHtmlWithTrackChanges
+        }
+        /// <summary>
         /// Gets printable HTML of the source document
         /// </summary>
         /// <param name="DocumentName">File name</param>
@@ -717,6 +776,39 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
 
+        /// <summary>
+        /// Render CAD document in image representation
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        public static void RenderCADAsImages(String DocumentName)
+        {
+            //ExStart:RenderCADAsImages
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set Cad options to render content with a specified size
+            ImageOptions options = new ImageOptions();
+
+            options.CadOptions.Height = 750;
+            options.CadOptions.Width = 450;
+
+            //Get document pages in image form
+            List<PageImage> Images = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage image in Images)
+            {
+                //Save each image at disk
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream);
+            }
+            //ExEnd:RenderCADAsImages
+
+        }
         #endregion
 
         #region GeneralRepresentation
@@ -766,6 +858,57 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
 
+        /// <summary>
+        /// Renders a document in PDF without annotations
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderDocumentAsPDFWithoutAnnotations(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsPDFWithoutAnnotations
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            // Set pdf options to get original file without annotations
+            PdfFileOptions options = new PdfFileOptions();
+            options.PdfOptions.DeleteAnnotations = true; // Default value is false
+
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderDocumentAsPDFWithoutAnnotations
+
+        }
+
+        /// <summary>
+        /// Renders Word document in PDF with tracked changes
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWordDocumentAsPDFWithTrackedChanges(String DocumentName)
+        {
+            //ExStart:RenderWordDocumentAsPDFWithTrackedChanges
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            // Set pdf options to get original file without annotations
+            PdfFileOptions options = new PdfFileOptions();
+            options.WordsOptions.ShowTrackedChanges = true; // Default value is false
+
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderWordDocumentAsPDFWithTrackedChanges
+
+        }
         /// <summary>
         /// Renders a document in PDF Form with watermark 
         /// </summary>

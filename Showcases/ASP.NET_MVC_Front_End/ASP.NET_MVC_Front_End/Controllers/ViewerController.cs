@@ -593,7 +593,7 @@ namespace MvcSample.Controllers
 
                     if (needResave)
                     {
-                        var fullPath = Path.Combine(_tempPath, filePath, "html", "resources",
+                        var fullPath = Path.Combine(_tempPath, filePath.Replace('.', '_'), "html", "resources",
                             string.Format("page{0}", page.PageNumber), resource.ResourceName);
 
                         System.IO.File.WriteAllText(fullPath, text);
