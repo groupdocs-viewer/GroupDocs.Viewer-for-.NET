@@ -48,6 +48,21 @@ Namespace GroupDocs.Viewer.Examples
             'Render Excel document in html form with internal hyperlink prefix
             'ViewGenerator.RenderExcelAsHtmlWithInternalHyperlinkPrefix("sample.xlsx")
 
+            'Render Excel file as Html specifying text overflow mode
+            'ViewGenerator.RenderExcelAsHtmlWithTextOverflowMode("sample.xlsx")
+
+            'Render CAD document including the layouts 
+            'ViewGenerator.RenderLayoutsOfCADDocument("sample.dwg")
+
+            'Render Excel file as Html specifying text overflow mode
+            'ViewGenerator.RenderSpecificLayoutOfCADDocument("sample.dwg")
+
+            'Gets list of all Layouts from CAD document
+            'ViewGenerator.GetListOfLayoutsOfCADDocument("sample.dwg")
+
+            'Gets list of all Layouts from CAD document
+            'ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf")
+
             '#End Region
 
             '#Region "ViewerImagePresentation"
@@ -81,6 +96,9 @@ Namespace GroupDocs.Viewer.Examples
 
             'Render the document as it is (Original form)
             'ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf")
+
+            'Render DjVu document as PDF with JpegQuality settings
+            'ViewGenerator.RenderDjVuAsPDF("sample.djvu")
             '#End Region
 
             '#Region "InputDataHandlers"

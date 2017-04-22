@@ -47,10 +47,26 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ViewGenerator.RenderExcelAsHtmlWithInternalHyperlinkPrefix("sample.xlsx");
 
             //Render simple document into html with PreventGlyphsGrouping settings
-            //ViewGenerator.RenderDocumentAsHtmlWithPreventGlyphsGrouping("sample.pdf");
+            //ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf");
 
             //Render Excel file as Html specifying number of rows per page
             //ViewGenerator.RenderExcelAsHtmlWithCountRowsPerPage("sample.xlsx");
+
+            //Render Excel file as Html specifying text overflow mode
+            //ViewGenerator.RenderExcelAsHtmlWithTextOverflowMode("sample.xlsx");
+
+            //Render CAD document including the layouts 
+            //ViewGenerator.RenderLayoutsOfCADDocument("sample.dwg");
+
+            //Render Excel file as Html specifying text overflow mode
+            //ViewGenerator.RenderSpecificLayoutOfCADDocument("sample.dwg");
+
+            //Gets list of all Layouts from CAD document
+            //ViewGenerator.GetListOfLayoutsOfCADDocument("sample.dwg");
+
+            //Gets list of all Layouts from CAD document
+            //ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -84,6 +100,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
+
+            //Render DjVu document as PDF with JpegQuality settings
+            //ViewGenerator.RenderDjVuAsPDF("sample.djvu");
             #endregion
 
             #region InputDataHandlers

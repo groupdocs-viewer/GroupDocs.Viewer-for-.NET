@@ -41,8 +41,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupDocs.Viewer, Version=17.2.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\groupdocs-viewer-dotnet.17.2.0\lib\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=17.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\groupdocs-viewer-dotnet.17.4.0\lib\GroupDocs.Viewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
