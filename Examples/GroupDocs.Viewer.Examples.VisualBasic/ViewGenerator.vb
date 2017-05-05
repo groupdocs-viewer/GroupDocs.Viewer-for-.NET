@@ -397,6 +397,34 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
+        ''' Renders Excel file as Html specifying the mode of text overflow
+        ''' </summary>
+        ''' <param name="DocumentName">file/document name</param>
+        Public Shared Sub RenderExcelAsHtmlWithTextOverflowMode(DocumentName As String)
+
+            'ExStart:RenderExcelAsHtmlWithTextOverflowMode
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+            Dim guid As String = DocumentName
+
+            ' Set Cells options to hide overflowing text
+            Dim options As New HtmlOptions()
+            options.CellsOptions.TextOverflowMode = TextOverflowMode.HideText
+
+            ' Get pages
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(Convert.ToString(page.PageNumber + "_") & DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderExcelAsHtmlWithTextOverflowMode
+
+        End Sub
+
+        ''' <summary>
         ''' Renders Excel file as Html specifying number of rows per page.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
@@ -429,12 +457,12 @@ Namespace GroupDocs.Viewer.Examples
 
 
         ''' <summary>
-        ''' Renders simple document into html with PreventGlyphsGrouping settings
+        ''' Renders PDF document into html with EnablePreciseRendering settings
         ''' </summary>
         ''' <param name="DocumentName">File name</param>
         ''' <param name="DocumentPassword">Optional</param>
-        Public Shared Sub RenderDocumentAsHtmlWithPreventGlyphsGrouping(DocumentName As [String], Optional DocumentPassword As [String] = Nothing)
-            'ExStart:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+        Public Shared Sub RenderDocumentAsHtmlWithEnablePreciseRendering(DocumentName As [String], Optional DocumentPassword As [String] = Nothing)
+            'ExStart:RenderDocumentAsHtmlWithEnablePreciseRendering
             'Get Configurations
             Dim config As ViewerConfig = Utilities.GetConfigurations()
 
@@ -456,7 +484,7 @@ Namespace GroupDocs.Viewer.Examples
             End If
 
             ' Set pdf options to render content without glyphs grouping
-            options.PdfOptions.PreventGlyphsGrouping = True
+            options.PdfOptions.EnablePreciseRendering = True
             ' Default value is false
             'Get document pages in html form
             Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
@@ -465,10 +493,93 @@ Namespace GroupDocs.Viewer.Examples
                 'Save each page at disk
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
             Next
-            'ExEnd:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+            'ExEnd:RenderDocumentAsHtmlWithEnablePreciseRendering
         End Sub
 
+        ''' <summary>
+        ''' Renders Model and all non empty Layouts from CAD document
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param> 
+        Public Shared Sub RenderLayoutsOfCADDocument(DocumentName As [String])
+            'ExStart:RenderLayoutsOfCADDocument
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
 
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Set CAD options to render Model and all non empty Layouts
+            Dim options As New HtmlOptions()
+            options.CadOptions.RenderLayouts = True
+
+            ' Get pages 
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderLayoutsOfCADDocument
+        End Sub
+
+        ''' <summary>
+        ''' Renders specific Layout from CAD document
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param> 
+        Public Shared Sub RenderSpecificLayoutOfCADDocument(DocumentName As [String])
+            'ExStart:RenderSpecificLayoutOfCADDocument
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Set CAD options to render Model and all non empty Layouts
+            Dim options As New HtmlOptions()
+            options.CadOptions.LayoutName = "MyFirstLayout"
+
+            ' Get pages 
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+            'ExEnd:RenderSpecificLayoutOfCADDocument
+        End Sub
+
+        ''' <summary>
+        ''' Gets list of all Layouts from CAD document
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param> 
+        Public Shared Sub GetListOfLayoutsOfCADDocument(DocumentName As [String])
+            'ExStart:GetListOfLayoutsOfCADDocument
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Set CAD options to get the full list of Layouts
+            Dim documentInfoOptions As New DocumentInfoOptions()
+            documentInfoOptions.CadOptions.RenderLayouts = True
+
+            ' Get DocumentInfoContainer and iterate through pages 
+            Dim documentInfoContainer As DocumentInfoContainer = htmlHandler.GetDocumentInfo(guid, documentInfoOptions)
+            For Each page As PageData In documentInfoContainer.Pages
+                Console.WriteLine("Page number: {0} - {1}", page.Number, page.Name)
+            Next
+            'ExEnd:GetListOfLayoutsOfCADDocument
+        End Sub
 
 #End Region
 
@@ -897,6 +1008,32 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderAsPdf
 
         End Sub
+
+        ''' <summary>
+        ''' Renders DjVu in PDF Form with JpegQuality option
+        ''' </summary>
+        ''' <param name="DocumentName"></param>
+        Public Shared Sub RenderDjVuAsPDF(DocumentName As [String])
+            'ExStart:RenderDjVuAsPDF
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            ' Set pdf options JpegQuality in a range between 1 and 100
+            Dim PdfFileOptions As New PdfFileOptions()
+            PdfFileOptions.JpegQuality = 5
+
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, PdfFileOptions)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+            'ExEnd:RenderDjVuAsPDF
+
+        End Sub
+
 
         ''' <summary>
         ''' Load directory structure as file tree

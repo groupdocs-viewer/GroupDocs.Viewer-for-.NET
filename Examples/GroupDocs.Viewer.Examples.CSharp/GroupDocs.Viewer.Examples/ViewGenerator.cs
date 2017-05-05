@@ -503,15 +503,44 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
 
+        /// <summary>
+        /// Renders Excel file as Html specifying the mode of text overflow
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderExcelAsHtmlWithTextOverflowMode(string DocumentName)
+        {
+
+            //ExStart:RenderExcelAsHtmlWithTextOverflowMode
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set Cells options to hide overflowing text
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.TextOverflowMode = TextOverflowMode.HideText;
+
+            // Get pages
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderExcelAsHtmlWithTextOverflowMode
+
+        }
 
         /// <summary>
         /// Renders simple document into html with PreventGlyphsGrouping settings
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
-        public static void RenderDocumentAsHtmlWithPreventGlyphsGrouping(String DocumentName, String DocumentPassword = null)
+        public static void RenderDocumentAsHtmlWithEnablePreciseRendering(String DocumentName, String DocumentPassword = null)
         {
-            //ExStart:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+            //ExStart:RenderDocumentAsHtmlWithEnablePreciseRendering
             //Get Configurations
             ViewerConfig config = Utilities.GetConfigurations();
 
@@ -531,8 +560,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
 
-            // Set pdf options to render content without glyphs grouping
-            options.PdfOptions.PreventGlyphsGrouping = true; // Default value is false
+            // Set pdf options to render content in precise mode
+            options.PdfOptions.EnablePreciseRendering = true; // Default value is false
 
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
@@ -542,7 +571,98 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 //Save each page at disk
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
-            //ExEnd:RenderDocumentAsHtmlWithPreventGlyphsGrouping
+            //ExEnd:RenderDocumentAsHtmlWithEnablePreciseRendering
+        }
+
+        /// <summary>
+        /// Renders Model and all non empty Layouts from CAD document
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderLayoutsOfCADDocument(String DocumentName)
+        {
+            //ExStart:RenderLayoutsOfCADDocument
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set CAD options to render Model and all non empty Layouts
+            HtmlOptions options = new HtmlOptions();
+            options.CadOptions.RenderLayouts = true;
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderLayoutsOfCADDocument
+        }
+        
+        /// <summary>
+        /// Renders specific Layout from CAD document
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderSpecificLayoutOfCADDocument(String DocumentName)
+        {
+            //ExStart:RenderSpecificLayoutOfCADDocument
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set CAD options to render Model and all non empty Layouts
+            HtmlOptions options = new HtmlOptions();
+            options.CadOptions.LayoutName = "MyFirstLayout";
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderSpecificLayoutOfCADDocument
+        }
+
+        /// <summary>
+        /// Gets list of all Layouts from CAD document
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void GetListOfLayoutsOfCADDocument(String DocumentName)
+        {
+            //ExStart:GetListOfLayoutsOfCADDocument
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set CAD options to get the full list of Layouts
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions();
+            documentInfoOptions.CadOptions.RenderLayouts = true;
+
+            // Get DocumentInfoContainer and iterate through pages 
+            DocumentInfoContainer documentInfoContainer = htmlHandler.GetDocumentInfo(guid, documentInfoOptions);
+            foreach (PageData page in documentInfoContainer.Pages)
+            {
+                Console.WriteLine("Page number: {0} - {1}", page.Number, page.Name);
+            }
+            //ExEnd:GetListOfLayoutsOfCADDocument
         }
         #endregion
 
@@ -983,6 +1103,31 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
 
+        /// <summary>
+        /// Renders DjVu in PDF Form with JpegQuality option
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderDjVuAsPDF(String DocumentName)
+        {
+            //ExStart:RenderDjVuAsPDF
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            // Set pdf options JpegQuality in a range between 1 and 100
+            PdfFileOptions PdfFileOptions = new PdfFileOptions();
+            PdfFileOptions.JpegQuality = 5;
+
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName,PdfFileOptions);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderDjVuAsPDF
+
+        }
         /// <summary>
         /// Loads directory structure as file tree
         /// </summary>

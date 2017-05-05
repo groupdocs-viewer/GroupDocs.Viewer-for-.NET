@@ -43,10 +43,7 @@ namespace MvcSample.Helpers
         /// <returns>System.String.</returns>
         public string Serialize(bool isDefault)
         {
-            WordsFileData wordsFileData = _fileData as WordsFileData;
-            if (wordsFileData != null)
-                return SerializeWords(wordsFileData);
-
+            
             var isCellsFileData = _fileData.Pages.Any(_ => !string.IsNullOrEmpty(_.Name));
             if (isCellsFileData && !isDefault)
                 return SerializeCells();
@@ -127,39 +124,7 @@ namespace MvcSample.Helpers
             return json.ToString();
         }
 
-        /// <summary>
-        /// Serializes the specified words file data.
-        /// </summary>
-        /// <param name="wordsFileData">The words file data.</param>
-        /// <returns>System.String.</returns>
-        private string SerializeWords(WordsFileData wordsFileData)
-        {
-            StringBuilder json = new StringBuilder();
-
-            json.Append(string.Format("{{\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
-                _fileData.MaxHeight, _fileData.MaxHeight));
-            json.Append(",\"pages\":[");
-
-            int pageCount = wordsFileData.Pages.Count;
-            for (int i = 0; i < pageCount; i++)
-            {
-                PageData pageData = wordsFileData.Pages[i];
-
-                bool needSeparator = pageData.Number >= 1;
-                if (needSeparator)
-                    json.Append(",");
-
-                AppendPage(pageData, json);
-
-                json.Append("}"); // page
-            }
-            json.Append("]"); // pages
-            
-            json.Append("}"); //document
-
-            return json.ToString();
-        }
-
+        
         /// <summary>
         /// Appends the page.
         /// </summary>
