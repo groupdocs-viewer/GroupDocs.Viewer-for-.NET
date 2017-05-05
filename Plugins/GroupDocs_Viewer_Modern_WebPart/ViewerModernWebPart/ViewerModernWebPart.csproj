@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{718C0A90-B569-4EBE-B579-4052F165F2E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewerModernWebPart</RootNamespace>
+    <AssemblyName>ViewerModernWebPart</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GroupDocs.Viewer, Version=17.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\groupdocs-viewer-dotnet.17.3.0\lib\GroupDocs.Viewer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\DocumentController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\DownloadOriginalController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\DownloadPdfController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\FilesController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\PageHtmlController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Controllers\PageImageController.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\DownloadOriginal.aspx.cs">
+      <DependentUpon>DownloadOriginal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\DownloadOriginal.aspx.designer.cs">
+      <DependentUpon>DownloadOriginal.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx.cs">
+      <DependentUpon>DownloadPdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx.designer.cs">
+      <DependentUpon>DownloadPdf.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx.cs">
+      <DependentUpon>GetDocumentHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx.designer.cs">
+      <DependentUpon>GetDocumentHtml.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentImage.aspx.cs">
+      <DependentUpon>GetDocumentImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentImage.aspx.designer.cs">
+      <DependentUpon>GetDocumentImage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\Helpers\Utils.cs" />
+    <Compile Include="Layouts\ViewerModernWebPart\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7b49279b-bd74-4875-960a-6ddd5e374558}</SharePointProjectItemId>
+    </None>
+    <None Include="Layouts\ViewerModernWebPart\Storage\apachecon-scaling.pptx" />
+    <None Include="Layouts\ViewerModernWebPart\Storage\calibre.docx" />
+    <None Include="Layouts\ViewerModernWebPart\Storage\candy.pdf" />
+    <None Include="Layouts\ViewerModernWebPart\Storage\lic.pdf" />
+    <None Include="packages.config" />
+    <None Include="Package\Package.package">
+      <PackageId>{076d8c3b-66db-4c3d-8b00-c9d4427e632f}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page1\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page2\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page3\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page4\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page5\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page6\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page7\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\resources\page8\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\candy_pdf\html\resources\page1\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\cache\candy_pdf\html\resources\page2\" />
+    <Folder Include="Layouts\ViewerModernWebPart\Storage\temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Layouts\ViewerModernWebPart\Content\app.js" />
+    <Content Include="Layouts\ViewerModernWebPart\Content\style.css" />
+    <Content Include="Layouts\ViewerModernWebPart\DownloadOriginal.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetDocumentImage.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\Home.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\Storage\cache\apachecon-scaling_pptx\html\fd.xml" />
+    <Content Include="Layouts\ViewerModernWebPart\Storage\cache\calibre_docx\html\fd.xml" />
+    <Content Include="Layouts\ViewerModernWebPart\Storage\cache\candy_pdf\html\fd.xml" />
+    <Content Include="Layouts\ViewerModernWebPart\Storage\cache\lic_pdf\html\fd.xml" />
+    <Content Include="Layouts\ViewerModernWebPart\Storage\README.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>
