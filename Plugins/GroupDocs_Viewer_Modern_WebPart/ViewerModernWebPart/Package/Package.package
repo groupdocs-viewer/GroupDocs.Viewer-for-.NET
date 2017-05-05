@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="076d8c3b-66db-4c3d-8b00-c9d4427e632f" solutionId="076d8c3b-66db-4c3d-8b00-c9d4427e632f" resetWebServer="false" sharePointProductVersion="15.0" name="ViewerModernWebPart" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="GroupDocs.Viewer.dll" deploymentTarget="WebApplication" sourcePath="..\packages\groupdocs-viewer-dotnet.17.3.0\lib\GroupDocs.Viewer.dll">
+      <safeControls>
+        <safeControl assemblyName="$GroupDocs.Viewer.dll$" namespaceName="GroupDocs.Viewer" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </customAssembly>
+  </assemblies>
+  <projectItems>
+    <projectItemReference itemId="7b49279b-bd74-4875-960a-6ddd5e374558" />
+  </projectItems>
+</package>
