@@ -359,7 +359,7 @@ namespace MvcSample.Controllers
                     CountPagesToRender = 1,
                     IsResourcesEmbedded = false,
                     HtmlResourcePrefix = string.Format(
-                        "/document-viewer/GetResourceForHtml?documentPath={0}", parameters.Path) +
+                        "/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(parameters.Path)) +
                                          "&pageNumber={page-number}&resourceName=",
                     Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
     parameters.WatermarkPosition, parameters.WatermarkWidth, parameters.WatermarkOpacity),
@@ -765,7 +765,7 @@ namespace MvcSample.Controllers
             {
                 IsResourcesEmbedded = false,
                 HtmlResourcePrefix = string.Format(
-                "/document-viewer/GetResourceForHtml?documentPath={0}", fileName) + "&pageNumber={page-number}&resourceName=",
+                "/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(fileName)) + "&pageNumber={page-number}&resourceName=",
                 Watermark = Utils.GetWatermark(request.WatermarkText, request.WatermarkColor,
 request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
             };
