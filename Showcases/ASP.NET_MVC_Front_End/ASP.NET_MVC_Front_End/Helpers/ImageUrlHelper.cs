@@ -50,7 +50,7 @@ namespace MvcSample.Helpers
 
             RouteValueDictionary routeValueDictionary = new RouteValueDictionary
                 {
-                    {"path", path},
+                    {"path", HttpUtility.UrlEncode(path)},
                     {"width", pageWidth},
                     {"quality", quality},
                     {"usePdf", usePdf},
