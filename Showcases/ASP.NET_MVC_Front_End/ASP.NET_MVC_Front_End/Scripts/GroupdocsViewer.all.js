@@ -3929,7 +3929,10 @@ $.extend(jSaaspose.PortalService.prototype, {
         },
         adjustInitialZoom: function () {
             var zoomIsSet = false;
-            if (this.zoomToFitHeight) {
+            if (this.zoomPercent!='') {
+                this.setZoom(this.zoomPercent);
+            }
+            else if (this.zoomToFitHeight) {
                 zoomIsSet = true;
                 this.setZoom(this.getFitHeightZoom());
             }
