@@ -1661,6 +1661,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
+
         /// <summary>
         /// Renders multiple pages per sheet
         /// </summary>
@@ -1683,10 +1684,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             Utilities.SaveFile("test.pdf", fileContainer.Stream);
         }
+
         /// <summary>
         /// Gets all supported document formats
         /// </summary>
-
         public static void ShowAllSupportedFormats()
         {
             // Setup GroupDocs.Viewer config
@@ -1705,6 +1706,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             Console.ReadKey();
         }
+
         /// <summary>
         /// Shows hidden sheets for Excel files in image representation
         /// </summary>
@@ -1732,6 +1734,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
+        
         /// <summary>
         /// Creates and uses file with localized string
         /// </summary>

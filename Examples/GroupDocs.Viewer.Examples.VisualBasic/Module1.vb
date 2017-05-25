@@ -11,7 +11,7 @@ Namespace GroupDocs.Viewer.Examples
         Sub Main()
 
 
-            'ExStart:ApplyingLicense
+            'ExStart:ApplyingLicense  
             '*
             '*  Applying product license
             '*  Please uncomment the statement if you do have license.

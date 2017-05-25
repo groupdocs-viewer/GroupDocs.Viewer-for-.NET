@@ -11,8 +11,6 @@
     <script src="/Scripts/jquery-1.9.1.min.js"></script>
     <script src="/Scripts/jquery-ui-1.10.3.min.js"></script>
     <script src="/Scripts/knockout-3.2.0.js"></script>
-
-
     <script src="/Scripts/turn.min.js"></script>
     <script src="/Scripts/modernizr.2.6.2.Transform2d.min.js"></script>
     <script src="/Scripts/installableViewer.js"></script>

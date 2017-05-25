@@ -11,7 +11,7 @@ Imports System.Text
 Namespace GroupDocs.Viewer.Examples
     Public Class FtpInputDataHandler
         Implements IInputDataHandler
-        Private Const _server As String = "ftp://localhost"
+        Private Const _server As String = "ftp://localhost" 
         Private Const _userName As String = "anonymous"
         Private Const _userPassword As String = ""
 

@@ -118,7 +118,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
         {
             //TODO
             return new List<FileDescription>();
-        }
-        
+        }          
     }
 }

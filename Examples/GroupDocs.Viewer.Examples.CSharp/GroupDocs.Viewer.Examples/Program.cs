@@ -166,6 +166,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region CustomFonts
             //Set custom font directories
             //ViewGenerator.SetCustomFontDirectory("word.doc");
+               
             #endregion
         }
     }

@@ -13,7 +13,7 @@ Imports System.Text.RegularExpressions
 
 Namespace GroupDocs.Viewer.Examples
     ''' <summary>
-    ''' The implementation of GroupDocs.Viewer data handler for Azure Blob Storage.
+    ''' The implementation of GroupDocs.Viewer data handler for Azure Blob Storage. 
     ''' </summary>
     Public Class AzureInputDataHandler
         Implements IInputDataHandler

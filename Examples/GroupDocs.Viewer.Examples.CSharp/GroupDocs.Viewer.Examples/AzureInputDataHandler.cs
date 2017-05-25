@@ -36,6 +36,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="accountName"></param>
         /// <param name="accountKey"></param>
         /// <param name="containerName"></param>
+         
         public AzureInputDataHandler(string accountName, string accountKey, string containerName)
             : this(GetEndpoint(accountName), accountName, accountKey, containerName)
         {
