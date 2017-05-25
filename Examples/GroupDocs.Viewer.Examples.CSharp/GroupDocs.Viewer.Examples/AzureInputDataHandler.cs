@@ -255,11 +255,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //TODO
             return new List<FileDescription>();
         }
-        [Obsolete]
-        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
-        {
-            //TODO
-            return new List<FileDescription>();
-        }
+        
     }
 }

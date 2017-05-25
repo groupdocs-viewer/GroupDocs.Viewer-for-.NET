@@ -19,8 +19,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 {
     public static class ViewGenerator
     {
-
-
         #region HTMLRepresentation
         /// <summary>
         /// Renders simple document in html representation
@@ -60,6 +58,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtml
         }
+        
         /// <summary>
         /// Renders document in html representation with watermark
         /// </summary>
@@ -102,6 +101,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtmlWithWaterMark
         }
+        
         /// <summary>
         ///  Renders document in html representation and reorder a page
         /// </summary>
@@ -147,6 +147,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtmlAndReorderPage
         }
+        
         /// <summary>
         /// Renders a document in html representation whom located at web/remote location.
         /// </summary>
@@ -265,6 +266,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderWordDocumentAsHtmlWithTrackChanges
         }
+        
         /// <summary>
         /// Gets printable HTML of the source document
         /// </summary>
@@ -297,6 +299,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.WriteLine("Html content: {0}", container.HtmlContent);
             //ExEnd:GetPrintableHTML
         }
+        
         /// <summary>
         /// Render a document in html representation with specifying resource prefix.
         /// </summary>
@@ -339,69 +342,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
 
-        public static void RenderLargeDocumentAsHtml(String DocumentName, String DocumentPassword = null)
-        {
-            //ExStart:RenderAsHtml
-            //Get Configurations
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            // Create html handler
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-
-
-            // Guid implies that unique document name 
-            string guid = DocumentName;
-
-            //Instantiate the HtmlOptions object
-            HtmlOptions options = new HtmlOptions();
-
-            //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
-
-            // Set password if document is password protected. 
-            if (!String.IsNullOrEmpty(DocumentPassword))
-                options.Password = DocumentPassword;
-            //Get Pre Render info
-            int allPages = htmlHandler.GetDocumentInfo(guid).Pages.Count;
-
-            int pageNumber = 1;
-
-            // Get total iterations and remainder
-            int totalIterations = allPages / 5;
-            int remainder = allPages % 5;
-
-            for (int i = 1; i <= totalIterations; i++)
-            {
-                // Set range of the pages
-                options.PageNumbersToRender = Enumerable.Range(pageNumber, 5).ToList();
-                // Get pages
-                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-                //Save each page at disk
-                foreach (PageHtml page in pages)
-                {
-                    //Save each page at disk
-                    Utilities.SaveAsHtml("it" + i + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
-                }
-                pageNumber += 5;
-
-            }
-            if (remainder > 0)
-            {
-                options.PageNumbersToRender = Enumerable.Range(pageNumber, remainder).ToList();
-                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-                //Save each page at disk
-                foreach (PageHtml page in pages)
-                {
-                    //Save each page at disk
-                    Utilities.SaveAsHtml("it" + (totalIterations + 1) + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
-                }
-                pageNumber += 5;
-            }
-
-            //ExEnd:RenderAsHtml
-        }
-
-       
         /// <summary>
         /// Renders hidden pages of Visio file as Html.
         /// </summary>
@@ -664,6 +604,100 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:GetListOfLayoutsOfCADDocument
         }
+
+        /// <summary>
+        /// Renders document with comments
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderDocumentAsHtmlWithComments(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlWithComments
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set CAD options to render Model and all non empty Layouts
+            HtmlOptions options = new HtmlOptions();
+            options.RenderComments = true; // Default value is false
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlWithComments
+        }
+        
+        public static void RenderLargeDocumentAsHtml(String DocumentName, String DocumentPassword = null)
+        {
+            //ExStart:RenderAsHtml
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //to get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = true;
+
+            // Set password if document is password protected. 
+            if (!String.IsNullOrEmpty(DocumentPassword))
+                options.Password = DocumentPassword;
+            //Get Pre Render info
+            int allPages = htmlHandler.GetDocumentInfo(guid).Pages.Count;
+
+            int pageNumber = 1;
+
+            // Get total iterations and remainder
+            int totalIterations = allPages / 5;
+            int remainder = allPages % 5;
+
+            for (int i = 1; i <= totalIterations; i++)
+            {
+                // Set range of the pages
+                options.PageNumbersToRender = Enumerable.Range(pageNumber, 5).ToList();
+                // Get pages
+                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+                //Save each page at disk
+                foreach (PageHtml page in pages)
+                {
+                    //Save each page at disk
+                    Utilities.SaveAsHtml("it" + i + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
+                }
+                pageNumber += 5;
+
+            }
+            if (remainder > 0)
+            {
+                options.PageNumbersToRender = Enumerable.Range(pageNumber, remainder).ToList();
+                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+                //Save each page at disk
+                foreach (PageHtml page in pages)
+                {
+                    //Save each page at disk
+                    Utilities.SaveAsHtml("it" + (totalIterations + 1) + "_" + "p" + page.PageNumber + "_" + DocumentName, page.HtmlContent);
+                }
+                pageNumber += 5;
+            }
+
+            //ExEnd:RenderAsHtml
+        }
+        
         #endregion
 
         #region ImageRepresentation
@@ -930,7 +964,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         }
         #endregion
-
+        
         #region GeneralRepresentation
         /// <summary>
         /// Renders a document as it is (original form)
@@ -953,8 +987,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderOriginal
 
         }
+        
         /// <summary>
-        /// Renders a document in PDF Form
+        /// Renders a document in PDF form
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocumentAsPDF(String DocumentName)
@@ -1029,8 +1064,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderWordDocumentAsPDFWithTrackedChanges
 
         }
+        
         /// <summary>
-        /// Renders a document in PDF Form with watermark 
+        /// Renders a document in PDF form with watermark 
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="WatermarkText"></param>
@@ -1065,7 +1101,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders a document in PDF Form with watermark 
+        /// Renders a document in PDF form with watermark font settings
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="WatermarkText"></param>
@@ -1104,12 +1140,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders DjVu in PDF Form with JpegQuality option
+        /// Renders document as PDF with JpegQuality option
         /// </summary>
         /// <param name="DocumentName"></param>
-        public static void RenderDjVuAsPDF(String DocumentName)
+        public static void RenderDocumentAsPDFWithJpegQualitySettings(String DocumentName)
         {
-            //ExStart:RenderDjVuAsPDF
+            //ExStart:RenderDocumentAsPDFWithJpegQualitySettings
             // Create/initialize image handler 
             ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
@@ -1125,9 +1161,34 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Save each image at disk
             Utilities.SaveFile(filename, container.Stream);
-            //ExEnd:RenderDjVuAsPDF
+            //ExEnd:RenderDocumentAsPDFWithJpegQualitySettings
 
         }
+
+        /// <summary>
+        /// Renders a document with comments as PDF
+        /// </summary>
+        /// <param name="DocumentName"></param> 
+        public static void RenderDocumentWithCommentsAsPDF(String DocumentName)
+        {
+            //ExStart:RenderDocumentWithCommentsAsPDF
+            // Create/initialize image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
+
+            PdfFileOptions options = new PdfFileOptions();
+            options.RenderComments = true; // Default value is false
+
+            // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
+
+            //Change the extension of the file and assign to a string type variable filename
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save each image at disk
+            Utilities.SaveFile(filename, container.Stream);
+            //ExEnd:RenderDocumentWithCommentsAsPDF
+        }
+
         /// <summary>
         /// Loads directory structure as file tree
         /// </summary>
@@ -1174,7 +1235,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         #endregion
 
-
         #region InputDataHandlers
 
         /// <summary>
@@ -1203,6 +1263,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
+        
         /// <summary>
         /// Renders a document from FTP location 
         /// </summary>
@@ -1283,7 +1344,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
                 // Create image handler
                 ViewerImageHandler handler = new ViewerImageHandler(config);
-                EmailAttachment attachment = new EmailAttachment(DocumentName, "attachment-image.png");
+                Attachment attachment = new Attachment(DocumentName, "attachment-image.png");
 
                 // Get attachment original file
                 FileContainer container = handler.GetFile(attachment);
@@ -1543,6 +1604,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Console.WriteLine(exp.Message);
             }
         }
+        
         /// <summary>
         /// Removes cache file older than specified date 
         /// </summary>
@@ -1568,7 +1630,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         #endregion
-
 
         #region OtherImprovements
 

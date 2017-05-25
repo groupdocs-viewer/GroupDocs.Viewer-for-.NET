@@ -67,6 +67,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Gets list of all Layouts from CAD document
             //ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf");
 
+            //Render document with comments as HTML
+            //ViewGenerator.RenderDocumentAsHtmlWithComments("sample.doc");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -101,8 +104,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render the document as it is (Original form)
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
 
-            //Render DjVu document as PDF with JpegQuality settings
-            //ViewGenerator.RenderDjVuAsPDF("sample.djvu");
+            //Render document as PDF with JpegQuality settings
+            //ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("sample.doc");
+
+            //Render document as PDF with comments
+            //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");
             #endregion
 
             #region InputDataHandlers

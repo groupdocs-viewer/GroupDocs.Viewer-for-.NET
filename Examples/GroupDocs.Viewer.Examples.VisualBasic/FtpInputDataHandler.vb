@@ -54,29 +54,7 @@ Namespace GroupDocs.Viewer.Examples
             'TODO
             Return New List(Of FileDescription)()
         End Function
-        <Obsolete("Don't use this anymore.")>
-        Public Function LoadFileTree(fileTreeOptions As FileTreeOptions) As List(Of FileDescription) Implements IInputDataHandler.LoadFileTree
-            Dim uri__1 As Uri = If(Uri.IsWellFormedUriString(fileTreeOptions.Path, UriKind.Absolute), New Uri(fileTreeOptions.Path), GetUriFromGuid(fileTreeOptions.Path))
-            Dim request As FtpWebRequest = GetFtpRequest(uri__1, WebRequestMethods.Ftp.ListDirectory)
-
-            Dim result As New List(Of FileDescription)()
-
-            Using response As FtpWebResponse = DirectCast(request.GetResponse(), FtpWebResponse)
-                Dim responseStream As Stream = response.GetResponseStream()
-
-                If responseStream IsNot Nothing Then
-                    Using reader As New StreamReader(responseStream)
-                        Dim guid As String
-                        While (InlineAssignHelper(guid, reader.ReadLine())) IsNot Nothing
-                            result.Add(New FileDescription(guid, Not guid.Contains(".")))
-                        End While
-                    End Using
-                End If
-            End Using
-
-            Return result
-        End Function
-
+       
         Private Function GetUriFromGuid(guid As String) As Uri
             Return If(Uri.IsWellFormedUriString(guid, UriKind.Absolute), New Uri(guid), New Uri(String.Format("{0}/{1}", _server, guid)))
         End Function
@@ -91,10 +69,7 @@ Namespace GroupDocs.Viewer.Examples
             target = value
             Return value
         End Function
-        <Obsolete("Don't use this anymore.")>
-        Public Sub SaveDocument(description As CachedDocumentDescription, stream As Stream) Implements IInputDataHandler.SaveDocument
-            'TODO
-        End Sub
+        
         Public Sub AddFile(guid As String, content As Stream) Implements IInputDataHandler.AddFile
             'TODO
         End Sub

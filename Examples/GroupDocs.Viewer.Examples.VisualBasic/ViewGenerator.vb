@@ -26,7 +26,7 @@ Namespace GroupDocs.Viewer.Examples
 
 
         ''' <summary>
-        ''' Render simple document in html representation
+        ''' Renders simple document in html representation
         ''' </summary>
         ''' <param name="DocumentName">File name</param>
         ''' <param name="DocumentPassword">Optional</param>
@@ -61,8 +61,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsHtml
         End Sub
+
         ''' <summary>
-        ''' Render document in html representation with watermark
+        ''' Renders document in html representation with watermark
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         ''' <param name="WatermarkText">watermark text</param>
@@ -102,8 +103,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsHtmlWithWaterMark
         End Sub
+
         ''' <summary>
-        '''  document in html representation and reorder a page
+        '''  Renders document in html representation and reorder a page
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         ''' <param name="CurrentPageNumber">Page existing order number</param>
@@ -148,8 +150,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsHtmlAndReorderPage
         End Sub
+
         ''' <summary>
-        ''' Render a document in html representation whom located at web/remote location.
+        ''' Renders a document in html representation whom located at web/remote location.
         ''' </summary>
         ''' <param name="DocumentURL">URL of the document</param>
         ''' <param name="DocumentPassword">Password Parameter is optional</param>
@@ -291,8 +294,9 @@ Namespace GroupDocs.Viewer.Examples
             Console.WriteLine("Html content: {0}", container.HtmlContent)
             'ExEnd:GetPrintableHTML
         End Sub
+
         ''' <summary>
-        ''' Render a document in html representation with specifying resource prefix.
+        ''' Renders a document in html representation with specifying resource prefix.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         Public Shared Sub RenderDocumentAsHtmlWithResourcePrefix(DocumentName As String)
@@ -332,7 +336,7 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
-        ''' Render hidden pages of Visio file as Html.
+        ''' Renders hidden pages of Visio file as Html.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         Public Shared Sub RenderHiddenPagesOfVisioAsHtml(DocumentName As String)
@@ -365,7 +369,7 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
-        ''' Render Excel file as Html with internal hyperlink prefix.
+        ''' Renders Excel file as Html with internal hyperlink prefix.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         Public Shared Sub RenderExcelAsHtmlWithInternalHyperlinkPrefix(DocumentName As String)
@@ -454,8 +458,7 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderExcelAsHtmlWithCountRowsPerPage
 
         End Sub
-
-
+        
         ''' <summary>
         ''' Renders PDF document into html with EnablePreciseRendering settings
         ''' </summary>
@@ -581,11 +584,41 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:GetListOfLayoutsOfCADDocument
         End Sub
 
+        ''' <summary>
+        ''' Renders document with comments
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param> 
+        Public Shared Sub RenderDocumentAsHtmlWithComments(DocumentName As [String])
+            'ExStart:RenderDocumentAsHtmlWithComments
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create html handler
+            Dim htmlHandler As New ViewerHtmlHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Set CAD options to render Model and all non empty Layouts
+            Dim options As New HtmlOptions()
+            options.RenderComments = True
+            ' Default value is false
+            ' Get pages 
+            Dim pages As List(Of PageHtml) = htmlHandler.GetPages(guid, options)
+
+            For Each page As PageHtml In pages
+                'Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent)
+            Next
+
+            'ExEnd:RenderDocumentAsHtmlWithComments
+        End Sub
+
 #End Region
 
 #Region "ImageRepresentation"
         ''' <summary>
-        ''' Render simple document in image representation
+        ''' Renders simple document in image representation
         ''' </summary>
         ''' <param name="DocumentName">File name</param>
         ''' <param name="DocumentPassword">Optional</param>
@@ -621,8 +654,9 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderAsImage
 
         End Sub
+
         ''' <summary>
-        ''' Render document in image representation with watermark
+        ''' Renders document in image representation with watermark
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         ''' <param name="WatermarkText">watermark text</param>
@@ -661,8 +695,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsImageWithWaterMark
         End Sub
+
         ''' <summary>
-        ''' Render the document in image form and set the rotation angle to rotate the page while display.
+        ''' Renders the document in image form and set the rotation angle to rotate the page while display.
         ''' </summary>
         ''' <param name="DocumentName"></param>
         ''' <param name="RotationAngle">rotation angle in digits</param>
@@ -703,8 +738,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsImageWithRotationTransformation
         End Sub
+
         ''' <summary>
-        '''  document in image representation and reorder a page
+        '''  Renders document in image representation and reorder a page
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         ''' <param name="CurrentPageNumber">Page existing order number</param>
@@ -746,8 +782,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderAsImageAndReorderPage
         End Sub
+
         ''' <summary>
-        ''' Render a document in image representation whom located at web/remote location.
+        ''' Renders a document in image representation whom located at web/remote location.
         ''' </summary>
         ''' <param name="DocumentURL">URL of the document</param>
         ''' <param name="DocumentPassword">Password Parameter is optional</param>
@@ -776,8 +813,9 @@ Namespace GroupDocs.Viewer.Examples
             Next
             'ExEnd:RenderRemoteDocAsImages
         End Sub
+
         ''' <summary>
-        ''' Render hidden pages of Visio file as image.
+        ''' Renders hidden pages of Visio file as image.
         ''' </summary>
         ''' <param name="DocumentName">file/document name</param>
         Public Shared Sub RenderHiddenPagesOfVisioAsImage(DocumentName As String)
@@ -809,8 +847,9 @@ Namespace GroupDocs.Viewer.Examples
 
 
         End Sub
+
         ''' <summary>
-        ''' Render CAD document in image representation
+        ''' Renders CAD document in image representation
         ''' </summary>
         ''' <param name="DocumentName">File name</param>
         Public Shared Sub RenderCADAsImages(DocumentName As [String])
@@ -844,7 +883,7 @@ Namespace GroupDocs.Viewer.Examples
 
 #Region "GeneralRepresentation"
         ''' <summary>
-        ''' Render a document as it is (original form)
+        ''' Renders a document as it is (original form)
         ''' </summary>
         ''' <param name="DocumentName"></param>
         Public Shared Sub RenderDocumentAsOriginal(DocumentName As [String])
@@ -863,8 +902,9 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderOriginal
 
         End Sub
+
         ''' <summary>
-        ''' Render a document in PDF Form
+        ''' Renders a document in PDF form
         ''' </summary>
         ''' <param name="DocumentName"></param>
         Public Shared Sub RenderDocumentAsPDF(DocumentName As [String])
@@ -938,7 +978,7 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
-        ''' Render a document in PDF Form with watermark 
+        ''' Renders a document in PDF form with watermark 
         ''' </summary>
         ''' <param name="DocumentName"></param>
         ''' <param name="WatermarkText"></param>
@@ -972,7 +1012,7 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
-        ''' Render a document in PDF Form with watermark 
+        ''' Renders a document in PDF form with watermark 
         ''' </summary>
         ''' <param name="DocumentName"></param>
         ''' <param name="WatermarkText"></param>
@@ -1010,11 +1050,35 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
         ''' <summary>
-        ''' Renders DjVu in PDF Form with JpegQuality option
+        ''' Renders a document with comments as PDF
+        ''' </summary>
+        ''' <param name="DocumentName"></param> 
+        Public Shared Sub RenderDocumentWithCommentsAsPDF(DocumentName As [String])
+            'ExStart:RenderDocumentWithCommentsAsPDF
+            ' Create/initialize image handler 
+            Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
+
+            Dim options As New PdfFileOptions()
+            options.RenderComments = True ' Default value is false
+
+            ' Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
+            Dim container As FileContainer = imageHandler.GetPdfFile(DocumentName, options)
+
+            'Change the extension of the file and assign to a string type variable filename
+            Dim filename As [String] = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf"
+
+            'Save each image at disk
+            Utilities.SaveFile(filename, container.Stream)
+
+            'ExEnd:RenderDocumentWithCommentsAsPDF
+        End Sub
+
+        ''' <summary>
+        ''' Renders document as PDF with JpegQuality option
         ''' </summary>
         ''' <param name="DocumentName"></param>
-        Public Shared Sub RenderDjVuAsPDF(DocumentName As [String])
-            'ExStart:RenderDjVuAsPDF
+        Public Shared Sub RenderDocumentAsPDFWithJpegQualitySettings(DocumentName As [String])
+            'ExStart:RenderDocumentAsPDFWithJpegQualitySettings
             ' Create/initialize image handler 
             Dim imageHandler As New ViewerImageHandler(Utilities.GetConfigurations())
 
@@ -1030,10 +1094,10 @@ Namespace GroupDocs.Viewer.Examples
 
             'Save each image at disk
             Utilities.SaveFile(filename, container.Stream)
-            'ExEnd:RenderDjVuAsPDF
+
+            'ExEnd:RenderDocumentAsPDFWithJpegQualitySettings
 
         End Sub
-
 
         ''' <summary>
         ''' Load directory structure as file tree
@@ -1169,7 +1233,7 @@ Namespace GroupDocs.Viewer.Examples
 
                 ' Create image handler
                 Dim handler As New ViewerImageHandler(config)
-                Dim attachment As New EmailAttachment(DocumentName, "attachment-image.png")
+                Dim attachment As New Attachment(DocumentName, "attachment-image.png")
 
                 ' Get attachment original file
                 Dim container As FileContainer = handler.GetFile(attachment)
