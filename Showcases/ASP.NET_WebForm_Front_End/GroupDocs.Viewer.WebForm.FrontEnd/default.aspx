@@ -11,8 +11,6 @@
     <script src="/Scripts/jquery-1.9.1.min.js"></script>
     <script src="/Scripts/jquery-ui-1.10.3.min.js"></script>
     <script src="/Scripts/knockout-3.2.0.js"></script>
-
-
     <script src="/Scripts/turn.min.js"></script>
     <script src="/Scripts/modernizr.2.6.2.Transform2d.min.js"></script>
     <script src="/Scripts/installableViewer.js"></script>
@@ -65,7 +63,7 @@
 
         $('#viewerHtmlDiv').groupdocsViewer({
             //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-            filePath: "candy.pdf",
+            filePath: "8864dimensional.dwg",
             zoomToFitWidth: true,
             //zoomToFitHeight: true,
             showFolderBrowser: true,
@@ -96,31 +94,31 @@
         $('#viewerHtmlDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
     });
     //For Image Representation
-      $(function () {
-          $('#viewerImageDiv').groupdocsViewer({
-              filePath: 'demo.docx',
-              zoomToFitWidth: true,
+      //$(function () {
+      //    $('#viewerImageDiv').groupdocsViewer({
+      //        filePath: 'demo.docx',
+      //        zoomToFitWidth: true,
           
-              showFolderBrowser: true,
-              showThumbnails: true,
-              showZoom: true,
-              showHeader: true,
-              showPaging: true,
-              width: 650,
-              height: 900,
-              showSearch: true,
-              supportTextSelection : true,
-              useHtmlBasedEngine: false,
-              showDownload: true,
-              downloadPdfFile: false,
-              showPrint: true,
-              usePdfPrinting: false,
-              printWithWatermark: true,
-              //watermarkPosition: 'Diagonal',
-              //watermarkText: '透かし文字、Watermark for Html',
-              //watermarkColor: 16711680,
-              //watermarkOpacity: 255,
-          });
-      });
+      //        showFolderBrowser: true,
+      //        showThumbnails: true,
+      //        showZoom: true,
+      //        showHeader: true,
+      //        showPaging: true,
+      //        width: 650,
+      //        height: 900,
+      //        showSearch: true,
+      //        supportTextSelection : true,
+      //        useHtmlBasedEngine: false,
+      //        showDownload: true,
+      //        downloadPdfFile: false,
+      //        showPrint: true,
+      //        usePdfPrinting: false,
+      //        printWithWatermark: true,
+      //        watermarkPosition: 'Diagonal',
+      //        watermarkText: '透かし文字、Watermark for Html',
+      //        watermarkColor: 16711680,
+      //        watermarkOpacity: 255,
+      //    });
+      //});
 </script>
 </html>

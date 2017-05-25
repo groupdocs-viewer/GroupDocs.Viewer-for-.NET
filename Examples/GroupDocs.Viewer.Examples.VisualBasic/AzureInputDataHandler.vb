@@ -13,7 +13,7 @@ Imports System.Text.RegularExpressions
 
 Namespace GroupDocs.Viewer.Examples
     ''' <summary>
-    ''' The implementation of GroupDocs.Viewer data handler for Azure Blob Storage.
+    ''' The implementation of GroupDocs.Viewer data handler for Azure Blob Storage. 
     ''' </summary>
     Public Class AzureInputDataHandler
         Implements IInputDataHandler
@@ -61,10 +61,7 @@ Namespace GroupDocs.Viewer.Examples
                 Throw New System.Exception("Unable to recognize that Account Name/Account Key.", e)
             End Try
         End Sub
-        <Obsolete("Don't use this anymore.")>
-        Public Sub SaveDocument(cachedDocumentDescription As CachedDocumentDescription, documentStream As Stream) Implements IInputDataHandler.SaveDocument
-            'TODO
-        End Sub
+        
         ''' <summary>
         ''' Gets the file description.
         ''' </summary>
@@ -104,15 +101,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim fileDescription As FileDescription = GetFileDescription(guid)
             Return fileDescription.LastModificationDate
         End Function
-        ''' <summary>
-        ''' Loads files/folders structure for specified path
-        ''' </summary>
-        ''' <param name="fileTreeOptions__1">The file tree options.</param>
-        ''' <returns>System.Collections.Generic.List&lt;GroupDocs.Viewer.Domain.FileDescription&gt;.</returns>
-        <Obsolete("Don't use this anymore.")>
-        Public Function LoadFileTree(fileTreeOptions__1 As FileTreeOptions) As List(Of FileDescription) Implements IInputDataHandler.LoadFileTree
-            Return New List(Of FileDescription)()
-        End Function
+       
         ''' <summary>
         ''' Gets the endpoint e.g. https://youraccountname.blob.core.windows.net/
         ''' </summary>
