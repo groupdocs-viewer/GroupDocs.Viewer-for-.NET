@@ -64,8 +64,6 @@ namespace GroupDocs.Viewer.Examples
 
         }
 
-
-
         #endregion
 
         #region Transformations

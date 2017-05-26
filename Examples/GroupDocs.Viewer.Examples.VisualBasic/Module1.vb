@@ -11,16 +11,14 @@ Namespace GroupDocs.Viewer.Examples
         Sub Main()
 
 
-            'ExStart:ApplyingLicense
+            'ExStart:ApplyingLicense  
             '*
             '*  Applying product license
             '*  Please uncomment the statement if you do have license.
-            '             
-
+            '
             'Utilities.ApplyLicense()
 
             'ExEnd:ApplyingLicense
-
 
             '#Region "ViewerHtmlPresentation"
 
@@ -63,6 +61,9 @@ Namespace GroupDocs.Viewer.Examples
             'Gets list of all Layouts from CAD document
             'ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf")
 
+            'Render document with comments as HTML
+            'ViewGenerator.RenderDocumentAsHtmlWithComments("sample.doc")
+
             '#End Region
 
             '#Region "ViewerImagePresentation"
@@ -97,13 +98,17 @@ Namespace GroupDocs.Viewer.Examples
             'Render the document as it is (Original form)
             'ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf")
 
-            'Render DjVu document as PDF with JpegQuality settings
-            'ViewGenerator.RenderDjVuAsPDF("sample.djvu")
+            'Render document as PDF with JpegQuality settings
+            'ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("sample.doc")
+
+            'Render document as PDF with comments
+            'ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc")
             '#End Region
 
             '#Region "InputDataHandlers"
             'Render a document from Azure Storage 
             'ViewGenerator.RenderDocFromAzure("word.doc");
+
             'Render a document from ftp location 
             'ViewGenerator.RenderDocFromAzure("word.doc");
             '#End Region
@@ -111,12 +116,16 @@ Namespace GroupDocs.Viewer.Examples
             ' #Region "OtherImprovements"
             'Show grid lines for Excel files in html representation 
             'ViewGenerator.RenderWithGridLinesInExcel("spreadsheet.xlsx");
+
             'Multiple pages per sheet 
             ' ViewGenerator.RenderMultiExcelSheetsInOnePage("testcc1.xlsx");
+
             'Show hidden sheets for Excel files in image representation 
             ' ViewGenerator.RenderWithHiddenSheetsInExcel("spreadsheet.xlsx");
+
             'Render a document from ftp location 
             'ViewGenerator.RenderWithLocales("word.doc");
+
             'Get all supported document formats 
             'ViewGenerator.ShowAllSupportedFormats();
 

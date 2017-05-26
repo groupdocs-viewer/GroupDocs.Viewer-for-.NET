@@ -36,6 +36,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <param name="accountName"></param>
         /// <param name="accountKey"></param>
         /// <param name="containerName"></param>
+         
         public AzureInputDataHandler(string accountName, string accountKey, string containerName)
             : this(GetEndpoint(accountName), accountName, accountKey, containerName)
         {
@@ -255,11 +256,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //TODO
             return new List<FileDescription>();
         }
-        [Obsolete]
-        public List<FileDescription> LoadFileTree(FileTreeOptions fileTreeOptions)
-        {
-            //TODO
-            return new List<FileDescription>();
-        }
+        
     }
 }

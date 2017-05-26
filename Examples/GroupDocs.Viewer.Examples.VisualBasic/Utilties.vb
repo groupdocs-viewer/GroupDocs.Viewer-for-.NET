@@ -15,7 +15,7 @@ Imports GroupDocs.Viewer.Domain.Html
 Imports GroupDocs.Viewer.Domain.Image
 
 Namespace GroupDocs.Viewer.Examples
-    Public NotInheritable Class Utilities
+    Public NotInheritable Class Utilities 
         Private Sub New()
         End Sub
         Public Const StoragePath As String = "../../../Data/Storage/"
