@@ -613,7 +613,8 @@
                 saveFontsInAllFormats: settings.saveFontsInAllFormats,
                 downloadButtonMode: settings.downloadButtonMode,
                 allowDocumentDownloadingOnFailure: settings.allowDocumentDownloadingOnFailure,
-                printWithWatermark: settings.printWithWatermark
+                printWithWatermark: settings.printWithWatermark,
+                zoomPercent: settings.zoomPercent
             };
 
             var menuClickedEvent = "onMenuClicked";
