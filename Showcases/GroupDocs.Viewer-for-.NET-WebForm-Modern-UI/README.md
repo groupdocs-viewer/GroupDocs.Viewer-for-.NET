@@ -6,13 +6,13 @@ This application allows user to view document in Html and Image representation. 
 
 # Pre-Requisites
 
-* Visual Studio 2012 or later.
+* Visual Studio 2015 or later.
 * Any latest browsers (Firefox, Chrome, Interner Explorer, Safari).
-* GroupDocs.Viewer 17.2.0
+* GroupDocs.Viewer 17.5.0
 
 # Installation
 
-* Download the code, open it in MS Visual Studio 2012 or later.
+* Download the code, open it in MS Visual Studio 2015 or later.
 * Update the required or missing libraries from Nuget.
 * Run the code.
 
