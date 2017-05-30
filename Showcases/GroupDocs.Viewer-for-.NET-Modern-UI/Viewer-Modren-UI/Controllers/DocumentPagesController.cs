@@ -25,7 +25,7 @@ namespace Viewer_Modren_UI.Controllers
             try
             {
                 DocumentInfoOptions options = new DocumentInfoOptions(file);
-                info = handler.GetDocumentInfo(options);
+                info = handler.GetDocumentInfo(file,options);
             }
             catch (Exception x)
             {
