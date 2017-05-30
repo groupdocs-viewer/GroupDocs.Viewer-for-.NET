@@ -395,7 +395,8 @@
                     attachment = false;
                 });
             }
-            $("#"+settings.docViewerId+"").attachDragger();
+            if (settings.dragToScroll)
+                 $("#"+settings.docViewerId+"").attachDragger();
             this.groupdocsViewerWrapper = groupdocsViewerWrapper = container.find(".groupdocs_viewer_wrapper");
             var viewerHeader = this.viewerHeader = groupdocsViewerWrapper.find(".viewer_header");
             var viewerMainWrapper = this.viewerMainWrapper = groupdocsViewerWrapper.find(".viewer_mainwrapper");
