@@ -547,7 +547,8 @@
                 searchIsVisible: settings.showSearch,
                 useRtl: settings.useRtl,
                 useAccentInsensitiveSearch: settings.useAccentInsensitiveSearch,
-                useVirtualScrolling: settings.useVirtualScrolling
+                useVirtualScrolling: settings.useVirtualScrolling,
+                searchText : settings.searchText
             };
 
             var thumbnailQuality;
