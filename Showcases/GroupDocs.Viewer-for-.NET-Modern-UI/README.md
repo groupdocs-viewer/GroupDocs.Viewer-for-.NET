@@ -1,7 +1,7 @@
 
 # GroupDocs.Viewer for .NET Modern UI
 
-This application allows user to view document in Html and Image representation. User can view thumbnails, download and print document.
+This modern UI is based on ASP.NET MVC it is simple, efficient and, user friendly showcase project for  GroupDocs.Viewer for .NET. This application allows user to view document in Html and Image representation. User can view thumbnails, download and print document.
 
 # Pre-Requisites
 

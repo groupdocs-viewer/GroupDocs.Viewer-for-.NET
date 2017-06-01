@@ -2317,6 +2317,7 @@ $.extend(jSaaspose.PortalService.prototype, {
                 this.locale,
                 this.passwordForOpening
                 );
+
             }
             if (typeof viewModelPathOnlineDoc !== 'undefined')
                 viewModelPathOnlineDoc.pathOnlineDoc('');
@@ -9595,10 +9596,14 @@ var OverrideMode = {
             this._init(options);
         },
         _init: function (options) {
-            this.searchValue = ko.observable("");
+            if (options.searchText != null)
+                this.searchValue = ko.observable(options.searchText);
+            else
+                this.searchValue = ko.observable("");
             this.previousEnabled = ko.observable(true);
             this.nextEnabled = ko.observable(true);
             this.visible = ko.observable(this.searchIsVisible);
+            //this.findNextFromUI();
         },
         triggerSearchEvent: function (isCaseSensitive, searchForSeparateWords, treatPhrasesInDoubleQuotesAsExact, useAccentInsensitiveSearch) {
             var searchValue = this.searchValue();
@@ -9968,7 +9973,7 @@ var OverrideMode = {
                 this.findClosestArea(false, isCaseSensitive, searchForSeparateWords, treatPhrasesInDoubleQuotesAsExactPhrases, useAccentInsensitiveSearch);
         },
         findNext: function (isCaseSensitive, searchForSeparateWords, treatPhrasesInDoubleQuotesAsExactPhrases, useAccentInsensitiveSearch) {
-            if (this.searchValue() != "")
+            if (this.searchValue() != ""  )
                 this.findClosestArea(true, isCaseSensitive, searchForSeparateWords, treatPhrasesInDoubleQuotesAsExactPhrases, useAccentInsensitiveSearch);
         },
         clearValue: function () {
@@ -9992,6 +9997,7 @@ var OverrideMode = {
             var keyCode = (event.which ? event.which : event.keyCode);
             return viewModel.keyHandler(keyCode);
         },
+
         keyHandler: function (keyCode) {
             if (keyCode === 13) { // Enter
                 this.findNextFromUI();
@@ -10018,6 +10024,7 @@ var OverrideMode = {
             this.resetButtons();
             if (this.searched)
                 this.element.trigger("onPerformSearch", "");
+            this.findNextFromUI();
         },
         loadPagesOnOneLevel: function (notLoadedPageNum, searchForward, isCaseSensitive, searchForSeparateWords, treatPhrasesInDoubleQuotesAsExact) {
             var self = this;
@@ -10120,6 +10127,7 @@ var OverrideMode = {
                     return jqueryAreaElement1.offset().left - jqueryAreaElement2.offset().left;
             });
         }
+
     });
 })(jQuery);
 /*
