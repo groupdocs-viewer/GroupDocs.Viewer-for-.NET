@@ -152,6 +152,7 @@ Namespace GroupDocs.Viewer.Examples
             Dim emptyDate As New DateTime(1, 1, 1)
             Return If(dateTimeOffset.HasValue, dateTimeOffset.Value.DateTime, emptyDate)
         End Function
+        <Obsolete>
         Public Sub AddFile(guid As String, content As Stream) Implements IInputDataHandler.AddFile
             'TODO
         End Sub

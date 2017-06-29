@@ -456,10 +456,10 @@ namespace MvcSample.Controllers
              parameters.ResourceName.IndexOf("/", StringComparison.Ordinal) >= 0)
                     parameters.ResourceName = parameters.ResourceName.Replace("/", "");
 
-                var resource = new HtmlResource
+                var resource = new HtmlResource(parameters.ResourceName)
                 {
-                    ResourceName = parameters.ResourceName,
-                    ResourceType = Utils.GetResourceType(parameters.ResourceName),
+                    //ResourceName = parameters.ResourceName,
+                    //ResourceType = Utils.GetResourceType(parameters.ResourceName),
                     DocumentPageNumber = parameters.PageNumber
                 };
                 var stream = _htmlHandler.GetResource(parameters.DocumentPath, resource);

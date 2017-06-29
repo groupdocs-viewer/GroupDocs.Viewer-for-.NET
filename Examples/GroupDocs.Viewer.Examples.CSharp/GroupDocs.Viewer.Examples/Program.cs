@@ -95,6 +95,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render hidden pages in Visio file in image form 
             //ViewGenerator.RenderHiddenPagesOfVisioAsImage("sample.vdx");
 
+            //Get text coordinates in image based rendering
+            //ViewGenerator.GetTextCorrdinates("sample.docx");
+
             #endregion
 
             #region GeneralRepresentation
