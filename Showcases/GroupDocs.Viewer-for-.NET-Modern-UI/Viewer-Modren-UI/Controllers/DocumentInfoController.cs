@@ -14,8 +14,8 @@ using Viewer_Modren_UI.Helpers;
 
 namespace Viewer_Modren_UI.Controllers
 {
-    [RoutePrefix("document/pages")]
-    public class DocumentPagesController : Controller
+    [RoutePrefix("document/info")]
+    public class DocumentInfoController : Controller
     {
         [HttpGet]
         [Route("")]

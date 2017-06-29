@@ -13,16 +13,8 @@ ngApp.factory('FilesFactory', function ($resource) {
     });
 });
 
-ngApp.factory('DocumentInfoFactory', function ($resource) {
-    return $resource('/document/info?file=:filename', {}, {
-        get: {
-            method: 'GET'
-        }
-    });
-});
-
 ngApp.factory('DocumentPagesFactory', function ($resource) {
-    return $resource('/document/pages?file=:filename', {}, {
+    return $resource('/document/info?file=:filename', {}, {
         query: {
             method: 'GET',
             isArray: false
