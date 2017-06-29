@@ -69,7 +69,7 @@ Namespace GroupDocs.Viewer.Examples
             target = value
             Return value
         End Function
-        
+        <Obsolete>
         Public Sub AddFile(guid As String, content As Stream) Implements IInputDataHandler.AddFile
             'TODO
         End Sub

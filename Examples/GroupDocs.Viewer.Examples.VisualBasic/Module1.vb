@@ -89,6 +89,8 @@ Namespace GroupDocs.Viewer.Examples
             'Render hidden pages in Visio file in image form 
             'ViewGenerator.RenderHiddenPagesOfVisioAsImage("sample.vdx")
 
+            'Get text coordinates in image based rendering
+            'ViewGenerator.GetTextCorrdinates("sample.docx")
             '#End Region
 
             '#Region "GeneralRepresentation"

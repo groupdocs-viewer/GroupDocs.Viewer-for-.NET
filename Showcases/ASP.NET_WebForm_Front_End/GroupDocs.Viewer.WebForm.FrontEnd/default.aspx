@@ -63,7 +63,7 @@
 
         $('#viewerHtmlDiv').groupdocsViewer({
             //filePath: 'http://groupdocs.com/images/banner/carousel2/signature.png',
-            filePath: "8864dimensional.dwg",
+            filePath: "demo.docx",
             zoomToFitWidth: true,
             //zoomToFitHeight: true,
             showFolderBrowser: true,
