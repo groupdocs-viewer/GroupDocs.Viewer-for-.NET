@@ -701,8 +701,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
         #endregion
 
         #region ImageRepresentation
+       
         /// <summary>
-        /// Render simple document in image representation
+        /// Renders simple document in image representation
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
@@ -739,8 +740,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsImage
 
         }
+        
         /// <summary>
-        /// Render document in image representation with watermark
+        /// Renders document in image representation with watermark
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="WatermarkText">watermark text</param>
@@ -780,8 +782,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageWithWaterMark
         }
+        
         /// <summary>
-        /// Render the document in image form and set the rotation angle to rotate the page while display.
+        /// Renders the document in image form and set the rotation angle to rotate the page while display.
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="RotationAngle">rotation angle in digits</param>
@@ -821,8 +824,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageWithRotationTransformation
         }
+        
         /// <summary>
-        ///  document in image representation and reorder a page
+        /// Renders document in image representation and reorder a page
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="CurrentPageNumber">Page existing order number</param>
@@ -863,8 +867,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageAndReorderPage
         }
+        
         /// <summary>
-        /// Render a document in image representation whom located at web/remote location.
+        /// Renders a document in image representation whom located at web/remote location.
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
@@ -896,7 +901,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render hidden pages of Visio file as image.
+        /// Renders hidden pages of Visio file as image.
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderHiddenPagesOfVisioAsImage(string DocumentName)
@@ -931,7 +936,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render CAD document in image representation
+        /// Renders CAD document in image representation
         /// </summary>
         /// <param name="DocumentName">File name</param>
         public static void RenderCADAsImages(String DocumentName)
@@ -961,6 +966,74 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream);
             }
             //ExEnd:RenderCADAsImages
+
+        }
+
+        /// <summary>
+        /// Gets text coordinates in image mode. It is used when adding text search functionality in images.
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        public static void GetTextCorrdinates(String DocumentName)
+        {
+            //ExStart:GetTextCorrdinates
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create image handler 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Init viewer image handler
+            ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
+
+            //Get document rendered as an image with text extraction enabled
+            ImageOptions imageOptions = new ImageOptions();
+            imageOptions.ExtractText = true;
+            List<PageImage> pages = viewerImageHandler.GetPages(guid, imageOptions);
+
+            //Get document info
+            DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions();
+            documentInfoOptions.ExtractText = true;
+            DocumentInfoContainer documentInfoContainer = viewerImageHandler.GetDocumentInfo(guid, documentInfoOptions);
+
+            // Go through all pages
+            foreach (PageData pageData in documentInfoContainer.Pages)
+            {
+                Console.WriteLine("Page number: " + pageData.Number);
+
+                //Go through all page rows
+                for (int i = 0; i < pageData.Rows.Count; i++)
+                {
+                    RowData rowData = pageData.Rows[i];
+
+                    // Write data to console
+                    Console.WriteLine("Row: " + (i + 1));
+                    Console.WriteLine("Text: " + rowData.Text);
+                    Console.WriteLine("Text width: " + rowData.LineWidth);
+                    Console.WriteLine("Text height: " + rowData.LineHeight);
+                    Console.WriteLine("Distance from left: " + rowData.LineLeft);
+                    Console.WriteLine("Distance from top: " + rowData.LineTop);
+
+                    // Get words
+                    string[] words = rowData.Text.Split(' ');
+
+                    // Go through all word coordinates
+                    for (int j = 0; j < words.Length; j++)
+                    {
+                        int coordinateIndex = j == 0 ? 0 : j + 1;
+
+                        // Write data to console
+                        Console.WriteLine(string.Empty);
+                        Console.WriteLine("Word: '" + words[j] + "'");
+                        Console.WriteLine("Word distance from left: " + rowData.TextCoordinates[coordinateIndex]);
+                        Console.WriteLine("Word width: " + rowData.TextCoordinates[coordinateIndex + 1]);
+                        Console.WriteLine(string.Empty);
+                    }
+                }
+            }
+            //ExEnd:GetTextCorrdinates
 
         }
         #endregion

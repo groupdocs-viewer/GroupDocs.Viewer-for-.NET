@@ -60,8 +60,8 @@ Namespace GroupDocs.Viewer.Examples
                 Utilities.SaveAsHtml(page.PageNumber & "_" & DocumentName, page.HtmlContent)
             Next
             'ExEnd:RenderAsHtml
-        End Sub   
-   
+        End Sub
+
         ''' <summary>
         ''' Renders document in html representation with watermark
         ''' </summary>
@@ -458,7 +458,7 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderExcelAsHtmlWithCountRowsPerPage
 
         End Sub
-        
+
         ''' <summary>
         ''' Renders PDF document into html with EnablePreciseRendering settings
         ''' </summary>
@@ -879,6 +879,71 @@ Namespace GroupDocs.Viewer.Examples
             'ExEnd:RenderCADAsImages
 
         End Sub
+
+        ''' <summary>
+        ''' Gets text coordinates in image mode. It is used when adding text search functionality in images.
+        ''' </summary>
+        ''' <param name="DocumentName">File name</param>
+        Public Shared Sub GetTextCorrdinates(DocumentName As [String])
+            'ExStart:GetTextCorrdinates
+            'Get Configurations
+            Dim config As ViewerConfig = Utilities.GetConfigurations()
+
+            ' Create image handler 
+            Dim imageHandler As New ViewerImageHandler(config)
+
+            ' Guid implies that unique document name 
+            Dim guid As String = DocumentName
+
+            ' Init viewer image handler
+            Dim viewerImageHandler As New ViewerImageHandler(config)
+
+            'Get document rendered as an image with text extraction enabled
+            Dim imageOptions As New ImageOptions()
+            imageOptions.ExtractText = True
+            Dim pages As List(Of PageImage) = viewerImageHandler.GetPages(guid, imageOptions)
+
+            'Get document info
+            Dim documentInfoOptions As New DocumentInfoOptions()
+            documentInfoOptions.ExtractText = True
+            Dim documentInfoContainer As DocumentInfoContainer = viewerImageHandler.GetDocumentInfo(guid, documentInfoOptions)
+
+            ' Go through all pages
+            For Each pageData As PageData In documentInfoContainer.Pages
+                Console.WriteLine("Page number: " + pageData.Number)
+
+                'Go through all page rows
+                For i As Integer = 0 To pageData.Rows.Count - 1
+                    Dim rowData As RowData = pageData.Rows(i)
+
+                    ' Write data to console
+                    Console.WriteLine("Row: " + (i + 1))
+                    Console.WriteLine("Text: " + rowData.Text)
+                    Console.WriteLine("Text width: " + rowData.LineWidth)
+                    Console.WriteLine("Text height: " + rowData.LineHeight)
+                    Console.WriteLine("Distance from left: " + rowData.LineLeft)
+                    Console.WriteLine("Distance from top: " + rowData.LineTop)
+
+                    ' Get words
+                    Dim words As String() = rowData.Text.Split(" "c)
+
+                    ' Go through all word coordinates
+                    For j As Integer = 0 To words.Length - 1
+                        Dim coordinateIndex As Integer = If(j = 0, 0, j + 1)
+
+                        ' Write data to console
+                        Console.WriteLine(String.Empty)
+                        Console.WriteLine("Word: '" + words(j) + "'")
+                        Console.WriteLine("Word distance from left: " + rowData.TextCoordinates(coordinateIndex))
+                        Console.WriteLine("Word width: " + rowData.TextCoordinates(coordinateIndex + 1))
+                        Console.WriteLine(String.Empty)
+                    Next
+                Next
+            Next
+
+            'ExEnd:GetTextCorrdinates
+
+        End Sub
 #End Region
 
 #Region "GeneralRepresentation"
@@ -1133,7 +1198,6 @@ Namespace GroupDocs.Viewer.Examples
         End Sub
 
 #End Region
-
 
 #Region "InputDataHandlers"
 
@@ -1608,13 +1672,6 @@ Namespace GroupDocs.Viewer.Examples
 
 #End Region
 
-
-
-
-
     End Class
-
-
-
 End Namespace
 

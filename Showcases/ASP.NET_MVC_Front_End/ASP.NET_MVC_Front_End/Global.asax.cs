@@ -14,7 +14,6 @@ namespace MvcSample
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-
             GroupDocs.Viewer.License lic = new GroupDocs.Viewer.License();
             lic.SetLicense(_licensePath);
         }
