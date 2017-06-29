@@ -10,20 +10,19 @@ using System.Web;
 using System.Web.Mvc;
 using Viewer_Modren_UI.Helpers;
 
+
 namespace Viewer_Modren_UI.Controllers
 {
-    [RoutePrefix("page/html")]
-    public class PageHtmlController : Controller
+    [RoutePrefix("Attachment/html")]
+    public class AttachmentHtmlController : Controller
     {
         [Route("")]
-        public ActionResult Get(string file, int page)
+        public ActionResult Get(string file, string attachment, int page)
         {
-            
-            if (Utils.IsValidUrl(file))
-                file = Utils.DownloadToStorage(file);
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
-          
+
             List<int> pageNumberstoRender = new List<int>();
+            var docInfo = handler.GetDocumentInfo(file);
             pageNumberstoRender.Add(page);
             HtmlOptions o = new HtmlOptions();
             o.PageNumbersToRender = pageNumberstoRender;
@@ -37,9 +36,15 @@ namespace Viewer_Modren_UI.Controllers
 
             List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
             string fullHtml = "";
-            foreach (PageHtml pageHtml in list.Where(x => x.PageNumber == page)) { fullHtml = pageHtml.HtmlContent; };
+            foreach (AttachmentBase attachmentBase in docInfo.Attachments.Where(x => x.Name == attachment))
+            {
+                // Get attachment document html representation
+                List<PageHtml> pages = handler.GetPages(attachmentBase, o);
+                foreach (PageHtml pageHtml in pages.Where(x => x.PageNumber == page)) { fullHtml += pageHtml.HtmlContent; };
+            }
+
+
             return Content(fullHtml);
         }
-
     }
 }
