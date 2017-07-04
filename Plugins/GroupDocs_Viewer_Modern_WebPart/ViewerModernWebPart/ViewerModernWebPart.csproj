@@ -96,6 +96,20 @@
     <Compile Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx.designer.cs">
       <DependentUpon>DownloadPdf.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachementHtml.aspx.cs">
+      <DependentUpon>GetAttachementHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachementHtml.aspx.designer.cs">
+      <DependentUpon>GetAttachementHtml.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentAttachmentImage.aspx.cs">
+      <DependentUpon>GetDocumentAttachmentImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetDocumentAttachmentImage.aspx.designer.cs">
+      <DependentUpon>GetDocumentAttachmentImage.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx.cs">
       <DependentUpon>GetDocumentHtml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,6 +170,8 @@
     <Content Include="Layouts\ViewerModernWebPart\Content\style.css" />
     <Content Include="Layouts\ViewerModernWebPart\DownloadOriginal.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetAttachementHtml.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetDocumentAttachmentImage.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\GetDocumentImage.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\Home.aspx" />
