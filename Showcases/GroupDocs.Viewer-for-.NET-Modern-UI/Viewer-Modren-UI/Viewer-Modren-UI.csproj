@@ -112,13 +112,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AttachmentHtmlController.cs" />
     <Compile Include="Controllers\AttachmentImageController.cs" />
+    <Compile Include="Controllers\AttachmentResourceController.cs" />
     <Compile Include="Controllers\DocumentInfoController.cs" />
     <Compile Include="Controllers\DownloadOriginalController.cs" />
     <Compile Include="Controllers\DownloadPdfController.cs" />
     <Compile Include="Controllers\FileListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageAttachmentResourceController.cs" />
     <Compile Include="Controllers\PageHtmlController.cs" />
     <Compile Include="Controllers\PageImageController.cs" />
+    <Compile Include="Controllers\PageResourceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +143,9 @@
     <Folder Include="App_Data\cache\" />
     <Folder Include="App_Data\temp\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\AttachmentResource\" />
+    <Folder Include="Views\PageAttachmentResource\" />
+    <Folder Include="Views\PageResource\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

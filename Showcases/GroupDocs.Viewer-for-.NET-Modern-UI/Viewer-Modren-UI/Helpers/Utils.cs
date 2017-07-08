@@ -210,6 +210,17 @@ namespace Viewer_Modren_UI.Helpers
             }
             return resultPath;
         }
+        public static List<PageHtml> LoadAttachmentHtmlList(ViewerHtmlHandler handler, String filename,String attahchment,HtmlOptions options)
+        {
+            try
+            {
+                return handler.GetPages(_cachePath + "\\" + Path.GetFileNameWithoutExtension(filename) + Path.GetExtension(filename).Replace(".", "_") + "\\attachments\\" + attahchment, options);
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+        }
 
     }
        

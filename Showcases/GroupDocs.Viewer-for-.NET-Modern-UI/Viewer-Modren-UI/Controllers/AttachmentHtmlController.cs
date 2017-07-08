@@ -16,34 +16,37 @@ namespace Viewer_Modren_UI.Controllers
     [RoutePrefix("Attachment/html")]
     public class AttachmentHtmlController : Controller
     {
+        private static string _cachePath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\cache";
         [Route("")]
         public ActionResult Get(string file, string attachment, int page)
         {
+            var attachmentPath = "cache\\"+  Path.GetFileNameWithoutExtension(file) + Path.GetExtension(file).Replace(".", "_") + "\\attachments\\" + attachment;
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
-
-            List<int> pageNumberstoRender = new List<int>();
             var docInfo = handler.GetDocumentInfo(file);
+            List<int> pageNumberstoRender = new List<int>();
             pageNumberstoRender.Add(page);
             HtmlOptions o = new HtmlOptions();
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
-            o.HtmlResourcePrefix = (String.Format(
-                    "/page/resource?file=%s&page=%d&resource=",
-                    file,
-                    page
-            ));
-
-            List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
+            o.HtmlResourcePrefix = "/attachment/resource?file="+file+"&attachment="+attachment+"&page="+page+"&resource=";
             string fullHtml = "";
-            foreach (AttachmentBase attachmentBase in docInfo.Attachments.Where(x => x.Name == attachment))
+            var attachmentFile = _cachePath +"\\" + Path.GetFileNameWithoutExtension(file) + Path.GetExtension(file).Replace(".", "_") + "\\attachments";
+            if (Directory.Exists(attachmentFile.Replace(@"\\", @"\")))
             {
-                // Get attachment document html representation
-                List<PageHtml> pages = handler.GetPages(attachmentBase, o);
+                List<PageHtml> pages = handler.GetPages(attachmentPath, o);
                 foreach (PageHtml pageHtml in pages.Where(x => x.PageNumber == page)) { fullHtml += pageHtml.HtmlContent; };
             }
-
-
+            else
+            {
+               
+                foreach (AttachmentBase attachmentBase in docInfo.Attachments.Where(x => x.Name == attachment))
+                {
+                    // Get attachment document html representation
+                    List<PageHtml> pages = handler.GetPages(attachmentBase, o);
+                    foreach (PageHtml pageHtml in pages.Where(x => x.PageNumber == page)) { fullHtml += pageHtml.HtmlContent; };
+                }
+            }
             return Content(fullHtml);
         }
     }

@@ -29,12 +29,7 @@ namespace Viewer_Modren_UI.Controllers
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
-            o.HtmlResourcePrefix = (String.Format(
-                    "/page/resource?file=%s&page=%d&resource=",
-                    file,
-                    page
-            ));
-
+            o.HtmlResourcePrefix = "/page/resource?file="+file+"&page="+page+"&resource=";
             List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
             string fullHtml = "";
             foreach (PageHtml pageHtml in list.Where(x => x.PageNumber == page)) { fullHtml = pageHtml.HtmlContent; };
