@@ -118,7 +118,6 @@
     <Compile Include="Controllers\DownloadPdfController.cs" />
     <Compile Include="Controllers\FileListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PageAttachmentResourceController.cs" />
     <Compile Include="Controllers\PageHtmlController.cs" />
     <Compile Include="Controllers\PageImageController.cs" />
     <Compile Include="Controllers\PageResourceController.cs" />
@@ -143,9 +142,6 @@
     <Folder Include="App_Data\cache\" />
     <Folder Include="App_Data\temp\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\AttachmentResource\" />
-    <Folder Include="Views\PageAttachmentResource\" />
-    <Folder Include="Views\PageResource\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

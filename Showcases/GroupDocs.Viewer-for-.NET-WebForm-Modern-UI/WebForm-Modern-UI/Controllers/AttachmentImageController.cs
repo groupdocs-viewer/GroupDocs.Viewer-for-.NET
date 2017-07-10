@@ -1,4 +1,6 @@
 ﻿using GroupDocs.Viewer.Converter.Options;
+using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Containers;
 using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Handler;
 using System;
@@ -15,12 +17,10 @@ using Viewer_Modren_UI.Helpers;
 
 namespace WebForm_Modern_UI.Controllers
 {
-    public class PageImageController : ApiController
+    public class AttachmentImageController : ApiController
     {
-        public HttpResponseMessage Get(int? width,string file, int page, int? height = null)
+        public HttpResponseMessage Get(int? width, string file, string attachment, int page, int? height= null)
         {
-            if (Utils.IsValidUrl(file))
-                file = Utils.DownloadToStorage(file);
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
             List<int> pageNumberstoRender = new List<int>();
@@ -37,8 +37,15 @@ namespace WebForm_Modern_UI.Controllers
                 o.Height = Convert.ToInt32(height);
             }
             Stream stream = null;
-            List<PageImage> list = Utils.LoadPageImageList(handler, file, o);
-            foreach (PageImage pageImage in list.Where(x => x.PageNumber == page)) { stream = pageImage.Stream; };
+            DocumentInfoContainer info = handler.GetDocumentInfo(file);
+
+            // Iterate over the attachments collection
+            foreach (AttachmentBase attachmentBase in info.Attachments.Where(x => x.Name == attachment))
+            {
+                List<PageImage> pages = handler.GetPages(attachmentBase);
+                foreach (PageImage attachmentPage in pages.Where(x => x.PageNumber == page)) { stream = attachmentPage.Stream; };
+
+            }
             var result = new HttpResponseMessage(HttpStatusCode.OK);
             Image image = Image.FromStream(stream);
             MemoryStream memoryStream = new MemoryStream();
@@ -47,6 +54,5 @@ namespace WebForm_Modern_UI.Controllers
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
             return result;
         }
-
     }
 }

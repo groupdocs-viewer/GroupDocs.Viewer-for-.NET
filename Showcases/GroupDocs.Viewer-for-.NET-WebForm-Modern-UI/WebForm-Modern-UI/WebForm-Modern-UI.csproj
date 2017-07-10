@@ -57,7 +57,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http" />
@@ -135,11 +135,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\AttachmentHtmlController.cs" />
+    <Compile Include="Controllers\AttachmentImageController.cs" />
+    <Compile Include="Controllers\AttachmentResourceController.cs" />
+    <Compile Include="Controllers\DocumentInfoController.cs" />
     <Compile Include="Controllers\DownloadOriginalController.cs" />
     <Compile Include="Controllers\DownloadPdfController.cs" />
     <Compile Include="Controllers\PageHtmlController.cs" />
     <Compile Include="Controllers\PageImageController.cs" />
+    <Compile Include="Controllers\PageResourceController.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,7 +170,6 @@
     <Folder Include="App_Data\cache\candy_pdf\html\resources\page1\" />
     <Folder Include="App_Data\cache\candy_pdf\html\resources\page2\" />
     <Folder Include="App_Data\temp\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
