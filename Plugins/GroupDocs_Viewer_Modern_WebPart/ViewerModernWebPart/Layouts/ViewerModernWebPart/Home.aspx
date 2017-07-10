@@ -61,12 +61,20 @@
         <md-content flex layout="row" md-scroll-y>
             <md-content flex id="content" class="md-padding" role="main">
                 <div ng-controller="PagesController">
-                    <md-card ng-repeat="item in pages.d">
+                    <md-card ng-repeat="item in docInfo.pages.d">
                         <a name="page-view-{{ item.number }}"></a>
                         <iframe ng-src="{{ createPageUrl(selectedFile, item.number) }}"
                                 width="100%"
                                 frameborder="0"></iframe>
                     </md-card>
+                     <div ng-repeat="attachment in docInfo.attachments.d">
+                        <md-card ng-repeat="number in attachment.count">
+                            <a name="page-view-{{attachment.name}}-{{number}}"></a>
+                            <iframe ng-src="{{ createAttachmentPageUrl(selectedFile,attachment.name,number) }}"
+                                    width="100%"
+                                    frameborder="0"></iframe>
+                        </md-card>
+                    </div>
                 </div>
             </md-content>
             <md-sidenav md-component-id="left" hide-print md-whiteframe="4" class="md-sidenav-left">
@@ -74,11 +82,18 @@
                     <md-tab label="Thumbnails">
                         <md-content role="navigation">
                             <div ng-controller="ThumbnailsController">
-                                <md-card ng-repeat="item in pages.d">
+                                <md-card ng-repeat="item in docInfo.pages.d">
                                     <img ng-src="{{ createThumbnailUrl(selectedFile, item.number) }}"
                                          ng-click="onThumbnailClick($event, item)"
                                          class="md-card-image page-thumbnail" />
                                 </md-card>
+                                 <div ng-repeat="attachment in docInfo.attachments.d">
+                                    <md-card ng-repeat="number in  attachment.count">
+                                        <img ng-src="{{  createAttachmentThumbnailPageUrl(selectedFile,attachment.name,number) }}"
+                                             ng-click="onAttachmentThumbnailClick($event,attachment.name,number)"
+                                             class="md-card-image page-thumbnail" />
+                                    </md-card>
+                                </div>
                             </div>
                         </md-content>
                     </md-tab>
