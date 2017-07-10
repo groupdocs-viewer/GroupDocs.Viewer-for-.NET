@@ -1,5 +1,6 @@
 ﻿using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Containers;
+using GroupDocs.Viewer.Domain.Html;
 using GroupDocs.Viewer.Handler;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,15 @@ using Viewer_Modren_UI.Helpers;
 
 namespace WebForm_Modern_UI.Controllers
 {
-    [RoutePrefix("document/pages")]
-    public class DocumentController : ApiController
+    public class DocumentInfoController : ApiController
     {
-        [HttpGet]
-        [Route("")]
-        public List<PageDataModel> Get(string file)
+        public ResultModel Get(string file)
         {
-            ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
+            if (Utils.IsValidUrl(file))
+                file = Utils.DownloadToStorage(file);
 
+            ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
+            ResultModel model = new ResultModel();
             DocumentInfoContainer info = null;
             try
             {
@@ -27,13 +28,19 @@ namespace WebForm_Modern_UI.Controllers
                 throw x;
             }
 
-            List<PageData> result = new List<PageData>();
-            foreach (PageData pageData in info.Pages)
+            model.pages = Convert(info.Pages);
+            List<Attachment> attachmentList = new List<Attachment>();
+            foreach (AttachmentBase attachment in info.Attachments)
             {
-                result.Add(pageData);
+                List<int> count = new List<int>();
+                List<PageHtml> pages = handler.GetPages(attachment);
+                for (int i = 1; i <= pages.Count; i++)
+                {
+                    count.Add(i);
+                }
+                model.attachments.Add(new Attachment(attachment.Name, count));
             }
-
-            return Convert(result);
+            return model;
         }
         public class PageDataModel
         {
@@ -66,8 +73,7 @@ namespace WebForm_Modern_UI.Controllers
             //     Gets or sets the width.
             public int width { get; set; }
         }
-
-        private List<PageDataModel> Convert(List<PageData> pageDataList)
+        public List<PageDataModel> Convert(List<PageData> pageDataList)
         {
             List<PageDataModel> list = new List<PageDataModel>();
             foreach(var page in pageDataList)
@@ -85,7 +91,25 @@ namespace WebForm_Modern_UI.Controllers
 
             return list;
         }
-
-     
+        public class ResultModel
+        {
+            public ResultModel()
+            {
+                pages = new List<PageDataModel>();
+                attachments = new List<Attachment>();
+            }
+            public List<PageDataModel> pages { get; set; }
+            public List<Attachment> attachments { get; set; }
+        }
+        public class Attachment
+        {
+            public Attachment(string _name, List<int> _count)
+            {
+                name = _name;
+                count = _count;
+            }
+            public string name { get; set; }
+            public List<int> count { get; set; }
+        }
     }
 }
