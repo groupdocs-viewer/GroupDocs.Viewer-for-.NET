@@ -88,6 +88,8 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
         [ScriptMethod(UseHttpGet = true)]
         public static ResultModel GetDocumentPages(string file)
         {
+            if (Utils.IsValidUrl(file))
+                file = Utils.DownloadToStorage(file);
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
             DocumentInfoContainer info = null;
             ResultModel model = new ResultModel();
@@ -127,13 +129,13 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
         }
         public class Attachment
         {
-            public Attachment(string name, List<int> count)
+            public Attachment(string _name, List<int> _count)
             {
-                Name = name;
-                Count = count;
+                name = _name;
+                count = _count;
             }
-            public string Name { get; set; }
-            public List<int> Count { get; set; }
+            public string name { get; set; }
+            public List<int> count { get; set; }
         }
         public class PageDataModel
         {

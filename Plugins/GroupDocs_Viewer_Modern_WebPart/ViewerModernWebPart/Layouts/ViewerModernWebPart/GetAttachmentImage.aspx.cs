@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
+﻿using Microsoft.SharePoint.WebControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +13,21 @@ using System.Web;
 using ViewerModernWebPart.Helpers;
 using GroupDocs.Viewer.Domain.Containers;
 using GroupDocs.Viewer.Domain;
+using System.Drawing;
 
 namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
 {
-    public partial class GetDocumentAttachmentImage : LayoutsPageBase
+    public partial class GetAttachmentImage : LayoutsPageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             var file = GetValueFromQueryString("file");
+            var attachment = GetValueFromQueryString("attachment");
             int page = Convert.ToInt32(GetValueFromQueryString("page"));
             int? width = Convert.ToInt32(GetValueFromQueryString("width"));
             int? height = Convert.ToInt32(GetValueFromQueryString("width"));
-            var attachment = GetValueFromQueryString("atachment");
-
+            if (Utils.IsValidUrl(file))
+                file = Utils.DownloadToStorage(file);
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
             List<int> pageNumberstoRender = new List<int>();
@@ -45,6 +45,7 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
             }
             Stream stream = null;
             DocumentInfoContainer info = handler.GetDocumentInfo(file);
+
             // Iterate over the attachments collection
             foreach (AttachmentBase attachmentBase in info.Attachments.Where(x => x.Name == attachment))
             {
@@ -61,7 +62,6 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
             memoryStream.WriteTo(HttpContext.Current.Response.OutputStream);
             HttpContext.Current.Response.Flush();
             HttpContext.Current.Response.End();
-
         }
         private String GetValueFromQueryString(String value)
         {
