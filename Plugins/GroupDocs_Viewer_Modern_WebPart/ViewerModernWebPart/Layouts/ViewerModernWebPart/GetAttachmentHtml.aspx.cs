@@ -22,9 +22,9 @@ using ViewerModernWebPart.Helpers;
 
 namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
 {
-    public partial class GetAttachementHtml : LayoutsPageBase
+    public partial class GetAttachmentHtml : LayoutsPageBase
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             var file = GetValueFromQueryString("file");
             var page = Convert.ToInt32(GetValueFromQueryString("page"));

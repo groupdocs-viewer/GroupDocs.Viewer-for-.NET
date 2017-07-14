@@ -2,7 +2,7 @@
 
 var ngApp = angular.module('GroupDocsViewer', ['ngMaterial', 'ngResource']);
 
-ngApp.constant('FilePath', 'http://groupdocs.com/images/banner/carousel2/signature.png');
+ngApp.constant('FilePath', 'sample.msg');
 
 ngApp.factory('FilesFactory', function ($resource) {
     return $resource('Home.aspx/files', {}, {
@@ -52,7 +52,7 @@ ngApp.controller('ThumbnailsController',
         if (FilePath) {
             $scope.selectedFile = FilePath;
             $scope.docInfo = DocumentPagesFactory.query({
-                filename: FilePath
+                filename: JSON.stringify(FilePath)
             });
 
         }
@@ -89,7 +89,7 @@ ngApp.controller('ThumbnailsController',
         };
         $scope.createAttachmentThumbnailPageUrl = function (selectedFile, attachment, itemNumber) {
             if ($scope.isLeftSidenavVislble) {
-                return $sce.trustAsResourceUrl('/GetDocumentAttachmentImage.aspx?width=300&file=' + selectedFile + '&attachment=' + attachment + '&page=' + itemNumber);
+                return $sce.trustAsResourceUrl('GetAttachmentImage.aspx?width=300&file=' + selectedFile + '&attachment=' + attachment + '&page=' + itemNumber);
             }
         };
 
@@ -98,13 +98,14 @@ ngApp.controller('ThumbnailsController',
 
 ngApp.controller('PagesController',
     function ThumbnailsController($scope, $sce, $document, DocumentPagesFactory, FilePath) {
+        if (FilePath) {
+            $scope.selectedFile = FilePath;
+            $scope.docInfo = DocumentPagesFactory.query({
+                filename: JSON.stringify(FilePath)
+            });
+        }
         $scope.$on('selected-file-changed', function (event, selectedFile) {
-            if (FilePath) {
-                $scope.selectedFile = FilePath;
-                $scope.docInfo = DocumentPagesFactory.query({
-                    filename: FilePath
-                });
-            }
+          
             $scope.selectedFile = selectedFile;
             $scope.docInfo = DocumentPagesFactory.query({
                 filename: JSON.stringify(selectedFile)
@@ -115,7 +116,7 @@ ngApp.controller('PagesController',
             return $sce.trustAsResourceUrl('GetDocumentHtml.aspx?file=' + selectedFile + '&page=' + itemNumber);
         };
         $scope.createAttachmentPageUrl = function (selectedFile, attachmentName, itemNumber) {
-            return $sce.trustAsResourceUrl('GetDocumentAttachmentHtml.aspx?file=' + selectedFile + '&attachment=' + attachmentName + '&page=' + itemNumber);
+            return $sce.trustAsResourceUrl('GetAttachmentHtml.aspx?file=' + selectedFile + '&attachment=' + attachmentName + '&page=' + itemNumber);
         };
         $scope.onLoad = function () {
         };
@@ -123,6 +124,7 @@ ngApp.controller('PagesController',
 );
 
 ngApp.controller('AvailableFilesController', function AvailableFilesController($rootScope, $scope, FilesFactory) {
+
     $scope.onOpen = function () {
         $scope.list = FilesFactory.query();
     };
