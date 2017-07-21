@@ -1,9 +1,8 @@
-﻿using GroupDocs.Viewer.Handler;
+﻿using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Options;
+using GroupDocs.Viewer.Handler;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Viewer_Modren_UI.Helpers;
 
@@ -13,14 +12,17 @@ namespace Viewer_Modren_UI.Controllers
     public class DownloadPdfController : Controller
     {
         [Route("")]
-        public ActionResult Get(string file)
+        public ActionResult Get(string file, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
         {
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
 
             Stream pdf = null;
             try
             {
-                pdf = handler.GetPdfFile(file).Stream;
+                PdfFileOptions o = new PdfFileOptions();
+                if(watermarkText!="")
+                    o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+                pdf = handler.GetPdfFile(file,o).Stream;
             }
             catch (Exception x)
             {

@@ -35,7 +35,7 @@
                 <md-icon>file_download</md-icon>
                 <md-tooltip>Download</md-tooltip>
             </md-button>
-            <md-button ng-href="/download/pdf?file={{ selectedFile }}"
+            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{watermark.Text}}&watermarkColor={{watermark.Color}}&watermarkPosition={{watermark.Position}}&watermarkWidth={{watermark.Width}}&watermarkOpacity={{watermark.Opacity}}"
                        target="_blank"
                        class="md-icon-button"
                        ng-disabled="!selectedFile">
