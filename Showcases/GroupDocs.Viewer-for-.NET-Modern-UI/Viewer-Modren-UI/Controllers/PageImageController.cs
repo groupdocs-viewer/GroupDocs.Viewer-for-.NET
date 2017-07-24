@@ -17,7 +17,7 @@ namespace Viewer_Modren_UI.Controllers
     public class PageImageController : Controller
     {
         [Route("")]
-        public ActionResult Get(int? width, int? height,string file, int page)
+        public ActionResult Get(int? width, int? height,string file, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
         {
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
@@ -28,6 +28,8 @@ namespace Viewer_Modren_UI.Controllers
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
+            if(watermarkText!="")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             if (width.HasValue)
             {
                 o.Width = Convert.ToInt32(width);

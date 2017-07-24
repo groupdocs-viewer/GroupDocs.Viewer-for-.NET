@@ -18,7 +18,7 @@ namespace Viewer_Modren_UI.Controllers
     {
         private static string _cachePath = AppDomain.CurrentDomain.GetData("DataDirectory") + "\\cache";
         [Route("")]
-        public ActionResult Get(string file, string attachment, int page)
+        public ActionResult Get(string file, string attachment, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
         {
             var attachmentPath = "cache\\"+  Path.GetFileNameWithoutExtension(file) + Path.GetExtension(file).Replace(".", "_") + "\\attachments\\" + attachment;
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
@@ -30,6 +30,8 @@ namespace Viewer_Modren_UI.Controllers
             o.PageNumber = page;
             o.CountPagesToRender = 1;
             o.HtmlResourcePrefix = "/attachment/resource?file="+file+"&attachment="+attachment+"&page="+page+"&resource=";
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             string fullHtml = "";
             var attachmentFile = _cachePath +"\\" + Path.GetFileNameWithoutExtension(file) + Path.GetExtension(file).Replace(".", "_") + "\\attachments";
             if (Directory.Exists(attachmentFile.Replace(@"\\", @"\")))
