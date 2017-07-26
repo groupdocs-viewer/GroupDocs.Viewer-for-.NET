@@ -19,7 +19,7 @@ namespace WebForm_Modern_UI.Controllers
 {
     public class AttachmentImageController : ApiController
     {
-        public HttpResponseMessage Get(int? width, string file, string attachment, int page, int? height= null)
+        public HttpResponseMessage Get(int? width, string file, string attachment, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity, int? height = null)
         {
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
@@ -36,13 +36,15 @@ namespace WebForm_Modern_UI.Controllers
             {
                 o.Height = Convert.ToInt32(height);
             }
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             Stream stream = null;
             DocumentInfoContainer info = handler.GetDocumentInfo(file);
 
             // Iterate over the attachments collection
             foreach (AttachmentBase attachmentBase in info.Attachments.Where(x => x.Name == attachment))
             {
-                List<PageImage> pages = handler.GetPages(attachmentBase);
+                List<PageImage> pages = handler.GetPages(attachmentBase,o);
                 foreach (PageImage attachmentPage in pages.Where(x => x.PageNumber == page)) { stream = attachmentPage.Stream; };
 
             }

@@ -1,11 +1,13 @@
 ﻿using GroupDocs.Viewer;
 using GroupDocs.Viewer.Config;
 using GroupDocs.Viewer.Converter.Options;
+using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Html;
 using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Handler;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -218,6 +220,57 @@ namespace Viewer_Modren_UI.Helpers
             catch (Exception x)
             {
                 throw x;
+            }
+        }
+        public static Watermark GetWatermark(string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, float? watermarkWidth, byte watermarkOpacity)
+        {
+            if (string.IsNullOrWhiteSpace(watermarkText))
+                return null;
+
+            byte red = 0;
+            byte green = 0;
+            byte blue = 0;
+            byte opacity = 255;
+            if (watermarkColor.HasValue)
+            {
+                red = Color.FromArgb(watermarkColor.Value).R;
+                green = Color.FromArgb(watermarkColor.Value).G;
+                blue = Color.FromArgb(watermarkColor.Value).B;
+                opacity = watermarkOpacity;
+            }
+            return new Watermark(watermarkText)
+            {
+                Color = watermarkColor.HasValue
+                    ? Color.FromArgb(opacity, red, green, blue)
+                    : Color.Red,
+                Position = ToWatermarkPosition(watermarkPosition),
+                Width = watermarkWidth,
+                FontName = "MS Gothic"
+            };
+        }
+        private static GroupDocs.Viewer.Domain.WatermarkPosition? ToWatermarkPosition(WatermarkPosition? watermarkPosition)
+        {
+            if (!watermarkPosition.HasValue)
+                return GroupDocs.Viewer.Domain.WatermarkPosition.Diagonal;
+
+            switch (watermarkPosition.Value)
+            {
+                case WatermarkPosition.Diagonal:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.Diagonal;
+                case WatermarkPosition.TopLeft:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.TopLeft;
+                case WatermarkPosition.TopCenter:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.TopCenter;
+                case WatermarkPosition.TopRight:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.TopRight;
+                case WatermarkPosition.BottomLeft:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.BottomLeft;
+                case WatermarkPosition.BottomCenter:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.BottomCenter;
+                case WatermarkPosition.BottomRight:
+                    return GroupDocs.Viewer.Domain.WatermarkPosition.BottomRight;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
