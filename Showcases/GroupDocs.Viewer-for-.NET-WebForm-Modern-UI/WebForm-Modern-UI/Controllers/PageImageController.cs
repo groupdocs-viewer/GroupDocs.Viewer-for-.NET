@@ -1,4 +1,5 @@
 ﻿using GroupDocs.Viewer.Converter.Options;
+using GroupDocs.Viewer.Domain;
 using GroupDocs.Viewer.Domain.Image;
 using GroupDocs.Viewer.Handler;
 using System;
@@ -17,7 +18,7 @@ namespace WebForm_Modern_UI.Controllers
 {
     public class PageImageController : ApiController
     {
-        public HttpResponseMessage Get(int? width,string file, int page, int? height = null)
+        public HttpResponseMessage Get(int? width, string file, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity, int? height = null)
         {
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
@@ -28,6 +29,8 @@ namespace WebForm_Modern_UI.Controllers
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             if (width.HasValue)
             {
                 o.Width = Convert.ToInt32(width);
