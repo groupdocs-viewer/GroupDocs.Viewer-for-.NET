@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using System.Web.UI.WebControls;
 using ViewerModernWebPart.Helpers;
 using GroupDocs.Viewer;
+using GroupDocs.Viewer.Domain.Options;
 
 namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
 {
@@ -85,11 +86,14 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
         }
         [WebMethod]
         [ScriptMethod(UseHttpGet = true)]
-        public static List<PageDataModel> GetDocumentPages(string file)
+        public static ResultModel GetDocumentPages(string file)
         {
+            if (Utils.IsValidUrl(file))
+                file = Utils.DownloadToStorage(file);
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
-
             DocumentInfoContainer info = null;
+            ResultModel model = new ResultModel();
+     
             try
             {
                 info = handler.GetDocumentInfo(file);
@@ -98,14 +102,40 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
             {
                 throw x;
             }
-
-            List<PageData> result = new List<PageData>();
-            foreach (PageData pageData in info.Pages)
+            model.pages = Convert(info.Pages);
+            List<Attachment> attachmentList = new List<Attachment>();
+            foreach (AttachmentBase attachment in info.Attachments)
             {
-                result.Add(pageData);
+                List<int> count = new List<int>();
+                List<PageHtml> pages = handler.GetPages(attachment);
+                for (int i = 1; i <= pages.Count; i++)
+                {
+                    count.Add(i);
+                }
+                model.attachments.Add(new Attachment(attachment.Name, count));
             }
 
-            return Convert(result);
+            return model;
+        }
+        public class ResultModel
+        {
+            public ResultModel()
+            {
+                pages = new List<PageDataModel>();
+                attachments = new List<Attachment>();
+            }
+            public List<PageDataModel> pages { get; set; }
+            public List<Attachment> attachments { get; set; }
+        }
+        public class Attachment
+        {
+            public Attachment(string _name, List<int> _count)
+            {
+                name = _name;
+                count = _count;
+            }
+            public string name { get; set; }
+            public List<int> count { get; set; }
         }
         public class PageDataModel
         {

@@ -26,13 +26,25 @@
             </md-button>
             <h1 hide-xs>GroupDocs.Viewer for .NET</h1>
             <span flex></span>
+                 <md-button ng-click="previousDocument()"
+                        class="md-icon-button"
+                        ng-disabled="!selectedFile">
+                <md-icon>navigate_before</md-icon>
+                <md-tooltip>Previous Document</md-tooltip>
+            </md-button>
+            <md-button ng-click="nextDocument()"
+                        class="md-icon-button"
+                        ng-disabled="!selectedFile">
+                <md-icon>navigate_next</md-icon>
+                <md-tooltip>Next Document</md-tooltip>
+            </md-button>
             <md-button ng-href="DownloadOriginal?file={{ selectedFile }}"
                        class="md-icon-button"
                        ng-disabled="!selectedFile">
                 <md-icon>file_download</md-icon>
                 <md-tooltip>Download</md-tooltip>
             </md-button>
-            <md-button ng-href="DownloadPdf?file={{ selectedFile }}"
+            <md-button ng-href="DownloadPdf?file={{ selectedFile }}&watermarkText={{watermark.Text}}&watermarkColor={{watermark.Color}}&watermarkPosition={{watermark.Position}}&watermarkWidth={{watermark.Width}}&watermarkOpacity={{watermark.Opacity}}"
                        target="_blank"
                        class="md-icon-button"
                        ng-disabled="!selectedFile">
@@ -41,10 +53,9 @@
             </md-button>
             <div ng-controller="AvailableFilesController">
                 <md-select ng-model="selectedFile" placeholder="Please select a file"
-                           md-on-open="onOpen()"
-                           ng-change="onChange($event)">
+                           md-on-open="onOpen()">
                     <md-optgroup label="Available files">
-                        <md-option ng-value="item" ng-repeat="item in list">{{ item }}</md-option>
+                        <md-option ng-value="item" ng-click="onChange(item)" ng-repeat="item in list">{{ item }}</md-option>
                     </md-optgroup>
                 </md-select>
             </div>
@@ -55,12 +66,20 @@
         <md-content flex layout="row" md-scroll-y>
             <md-content flex id="content" class="md-padding" role="main">
                 <div ng-controller="PagesController">
-                    <md-card ng-repeat="item in pages">
+                    <md-card ng-repeat="item in docInfo.pages">
                         <a name="page-view-{{ item.number }}"></a>
                         <iframe ng-src="{{ createPageUrl(selectedFile, item.number) }}"
                                 width="100%"
                                 frameborder="0"></iframe>
                     </md-card>
+                     <div ng-repeat="attachment in docInfo.attachments">
+                        <md-card ng-repeat="number in attachment.count">
+                            <a name="page-view-{{attachment.name}}-{{number}}"></a>
+                            <iframe ng-src="{{ createAttachmentPageUrl(selectedFile,attachment.name,number) }}"
+                                    width="100%"
+                                    frameborder="0"></iframe>
+                        </md-card>
+                    </div>
                 </div>
             </md-content>
             <md-sidenav md-component-id="left" hide-print md-whiteframe="4" class="md-sidenav-left">
@@ -68,11 +87,18 @@
                     <md-tab label="Thumbnails">
                         <md-content role="navigation">
                             <div ng-controller="ThumbnailsController">
-                                <md-card ng-repeat="item in pages">
+                                <md-card ng-repeat="item in docInfo.pages">
                                     <img ng-src="{{ createThumbnailUrl(selectedFile, item.number) }}"
                                          ng-click="onThumbnailClick($event, item)"
                                          class="md-card-image page-thumbnail" />
                                 </md-card>
+                                 <div ng-repeat="attachment in docInfo.attachments">
+                                    <md-card ng-repeat="number in  attachment.count">
+                                        <img ng-src="{{  createAttachmentThumbnailPageUrl(selectedFile,attachment.name,number) }}"
+                                             ng-click="onAttachmentThumbnailClick($event,attachment.name,number)"
+                                             class="md-card-image page-thumbnail" />
+                                    </md-card>
+                                </div>
                             </div>
                         </md-content>
                     </md-tab>

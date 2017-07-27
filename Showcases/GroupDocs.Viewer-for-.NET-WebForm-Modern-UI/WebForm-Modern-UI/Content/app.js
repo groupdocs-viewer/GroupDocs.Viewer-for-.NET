@@ -2,6 +2,16 @@
 
 var ngApp = angular.module('GroupDocsViewer', ['ngMaterial', 'ngResource']);
 
+ngApp.constant('FilePath', '');
+
+ngApp.constant('Watermark', {
+    Text: "Watermark Text",
+    Color: 16711680,
+    Position: 'Diagonal',
+    Width: null,
+    Opacity: 255
+});
+
 ngApp.factory('FilesFactory', function ($resource) {
     return $resource('/files', {}, {
         query: {
@@ -11,43 +21,65 @@ ngApp.factory('FilesFactory', function ($resource) {
     });
 });
 
-ngApp.factory('DocumentInfoFactory', function ($resource) {
-    return $resource('/document/info?file=:filename', {}, {
-        get: {
-            method: 'GET'
-        }
-    });
-});
-
 ngApp.factory('DocumentPagesFactory', function ($resource) {
-    return $resource('/document/pages?file=:filename', {}, {
+    return $resource('/documentinfo?file=:filename', {}, {
         query: {
             method: 'GET',
-            isArray: true
+            isArray: false
         }
     });
 });
 
-ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav) {
+ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav, Watermark) {
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle().then(function () {
             $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
         });
     };
+    $scope.watermark = {
+        Text: Watermark.Text,
+        Color: Watermark.Color,
+        Position: Watermark.Position,
+        Width: Watermark.Width,
+        Opacity: Watermark.Opacity
+    };
 
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
-        $scope.selectedFile = selectedFile;
+        $rootScope.selectedFile = selectedFile;
     });
+    $scope.nextDocument = function () {
+        if ($rootScope.list.indexOf($rootScope.selectedFile) + 1 == $rootScope.list.length) {
+            $rootScope.$broadcast('selected-file-changed', $rootScope.list[0]);
+        }
+        else {
+            $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.indexOf($rootScope.selectedFile) + 1]);
+        }
+    };
+    $scope.previousDocument = function () {
+        if ($rootScope.list.indexOf($rootScope.selectedFile) - 1 == -1) {
+            $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.length - 1]);
+        }
+        else {
+            $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.indexOf($rootScope.selectedFile) - 1]);
+        }
+    };
 });
 
 ngApp.controller('ThumbnailsController',
-    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory) {
+    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath, Watermark) {
 
         $scope.isLeftSidenavVislble = false;
+        if (FilePath) {
+            $rootScope.selectedFile = FilePath;
+            $scope.docInfo = DocumentPagesFactory.query({
+                filename: FilePath
+            });
+
+        }
 
         $scope.$on('selected-file-changed', function (event, selectedFile) {
-            $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $rootScope.selectedFile = selectedFile;
+            $scope.docInfo = DocumentPagesFactory.query({
                 filename: selectedFile
             });
             
@@ -63,10 +95,34 @@ ngApp.controller('ThumbnailsController',
                 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
             });
         };
+        $scope.onAttachmentThumbnailClick = function ($event, name, number) {
+            $mdSidenav('left').toggle().then(function () {
+                location.hash = 'page-view-' + name + '-' + number;
+                $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+            });
+        };
 
         $scope.createThumbnailUrl = function (selectedFile, itemNumber) {
             if ($scope.isLeftSidenavVislble) {
-                return $sce.trustAsResourceUrl('/PageImage?width=300&file=' + selectedFile + '&page=' + itemNumber);
+                return $sce.trustAsResourceUrl('/PageImage?width=300&file=' + selectedFile
+                    + '&page=' + itemNumber
+                    + '&watermarkText=' + Watermark.Text
+                    + '&watermarkColor=' + Watermark.Color
+                    + '&watermarkPosition=' + Watermark.Position
+                    + '&watermarkWidth=' + Watermark.Width
+                    + '&watermarkOpacity=' + Watermark.Opacity);
+            }
+        };
+        $scope.createAttachmentThumbnailPageUrl = function (selectedFile, attachment, itemNumber) {
+            if ($scope.isLeftSidenavVislble) {
+                return $sce.trustAsResourceUrl('/AttachmentImage?width=300&file=' + selectedFile
+                   + '&attachment=' + attachment
+                   + '&page=' + itemNumber
+                   + '&watermarkText=' + Watermark.Text
+                   + '&watermarkColor=' + Watermark.Color
+                   + '&watermarkPosition=' + Watermark.Position
+                   + '&watermarkWidth=' + Watermark.Width
+                   + '&watermarkOpacity=' + Watermark.Opacity);
             }
         };
 
@@ -74,30 +130,60 @@ ngApp.controller('ThumbnailsController',
 );
 
 ngApp.controller('PagesController',
-    function ThumbnailsController($scope, $sce, $document, DocumentPagesFactory) {
+    function ThumbnailsController($rootScope, $scope, $sce, $document, DocumentPagesFactory, FilePath, Watermark) {
+        if (FilePath) {
+            $rootScope.selectedFile = FilePath;
+            $scope.docInfo = DocumentPagesFactory.query({
+                filename: FilePath
+            });
+
+        }
         $scope.$on('selected-file-changed', function (event, selectedFile) {
-            $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $rootScope.selectedFile = selectedFile;
+            $scope.docInfo = DocumentPagesFactory.query({
                 filename: selectedFile
             });
         });
 
         $scope.createPageUrl = function (selectedFile, itemNumber) {
-            return $sce.trustAsResourceUrl('PageHtml?file=' + selectedFile + '&page=' + itemNumber);
+            return $sce.trustAsResourceUrl('PageHtml?file='
+                    + selectedFile + '&page=' + itemNumber
+                    + '&watermarkText=' + Watermark.Text
+                    + '&watermarkColor=' + Watermark.Color
+                    + '&watermarkPosition=' + Watermark.Position
+                    + '&watermarkWidth=' + Watermark.Width
+                    + '&watermarkOpacity=' + Watermark.Opacity);
         };
-
+        $scope.createAttachmentPageUrl = function (selectedFile, attachmentName, itemNumber) {
+            return $sce.trustAsResourceUrl('AttachmentHtml?file=' + selectedFile
+                   + '&attachment=' + attachmentName
+                   + '&page=' + itemNumber
+                   + '&watermarkText=' + Watermark.Text
+                   + '&watermarkColor=' + Watermark.Color
+                   + '&watermarkPosition=' + Watermark.Position
+                   + '&watermarkWidth=' + Watermark.Width
+                   + '&watermarkOpacity=' + Watermark.Opacity);
+        };
         $scope.onLoad = function () {
         };
     }
 );
 
-ngApp.controller('AvailableFilesController', function AvailableFilesController($rootScope, $scope, FilesFactory) {
+ngApp.controller('AvailableFilesController', function AvailableFilesController($rootScope, $scope, FilesFactory, DocumentPagesFactory, FilePath) {
+    if (FilePath) {
+        $rootScope.list = [FilePath];
+        $rootScope.selectedFile = $rootScope.list[0];
+        $rootScope.$broadcast('selected-file-changed', $rootScope.selectedFile);
+        $scope.docInfo = DocumentPagesFactory.query({
+            filename: FilePath
+        });
+    }
     $scope.onOpen = function () {
-        $scope.list = FilesFactory.query();
+        $rootScope.list = FilesFactory.query();
     };
 
-    $scope.onChange = function ($event) {
-        $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
+    $scope.onChange = function (item) {
+        $rootScope.$broadcast('selected-file-changed', item);
     };
 });
 

@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using Viewer_Modren_UI.Helpers;
+using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Options;
 
 namespace WebForm_Modern_UI.Controllers
 {
@@ -13,14 +15,17 @@ namespace WebForm_Modern_UI.Controllers
     public class DownloadPdfController : ApiController
     {
     
-        public HttpResponseMessage Get(string file)
+        public HttpResponseMessage Get(string file, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
         {
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
 
             Stream pdf = null;
             try
             {
-                pdf = handler.GetPdfFile(file).Stream;
+                PdfFileOptions o = new PdfFileOptions();
+                if (watermarkText != "")
+                    o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+                pdf = handler.GetPdfFile(file, o).Stream;
             }
             catch (Exception x)
             {

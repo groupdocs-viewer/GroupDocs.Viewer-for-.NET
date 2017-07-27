@@ -112,6 +112,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AttachmentHtmlController.cs" />
     <Compile Include="Controllers\AttachmentImageController.cs" />
+    <Compile Include="Controllers\AttachmentResourceController.cs" />
     <Compile Include="Controllers\DocumentInfoController.cs" />
     <Compile Include="Controllers\DownloadOriginalController.cs" />
     <Compile Include="Controllers\DownloadPdfController.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageHtmlController.cs" />
     <Compile Include="Controllers\PageImageController.cs" />
+    <Compile Include="Controllers\PageResourceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using GroupDocs.Viewer.Converter.Options;
 using GroupDocs.Viewer.Domain;
@@ -23,14 +22,14 @@ using ViewerModernWebPart.Helpers;
 
 namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
 {
-    public partial class GetDocumentHtml : LayoutsPageBase
+    public partial class GetAttachmentHtml : LayoutsPageBase
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             var file = GetValueFromQueryString("file");
             var page = Convert.ToInt32(GetValueFromQueryString("page"));
-            if (Utils.IsValidUrl(file))
-                file = Utils.DownloadToStorage(file);
+            var attachment = GetValueFromQueryString("attachment");
+
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
             List<int> pageNumberstoRender = new List<int>();
             pageNumberstoRender.Add(page);
@@ -43,11 +42,17 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
                     file,
                     page
             ));
+            var docInfo = handler.GetDocumentInfo(file);
 
             List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
 
             string fullHtml = "";
-            foreach (PageHtml pageHtml in list.Where(x => x.PageNumber == page)) { fullHtml = pageHtml.HtmlContent; };
+            foreach (AttachmentBase attachmentBase in docInfo.Attachments.Where(x => x.Name == attachment))
+            {
+                // Get attachment document html representation
+                List<PageHtml> pages = handler.GetPages(attachmentBase, o);
+                foreach (PageHtml pageHtml in pages.Where(x => x.PageNumber == page)) { fullHtml += pageHtml.HtmlContent; };
+            }
 
             HttpContext.Current.Response.ContentType = "text/html";
             HttpContext.Current.Response.Write(fullHtml);

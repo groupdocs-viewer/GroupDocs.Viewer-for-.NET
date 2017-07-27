@@ -2,6 +2,8 @@
 
 var ngApp = angular.module('GroupDocsViewer', ['ngMaterial', 'ngResource']);
 
+ngApp.constant('FilePath', 'sample.msg');
+
 ngApp.factory('FilesFactory', function ($resource) {
     return $resource('Home.aspx/files', {}, {
         query: {
@@ -44,13 +46,20 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
 });
 
 ngApp.controller('ThumbnailsController',
-    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory) {
+    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath) {
 
         $scope.isLeftSidenavVislble = false;
+        if (FilePath) {
+            $scope.selectedFile = FilePath;
+            $scope.docInfo = DocumentPagesFactory.query({
+                filename: JSON.stringify(FilePath)
+            });
+
+        }
 
         $scope.$on('selected-file-changed', function (event, selectedFile) {
             $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $scope.docInfo = DocumentPagesFactory.query({
                 filename: JSON.stringify(selectedFile)
             });
 
@@ -66,10 +75,21 @@ ngApp.controller('ThumbnailsController',
                 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
             });
         };
+        $scope.onAttachmentThumbnailClick = function ($event, name, number) {
+            $mdSidenav('left').toggle().then(function () {
+                location.hash = 'page-view-' + name + '-' + number;
+                $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+            });
+        };
 
         $scope.createThumbnailUrl = function (selectedFile, itemNumber) {
             if ($scope.isLeftSidenavVislble) {
                 return $sce.trustAsResourceUrl('GetDocumentImage.aspx?width=300&file=' + selectedFile + '&page=' + itemNumber);
+            }
+        };
+        $scope.createAttachmentThumbnailPageUrl = function (selectedFile, attachment, itemNumber) {
+            if ($scope.isLeftSidenavVislble) {
+                return $sce.trustAsResourceUrl('GetAttachmentImage.aspx?width=300&file=' + selectedFile + '&attachment=' + attachment + '&page=' + itemNumber);
             }
         };
 
@@ -77,10 +97,17 @@ ngApp.controller('ThumbnailsController',
 );
 
 ngApp.controller('PagesController',
-    function ThumbnailsController($scope, $sce, $document, DocumentPagesFactory) {
+    function ThumbnailsController($scope, $sce, $document, DocumentPagesFactory, FilePath) {
+        if (FilePath) {
+            $scope.selectedFile = FilePath;
+            $scope.docInfo = DocumentPagesFactory.query({
+                filename: JSON.stringify(FilePath)
+            });
+        }
         $scope.$on('selected-file-changed', function (event, selectedFile) {
+          
             $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $scope.docInfo = DocumentPagesFactory.query({
                 filename: JSON.stringify(selectedFile)
             });
         });
@@ -88,13 +115,16 @@ ngApp.controller('PagesController',
         $scope.createPageUrl = function (selectedFile, itemNumber) {
             return $sce.trustAsResourceUrl('GetDocumentHtml.aspx?file=' + selectedFile + '&page=' + itemNumber);
         };
-
+        $scope.createAttachmentPageUrl = function (selectedFile, attachmentName, itemNumber) {
+            return $sce.trustAsResourceUrl('GetAttachmentHtml.aspx?file=' + selectedFile + '&attachment=' + attachmentName + '&page=' + itemNumber);
+        };
         $scope.onLoad = function () {
         };
     }
 );
 
 ngApp.controller('AvailableFilesController', function AvailableFilesController($rootScope, $scope, FilesFactory) {
+
     $scope.onOpen = function () {
         $scope.list = FilesFactory.query();
     };

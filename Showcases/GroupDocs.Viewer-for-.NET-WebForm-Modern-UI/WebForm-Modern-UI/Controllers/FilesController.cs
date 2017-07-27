@@ -7,7 +7,6 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Viewer_Modren_UI.Helpers;
 
-
 namespace WebForm_Modern_UI
 {
 
@@ -34,22 +33,6 @@ namespace WebForm_Modern_UI
 
             return Json(result);
            
-        }
-
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }

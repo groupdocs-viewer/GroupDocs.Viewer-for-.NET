@@ -96,6 +96,20 @@
     <Compile Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx.designer.cs">
       <DependentUpon>DownloadPdf.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachmentHtml.aspx.cs">
+      <DependentUpon>GetAttachmentHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachmentHtml.aspx.designer.cs">
+      <DependentUpon>GetAttachmentHtml.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachmentImage.aspx.cs">
+      <DependentUpon>GetAttachmentImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ViewerModernWebPart\GetAttachmentImage.aspx.designer.cs">
+      <DependentUpon>GetAttachmentImage.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx.cs">
       <DependentUpon>GetDocumentHtml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +143,7 @@
     <None Include="Layouts\ViewerModernWebPart\Storage\calibre.docx" />
     <None Include="Layouts\ViewerModernWebPart\Storage\candy.pdf" />
     <None Include="Layouts\ViewerModernWebPart\Storage\lic.pdf" />
+    <None Include="Layouts\ViewerModernWebPart\Storage\sample.msg" />
     <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{076d8c3b-66db-4c3d-8b00-c9d4427e632f}</PackageId>
@@ -156,6 +171,8 @@
     <Content Include="Layouts\ViewerModernWebPart\Content\style.css" />
     <Content Include="Layouts\ViewerModernWebPart\DownloadOriginal.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\DownloadPdf.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetAttachmentHtml.aspx" />
+    <Content Include="Layouts\ViewerModernWebPart\GetAttachmentImage.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\GetDocumentHtml.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\GetDocumentImage.aspx" />
     <Content Include="Layouts\ViewerModernWebPart\Home.aspx" />

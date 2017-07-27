@@ -17,7 +17,7 @@ namespace Viewer_Modren_UI.Controllers
     public class AttachmentImageController : Controller
     {
         [Route("")]
-        public ActionResult Get(int? width, int? height, string file,string attachment, int page)
+        public ActionResult Get(int? width, int? height, string file,string attachment, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
         {
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
@@ -26,6 +26,8 @@ namespace Viewer_Modren_UI.Controllers
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             if (width.HasValue)
             {
                 o.Width = Convert.ToInt32(width);
@@ -40,7 +42,7 @@ namespace Viewer_Modren_UI.Controllers
             // Iterate over the attachments collection
             foreach (AttachmentBase attachmentBase in info.Attachments.Where(x=>x.Name == attachment))
             {
-                List<PageImage> pages = handler.GetPages(attachmentBase);
+                List<PageImage> pages = handler.GetPages(attachmentBase,o);
                 foreach (PageImage attachmentPage in pages.Where(x=>x.PageNumber == page)) { stream = attachmentPage.Stream; };
 
             }
