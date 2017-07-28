@@ -28,6 +28,15 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
             int? height = Convert.ToInt32(GetValueFromQueryString("width"));
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
+
+            string watermarkText = GetValueFromQueryString("watermarkText");
+            int? watermarkColor = Convert.ToInt32(GetValueFromQueryString("watermarkColor"));
+            WatermarkPosition watermarkPosition = (WatermarkPosition)Enum.Parse(typeof(WatermarkPosition), GetValueFromQueryString("watermarkPosition"), true);
+            string widthFromQuery = GetValueFromQueryString("watermarkWidth");
+            int? watermarkWidth = GetValueFromQueryString("watermarkWidth") == "null" ? null : (int?)Convert.ToInt32(GetValueFromQueryString("watermarkWidth"));
+            byte watermarkOpacity = Convert.ToByte(GetValueFromQueryString("watermarkOpacity"));
+
+
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
             List<int> pageNumberstoRender = new List<int>();
@@ -43,6 +52,9 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
             {
                 o.Height = Convert.ToInt32(height);
             }
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+
             Stream stream = null;
             DocumentInfoContainer info = handler.GetDocumentInfo(file);
 
