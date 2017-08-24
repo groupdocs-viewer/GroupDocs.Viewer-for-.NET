@@ -7,7 +7,7 @@ This modern UI is based on ASP.NET MVC it is simple, efficient and, user friendl
 
 * Visual Studio 2015 or later.
 * Any latest browsers (Firefox, Chrome, Interner Explorer, Safari).
-* GroupDocs.Viewer 17.6.0
+* GroupDocs.Viewer 17.7.0
 
 # Installation
 

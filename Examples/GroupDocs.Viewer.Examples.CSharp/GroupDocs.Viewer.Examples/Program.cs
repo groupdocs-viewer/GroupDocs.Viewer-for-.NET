@@ -108,7 +108,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
 
             //Render document as PDF with JpegQuality settings
-            //ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("sample.doc");
+            ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("sample.doc");
 
             //Render document as PDF with comments
             //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");

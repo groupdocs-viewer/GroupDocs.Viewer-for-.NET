@@ -8,7 +8,7 @@ This application allows user to view document in Html and Image representation. 
 
 * Visual Studio 2015 or later.
 * Any latest browsers (Firefox, Chrome, Interner Explorer, Safari).
-* GroupDocs.Viewer 17.6.0
+* GroupDocs.Viewer 17.7.0
 
 # Installation
 
