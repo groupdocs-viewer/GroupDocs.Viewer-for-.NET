@@ -1,4 +1,4 @@
-##GroupDocs.Viewer for .NET Examples
+## GroupDocs.Viewer for .NET Examples
 
 This package contains C# Example Project for [GroupDocs.Viewer for .NET](https://www.groupdocs.com/products/viewer/net) and sample input templates used in the examples.
 
@@ -8,7 +8,7 @@ This package contains C# Example Project for [GroupDocs.Viewer for .NET](https:/
   </a>
 </p>
 
-##How to Run the Examples?
+## How to Run the Examples?
 
 The package contains C# examples project. Follow the given steps to proceed with project build:
 
