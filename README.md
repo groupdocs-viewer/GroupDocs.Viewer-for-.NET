@@ -13,16 +13,16 @@ GroupDocs.Viewer for .NET is a .NET API which provides the technology to create 
 
 Directory | Description
 --------- | -----------
-[Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET examples (C# & VB) and sample files that will help you learn how to use product features. 
+[Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET C# examples and sample files that will help you learn how to use product features. 
 [Showcases](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | The *Legacy Front End* and *New Front End* are the open source web based projects. These projects are based on Front Controller Design pattern and demonstrate the salient features of GroupDocs.Viewer. 
 [Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins/GroupDocs_Viewer_VSPlugin)  | Contains the plugins related to GroupDocs.Viewer for Visual Studio.
 ## Resources
 
 + **Website:** [www.groupdocs.com](http://www.groupdocs.com)
 + **Product Home:** [GroupDocs.Viewer for .NET](http://groupdocs.com/dot-net/document-viewer-library)
-+ **Product API:** [API of GroupDocs.Viewer for .NET](http://groupdocs.com/api/net/viewer)
++ **Product API References:** [API of GroupDocs.Viewer for .NET](http://groupdocs.com/api/net/viewer)
 + **Download:** [Download GroupDocs.Viewer for .NET](http://downloads.groupdocs.com/viewer/net)
 + **Documentation:** [GroupDocs.Viewer for .NET Documentation](http://groupdocs.com/docs/display/viewernet/Introducing+GroupDocs.Viewer+for+.NET)
-+ **Forum:** [GroupDocs.Viewer for .NET Forum](http://groupdocs.com/Community/forums/groupdocs.viewer-product-family/4/showforum.aspx)
-+ **Blog:** [GroupDocs.Viewer for .NET Blog](#)
++ **Forum:** [GroupDocs.Viewer for .NET Forum](https://forum.groupdocs.com/c/viewer)
++ **Blog:** [GroupDocs.Viewer for .NET Blog](https://blog.groupdocs.com/category/groupdocs-viewer-product-family/)
 

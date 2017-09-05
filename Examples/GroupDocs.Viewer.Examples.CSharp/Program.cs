@@ -23,7 +23,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region ViewerHtmlPresentation
 
             //Render a power point presentation in html form
-            //ViewGenerator.RenderDocumentAsHtml("word.doc");
+            ViewGenerator.RenderDocumentAsHtml("word.doc");
 
             //Render a spreadsheet in html form
             //ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx");
@@ -70,6 +70,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render document with comments as HTML
             //ViewGenerator.RenderDocumentAsHtmlWithComments("sample.doc");
 
+            //Render Excel document ignoring empty rows
+            //ViewGenerator.RenderExcelAsHtmlIgnoringEmptyRows("sample.xlsx");
+
+            //Render CAD document as responsive HTML
+            //ViewGenerator.RenderDocumentAsResponsiveHtml("sample.dwg");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -108,7 +114,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
 
             //Render document as PDF with JpegQuality settings
-            ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("sample.doc");
+            //ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("word.doc");
 
             //Render document as PDF with comments
             //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");
