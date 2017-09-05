@@ -10,7 +10,7 @@ This package contains C# Example Project for [GroupDocs.Viewer for .NET](https:/
 
 ## How to Run the Examples?
 
-The package contains C# examples project. Follow the given steps to proceed with project build:
+Follow the given steps to proceed with project build:
 
 * Extract the downloaded project and open the solution file in Visual Studio
 * Right click on solution and press "Enable NuGet package Restore"
