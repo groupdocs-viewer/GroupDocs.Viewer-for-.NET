@@ -17,11 +17,11 @@ namespace GroupDocs.Viewer.Examples
 {
     public static class Utilities
     {
-        public const string StoragePath = "../../../../Data/Storage/";
-        public const string OutputHtmlPath = "../../../../Data/Output/html/";
-        public const string OutputImagePath = "../../../../Data/Output/images/";
-        public const string OutputPath = "../../../../Data/Output/";
-        public const string licensePath = "../../../../Data/Storage/GroupDocs.Total.lic";
+        public const string StoragePath = "../../../Data/Storage/";
+        public const string OutputHtmlPath = "../../../Data/Output/html/";
+        public const string OutputImagePath = "../../../Data/Output/images/";
+        public const string OutputPath = "../../../Data/Output/";
+        public const string licensePath = "../../../Data/Storage/GroupDocs.Total.lic";
 
         #region Configurations
 
