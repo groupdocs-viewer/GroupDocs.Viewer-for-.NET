@@ -13,7 +13,7 @@ GroupDocs.Viewer for .NET is a .NET API which provides the technology to create 
 
 Directory | Description
 --------- | -----------
-[Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET examples (C# & VB) and sample files that will help you learn how to use product features. 
+[Examples](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Examples)  | Contains the package of all .NET C# examples and sample files that will help you learn how to use product features. 
 [Showcases](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases)  | The *Legacy Front End* and *New Front End* are the open source web based projects. These projects are based on Front Controller Design pattern and demonstrate the salient features of GroupDocs.Viewer. 
 [Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins/GroupDocs_Viewer_VSPlugin)  | Contains the plugins related to GroupDocs.Viewer for Visual Studio.
 ## Resources

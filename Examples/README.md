@@ -1,6 +1,6 @@
 ##GroupDocs.Viewer for .NET Examples
 
-This package contains C# and VB.NET Example Projects for [GroupDocs.Viewer for .NET](#) and sample input templates used in the examples.
+This package contains C# Example Project for [GroupDocs.Viewer for .NET](https://www.groupdocs.com/products/viewer/net) and sample input templates used in the examples.
 
 <p align="center">
   <a title="Download complete GroupDocs.Viewer for .NET Example source code" href="https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/archive/master.zip">
@@ -10,7 +10,7 @@ This package contains C# and VB.NET Example Projects for [GroupDocs.Viewer for .
 
 ##How to Run the Examples?
 
-The package contains two projects, one for C# examples and other for Visual Basic examples. Follow the given steps to proceed with project build:
+The package contains C# examples project. Follow the given steps to proceed with project build:
 
 * Extract the downloaded project and open the solution file in Visual Studio
 * Right click on solution and press "Enable NuGet package Restore"

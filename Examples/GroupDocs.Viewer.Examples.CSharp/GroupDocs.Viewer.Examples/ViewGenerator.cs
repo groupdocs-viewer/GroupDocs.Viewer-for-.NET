@@ -21,7 +21,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
     {
         #region HTMLRepresentation
         /// <summary>
-        /// Renders simple document in html representation
+        /// Renders document into html
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
@@ -60,7 +60,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders document in html representation with watermark
+        /// Renders document into html with watermark
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="WatermarkText">watermark text</param>
@@ -103,7 +103,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        ///  Renders document in html representation and reorder a page
+        ///  Renders document into html with page reordering
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="CurrentPageNumber">Page existing order number</param>
@@ -149,7 +149,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders a document in html representation whom located at web/remote location.
+        /// Renders a document of web/remote location into html 
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
@@ -180,7 +180,42 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders PDF document's layers separately
+        /// Renders document into responsive html
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        /// <param name="DocumentPassword">Optional</param>
+        public static void RenderDocumentAsResponsiveHtml(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsResponsiveHtml
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //to get html representations of pages with embedded resources
+            options.IsResourcesEmbedded = true;
+            options.EnableResponsiveRendering = true;
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsResponsiveHtml
+        }
+
+        /// <summary>
+        /// Renders PDF document's layers separately into html
         /// </summary>
         /// <param name="DocumentName">Name of the document</param>
         public static void RenderPDFLayersSeparately(String DocumentName)
@@ -208,7 +243,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders PDF document without annotations
+        /// Renders PDF document into html without annotations
         /// </summary>
         /// <param name="DocumentName">Name of the document</param>
         public static void RenderPDFDocumentWithoutAnnotations(String DocumentName)
@@ -236,7 +271,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders Word document in html representation with track changes
+        /// Renders Word document into html with track changes
         /// </summary>
         /// <param name="DocumentName">File name</param>
         public static void RenderWordDocumentAsHtmlWithTrackChanges(String DocumentName)
@@ -301,7 +336,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Render a document in html representation with specifying resource prefix.
+        /// Render a document into html specifying resource prefix
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderDocumentAsHtmlWithResourcePrefix(string DocumentName)
@@ -327,7 +362,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //The {page-number} and {resource-name} patterns will be replaced with current processing page number and resource name accordingly.
 
             //To ignore resource prefix in CSS 
-            //options.IgnoreResourcePrefixForCss = true;
+            options.IgnorePrefixInResources = true;
 
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
@@ -343,7 +378,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders hidden pages of Visio file as Html.
+        /// Renders hidden pages of Visio file as html
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderHiddenPagesOfVisioAsHtml(string DocumentName)
@@ -377,7 +412,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders Excel file as Html with internal hyperlink prefix.
+        /// Renders Excel file as html with internal hyperlink prefix
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderExcelAsHtmlWithInternalHyperlinkPrefix(string DocumentName)
@@ -411,7 +446,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders Excel file as Html specifying number of rows per page.
+        /// Renders Excel file as html specifying number of rows per page
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderExcelAsHtmlWithCountRowsPerPage(string DocumentName)
@@ -444,7 +479,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders Excel file as Html specifying the mode of text overflow
+        /// Renders Excel file as html specifying the mode of text overflow
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderExcelAsHtmlWithTextOverflowMode(string DocumentName)
@@ -470,6 +505,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
             //ExEnd:RenderExcelAsHtmlWithTextOverflowMode
+
+        }
+
+        /// <summary>
+        /// Renders Excel file as Html ignoring the empty rows
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderExcelAsHtmlIgnoringEmptyRows(string DocumentName)
+        {
+
+            //ExStart:RenderExcelAsHtmlIgnoringEmptyRows
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set Cells options to hide overflowing text
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.IgnoreEmptyRows = true; // default value is false
+
+            // Get pages
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderExcelAsHtmlIgnoringEmptyRows
 
         }
 
@@ -515,7 +580,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders Model and all non empty Layouts from CAD document
+        /// Renders Model and all non empty Layouts from CAD document into html
         /// </summary>
         /// <param name="DocumentName">File name</param> 
         public static void RenderLayoutsOfCADDocument(String DocumentName)
@@ -546,7 +611,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders specific Layout from CAD document
+        /// Renders specific Layout from CAD document into html
         /// </summary>
         /// <param name="DocumentName">File name</param> 
         public static void RenderSpecificLayoutOfCADDocument(String DocumentName)
@@ -606,7 +671,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders document with comments
+        /// Renders document into html with comments
         /// </summary>
         /// <param name="DocumentName">File name</param> 
         public static void RenderDocumentAsHtmlWithComments(String DocumentName)
@@ -635,7 +700,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderDocumentAsHtmlWithComments
         }
-        
+
+        /// <summary>
+        /// Renders large documents in chunks
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
         public static void RenderLargeDocumentAsHtml(String DocumentName, String DocumentPassword = null)
         {
             //ExStart:RenderAsHtml
@@ -703,7 +772,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         #region ImageRepresentation
        
         /// <summary>
-        /// Renders simple document in image representation
+        /// Renders document into image
         /// </summary>
         /// <param name="DocumentName">File name</param>
         /// <param name="DocumentPassword">Optional</param>
@@ -742,7 +811,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders document in image representation with watermark
+        /// Renders document into image with watermark
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="WatermarkText">watermark text</param>
@@ -784,7 +853,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders the document in image form and set the rotation angle to rotate the page while display.
+        /// Renders the document in image form and set the rotation angle to rotate the page
         /// </summary>
         /// <param name="DocumentName"></param>
         /// <param name="RotationAngle">rotation angle in digits</param>
@@ -826,7 +895,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders document in image representation and reorder a page
+        /// Renders document into image with page reordering
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         /// <param name="CurrentPageNumber">Page existing order number</param>
@@ -869,7 +938,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
         
         /// <summary>
-        /// Renders a document in image representation whom located at web/remote location.
+        /// Renders remote document into image using URL
         /// </summary>
         /// <param name="DocumentURL">URL of the document</param>
         /// <param name="DocumentPassword">Password Parameter is optional</param>
@@ -901,7 +970,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders hidden pages of Visio file as image.
+        /// Renders hidden pages of Visio file as image
         /// </summary>
         /// <param name="DocumentName">file/document name</param>
         public static void RenderHiddenPagesOfVisioAsImage(string DocumentName)
@@ -936,7 +1005,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Renders CAD document in image representation
+        /// Renders CAD document into image
         /// </summary>
         /// <param name="DocumentName">File name</param>
         public static void RenderCADAsImages(String DocumentName)
@@ -1404,7 +1473,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #region EmailAttachments
         /// <summary>
-        /// Gets attached image with email message
+        /// Gets image attachment of email message
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachments(String DocumentName)
@@ -1433,7 +1502,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Gets attached file's html representation
+        /// Gets html representation of attachment files
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachmentHTMLRepresentation(String DocumentName)
@@ -1479,7 +1548,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Gets attached file's image representation
+        /// Gets image representation of attachment files
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
         public static void GetEmailAttachmentImageRepresentation(String DocumentName)

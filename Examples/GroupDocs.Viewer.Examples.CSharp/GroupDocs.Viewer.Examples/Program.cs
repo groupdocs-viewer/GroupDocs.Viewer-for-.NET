@@ -70,6 +70,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render document with comments as HTML
             //ViewGenerator.RenderDocumentAsHtmlWithComments("sample.doc");
 
+            //Render Excel document ignoring empty rows
+            //ViewGenerator.RenderExcelAsHtmlIgnoringEmptyRows("sample.xlsx");
+
+            //Render CAD document as responsive HTML
+            //ViewGenerator.RenderDocumentAsResponsiveHtml("sample.dwg");
+
             #endregion
 
             #region ViewerImagePresentation
