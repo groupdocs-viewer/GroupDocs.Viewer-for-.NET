@@ -16,85 +16,13 @@ namespace MvcSample.Helpers
         /// The _file data
         /// </summary>
         private readonly FileData _fileData;
-        /// <summary>
-        /// The _options
-        /// </summary>
-        private readonly FileDataOptions _options;
-
+         
         /// <summary>
         /// The _default culture
         /// </summary>
         private readonly CultureInfo _defaultCulture = CultureInfo.InvariantCulture;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FileDataJsonSerializer"/> class.
-        /// </summary>
-        /// <param name="fileData">The file data.</param>
-        /// <param name="options">The options.</param>
-        public FileDataJsonSerializer(FileData fileData, FileDataOptions options)
-        {
-            _fileData = fileData;
-            _options = options;
-        }
-
-        /// <summary>
-        /// Serializes this instance.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        public string Serialize(bool isDefault)
-        { 
-            var isCellsFileData = _fileData.Pages.Any(_ => !string.IsNullOrEmpty(_.Name));
-            if (isCellsFileData && !isDefault)
-                return SerializeCells();
-
-            return SerializeDefault();
-        }
-
-        /// <summary>
-        /// Serializes the default.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private string SerializeDefault()
-        {
-            StringBuilder json = new StringBuilder();
-
-            json.Append(string.Format("{{\"maxPageHeight\":{0},\"widthForMaxHeight\":{1}",
-                _fileData.MaxHeight, _fileData.MaxHeight));
-            json.Append(",\"pages\":[");
-
-            int pageCount = _fileData.Pages.Count;
-            for (int i = 0; i < pageCount; i++)
-            {
-                PageData pageData = _fileData.Pages[i];
-
-                bool needSeparator = i > 0;
-                if (needSeparator)
-                    json.Append(",");
-
-                AppendPage(pageData, json);
-
-                bool includeRows = _options.UsePdf && pageData.Rows.Count > 0;
-                if (includeRows)
-                {
-                    json.Append(",\"rows\":[");
-                    for (int j = 0; j < pageData.Rows.Count; j++)
-                    {
-                        bool appendRowSeaparator = j != 0;
-                        if (appendRowSeaparator)
-                            json.Append(",");
-
-                        AppendRow(pageData.Rows[j], json);
-                    }
-                    json.Append("]"); // rows
-                }
-                json.Append("}"); // page
-            }
-            json.Append("]"); // pages
-            json.Append("}"); // document
-
-            return json.ToString();
-        }
-
+          
         /// <summary>
         /// Serializes cells.
         /// </summary>

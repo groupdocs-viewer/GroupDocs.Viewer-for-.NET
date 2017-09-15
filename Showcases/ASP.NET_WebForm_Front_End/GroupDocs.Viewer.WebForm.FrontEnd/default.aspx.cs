@@ -54,8 +54,7 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
             var imageConfig = new ViewerConfig
             {
                 StoragePath = _storagePath, 
-                UseCache = true,
-                UsePdf = true
+                UseCache = true, 
             };
             _imageHandler = new ViewerImageHandler(imageConfig);
 
@@ -510,7 +509,14 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 htmlPages.AddRange(attachmentPages);
 
             }
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
+            SerializationOptions serializationOptions = new SerializationOptions
+            {
+                UsePdf = request.UsePdf,
+                SupportListOfBookmarks = request.SupportListOfBookmarks,
+                SupportListOfContentControls = request.SupportListOfContentControls
+            };
+            var documentInfoJson = new DocumentInfoJsonSerializer(docInfo, serializationOptions).Serialize();
+            result.documentDescription = documentInfoJson;
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
