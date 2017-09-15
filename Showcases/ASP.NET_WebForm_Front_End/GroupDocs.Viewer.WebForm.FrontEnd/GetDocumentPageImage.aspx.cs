@@ -72,7 +72,8 @@ namespace GroupDocs.Viewer.WebForm.FrontEnd
                 JpegQuality = 100,
                 Watermark = Utils.GetWatermark(parameters.WatermarkText, parameters.WatermarkColor,
                     parameters.WatermarkPosition, parameters.WatermarkWidth),
-                Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None
+                Transformations = parameters.Rotate ? Transformation.Rotate : Transformation.None,
+                ExtractText=true,
             };
 
             if (parameters.Rotate && parameters.Width.HasValue)

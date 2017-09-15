@@ -53,8 +53,7 @@ namespace MvcSample.Controllers
             {
                 StoragePath = _storagePath,
                 CachePath = _tempPath,
-                UseCache = true,
-                UsePdf = _usePdfInImageEngine
+                UseCache = true
             };
 
             _imageHandler = new ViewerImageHandler(imageConfig);
@@ -411,7 +410,8 @@ namespace MvcSample.Controllers
                     CountPagesToRender = 1,
                     PageNumber = pageNumber,
                     JpegQuality = parameters.Quality.GetValueOrDefault(),
-                    PageNumbersToRender = new List<int>(new int[] { pageNumber })
+                    PageNumbersToRender = new List<int>(new int[] { pageNumber }),
+                    ExtractText = _usePdfInImageEngine
             };
 
                 if (parameters.Rotate && parameters.Width.HasValue)
@@ -797,11 +797,18 @@ request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
                 htmlPages.AddRange(attachmentPages);
 
             }
-            /////
-            result.documentDescription = new FileDataJsonSerializer(fileData, new FileDataOptions()).Serialize(false);
+            SerializationOptions serializationOptions = new SerializationOptions
+            {
+                UsePdf = request.UsePdf,
+                SupportListOfBookmarks = request.SupportListOfBookmarks,
+                SupportListOfContentControls = request.SupportListOfContentControls
+            };
+
+            var documentInfoJson = new DocumentInfoJsonSerializer(docInfo, serializationOptions).Serialize();
+            result.documentDescription = documentInfoJson;
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
-
+                
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
             result.pageCss = new[] { string.Join(" ", cssList) };
         }
