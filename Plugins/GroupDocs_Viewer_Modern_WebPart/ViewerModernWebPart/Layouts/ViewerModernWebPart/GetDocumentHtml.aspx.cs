@@ -29,6 +29,14 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
         {
             var file = GetValueFromQueryString("file");
             var page = Convert.ToInt32(GetValueFromQueryString("page"));
+
+            string watermarkText = GetValueFromQueryString("watermarkText");
+            int? watermarkColor = Convert.ToInt32(GetValueFromQueryString("watermarkColor"));
+            WatermarkPosition watermarkPosition = (WatermarkPosition)Enum.Parse(typeof(WatermarkPosition), GetValueFromQueryString("watermarkPosition"), true);
+            string widthFromQuery  = GetValueFromQueryString("watermarkWidth");
+            int? watermarkWidth = GetValueFromQueryString("watermarkWidth") == "null" ? null : (int?)Convert.ToInt32(GetValueFromQueryString("watermarkWidth"));
+            byte watermarkOpacity = Convert.ToByte(GetValueFromQueryString("watermarkOpacity"));
+
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
@@ -43,6 +51,8 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
                     file,
                     page
             ));
+            if (watermarkText != "")
+                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
 
             List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
 

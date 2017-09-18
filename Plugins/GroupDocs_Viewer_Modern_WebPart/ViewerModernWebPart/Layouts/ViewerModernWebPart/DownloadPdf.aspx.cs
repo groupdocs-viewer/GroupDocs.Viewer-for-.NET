@@ -5,6 +5,8 @@ using System.IO;
 
 using System.Web;
 using ViewerModernWebPart.Helpers;
+using GroupDocs.Viewer.Domain;
+using GroupDocs.Viewer.Domain.Options;
 
 namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
 {
@@ -14,12 +16,23 @@ namespace ViewerModernWebPart.Layouts.ViewerModernWebPart
         protected void Page_Load(object sender, EventArgs e)
         {
             var file = GetValueFromQueryString("file");
+
+            string watermarkText = GetValueFromQueryString("watermarkText");
+            int? watermarkColor = Convert.ToInt32(GetValueFromQueryString("watermarkColor"));
+            WatermarkPosition watermarkPosition = (WatermarkPosition)Enum.Parse(typeof(WatermarkPosition), GetValueFromQueryString("watermarkPosition"), true);
+            string widthFromQuery = GetValueFromQueryString("watermarkWidth");
+            int? watermarkWidth = GetValueFromQueryString("watermarkWidth") == "null" || GetValueFromQueryString("watermarkWidth") == "" ? null : (int?)Convert.ToInt32(GetValueFromQueryString("watermarkWidth"));
+            byte watermarkOpacity = Convert.ToByte(GetValueFromQueryString("watermarkOpacity"));
+
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
 
             Stream pdf = null;
             try
             {
-                pdf = handler.GetPdfFile(file).Stream;
+                PdfFileOptions o = new PdfFileOptions();
+                if (watermarkText != "")
+                    o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+                pdf = handler.GetPdfFile(file,o).Stream;
             }
             catch (Exception x)
             {

@@ -29,15 +29,39 @@
             </md-button>
             <h1 hide-xs>GroupDocs.Viewer for .NET</h1>
             <span flex></span>
+            <md-button ng-click="togelToImageDocument()"
+                       class="md-icon-button"
+                       ng-disabled="!selectedFile">
+                <md-icon>restore</md-icon>
+                <md-tooltip>Toggle Image</md-tooltip>
+            </md-button>
+            <md-button ng-click="zoomInDocument()"
+                           class="md-icon-button"
+                           ng-disabled="!isImage">
+                    <md-icon>zoom_in</md-icon>
+                    <md-tooltip>Zoom In</md-tooltip>
+                </md-button>
+                <md-button ng-click="zoomOutDocument()"
+                           class="md-icon-button"
+                           ng-disabled="!isImage">
+                    <md-icon>zoom_out</md-icon>
+                    <md-tooltip>Zoom Out</md-tooltip>
+                </md-button>
+            <md-button ng-click="rotateDocument()"
+                       class="md-icon-button"
+                       ng-disabled="!isImage">
+                <md-icon>rotate_left</md-icon>
+                <md-tooltip>Rotate</md-tooltip>
+            </md-button>
             <md-button ng-click="previousDocument()"
-                        class="md-icon-button"
-                        ng-disabled="!selectedFile">
+                       class="md-icon-button"
+                       ng-disabled="!selectedFile">
                 <md-icon>navigate_before</md-icon>
                 <md-tooltip>Previous Document</md-tooltip>
             </md-button>
             <md-button ng-click="nextDocument()"
-                        class="md-icon-button"
-                        ng-disabled="!selectedFile">
+                       class="md-icon-button"
+                       ng-disabled="!selectedFile">
                 <md-icon>navigate_next</md-icon>
                 <md-tooltip>Next Document</md-tooltip>
             </md-button>
@@ -83,7 +107,7 @@
                                     frameborder="0"></iframe>
                         </md-card>
                     </div>
-                 
+
                 </div>
             </md-content>
             <md-sidenav md-component-id="left" hide-print md-whiteframe="4" class="md-sidenav-left">
@@ -103,7 +127,7 @@
                                              class="md-card-image page-thumbnail" />
                                     </md-card>
                                 </div>
-                             </div>
+                            </div>
                         </md-content>
                     </md-tab>
                 </md-tabs>

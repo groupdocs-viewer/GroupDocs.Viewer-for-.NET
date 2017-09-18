@@ -19,7 +19,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
      <script src="Content/app.js"></script>
 </asp:Content>
 
@@ -32,13 +31,25 @@
             </md-button>
             <h1 hide-xs>GroupDocs.Viewer for .NET</h1>
             <span flex></span>
+            <md-button ng-click="previousDocument()"
+                        class="md-icon-button"
+                        ng-disabled="!selectedFile">
+                <md-icon>navigate_before</md-icon>
+                <md-tooltip>Previous Document</md-tooltip>
+            </md-button>
+            <md-button ng-click="nextDocument()"
+                        class="md-icon-button"
+                        ng-disabled="!selectedFile">
+                <md-icon>navigate_next</md-icon>
+                <md-tooltip>Next Document</md-tooltip>
+            </md-button>
             <md-button ng-href="DownloadOriginal.aspx?file={{ selectedFile }}"
                        class="md-icon-button"
                        ng-disabled="!selectedFile">
                 <md-icon>file_download</md-icon>
                 <md-tooltip>Download</md-tooltip>
             </md-button>
-            <md-button ng-href="DownloadPdf.aspx?file={{ selectedFile }}"
+            <md-button ng-href="DownloadPdf.aspx?file={{ selectedFile }}&watermarkText={{watermark.Text}}&watermarkColor={{watermark.Color}}&watermarkPosition={{watermark.Position}}&watermarkWidth={{watermark.Width}}&watermarkOpacity={{watermark.Opacity}}"
                        target="_blank"
                        class="md-icon-button"
                        ng-disabled="!selectedFile">
@@ -47,10 +58,9 @@
             </md-button>
             <div ng-controller="AvailableFilesController">
                 <md-select ng-model="selectedFile" placeholder="Please select a file"
-                           md-on-open="onOpen()"
-                           ng-change="onChange($event)">
+                           md-on-open="onOpen()">
                     <md-optgroup label="Available files">
-                        <md-option ng-value="item" ng-repeat="item in list.d">{{ item }}</md-option>
+                        <md-option ng-value="item"  ng-click="onChange(item)" ng-repeat="item in list.d">{{ item }}</md-option>
                     </md-optgroup>
                 </md-select>
             </div>
