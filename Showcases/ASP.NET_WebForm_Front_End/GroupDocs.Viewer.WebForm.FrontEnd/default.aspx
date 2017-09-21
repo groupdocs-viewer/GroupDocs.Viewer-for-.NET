@@ -76,7 +76,7 @@
             printWithWatermark: true,
             //watermarkPosition: 'Diagonal',
             //watermarkText: '透かし文字、Watermark for Html',
-            //watermarkColor: 16711680,
+            //watermarkColor: 0x78FF0000,
             //watermarkOpacity: 255,        
  
             isResourcesEmbedded: true,
