@@ -20,7 +20,7 @@ Directory | Description
 
 + **Website:** [www.groupdocs.com](http://www.groupdocs.com)
 + **Product Home:** [GroupDocs.Viewer for .NET](https://www.groupdocs.com/products/viewer/net)
-+ **Product API References:** [API of GroupDocs.Viewer for .NET](http://groupdocs.com/api/net/viewer)
++ **Product API References:** [API of GroupDocs.Viewer for .NET](https://apireference.groupdocs.com/net/viewer)
 + **Download:** [Download GroupDocs.Viewer for .NET](http://downloads.groupdocs.com/viewer/net)
 + **Documentation:** [GroupDocs.Viewer for .NET Documentation](https://docs.groupdocs.com/display/viewernet/Home)
 + **Forum:** [GroupDocs.Viewer for .NET Forum](https://forum.groupdocs.com/c/viewer)
