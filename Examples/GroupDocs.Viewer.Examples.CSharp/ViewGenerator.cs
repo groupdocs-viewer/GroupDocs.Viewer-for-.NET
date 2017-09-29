@@ -257,7 +257,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Set pdf options to render content without annotations
             HtmlOptions options = new HtmlOptions();
-            options.PdfOptions.DeleteAnnotations = true; // Default value is false
+            options.RenderComments = false; // Default value is false
+            //options.RenderComments = true; // For rendering document with annotations
 
             //Get document pages in html form
             List<PageHtml> pages = htmlHandler.GetPages(DocumentName, options);
@@ -766,6 +767,38 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //ExEnd:RenderAsHtml
         }
+
+        /// <summary>
+        /// Renders document into html excluding fonts
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        public static void RenderDocumentAsHtmlExcludingFonts(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlExcludingFonts
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            options.ExcludeFonts = true;
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlExcludingFonts
+        }
         
         #endregion
 
@@ -1167,7 +1200,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Set pdf options to get original file without annotations
             PdfFileOptions options = new PdfFileOptions();
-            options.PdfOptions.DeleteAnnotations = true; // Default value is false
+            options.RenderComments = false; // Default value is false
+            //options.RenderComments = true; // Render document with annotations
 
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
             FileContainer container = imageHandler.GetPdfFile(DocumentName, options);
