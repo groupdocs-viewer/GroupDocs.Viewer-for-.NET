@@ -377,41 +377,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
 
         }
-
-        /// <summary>
-        /// Renders hidden pages of Visio file as html
-        /// </summary>
-        /// <param name="DocumentName">file/document name</param>
-        public static void RenderHiddenPagesOfVisioAsHtml(string DocumentName)
-        {
-            //ExStart:RenderHiddenPagesInVisioAsHtml
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            // Create html handler
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-            string guid = DocumentName;
-
-            // Set html options to show grid lines
-            HtmlOptions options = new HtmlOptions();
-            options.DiagramOptions.ShowHiddenPages = true;
-
-            DocumentInfoContainer container = htmlHandler.GetDocumentInfo(guid);
-
-            foreach (PageData page in container.Pages)
-                Console.WriteLine("Page number: {0}, Page Name: {1}, IsVisible: {2}", page.Number, page.Name, page.IsVisible);
-
-            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-            foreach (PageHtml page in pages)
-            {
-                //Save each page at disk
-                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-            }
-            //ExEnd:RenderHiddenPagesInVisioAsHtml
-
-
-        }
-
+        
         /// <summary>
         /// Renders Excel file as html with internal hyperlink prefix
         /// </summary>
@@ -799,7 +765,183 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderDocumentAsHtmlExcludingFonts
         }
+
+        /// <summary>
+        /// Shows grid lines for Excel files in html representation
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWithGridLinesInExcel(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+            //do same while using ImageOptions
+            options.CellsOptions.ShowGridLines = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+
+        /// <summary>
+        /// Renders multiple pages per sheet
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderMultiExcelSheetsInOnePage(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create image or html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+            string guid = DocumentName;
+
+            // Set pdf file one page per sheet option to false, default value of this option is true
+            PdfFileOptions pdfFileOptions = new PdfFileOptions();
+            pdfFileOptions.CellsOptions.OnePagePerSheet = false;
+
+            //Get pdf file
+            FileContainer fileContainer = imageHandler.GetPdfFile(DocumentName, pdfFileOptions);
+
+            Utilities.SaveFile("test.pdf", fileContainer.Stream);
+        }
+
+        /// <summary>
+        /// Shows hidden sheets for Excel files in image representation
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWithHiddenSheetsInExcel(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to render hidden sheets
+            HtmlOptions options = new HtmlOptions();
+            //do same while using ImageOptions
+            options.ShowHiddenPages = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
         
+        /// <summary>
+        /// Renders hidden pages of Visio file as html
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderHiddenPagesOfVisioAsHtml(string DocumentName)
+        {
+            //ExStart:RenderHiddenPagesInVisioAsHtml
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set html options to render hidden pages
+            HtmlOptions options = new HtmlOptions();
+            options.ShowHiddenPages = true;
+
+            DocumentInfoContainer container = htmlHandler.GetDocumentInfo(guid);
+
+            foreach (PageData page in container.Pages)
+                Console.WriteLine("Page number: {0}, Page Name: {1}, IsVisible: {2}", page.Number, page.Name, page.IsVisible);
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderHiddenPagesInVisioAsHtml
+
+
+        }
+
+        /// <summary>
+        /// Renders hidden pages of Visio file as html
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderHiddenSlidesOfPowerPointAsHtml(string DocumentName)
+        {
+            //ExStart:RenderHiddenSlidesOfPowerPointAsHtml
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set html options to render hidden slides
+            HtmlOptions options = new HtmlOptions();
+            options.ShowHiddenPages = true;
+
+            DocumentInfoContainer container = htmlHandler.GetDocumentInfo(guid);
+
+            foreach (PageData page in container.Pages)
+                Console.WriteLine("Page number: {0}, Page Name: {1}, IsVisible: {2}", page.Number, page.Name, page.IsVisible);
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderHiddenSlidesOfPowerPointAsHtml
+
+
+        }
+
+        /// <summary>
+        /// Creates and uses file with localized string
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderWithLocales(String DocumentName)
+        {
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+            config.LocalesPath = @"D:\from office working\for aspose\GroupDocsViewer\GroupDocs.Viewer.Examples\Data\Locale";
+
+            CultureInfo cultureInfo = new CultureInfo("fr-FR");
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            HtmlOptions options = new HtmlOptions();
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+        }
+
+
         #endregion
 
         #region ImageRepresentation
@@ -1018,7 +1160,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Set image options to show hidden pages
             ImageOptions options = new ImageOptions();
-            options.DiagramOptions.ShowHiddenPages = true;
+            options.ShowHiddenPages = true;
 
             DocumentInfoContainer container = imageHandler.GetDocumentInfo(guid);
 
@@ -1136,6 +1278,40 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 }
             }
             //ExEnd:GetTextCorrdinates
+
+        }
+
+        /// <summary>
+        /// Renders Excel file as Image specifying number of rows per page and options.TextExtraction= true 
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderExcelAsImageWithCountRowsPerPage(string DocumentName)
+        {
+
+            //ExStart:RenderExcelAsImageWithCountRowsPerPageAndTextExtraction
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+            string guid = DocumentName;
+
+            // Set html options to show grid lines
+            ImageOptions options = new ImageOptions();
+            options.ExtractText = true;
+            options.CellsOptions.OnePagePerSheet = false;
+
+            // Set count rows to render into one page. Default value is 50.
+            options.CellsOptions.CountRowsPerPage = 50;
+
+            // Get pages
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:RenderExcelAsImageWithCountRowsPerPageAndTextExtraction
 
         }
         #endregion
@@ -1807,60 +1983,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #endregion
 
-        #region OtherImprovements
-
-        /* Working from 3.2.0*/
-        /// <summary>
-        /// Shows grid lines for Excel files in html representation
-        /// </summary>
-        /// <param name="DocumentName"></param>
-        public static void RenderWithGridLinesInExcel(String DocumentName)
-        {
-            // Setup GroupDocs.Viewer config
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-
-            // File guid
-            string guid = DocumentName;
-
-            // Set html options to show grid lines
-            HtmlOptions options = new HtmlOptions();
-            //do same while using ImageOptions
-            options.CellsOptions.ShowGridLines = true;
-
-            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-            foreach (PageHtml page in pages)
-            {
-                //Save each page at disk
-                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-            }
-        }
-
-        /// <summary>
-        /// Renders multiple pages per sheet
-        /// </summary>
-        /// <param name="DocumentName"></param>
-        public static void RenderMultiExcelSheetsInOnePage(String DocumentName)
-        {
-            // Setup GroupDocs.Viewer config
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            // Create image or html handler
-            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-            string guid = DocumentName;
-
-            // Set pdf file one page per sheet option to false, default value of this option is true
-            PdfFileOptions pdfFileOptions = new PdfFileOptions();
-            pdfFileOptions.CellsOptions.OnePagePerSheet = false;
-
-            //Get pdf file
-            FileContainer fileContainer = imageHandler.GetPdfFile(DocumentName, pdfFileOptions);
-
-            Utilities.SaveFile("test.pdf", fileContainer.Stream);
-        }
-
+        #region Others        
+        
         /// <summary>
         /// Gets all supported document formats
         /// </summary>
@@ -1882,63 +2006,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             Console.ReadKey();
         }
-
-        /// <summary>
-        /// Shows hidden sheets for Excel files in image representation
-        /// </summary>
-        /// <param name="DocumentName"></param>
-        public static void RenderWithHiddenSheetsInExcel(String DocumentName)
-        {
-            // Setup GroupDocs.Viewer config
-            ViewerConfig config = Utilities.GetConfigurations();
-
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-
-            // File guid
-            string guid = DocumentName;
-
-            // Set html options to show grid lines
-            HtmlOptions options = new HtmlOptions();
-            //do same while using ImageOptions
-            options.CellsOptions.ShowHiddenSheets = true;
-
-            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-            foreach (PageHtml page in pages)
-            {
-                //Save each page at disk
-                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-            }
-        }
-        
-        /// <summary>
-        /// Creates and uses file with localized string
-        /// </summary>
-        /// <param name="DocumentName"></param>
-        public static void RenderWithLocales(String DocumentName)
-        {
-            // Setup GroupDocs.Viewer config
-            ViewerConfig config = Utilities.GetConfigurations();
-            config.LocalesPath = @"D:\from office working\for aspose\GroupDocsViewer\GroupDocs.Viewer.Examples\Data\Locale";
-
-            CultureInfo cultureInfo = new CultureInfo("fr-FR");
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
-
-            // File guid
-            string guid = DocumentName;
-
-            // Set html options to show grid lines
-            HtmlOptions options = new HtmlOptions();
-
-            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-            foreach (PageHtml page in pages)
-            {
-                //Save each page at disk
-                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-            }
-        }
-
+         
         #endregion
     }
 
