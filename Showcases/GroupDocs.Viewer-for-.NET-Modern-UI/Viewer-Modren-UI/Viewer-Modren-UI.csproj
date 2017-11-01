@@ -104,6 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app.js" />
+    <Content Include="Content\custom.js" />
+    <Content Include="Content\GDLogogo.png" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

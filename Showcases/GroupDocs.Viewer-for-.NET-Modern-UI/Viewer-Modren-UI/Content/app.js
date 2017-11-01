@@ -1,17 +1,30 @@
 'use strict';
 
 var ngApp = angular.module('GroupDocsViewer', ['ngMaterial', 'ngResource']);
+ngApp.value('FilePath', DefaultFilePath);
+ngApp.value('isImage', isImageToggle);
+ngApp.value('Rotate', RotateAngel);
+ngApp.value('Zoom', ZoomValue);
+ngApp.value('Watermark', {
+    Text: (ShowWatermark ? WatermarkText : ""),
+    Color: WatermarkColor,
+    Position: WatermarkPosition,
+    Width: WatermarkWidth,
+    Opacity: WatermarkOpacity
+});
 
-ngApp.constant('FilePath', '');
-ngApp.constant('isImage', false);
-ngApp.constant('Rotate', 0);
-ngApp.constant('Zoom', 0);
-ngApp.constant('Watermark', {
-    Text: "Watermark Text",
-    Color: 16711680,
-    Position: 'Diagonal',
-    Width: null,
-    Opacity: 255
+ngApp.value('ShowHideTools', {
+    IsShowWatermark: !ShowWatermark,
+    IsShowImageToggle: !ShowImageToggle,
+    IsZoomIn: !ShowZoomIn,
+    IsZoomOut: !ShowZoomOut,
+    IsRotateImage: !ShowRotateImage,
+    IsPreviousDocument: !ShowPreviousDocument,
+    IsNextDocument: !ShowNextDocument,
+    IsDownload: !ShowDownload,
+    IsPDFDownload: !ShowPDFDownload,
+    IsFileSelection: !ShowFileSelection,
+    IsThubmnailPanel: !ShowThubmnailPanel
 });
 
 ngApp.factory('FilesFactory', function ($resource) {
@@ -32,20 +45,33 @@ ngApp.factory('DocumentPagesFactory', function ($resource) {
     });
 });
 
-ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav, Watermark, FilePath) {
+ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav, isImage, Watermark, ShowHideTools, FilePath) {
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle().then(function () {
             $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
         });
     };
-    $scope.watermark = {
+    $scope.Watermark = {
         Text: Watermark.Text,
         Color: Watermark.Color,
         Position: Watermark.Position,
         Width: Watermark.Width,
         Opacity: Watermark.Opacity
     };
-    $scope.isImage = false;
+    $scope.ShowHideTools = {
+        IsShowWatermark: ShowHideTools.IsShowWatermark,
+        IsShowImageToggle: ShowHideTools.IsShowImageToggle,
+        IsZoomIn: ShowHideTools.IsZoomIn,
+        IsZoomOut: ShowHideTools.IsZoomOut,
+        IsRotateImage: ShowHideTools.IsRotateImage,
+        IsPreviousDocument: ShowHideTools.IsPreviousDocument,
+        IsNextDocument: ShowHideTools.IsNextDocument,
+        IsDownload: ShowHideTools.IsDownload,
+        IsPDFDownload: ShowHideTools.IsPDFDownload,
+        IsFileSelection: ShowHideTools.IsFileSelection,
+        IsThubmnailPanel: ShowHideTools.IsThubmnailPanel
+    };
+    $scope.isImage = isImage;
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
         $rootScope.selectedFile = selectedFile;
     });
@@ -82,7 +108,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
 });
 
 ngApp.controller('ThumbnailsController',
-    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath, Watermark, Rotate) {
+    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath, Watermark, ShowHideTools, Rotate) {
         $scope.isLeftSidenavVislble = false;
         if (FilePath) {
             $rootScope.selectedFile = FilePath;
@@ -143,16 +169,16 @@ ngApp.controller('ThumbnailsController',
 );
 
 ngApp.controller('PagesController',
-    function ThumbnailsController($rootScope, $scope, $sce, $document, DocumentPagesFactory, FilePath, Watermark, isImage,Rotate,Zoom) {
+    function ThumbnailsController($rootScope, $scope, $sce, $document, DocumentPagesFactory, FilePath, Watermark, ShowHideTools, isImage, Rotate, Zoom) {
         if (FilePath) {
             $rootScope.selectedFile = FilePath;
             $scope.docInfo = DocumentPagesFactory.query({
                 filename: FilePath
             });
-            isImage = $scope.isImage;
-            
+            //isImage = $scope.isImage;
+
         }
-        
+
         $scope.$on('selected-file-changed', function (event, selectedFile) {
             $rootScope.selectedFile = selectedFile;
             $scope.docInfo = DocumentPagesFactory.query({
@@ -161,41 +187,44 @@ ngApp.controller('PagesController',
         });
         $scope.$on('rotate-file', function (event, selectedFile) {
             $rootScope.selectedFile = selectedFile;
-            Rotate = 90;
+            Rotate += 90;
         });
         $scope.$on('zin-file', function (event, selectedFile) {
             $rootScope.selectedFile = selectedFile;
-            Rotate = 0;
-            Zoom += 20;
+            //Rotate = 0;
+            Zoom += 100;
         });
         $scope.$on('zout-file', function (event, selectedFile) {
             $rootScope.selectedFile = selectedFile;
-            Rotate = 0;
-            Zoom -= 20;
+            //Rotate = 0;
+            Zoom -= 100;
         });
         $scope.$on('toggle-file', function (event, selectedFile) {
             $rootScope.selectedFile = selectedFile;
-            Rotate = 0;
+            //Rotate = 0;
             isImage = !isImage;
         });
         $scope.createPageUrl = function (selectedFile, itemNumber) {
-            if (isImage)
+            if (isImage) {
                 return $sce.trustAsResourceUrl('/page/image?width=400&file='
-                    + selectedFile + '&page=' + itemNumber
-                    + '&watermarkText=' + Watermark.Text
-                    + '&watermarkColor=' + Watermark.Color
-                    + '&watermarkPosition=' + Watermark.Position
-                    + '&watermarkWidth=' + Watermark.Width
-                    + '&watermarkOpacity=' + Watermark.Opacity
-                    + '&rotate=' + Rotate
-                    + '&zoom=' + Zoom);
-            return $sce.trustAsResourceUrl('/page/html?file='
-                    + selectedFile + '&page=' + itemNumber
-                    + '&watermarkText=' + Watermark.Text
-                    + '&watermarkColor=' + Watermark.Color
-                    + '&watermarkPosition=' + Watermark.Position
-                    + '&watermarkWidth=' + Watermark.Width
-                    + '&watermarkOpacity=' + Watermark.Opacity);
+                        + selectedFile + '&page=' + itemNumber
+                        + '&watermarkText=' + Watermark.Text
+                        + '&watermarkColor=' + Watermark.Color
+                        + '&watermarkPosition=' + Watermark.Position
+                        + '&watermarkWidth=' + Watermark.Width
+                        + '&watermarkOpacity=' + Watermark.Opacity
+                        + '&rotate=' + Rotate
+                        + '&zoom=' + Zoom);
+            }
+            else {
+                return $sce.trustAsResourceUrl('/page/html?file='
+                        + selectedFile + '&page=' + itemNumber
+                        + '&watermarkText=' + Watermark.Text
+                        + '&watermarkColor=' + Watermark.Color
+                        + '&watermarkPosition=' + Watermark.Position
+                        + '&watermarkWidth=' + Watermark.Width
+                        + '&watermarkOpacity=' + Watermark.Opacity);
+            }
         };
         $scope.createAttachmentPageUrl = function (selectedFile, attachmentName, itemNumber) {
             return $sce.trustAsResourceUrl('/attachment/html?file=' + selectedFile

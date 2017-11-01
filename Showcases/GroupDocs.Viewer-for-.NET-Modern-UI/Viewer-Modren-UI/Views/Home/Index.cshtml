@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,70 +17,103 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="~/Content/custom.js"></script>
+    <script>
+        ///// ********************************* //////
+        ///// DYNAMIC CONFIGURATIONS PARAMETERS
+        ///// By Default all properties are set to true
+        ///// ********************************* //////
+
+        // Show/Hide Toolbar Controls
+        ShowWatermark = true;
+        ShowImageToggle = true;
+        ShowZoomIn = true;
+        ShowZoomOut = false;
+        ShowRotateImage = false;
+        ShowPreviousDocument = false;
+        ShowNextDocument = false;
+        ShowDownload = true;
+        ShowPDFDownload = false;
+        ShowFileSelection = true;
+        ShowThubmnailPanel = true;
+
+        // Set Default values
+        DefaultFilePath = 'calibre.docx'; // leave empty to skip default file loading, defined file name should be available in application 'App_Data' folder.
+        isImageToggle = false; // set true to display image mode.
+        RotateAngel = 0; // integer value e.g 0 or 90 or 180.
+        ZoomValue = 100; // integer values, allowed negative values.
+
+        // Set Watermark properties
+        WatermarkText = "my watermark text by aw";
+        WatermarkColor = 4366342; // integer values represents the ARGB color.
+        WatermarkPosition = 'Diagonal'; // e.g Diagonal, TopLeft, TopCenter, TopRight, BottomLeft, BottomCenter, BottomRight, 
+        WatermarkWidth = 100; // integer values.
+        WatermarkOpacity = 255;  // integer values.
+    </script>
     <script src="~/Content/app.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
     <div ng-app="GroupDocsViewer" ng-cloak flex layout="column" style="height: 100%;">
         <md-toolbar ng-controller="ToolbarController" layout="row" hide-print md-whiteframe="4"
-                    class="md-toolbar-tools md-scroll-shrink">
-            <md-button class="md-icon-button" ng-click="toggleLeft()">
+            class="md-toolbar-tools md-scroll-shrink">
+            <md-button class="md-icon-button" ng-click="toggleLeft()" ng-hide="ShowHideTools.IsThubmnailPanel">
                 <md-icon>menu</md-icon>
             </md-button>
-            <h1 hide-xs>GroupDocs.Viewer for .NET</h1>
+            <a href="~/"><h1 hide-xs><img src="/Content/GDLogogo.png" /> Viewer for .NET</h1></a>
             <span flex></span>
             <md-button ng-click="togelToImageDocument()"
                        class="md-icon-button"
-                       ng-disabled="!selectedFile">
+                       ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsShowImageToggle">
                 <md-icon>restore</md-icon>
                 <md-tooltip>Toggle Image</md-tooltip>
             </md-button>
             <md-button ng-click="zoomInDocument()"
                            class="md-icon-button"
-                           ng-disabled="!isImage">
+                           ng-disabled="!isImage" ng-hide="ShowHideTools.IsZoomIn">
                     <md-icon>zoom_in</md-icon>
                     <md-tooltip>Zoom In</md-tooltip>
                 </md-button>
                 <md-button ng-click="zoomOutDocument()"
                            class="md-icon-button"
-                           ng-disabled="!isImage">
+                           ng-disabled="!isImage" ng-hide="ShowHideTools.IsZoomOut">
                     <md-icon>zoom_out</md-icon>
                     <md-tooltip>Zoom Out</md-tooltip>
                 </md-button>
             <md-button ng-click="rotateDocument()"
                        class="md-icon-button"
-                       ng-disabled="!isImage">
+                       ng-disabled="!isImage" ng-hide="ShowHideTools.IsRotateImage">
                 <md-icon>rotate_left</md-icon>
                 <md-tooltip>Rotate</md-tooltip>
             </md-button>
             <md-button ng-click="previousDocument()"
                        class="md-icon-button"
-                       ng-disabled="!selectedFile">
+                       ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsPreviousDocument">
                 <md-icon>navigate_before</md-icon>
                 <md-tooltip>Previous Document</md-tooltip>
             </md-button>
             <md-button ng-click="nextDocument()"
                        class="md-icon-button"
-                       ng-disabled="!selectedFile">
+                       ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsNextDocument">
                 <md-icon>navigate_next</md-icon>
                 <md-tooltip>Next Document</md-tooltip>
             </md-button>
             <md-button ng-href="/download/original?file={{ selectedFile }}"
                        class="md-icon-button"
-                       ng-disabled="!selectedFile">
+                       ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsDownload">
                 <md-icon>file_download</md-icon>
                 <md-tooltip>Download</md-tooltip>
             </md-button>
             <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{watermark.Text}}&watermarkColor={{watermark.Color}}&watermarkPosition={{watermark.Position}}&watermarkWidth={{watermark.Width}}&watermarkOpacity={{watermark.Opacity}}"
                        target="_blank"
                        class="md-icon-button"
-                       ng-disabled="!selectedFile">
+                       ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsPDFDownload">
                 <md-icon>picture_as_pdf</md-icon>
                 <md-tooltip>Download as pdf</md-tooltip>
             </md-button>
             <div ng-controller="AvailableFilesController">
                 <md-select ng-model="selectedFile" placeholder="Please select a file"
-                           md-on-open="onOpen()">
+                           md-on-open="onOpen()" ng-hide="ShowHideTools.IsFileSelection">
                     <md-optgroup label="Available files">
                         <md-option ng-value="item" ng-click="onChange(item)" ng-repeat="item in list">{{ item }}</md-option>
                     </md-optgroup>
@@ -97,14 +130,14 @@
                         <a name="page-view-{{ item.number }}"></a>
                         <iframe ng-src="{{ createPageUrl(selectedFile, item.number) }}"
                                 width="100%"
-                                frameborder="0"></iframe>
+                                frameborder="0" allowTransparency="true"></iframe>
                     </md-card>
                     <div ng-repeat="attachment in docInfo.attachments">
                         <md-card ng-repeat="number in attachment.count">
                             <a name="page-view-{{attachment.name}}-{{number}}"></a>
                             <iframe ng-src="{{ createAttachmentPageUrl(selectedFile,attachment.name,number) }}"
                                     width="100%"
-                                    frameborder="0"></iframe>
+                                    frameborder="0" allowTransparency="true"></iframe>
                         </md-card>
                     </div>
 
@@ -133,8 +166,13 @@
                 </md-tabs>
             </md-sidenav>
         </md-content>
+        <footer>
+            <div layout="row" layout-align="center center" flex>
+                Powered By&nbsp;<a href="http://groupdocs.github.io/">GroupDocs</a>&nbsp; Document Manipulation API's.
+           
+            </div>
+        </footer>
     </div>
-
 </body>
 </html>
 
