@@ -33,7 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GroupDocs.Viewer">
-      <HintPath>..\packages\groupdocs-viewer-dotnet.17.8.0\lib\GroupDocs.Viewer.dll</HintPath>
+      <HintPath>..\packages\GroupDocs.Viewer.17.10\lib\GroupDocs.Viewer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
