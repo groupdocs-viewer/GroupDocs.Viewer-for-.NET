@@ -20,9 +20,9 @@ namespace Viewer_Modren_UI.Controllers
             try
             {
                 PdfFileOptions o = new PdfFileOptions();
-                if(watermarkText!="")
+                if (watermarkText != "")
                     o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
-                pdf = handler.GetPdfFile(file,o).Stream;
+                pdf = handler.GetPdfFile(file, o).Stream;
             }
             catch (Exception x)
             {

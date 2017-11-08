@@ -11,49 +11,85 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Viewer_Modren_UI.Helpers;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Viewer_Modren_UI.Controllers
 {
     [RoutePrefix("page/image")]
     public class PageImageController : Controller
     {
-        
+
         [Route("")]
-        public ActionResult Get(int? width, int? height,string file, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity,int? rotate,int? zoom)
+        public ActionResult Get(int? width, int? height, string file, int page, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity, int? rotate, int? zoom)
         {
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
             ImageOptions o = new ImageOptions();
-            List<int> pageNumberstoRender = new List<int>();
-            pageNumberstoRender.Add(page);
-            o.PageNumbersToRender = pageNumberstoRender;
+            o.PageNumbersToRender = new List<int>(new int[] { page });
             o.PageNumber = page;
             o.CountPagesToRender = 1;
-            if(watermarkText!="")
+            if (watermarkText != "")
                 o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
             if (width.HasValue)
             {
-                int w= Convert.ToInt32(width);
+                int w = Convert.ToInt32(width);
                 if (zoom.HasValue)
                     w = w + zoom.Value;
                 o.Width = w;
             }
-            //if (height.HasValue)
-            //{
-            //    o.Height = Convert.ToInt32(height*10);
-            //}
+            if (height.HasValue)
+            {
+                if (zoom.HasValue)
+                    o.Height = o.Height + zoom.Value;
+            }
+            int pages = handler.GetDocumentInfo(file).Pages.Count;
             if (rotate.HasValue)
             {
-                o.Transformations = Transformation.Rotate;
-                //Call RotatePages to apply rotate transformation to a page
-                handler.RotatePage(file, new RotatePageOptions(page, rotate.Value));
+                if (rotate.Value > 0)
+                {
+                    if (width.HasValue)
+                    {
+                        int side = o.Width;
 
+                        DocumentInfoContainer documentInfoContainer = handler.GetDocumentInfo(file);
+                        int pageAngle = documentInfoContainer.Pages[page - 1].Angle;
+                        if (pageAngle == 90 || pageAngle == 270)
+                            o.Height = side;
+                        else
+                            o.Width = side;
+                    }
+
+                    o.Transformations = Transformation.Rotate;
+                    handler.RotatePage(file, new RotatePageOptions(page, rotate.Value));
+
+                    //for (int i = 1; i <= pages; i++)
+                    //{
+                    //    //Call RotatePages to apply rotate transformation to a page
+                    //    handler.RotatePage(file, new RotatePageOptions(i, rotate.Value));
+                    //}
+                }
             }
-            Stream stream = null;
-            List<PageImage> list = Utils.LoadPageImageList(handler, file, o);
-            foreach (PageImage pageImage in list.Where(x => x.PageNumber == page)) { stream =  pageImage.Stream; };
-            return new FileStreamResult(stream,"image/png");
+            else
+            {
+                o.Transformations = Transformation.None;
+                handler.RotatePage(file, new RotatePageOptions(page, 0));
+
+                //for (int i = 1; i <= pages; i++)
+                //{
+                //    //Call RotatePages to apply rotate transformation to a page
+                //    handler.RotatePage(file, new RotatePageOptions(i, 0));
+                //}
+            }
+
+            using (new InterProcessLock(file))
+            {
+                List<PageImage> list = handler.GetPages(file, o);
+                PageImage pageImage = list.Single(_ => _.PageNumber == page);
+
+                return File(pageImage.Stream, "image/png");
+            }
         }
     }
 }
