@@ -1,6 +1,6 @@
 ## GroupDocs.Viewer for .NET Examples
 
-This package contains C# Example Project for [GroupDocs.Viewer for .NET](https://www.groupdocs.com/products/viewer/net) and sample input templates used in the examples.
+This package contains C# Example Project for [GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net) and sample input templates used in the examples.
 
 <p align="center">
   <a title="Download complete GroupDocs.Viewer for .NET Example source code" href="https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/archive/master.zip">
