@@ -7,6 +7,8 @@ ngApp.value('Rotate', RotateAngel);
 ZoomValue = (ZoomValue > 10 ? ZoomValue / 100 : ZoomValue);
 ZoomValue = (ZoomValue <= 0 ? 0.05 : ZoomValue);
 ngApp.value('Zoom', ZoomValue);
+ngApp.value('TotalPages', TotalDocumentPages);
+ngApp.value('CurrentPage', 1);
 ngApp.value('Watermark', {
     Text: (ShowWatermark ? WatermarkText : ""),
     Color: WatermarkColor,
@@ -26,7 +28,8 @@ ngApp.value('ShowHideTools', {
     IsDownload: !ShowDownload,
     IsPDFDownload: !ShowPDFDownload,
     IsFileSelection: !ShowFileSelection,
-    IsThubmnailPanel: !ShowThubmnailPanel
+    IsThubmnailPanel: !ShowThubmnailPanel,
+    IsShowPagingPanel: !ShowPagingPanel
 });
 
 ngApp.factory('FilesFactory', function ($resource) {
@@ -47,7 +50,7 @@ ngApp.factory('DocumentPagesFactory', function ($resource) {
     });
 });
 
-ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav, isImage, Zoom, Watermark, ShowHideTools, FilePath) {
+ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav, isImage, Zoom, TotalPages, CurrentPage, Watermark, ShowHideTools, FilePath) {
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle().then(function () {
             $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
@@ -64,6 +67,10 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         Opacity: Watermark.Opacity
     };
     $scope.Zoom = Zoom;
+
+    $scope.TotalPages = TotalDocumentPages;
+    $scope.CurrentPage = CurrentPage;
+
     $scope.ShowHideTools = {
         IsShowWatermark: ShowHideTools.IsShowWatermark,
         IsShowImageToggle: ShowHideTools.IsShowImageToggle,
@@ -75,7 +82,8 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         IsDownload: ShowHideTools.IsDownload,
         IsPDFDownload: ShowHideTools.IsPDFDownload,
         IsFileSelection: ShowHideTools.IsFileSelection,
-        IsThubmnailPanel: ShowHideTools.IsThubmnailPanel
+        IsThubmnailPanel: ShowHideTools.IsThubmnailPanel,
+        IsShowPagingPanel: ShowHideTools.IsShowPagingPanel
     };
     $scope.isImage = isImage;
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
@@ -132,6 +140,44 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         }
     };
 
+    $scope.navigatePage = function (options) {
+        if ($rootScope.selectedFile) {
+            TotalPages = parseInt(TotalDocumentPages);
+            CurrentPage = parseInt(CurrentDocumentPage);
+            console.log('options:  ' + options + '  TotalDocumentPages: ' + TotalPages + '   CurrentPage: ' + CurrentPage);
+            if (options == '+') {
+                console.log('+++++++CurrentPage: ' + CurrentPage);
+                CurrentPage += 1;
+                if (CurrentPage > TotalPages) {
+                    CurrentPage = TotalPages;
+                }
+                location.hash = 'page-view-' + CurrentPage;
+            }
+            else if (options == '-') {
+                console.log('-------CurrentPage: ' + CurrentPage);
+                CurrentPage -= 1;
+
+                if (CurrentPage < 1) {
+                    CurrentPage = 1;
+                }
+
+                location.hash = 'page-view-' + CurrentPage;
+            }
+            else if (options == 'f') {
+                CurrentPage = 1;
+                location.hash = 'page-view-1';
+            }
+            else if (options == 'e') {
+                CurrentPage = TotalPages;
+                location.hash = 'page-view-' + TotalPages;
+            }
+            CurrentDocumentPage = parseInt(CurrentPage);
+            UpdatePager();
+            //$rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+
+        }
+    };
+
     $scope.previousDocument = function () {
         if ($rootScope.list.indexOf($rootScope.selectedFile) - 1 == -1) {
             $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.length - 1]);
@@ -141,6 +187,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         }
     };
 });
+
 
 ngApp.controller('ThumbnailsController',
     function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath, Watermark, ShowHideTools, Rotate) {
@@ -166,6 +213,9 @@ ngApp.controller('ThumbnailsController',
 
         $scope.onThumbnailClick = function ($event, item) {
             $mdSidenav('left').toggle().then(function () {
+                $scope.CurrentPage = parseInt(item.number);
+                CurrentDocumentPage = $scope.CurrentPage;
+                UpdatePager();
                 location.hash = 'page-view-' + item.number;
                 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
                 $scope.selected = item;
@@ -212,8 +262,6 @@ ngApp.controller('PagesController',
             $scope.docInfo = DocumentPagesFactory.query({
                 filename: FilePath
             });
-            //isImage = $scope.isImage;
-
         }
 
         $scope.$on('selected-file-changed', function (event, selectedFile) {
@@ -296,27 +344,27 @@ ngApp.directive('iframeSetDimensionsOnload', [function () {
                 if ($scope.isImage) {
                     element[0].contentWindow.document.body.style = "text-align: center !important;";
                 }
-                //resizeIFrame();
+                resizeIFrame();
             });
         }
     }
 }]);
 
 ngApp.directive('cardSetDimensions', function ($window) {
-    return{
-        link: function($scope, element, attrs){
-            //element.css('height', $window.innerHeight*ZoomValue + 'px');
-            element.css('width', '100%');
-            var height = element.innerHeight;
-            height = parseInt(height) + 10;
-            height = (height * (parseFloat(ZoomValue) < 1 ? 1 : parseFloat(ZoomValue)));
-            height = parseInt(height);
-            element.css('height', parseInt(height) + 'px');
-            console.log(height);
-            if ($scope.isImage) {
-                //element.contentWindow.document.body.style = "text-align: center !important;";
-            }
-            //resizeIFrame();
+    return {
+        link: function ($scope, element, attrs) {
+            ////element.css('height', $window.innerHeight*ZoomValue + 'px');
+            //element.css('width', '100%');
+            //var height = element.innerHeight;
+            //height = parseInt(height) + 10;
+            //height = (height * (parseFloat(ZoomValue) < 1 ? 1 : parseFloat(ZoomValue)));
+            //height = parseInt(height);
+            //element.css('height', parseInt(height) + 'px');
+            //console.log(height);
+            //if ($scope.isImage) {
+            //    //element.contentWindow.document.body.style = "text-align: center !important;";
+            //}
+            resizeIFrame();
         }
     }
 });
@@ -341,21 +389,3 @@ ngApp.controller('AvailableFilesController', function AvailableFilesController($
     };
 
 });
-
-//setInterval(function () {
-//    var list = document.getElementsByTagName('iframe');
-//    for (var i = 0; i < list.length; i++) {
-//        var iframe = list[i],
-//            body = iframe.contentWindow.document.body,
-//            html = iframe.contentWindow.document.documentElement,
-//            height = Math.max(
-//                body.scrollHeight,
-//                body.offsetHeight,
-//                html.clientHeight,
-//                html.scrollHeight,
-//                html.offsetHeight
-//            );
-
-//        iframe.style.height = height + 'px';
-//    }
-//}, 1572);

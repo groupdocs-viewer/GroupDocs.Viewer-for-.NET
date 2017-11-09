@@ -1,75 +1,97 @@
 ﻿@{ Layout = null; }
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>GroupDocs.Viewer for .NET</title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto+Condensed:400,700">
-  <link href="~/Content/style.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <script src="~/Content/custom.js"></script>
-  <script>
-      ///// ********************************* //////
-      ///// DYNAMIC CONFIGURATIONS PARAMETERS
-      ///// By Default all properties are set to true
-      ///// ********************************* //////
+    <title>GroupDocs.Viewer for .NET</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto+Condensed:400,700">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="~/Content/custom.js"></script>
+    <script>
+        ///// ********************************* //////
+        ///// DYNAMIC CONFIGURATIONS PARAMETERS
+        ///// By Default all properties are set to true
+        ///// ********************************* //////
 
-      // Un-comment to Show/Hide Toolbar Controls
-      //ShowWatermark = false;
-      //ShowImageToggle = false;
-      //ShowZoomIn = false;
-      //ShowZoomOut = false;
-      //ShowRotateImage = false;
-      //ShowPreviousDocument = false;
-      //ShowNextDocument = false;
-      //ShowDownload = false;
-      //ShowPDFDownload = false;
-      //ShowFileSelection = false;
-      //ShowThubmnailPanel = false;
+        // Un-comment to Show/Hide Toolbar Controls
+        //ShowWatermark = false;
+        //ShowImageToggle = false;
+        //ShowZoomIn = false;
+        //ShowZoomOut = false;
+        //ShowRotateImage = false;
+        //ShowPreviousDocument = false;
+        //ShowNextDocument = false;
+        //ShowDownload = false;
+        //ShowPDFDownload = false;
+        //ShowFileSelection = false;
+        //ShowThubmnailPanel = false;
+        //ShowPagingPanel = false;
 
-      // Set Default values
-      DefaultFilePath = 'calibre.docx'; // leave empty to skip default file loading, defined file name should be available in application 'App_Data' folder.
-      isImageToggle = false; // set true to display image mode.
-      RotateAngel = 0; // integer value e.g 0 or 90 or 180.
-      ZoomValue = 100; // integer values, allowed negative values.
+        // Set Default values
+        DefaultFilePath = 'calibre.docx'; // leave empty to skip default file loading, defined file name should be available in application 'App_Data' folder.
+        //isImageToggle = false; // set true to display image mode by default.
+        RotateAngel = 0; // integer value e.g 0 or 90 or 180.
+        ZoomValue = 100; // integer values, zoom level.
 
-      // Set Watermark properties
-      WatermarkText = "my watermark text";
-      WatermarkColor = 4366342; // integer values represents the ARGB color.
-      WatermarkPosition = 'Diagonal'; // e.g Diagonal, TopLeft, TopCenter, TopRight, BottomLeft, BottomCenter, BottomRight, 
-      WatermarkWidth = 100; // integer values.
-      WatermarkOpacity = 150; // integer values.
+        // Set Watermark properties
+        WatermarkText = "my watermark text";
+        WatermarkColor = 4366342; // integer values represents the ARGB color.
+        WatermarkPosition = 'Diagonal'; // e.g Diagonal, TopLeft, TopCenter, TopRight, BottomLeft, BottomCenter, BottomRight, 
+        WatermarkWidth = 100; // integer values.
+        WatermarkOpacity = 150; // integer values.
   </script>
-  <script src="~/Content/app.js"></script>
+    <script src="~/Content/app.js"></script>
 </head>
 
 <body oncontextmenu="return false;">
 
-  <div ng-app="GroupDocsViewer" ng-cloak flex layout="column" style="height: 100%;">
-    <md-toolbar ng-controller="ToolbarController" layout="row" hide-print md-whiteframe="4" class="md-toolbar-tools md-scroll-shrink">
+    <div ng-app="GroupDocsViewer" ng-cloak flex layout="column" style="height: 100%;">
+        <md-toolbar ng-controller="ToolbarController" layout="row" hide-print md-whiteframe="4" class="md-toolbar-tools md-scroll-shrink">
       <md-button class="md-icon-button" ng-click="toggleLeft()" ng-hide="ShowHideTools.IsThubmnailPanel">
         <md-icon>menu</md-icon>
       </md-button>
       <a href="~/"><h1 hide-xs><img src="/Content/GDLogogo.png" /> Viewer for .NET</h1></a>
       <span flex></span>
-      <md-button ng-click="togelToImageDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsShowImageToggle">
-        <md-icon aria-hidden="true">wallpaper</md-icon>
-        <md-tooltip>Toggle Image View</md-tooltip>
+      <md-button aria-label="toggle view" ng-click="togelToImageDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsShowImageToggle">
+        <md-icon aria-hidden="true" ng-hide="!isImage">image</md-icon><md-icon aria-hidden="true"ng-hide="isImage">web_asset</md-icon>
+        <md-tooltip>Toggle <span ng-hide="isImage">Image</span><span ng-hide="!isImage">HTML</span> View</md-tooltip>
       </md-button>
       <md-button ng-click="rotateDocument()" class="md-icon-button" ng-disabled="!isImage" ng-hide="ShowHideTools.IsRotateImage">
         <md-icon>rotate_left</md-icon>
         <md-tooltip>Rotate</md-tooltip>
       </md-button>
-      <div class="toolbarbox" ng-hide="ShowHideTools.IsZoomIn">
+      <div class="toolbarbox" ng-hide="ShowHideTools.IsShowPagingPanel">
+<md-button ng-click="navigatePage('f')" class="md-icon-button" ng-disabled="!selectedFile">
+        <md-icon>first_page</md-icon>
+        <md-tooltip>First Page</md-tooltip>
+      </md-button>
+<md-button ng-click="navigatePage('-')" class="md-icon-button" ng-disabled="!selectedFile">
+        <md-icon>navigate_before</md-icon>
+        <md-tooltip>Previous Page</md-tooltip>
+      </md-button>
+<span id="spantoolpager" style="font-size:small;"></span>
+<md-button ng-click="navigatePage('+')" class="md-icon-button" ng-disabled="!selectedFile">
+        <md-icon>navigate_next</md-icon>
+        <md-tooltip>Next Page</md-tooltip>
+      </md-button>
+<md-button ng-click="navigatePage('e')" class="md-icon-button" ng-disabled="!selectedFile">
+        <md-icon>last_page</md-icon>
+        <md-tooltip>Last Page</md-tooltip>
+      </md-button></div>
+
+<div class="toolbarbox" ng-hide="ShowHideTools.IsZoomIn">
         <md-button ng-click="zoomInDocument()" class="md-icon-button" ng-hide="ShowHideTools.IsZoomIn">
           <md-icon>zoom_in</md-icon>
           <md-tooltip>Zoom In</md-tooltip>
@@ -139,7 +161,7 @@
         <md-tooltip>Previous Document</md-tooltip>
       </md-button>
       <div ng-controller="AvailableFilesController">
-        <md-select ng-model="selectedFile" placeholder="Please select a file" md-on-open="onOpen()" ng-hide="ShowHideTools.IsFileSelection">
+        <md-select width="4" ng-model="selectedFile" placeholder="Please select a file" md-on-open="onOpen()" ng-hide="ShowHideTools.IsFileSelection">
           <md-optgroup label="Available files">
             <md-option ng-value="item" ng-click="onChange(item)" ng-repeat="item in list">{{ item }}</md-option>
           </md-optgroup>
@@ -155,9 +177,15 @@
           <md-tooltip>Download Document</md-tooltip>
         </md-button>
         <md-menu-content width="4">
-
           <md-menu-item ng-hide="ShowHideTools.IsPDFDownload">
-            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}" target="_blank"
+            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=false" target="_blank"
+            ng-disabled="!selectedFile">
+              <md-icon md-menu-origin md-menu-align-target>picture_as_pdf</md-icon>
+              Open as PDF
+            </md-button>
+          </md-menu-item>
+          <md-menu-item ng-hide="ShowHideTools.IsPDFDownload">
+            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=true" target="_blank"
             ng-disabled="!selectedFile">
               <md-icon md-menu-origin md-menu-align-target>picture_as_pdf</md-icon>
               Download as PDF
@@ -176,7 +204,7 @@
         <md-icon>more_vert</md-icon>
       </md-button>
     </md-toolbar>
-    <md-content flex layout="row" md-scroll-y>
+        <md-content flex layout="row" md-scroll-y>
       <md-content flex id="content" class="md-padding" role="main">
         <div ng-controller="PagesController">
           <md-card card-set-dimensions ng-repeat="item in docInfo.pages">
@@ -198,7 +226,7 @@
             <md-content role="navigation">
               <div ng-controller="ThumbnailsController">
                 <md-card ng-repeat="item in docInfo.pages" class="thumbnail">
-                  <img ng-class="{selectedthumbnail: item === selected}" ng-src="{{ createThumbnailUrl(selectedFile, item.number) }}" ng-click="onThumbnailClick($event, item)" class="md-card-image page-thumbnail" />
+                  <img name="imghumb-{{ item.number }}" ng-class="{selectedthumbnail: item === selected}" ng-src="{{ createThumbnailUrl(selectedFile, item.number) }}" ng-click="onThumbnailClick($event, item)" class="md-card-image page-thumbnail" />
                 </md-card>
                 <div ng-repeat="attachment in docInfo.attachments">
                   <md-card ng-repeat="number in  attachment.count">
@@ -211,13 +239,14 @@
         </md-tabs>
       </md-sidenav>
     </md-content>
-    <footer>
-      <div layout="row" layout-align="center center" flex>
-        Powered By&nbsp;<a href="http://groupdocs.github.io/">GroupDocs</a>&nbsp; Document Manipulation API's.
+        <footer>
+            <div layout="row" layout-align="center center" flex>
+                Powered By&nbsp;<a href="http://groupdocs.github.io/">GroupDocs</a>&nbsp; Document Manipulation API's.
 
-      </div>
-    </footer>
-  </div>
+     
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>

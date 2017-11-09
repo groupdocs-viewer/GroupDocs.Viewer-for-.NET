@@ -30,8 +30,10 @@ namespace Viewer_Modren_UI.Controllers
             o.PageNumbersToRender = new List<int>(new int[] { page });
             o.PageNumber = page;
             o.CountPagesToRender = 1;
+
             if (watermarkText != "")
                 o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+
             if (width.HasValue)
             {
                 int w = Convert.ToInt32(width);
@@ -39,12 +41,13 @@ namespace Viewer_Modren_UI.Controllers
                     w = w + zoom.Value;
                 o.Width = w;
             }
+
             if (height.HasValue)
             {
                 if (zoom.HasValue)
                     o.Height = o.Height + zoom.Value;
             }
-            int pages = handler.GetDocumentInfo(file).Pages.Count;
+
             if (rotate.HasValue)
             {
                 if (rotate.Value > 0)
@@ -63,24 +66,12 @@ namespace Viewer_Modren_UI.Controllers
 
                     o.Transformations = Transformation.Rotate;
                     handler.RotatePage(file, new RotatePageOptions(page, rotate.Value));
-
-                    //for (int i = 1; i <= pages; i++)
-                    //{
-                    //    //Call RotatePages to apply rotate transformation to a page
-                    //    handler.RotatePage(file, new RotatePageOptions(i, rotate.Value));
-                    //}
                 }
             }
             else
             {
                 o.Transformations = Transformation.None;
                 handler.RotatePage(file, new RotatePageOptions(page, 0));
-
-                //for (int i = 1; i <= pages; i++)
-                //{
-                //    //Call RotatePages to apply rotate transformation to a page
-                //    handler.RotatePage(file, new RotatePageOptions(i, 0));
-                //}
             }
 
             using (new InterProcessLock(file))

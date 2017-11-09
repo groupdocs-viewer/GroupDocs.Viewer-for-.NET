@@ -12,7 +12,7 @@ namespace Viewer_Modren_UI.Controllers
     public class DownloadPdfController : Controller
     {
         [Route("")]
-        public ActionResult Get(string file, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity)
+        public ActionResult Get(string file, string watermarkText, int? watermarkColor, WatermarkPosition? watermarkPosition, int? watermarkWidth, byte watermarkOpacity, bool isdownload)
         {
             ViewerHtmlHandler handler = Utils.CreateViewerHtmlHandler();
 
@@ -29,7 +29,15 @@ namespace Viewer_Modren_UI.Controllers
                 throw x;
             }
 
-            return new FileStreamResult(pdf, "application/pdf");
+            if (isdownload)
+            {
+                Response.Headers.Add("content-disposition", "attachment; filename=" + Path.GetFileNameWithoutExtension(file) + ".pdf");
+                return new FileStreamResult(pdf, "application/octet-stream");
+            }
+            else
+            {
+                return new FileStreamResult(pdf, "application/pdf");
+            }
         }
     }
 }
