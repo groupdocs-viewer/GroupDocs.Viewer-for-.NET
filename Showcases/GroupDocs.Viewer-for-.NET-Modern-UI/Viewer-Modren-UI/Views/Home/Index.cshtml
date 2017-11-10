@@ -1,11 +1,7 @@
 ﻿@{ Layout = null; }
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>GroupDocs.Viewer for .NET</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -49,8 +45,8 @@
         WatermarkText = "my watermark text";
         WatermarkColor = 4366342; // integer values represents the ARGB color.
         WatermarkPosition = 'Diagonal'; // e.g Diagonal, TopLeft, TopCenter, TopRight, BottomLeft, BottomCenter, BottomRight, 
-        WatermarkWidth = 100; // integer values.
-        WatermarkOpacity = 150; // integer values.
+        WatermarkWidth = 70.0; // float values.
+        WatermarkOpacity = 180; // integer values.
   </script>
     <script src="~/Content/app.js"></script>
 </head>
@@ -64,104 +60,21 @@
       </md-button>
       <a href="~/"><h1 hide-xs><img src="/Content/GDLogogo.png" /> Viewer for .NET</h1></a>
       <span flex></span>
-      <md-button aria-label="toggle view" ng-click="togelToImageDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsShowImageToggle">
-        <md-icon aria-hidden="true" ng-hide="!isImage">image</md-icon><md-icon aria-hidden="true"ng-hide="isImage">web_asset</md-icon>
+      <md-switch ng-change="onSwitchChange(data.toggleView)" ng-model="data.toggleView" aria-label="HTML View" ng-true-value="'Image View'" ng-false-value="'HTML View'">
+        {{ data.toggleView }}
         <md-tooltip>Toggle <span ng-hide="isImage">Image</span><span ng-hide="!isImage">HTML</span> View</md-tooltip>
-      </md-button>
+      </md-switch>
       <md-button ng-click="rotateDocument()" class="md-icon-button" ng-disabled="!isImage" ng-hide="ShowHideTools.IsRotateImage">
         <md-icon>rotate_left</md-icon>
         <md-tooltip>Rotate</md-tooltip>
       </md-button>
-      <div class="toolbarbox" ng-hide="ShowHideTools.IsShowPagingPanel">
-<md-button ng-click="navigatePage('f')" class="md-icon-button" ng-disabled="!selectedFile">
-        <md-icon>first_page</md-icon>
-        <md-tooltip>First Page</md-tooltip>
-      </md-button>
-<md-button ng-click="navigatePage('-')" class="md-icon-button" ng-disabled="!selectedFile">
-        <md-icon>navigate_before</md-icon>
-        <md-tooltip>Previous Page</md-tooltip>
-      </md-button>
-<span id="spantoolpager" style="font-size:small;"></span>
-<md-button ng-click="navigatePage('+')" class="md-icon-button" ng-disabled="!selectedFile">
-        <md-icon>navigate_next</md-icon>
-        <md-tooltip>Next Page</md-tooltip>
-      </md-button>
-<md-button ng-click="navigatePage('e')" class="md-icon-button" ng-disabled="!selectedFile">
-        <md-icon>last_page</md-icon>
-        <md-tooltip>Last Page</md-tooltip>
-      </md-button></div>
-
-<div class="toolbarbox" ng-hide="ShowHideTools.IsZoomIn">
-        <md-button ng-click="zoomInDocument()" class="md-icon-button" ng-hide="ShowHideTools.IsZoomIn">
-          <md-icon>zoom_in</md-icon>
-          <md-tooltip>Zoom In</md-tooltip>
-        </md-button>
-        <md-button ng-click="zoomOutDocument()" class="md-icon-button" ng-hide="ShowHideTools.IsZoomOut">
-          <md-icon>zoom_out</md-icon>
-          <md-tooltip>Zoom Out</md-tooltip>
-        </md-button>
-
-        <md-menu ng-hide="ShowHideTools.IsZoomIn">
-          <md-button class="md-icon-button" ng-click="this.openMenu($mdOpenMenu, $event)">
-            <md-icon md-menu-origin md-menu-align-target><span class="material-icons" style="font-size: 21px;">search</span><span class="material-icons" style="font-size: 19px;">arrow_drop_down</span></md-icon>
-            <md-tooltip>Zoom Level</md-tooltip>
-          </md-button>
-          <md-menu-content width="3">
-            <md-menu-item>
-              <em>Zoom Level</em>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('6')">600%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('5')">500%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('4')">400%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('3')">300%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('2')">200%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('1.5')">150%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('1')">100%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.75')">75%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.50')">50%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.25')">25%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.10')">10%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.05')">5%</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('1')">Fit to Width</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="zoomLevels('0.50')">Fit to Height</md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </div>
 
       <md-button ng-click="previousDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsPreviousDocument">
         <md-icon>navigate_before</md-icon>
         <md-tooltip>Previous Document</md-tooltip>
       </md-button>
       <div ng-controller="AvailableFilesController">
-        <md-select width="4" ng-model="selectedFile" placeholder="Please select a file" md-on-open="onOpen()" ng-hide="ShowHideTools.IsFileSelection">
+        <md-select style="overflow:hidden; width:150px!important;" ng-model="selectedFile" placeholder="Please select a file" md-on-open="onOpen()" ng-hide="ShowHideTools.IsFileSelection">
           <md-optgroup label="Available files">
             <md-option ng-value="item" ng-click="onChange(item)" ng-repeat="item in list">{{ item }}</md-option>
           </md-optgroup>
@@ -178,15 +91,15 @@
         </md-button>
         <md-menu-content width="4">
           <md-menu-item ng-hide="ShowHideTools.IsPDFDownload">
-            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=false" target="_blank"
-            ng-disabled="!selectedFile">
+            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=false"
+            target="_blank" ng-disabled="!selectedFile">
               <md-icon md-menu-origin md-menu-align-target>picture_as_pdf</md-icon>
               Open as PDF
             </md-button>
           </md-menu-item>
           <md-menu-item ng-hide="ShowHideTools.IsPDFDownload">
-            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=true" target="_blank"
-            ng-disabled="!selectedFile">
+            <md-button ng-href="/download/pdf?file={{ selectedFile }}&watermarkText={{Watermark.Text}}&watermarkColor={{Watermark.Color}}&watermarkPosition={{Watermark.Position}}&watermarkWidth={{Watermark.Width}}&watermarkOpacity={{Watermark.Opacity}}&isdownload=true"
+            target="_blank" ng-disabled="!selectedFile">
               <md-icon md-menu-origin md-menu-align-target>picture_as_pdf</md-icon>
               Download as PDF
             </md-button>
@@ -240,13 +153,57 @@
       </md-sidenav>
     </md-content>
         <footer>
-            <div layout="row" layout-align="center center" flex>
-                Powered By&nbsp;<a href="http://groupdocs.github.io/">GroupDocs</a>&nbsp; Document Manipulation API's.
+            <md-toolbar ng-controller="ToolbarController" layout="row" hide-print md-whiteframe="4" class="md-toolbar-tools md-scroll-shrink" style="max-height: 40px !important; min-height: 30px !important;">
+        <span flex></span>
+        <div class="" ng-hide="ShowHideTools.IsShowPagingPanel">
+          <md-button ng-click="navigatePage('f')" class="md-icon-button" ng-disabled="!selectedFile">
+            <md-icon>first_page</md-icon>
+            <md-tooltip md-direction="top">First Page</md-tooltip>
+          </md-button>
+          <md-button ng-click="navigatePage('-')" class="md-icon-button" ng-disabled="!selectedFile">
+            <md-icon>navigate_before</md-icon>
+            <md-tooltip md-direction="top">Previous Page</md-tooltip>
+          </md-button>
+          <input id="inputcurrentpage" my-enter="navigatePage(this.value)" value="0" style="width: 50px; text-align:center; height: 18px; font-size: small;" /><span id="spantoolpager" style="font-size: small;"></span>
+          <md-button ng-click="navigatePage('+')" class="md-icon-button" ng-disabled="!selectedFile">
+            <md-icon>navigate_next</md-icon>
+            <md-tooltip md-direction="top">Next Page</md-tooltip>
+          </md-button>
+          <md-button ng-click="navigatePage('e')" class="md-icon-button" ng-disabled="!selectedFile">
+            <md-icon>last_page</md-icon>
+            <md-tooltip md-direction="top">Last Page</md-tooltip>
+          </md-button>
+        </div>
+        <span flex></span>
 
-     
-            </div>
+        <select id="zoomselect" style="width:90px; font-size:small;" ng-model="itemSelected" ng-change="zoomLevels(itemSelected)" ng-hide="ShowHideTools.IsZoomIn">
+          <option value="6">600%</option>
+          <option value="5">500%</option>
+          <option value="4">400%</option>
+          <option value="3">300%</option>
+          <option value="2">200%</option>
+          <option value="1.5">150%</option>
+          <option value="1.25">125%</option>
+          <option value="1">100%</option>
+          <option value="0.75">75%</option>
+          <option value="0.50">50%</option>
+          <option value="0.25">25%</option>
+          <option value="0.05">5%</option>
+          <option value="1.97">Fit to Width</option>
+          <option value="0.45">Fit to Height</option>
+        </select>
+        <md-button ng-click="zoomInDocument()" class="md-icon-button" ng-hide="ShowHideTools.IsZoomIn">
+          <md-icon>zoom_in</md-icon>
+          <md-tooltip md-direction="top">Zoom In</md-tooltip>
+        </md-button>
+        <md-button style="padding-right:10px;" ng-click="zoomOutDocument()" class="md-icon-button" ng-hide="ShowHideTools.IsZoomOut">
+          <md-icon>zoom_out</md-icon>
+          <md-tooltip md-direction="top">Zoom Out</md-tooltip>
+        </md-button>
+  </md-toolbar>
         </footer>
     </div>
+
 </body>
 
 </html>

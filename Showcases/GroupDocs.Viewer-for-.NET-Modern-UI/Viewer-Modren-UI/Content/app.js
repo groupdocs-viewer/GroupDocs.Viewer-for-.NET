@@ -5,7 +5,9 @@ ngApp.value('FilePath', DefaultFilePath);
 ngApp.value('isImage', isImageToggle);
 ngApp.value('Rotate', RotateAngel);
 ZoomValue = (ZoomValue > 10 ? ZoomValue / 100 : ZoomValue);
-ZoomValue = (ZoomValue <= 0 ? 0.05 : ZoomValue);
+ZoomValue = (ZoomValue <= 0.05 ? 0.05 : ZoomValue);
+ZoomValue = (ZoomValue >= 6 ? 6 : ZoomValue);
+ZoomValue = parseFloat(ZoomValue);
 ngApp.value('Zoom', ZoomValue);
 ngApp.value('TotalPages', TotalDocumentPages);
 ngApp.value('CurrentPage', 1);
@@ -66,7 +68,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         Width: Watermark.Width,
         Opacity: Watermark.Opacity
     };
-    $scope.Zoom = Zoom;
+    $scope.Zoom = ZoomValue;
 
     $scope.TotalPages = TotalDocumentPages;
     $scope.CurrentPage = CurrentPage;
@@ -88,6 +90,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
     $scope.isImage = isImage;
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
         $rootScope.selectedFile = selectedFile;
+        DefaultFilePath = selectedFile;
     });
 
     $scope.rotateDocument = function () {
@@ -98,6 +101,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
     $scope.zoomInDocument = function () {
         ZoomValue = (ZoomValue > 10 ? ZoomValue / 100 : ZoomValue);
         ZoomValue = (ZoomValue <= 0 ? 0.05 : ZoomValue);
+        ZoomValue = parseFloat(ZoomValue);
         ZoomValue += 0.25;
         Zoom = ZoomValue;
         if ($scope.isImage)
@@ -109,6 +113,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
     $scope.zoomOutDocument = function () {
         ZoomValue = (ZoomValue > 10 ? ZoomValue / 100 : ZoomValue);
         ZoomValue = (ZoomValue <= 0 ? 0.05 : ZoomValue);
+        ZoomValue = parseFloat(ZoomValue);
         ZoomValue -= 0.25;
         Zoom = ZoomValue;
         if ($scope.isImage)
@@ -131,6 +136,14 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         resizeIFrame();
         $scope.isImage = !$scope.isImage;
     };
+
+    $scope.onSwitchChange = function (cbState) {
+        $rootScope.$broadcast('toggle-file', $rootScope.selectedFile);
+        isImageToggle = !$scope.isImage;
+        resizeIFrame();
+        $scope.isImage = !$scope.isImage;
+    };
+
     $scope.nextDocument = function () {
         if ($rootScope.list.indexOf($rootScope.selectedFile) + 1 == $rootScope.list.length) {
             $rootScope.$broadcast('selected-file-changed', $rootScope.list[0]);
@@ -145,6 +158,7 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
             TotalPages = parseInt(TotalDocumentPages);
             CurrentPage = parseInt(CurrentDocumentPage);
             console.log('options:  ' + options + '  TotalDocumentPages: ' + TotalPages + '   CurrentPage: ' + CurrentPage);
+
             if (options == '+') {
                 console.log('+++++++CurrentPage: ' + CurrentPage);
                 CurrentPage += 1;
@@ -171,6 +185,21 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
                 CurrentPage = TotalPages;
                 location.hash = 'page-view-' + TotalPages;
             }
+            else {
+                console.log(' else event.target.value: ' + document.getElementById('inputcurrentpage').value);
+                if (document.getElementById('inputcurrentpage').value != '')
+                    CurrentPage = parseInt(document.getElementById('inputcurrentpage').value);
+                if (CurrentPage > TotalPages) {
+                    CurrentPage = TotalPages;
+                }
+
+                if (CurrentPage < 1) {
+                    CurrentPage = 1;
+                }
+
+                location.hash = 'page-view-' + CurrentPage;
+            }
+
             CurrentDocumentPage = parseInt(CurrentPage);
             UpdatePager();
             //$rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
@@ -188,6 +217,19 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
     };
 });
 
+ngApp.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 ngApp.controller('ThumbnailsController',
     function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory, FilePath, Watermark, ShowHideTools, Rotate) {

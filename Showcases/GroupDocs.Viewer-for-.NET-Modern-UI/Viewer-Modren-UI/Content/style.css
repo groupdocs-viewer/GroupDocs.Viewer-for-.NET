@@ -8,31 +8,13 @@ html, body
 iframe
 {
     width: 100%;
-    height: auto;
     margin: 0px;
     text-align: center;
     background-color: #fff;
     border: 0;
     border-bottom: solid 5px rgba(0,0,0,.2);
     border-top: solid 5px rgba(0,0,0,.2);
-    float: middle;
-    overflow: hidden;
 }
-
-footer
-{
-    background-color: #5150ef;
-    color: #fff;
-    font-size: small;
-    border-top: solid 1px #000;
-    box-shadow: 2px 2px 4px -1px rgba(0,0,0,.2),4px 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
-}
-
-    footer a
-    {
-        color: #fff;
-        text-decoration: none;
-    }
 
 .selectedthumbnail
 {
@@ -51,6 +33,6 @@ footer
     border: solid 1px rgba(255,255,255,0.1);
     box-shadow: 1px 3px 1px 0 rgba(0,0,0,0.1);
     border-radius: 5px;
-    display:inline-block;
-    position:relative;
+    display: inline-block;
+    position: relative;
 }

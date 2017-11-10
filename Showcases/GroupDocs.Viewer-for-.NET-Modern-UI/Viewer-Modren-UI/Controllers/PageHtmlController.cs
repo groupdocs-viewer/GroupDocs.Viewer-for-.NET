@@ -27,6 +27,7 @@ namespace Viewer_Modren_UI.Controllers
             List<int> pageNumberstoRender = new List<int>();
             pageNumberstoRender.Add(page);
             HtmlOptions o = new HtmlOptions();
+            //o.IsResourcesEmbedded = true;
             o.PageNumbersToRender = pageNumberstoRender;
             o.PageNumber = page;
             o.CountPagesToRender = 1;
