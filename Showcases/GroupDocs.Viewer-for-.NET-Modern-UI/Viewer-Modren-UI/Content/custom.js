@@ -13,15 +13,13 @@ var WatermarkColor = 16711680;
 var WatermarkPosition = "Diagonal";
 var WatermarkWidth = null;
 var WatermarkOpacity = 255;
+var EnableContextMenu = false;
 var ShowWatermark = true;
 var ShowImageToggle = true;
-var ShowZoomIn = true;
+var ShowZooming = true;
 var ShowZoomOut = true;
 var ShowRotateImage = true;
-var ShowPreviousDocument = true;
-var ShowNextDocument = true;
-var ShowDownload = true;
-var ShowPDFDownload = true;
+var ShowDownloads = true;
 var ShowFileSelection = true;
 var ShowThubmnailPanel = true;
 var ShowPagingPanel = true;
@@ -53,7 +51,8 @@ function resizeIFrame() {
             html.offsetWidth
         );
 
-        iframes[i].contentWindow.document.body.setAttribute("oncontextmenu", "return false;");
+        if (!EnableContextMenu)
+            iframes[i].contentWindow.document.body.setAttribute("oncontextmenu", "return false;");
 
         height = parseInt(height) + 50;
 

@@ -20,18 +20,14 @@ ngApp.value('Watermark', {
 });
 
 ngApp.value('ShowHideTools', {
+    IsFileSelection: !ShowFileSelection,
     IsShowWatermark: !ShowWatermark,
     IsShowImageToggle: !ShowImageToggle,
-    IsZoomIn: !ShowZoomIn,
-    IsZoomOut: !ShowZoomOut,
-    IsRotateImage: !ShowRotateImage,
-    IsPreviousDocument: !ShowPreviousDocument,
-    IsNextDocument: !ShowNextDocument,
-    IsDownload: !ShowDownload,
-    IsPDFDownload: !ShowPDFDownload,
-    IsFileSelection: !ShowFileSelection,
     IsThubmnailPanel: !ShowThubmnailPanel,
-    IsShowPagingPanel: !ShowPagingPanel
+    IsShowZooming: !ShowZooming,
+    IsShowRotateImage: !ShowRotateImage,
+    IsShowPagingPanel: !ShowPagingPanel,
+    IsShowDownloads: !ShowDownloads
 });
 
 ngApp.factory('FilesFactory', function ($resource) {
@@ -75,17 +71,14 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
 
     $scope.ShowHideTools = {
         IsShowWatermark: ShowHideTools.IsShowWatermark,
-        IsShowImageToggle: ShowHideTools.IsShowImageToggle,
-        IsZoomIn: ShowHideTools.IsZoomIn,
-        IsZoomOut: ShowHideTools.IsZoomOut,
-        IsRotateImage: ShowHideTools.IsRotateImage,
-        IsPreviousDocument: ShowHideTools.IsPreviousDocument,
-        IsNextDocument: ShowHideTools.IsNextDocument,
-        IsDownload: ShowHideTools.IsDownload,
-        IsPDFDownload: ShowHideTools.IsPDFDownload,
         IsFileSelection: ShowHideTools.IsFileSelection,
+        IsShowWatermark: ShowHideTools.IsShowWatermark,
+        IsShowImageToggle: ShowHideTools.IsShowImageToggle,
         IsThubmnailPanel: ShowHideTools.IsThubmnailPanel,
-        IsShowPagingPanel: ShowHideTools.IsShowPagingPanel
+        IsShowZooming: ShowHideTools.IsShowZooming,
+        IsShowRotateImage: ShowHideTools.IsShowRotateImage,
+        IsShowPagingPanel: ShowHideTools.IsShowPagingPanel,
+        IsShowDownloads: ShowHideTools.IsShowDownloads
     };
     $scope.isImage = isImage;
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
@@ -202,8 +195,6 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
 
             CurrentDocumentPage = parseInt(CurrentPage);
             UpdatePager();
-            //$rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
-
         }
     };
 
@@ -224,7 +215,6 @@ ngApp.directive('myEnter', function () {
                 scope.$apply(function () {
                     scope.$eval(attrs.myEnter);
                 });
-
                 event.preventDefault();
             }
         });

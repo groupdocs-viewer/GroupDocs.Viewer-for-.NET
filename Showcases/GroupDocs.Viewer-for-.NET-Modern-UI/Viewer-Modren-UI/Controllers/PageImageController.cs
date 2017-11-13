@@ -26,26 +26,27 @@ namespace Viewer_Modren_UI.Controllers
             if (Utils.IsValidUrl(file))
                 file = Utils.DownloadToStorage(file);
             ViewerImageHandler handler = Utils.CreateViewerImageHandler();
-            ImageOptions o = new ImageOptions();
-            o.PageNumbersToRender = new List<int>(new int[] { page });
-            o.PageNumber = page;
-            o.CountPagesToRender = 1;
+            ImageOptions options = new ImageOptions();
+
+            options.PageNumbersToRender = new List<int>(new int[] { page });
+            options.PageNumber = page;
+            options.CountPagesToRender = 1;
 
             if (watermarkText != "")
-                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+                options.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
 
             if (width.HasValue)
             {
                 int w = Convert.ToInt32(width);
                 if (zoom.HasValue)
                     w = w + zoom.Value;
-                o.Width = w;
+                options.Width = w;
             }
 
             if (height.HasValue)
             {
                 if (zoom.HasValue)
-                    o.Height = o.Height + zoom.Value;
+                    options.Height = options.Height + zoom.Value;
             }
 
             if (rotate.HasValue)
@@ -54,29 +55,29 @@ namespace Viewer_Modren_UI.Controllers
                 {
                     if (width.HasValue)
                     {
-                        int side = o.Width;
+                        int side = options.Width;
 
                         DocumentInfoContainer documentInfoContainer = handler.GetDocumentInfo(file);
                         int pageAngle = documentInfoContainer.Pages[page - 1].Angle;
                         if (pageAngle == 90 || pageAngle == 270)
-                            o.Height = side;
+                            options.Height = side;
                         else
-                            o.Width = side;
+                            options.Width = side;
                     }
 
-                    o.Transformations = Transformation.Rotate;
+                    options.Transformations = Transformation.Rotate;
                     handler.RotatePage(file, new RotatePageOptions(page, rotate.Value));
                 }
             }
             else
             {
-                o.Transformations = Transformation.None;
+                options.Transformations = Transformation.None;
                 handler.RotatePage(file, new RotatePageOptions(page, 0));
             }
 
             using (new InterProcessLock(file))
             {
-                List<PageImage> list = handler.GetPages(file, o);
+                List<PageImage> list = handler.GetPages(file, options);
                 PageImage pageImage = list.Single(_ => _.PageNumber == page);
 
                 return File(pageImage.Stream, "image/png");
