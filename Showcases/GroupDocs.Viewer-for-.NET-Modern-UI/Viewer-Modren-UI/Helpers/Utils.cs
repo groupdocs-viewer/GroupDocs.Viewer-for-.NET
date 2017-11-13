@@ -40,7 +40,7 @@ namespace Viewer_Modren_UI.Helpers
             {
                 StoragePath = _storagePath,
                 CachePath = _cachePath,
-                UseCache = false
+                UseCache = true
             };
             return cfg;
         }
@@ -56,7 +56,7 @@ namespace Viewer_Modren_UI.Helpers
                     throw x;
             }
         }
-        public static List<PageImage> LoadPageImageList(ViewerImageHandler handler, String filename, ImageOptions options)
+        public static List<PageImage> LoadPageImageList(ref ViewerImageHandler handler, String filename, ref ImageOptions options)
         {
             try
             {

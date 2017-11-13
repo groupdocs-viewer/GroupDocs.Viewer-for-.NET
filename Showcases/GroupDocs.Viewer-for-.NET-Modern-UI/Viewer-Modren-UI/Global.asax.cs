@@ -10,7 +10,7 @@ namespace Viewer_Modren_UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static string _licensePath = "D:\\GroupDocs.Total.lic";
+        private static string _licensePath = "D:\\License\\GroupDocs.Total.lic";
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
