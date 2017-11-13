@@ -26,15 +26,16 @@ namespace Viewer_Modren_UI.Controllers
             
             List<int> pageNumberstoRender = new List<int>();
             pageNumberstoRender.Add(page);
-            HtmlOptions o = new HtmlOptions();
-            o.PageNumbersToRender = pageNumberstoRender;
-            o.PageNumber = page;
-            o.CountPagesToRender = 1;
-            o.HtmlResourcePrefix = "/page/resource?file="+file+"&page="+page+"&resource=";
-            if(watermarkText!="")
-                o.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+            HtmlOptions options = new HtmlOptions();
 
-            List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, o);
+            options.PageNumbersToRender = pageNumberstoRender;
+            options.PageNumber = page;
+            options.CountPagesToRender = 1;
+            options.HtmlResourcePrefix = "/page/resource?file="+file+"&page="+page+"&resource=";
+            if(watermarkText!="")
+                options.Watermark = Utils.GetWatermark(watermarkText, watermarkColor, watermarkPosition, watermarkWidth, watermarkOpacity);
+
+            List<PageHtml> list = Utils.LoadPageHtmlList(handler, file, options);
             string fullHtml = "";
             foreach (PageHtml pageHtml in list.Where(x => x.PageNumber == page)) { fullHtml = pageHtml.HtmlContent; };
             return Content(fullHtml);

@@ -1,12 +1,38 @@
-html, body {
+html, body
+{
     display: block;
-    height: 100%;
     margin: 0;
     padding: 0;
 }
 
-iframe {
+iframe
+{
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    background-color: #fff;
     border: 0;
-    margin: 0;
-    padding: 0;
+    border-bottom: solid 5px rgba(0,0,0,.2);
+    border-top: solid 5px rgba(0,0,0,.2);
+}
+
+.selectedthumbnail
+{
+    border: 3px solid #240cf5!important;
+}
+
+.thumbnail img
+{
+    cursor: pointer;
+}
+
+.toolbarbox
+{
+    margin: 0 3px;
+    background-color: rgba(17,83,137,0.1);
+    border: solid 1px rgba(255,255,255,0.1);
+    box-shadow: 1px 3px 1px 0 rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
 }
