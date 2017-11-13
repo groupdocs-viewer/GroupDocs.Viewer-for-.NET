@@ -11,46 +11,12 @@ namespace MvcSample.Helpers
     /// Class FileDataJsonSerializer.
     /// </summary>
     public class FileDataJsonSerializer
-    {
-        /// <summary>
-        /// The _file data
-        /// </summary>
-        private readonly FileData _fileData;
-         
+    {  
 
         /// <summary>
         /// The _default culture
         /// </summary>
-        private readonly CultureInfo _defaultCulture = CultureInfo.InvariantCulture;
-         
-
-        /// <summary>
-        /// Serializes cells.
-        /// </summary>
-        /// <returns>System.String.</returns>
-        private string SerializeCells()
-        {
-            StringBuilder json = new StringBuilder();
-
-            json.Append("{\"sheets\":[");
-
-            int pageCount = _fileData.Pages.Count;
-            for (int i = 0; i < pageCount; i++)
-            {
-                PageData pageData = _fileData.Pages[i];
-
-                bool needSeparator = pageData.Number > 1;
-                if (needSeparator)
-                    json.Append(",");
-
-                json.Append(string.Format("{{\"name\":\"{0}\"}}", pageData.Name));
-            }
-
-            json.Append("]"); // pages
-            json.Append("}"); // document
-
-            return json.ToString();
-        }
+        private readonly CultureInfo _defaultCulture = CultureInfo.InvariantCulture; 
 
         
         /// <summary>
