@@ -58,7 +58,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtml
         }
-        
+
         /// <summary>
         /// Renders document into html with watermark
         /// </summary>
@@ -101,7 +101,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtmlWithWaterMark
         }
-        
+
         /// <summary>
         ///  Renders document into html with page reordering
         /// </summary>
@@ -147,7 +147,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsHtmlAndReorderPage
         }
-        
+
         /// <summary>
         /// Renders a document of web/remote location into html 
         /// </summary>
@@ -226,7 +226,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Create html handler
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
-            
+
             // Set pdf options to render pdf layers into separate html elements
             HtmlOptions options = new HtmlOptions();
             options.PdfOptions.RenderLayersSeparately = true; // Default value is false
@@ -302,7 +302,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderWordDocumentAsHtmlWithTrackChanges
         }
-        
+
         /// <summary>
         /// Gets printable HTML of the source document
         /// </summary>
@@ -335,7 +335,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.WriteLine("Html content: {0}", container.HtmlContent);
             //ExEnd:GetPrintableHTML
         }
-        
+
         /// <summary>
         /// Render a document into html specifying resource prefix
         /// </summary>
@@ -377,7 +377,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
 
         }
-        
+
         /// <summary>
         /// Renders Excel file as html with internal hyperlink prefix
         /// </summary>
@@ -429,10 +429,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             // Set html options to show grid lines
             HtmlOptions options = new HtmlOptions();
             options.CellsOptions.OnePagePerSheet = false;
-            
+
             // Set count rows to render into one page. Default value is 50.
             options.CellsOptions.CountRowsPerPage = 50;
-            
+
             // Get pages
             List<PageHtml> pages = htmlHandler.GetPages(guid, options);
 
@@ -576,7 +576,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderLayoutsOfCADDocument
         }
-        
+
         /// <summary>
         /// Renders specific Layout from CAD document into html
         /// </summary>
@@ -844,7 +844,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
-        
+
         /// <summary>
         /// Renders hidden pages of Visio file as html
         /// </summary>
@@ -941,11 +941,93 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
 
+        /// <summary>
+        ///  Reorder pages of the document containing hidden pages in HTML based rendering
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        /// <param name="CurrentPageNumber">Page existing order number</param>
+        /// <param name="NewPageNumber">Page new order number</param>
+        public static void ReorderDocumentPagesWithRenderOptionsAsHtml(String DocumentName, int CurrentPageNumber, int NewPageNumber)
+        {
+            //ExStart:ReorderDocumentPagesWithRenderOptionsHTML
+            // Get configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create ViewerHtmlHandler object 
+            ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Instantiate the HtmlOptions object  
+            HtmlOptions HtmlOptions = new HtmlOptions();
+
+            // Set ShowHiddenPages and Transformation property
+            HtmlOptions.ShowHiddenPages = true;
+            HtmlOptions.Transformations = Transformation.Reorder;
+
+            // To get html representations of pages with embedded resources
+            HtmlOptions.IsResourcesEmbedded = true;
+
+            // Set reorder options
+            ReorderPageOptions ReorderOptions = new ReorderPageOptions(CurrentPageNumber, NewPageNumber);
+
+            // Call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions and HtmlOptions.
+            handler.ReorderPage(guid, ReorderOptions, HtmlOptions); 
+
+            // Get document pages in html form
+            List<PageHtml> pages = handler.GetPages(guid, HtmlOptions);
+
+            foreach (PageHtml page in pages)
+            {
+                // Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:ReorderDocumentPagesWithRenderOptionsHTML
+        }
+
+        /// <summary>
+        /// Rotates pages of the document containing hidden pages in Html based rendering
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        /// <param name="RotationAngle">Rotation angle</param>
+        /// <param name="DocumentPassword"></param>
+        public static void RotateDocumentPagesWithRenderOptionsAsHTML(String DocumentName, int RotationAngle)
+        {
+            //ExStart:RotateDocumentPagesWithRenderOptionsAsHTML
+            // Get configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create Html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            string guid = DocumentName;
+
+            // Initialize HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            // Set ShowHiddenPages and Transformation property
+            options.ShowHiddenPages = true;
+            options.Transformations = Transformation.Rotate;
+
+            // Call RotatePage function
+            htmlHandler.RotatePage(guid, new RotatePageOptions(3, RotationAngle), options);
+
+            // Get document pages in Html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                // Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RotateDocumentPagesWithRenderOptionsAsHTML
+        }
 
         #endregion
 
         #region ImageRepresentation
-       
+
         /// <summary>
         /// Renders document into image
         /// </summary>
@@ -984,7 +1066,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderAsImage
 
         }
-        
+
         /// <summary>
         /// Renders document into image with watermark
         /// </summary>
@@ -1026,7 +1108,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageWithWaterMark
         }
-        
+
         /// <summary>
         /// Renders the document in image form and set the rotation angle to rotate the page
         /// </summary>
@@ -1068,7 +1150,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageWithRotationTransformation
         }
-        
+
         /// <summary>
         /// Renders document into image with page reordering
         /// </summary>
@@ -1111,7 +1193,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderAsImageAndReorderPage
         }
-        
+
         /// <summary>
         /// Renders remote document into image using URL
         /// </summary>
@@ -1284,7 +1366,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         /// <summary>
         /// Renders Excel file as Image specifying number of rows per page and options.TextExtraction= true 
         /// </summary>
-        /// <param name="DocumentName">file/document name</param>
+        /// <param name="DocumentName">File/document name</param>
         public static void RenderExcelAsImageWithCountRowsPerPage(string DocumentName)
         {
 
@@ -1308,14 +1390,94 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             foreach (PageImage page in pages)
             {
-                //Save each page at disk
+                // Save each page at disk
                 Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
             }
             //ExEnd:RenderExcelAsImageWithCountRowsPerPageAndTextExtraction
 
         }
+
+        /// <summary>
+        ///  Reorder pages of the document containing hidden pages in image based rendering
+        /// </summary>
+        /// <param name="DocumentName">File/document name</param>
+        /// <param name="CurrentPageNumber">Page existing order number</param>
+        /// <param name="NewPageNumber">Page new order number</param>
+        public static void ReorderDocumentPagesWithRenderOptionsAsImage(String DocumentName, int CurrentPageNumber, int NewPageNumber)
+        {
+            //ExStart:ReorderDocumentPagesWithRenderOptionsImage
+            // Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create ViewerImageHandler object 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Instantiate the ImageOptions object
+            ImageOptions ImageOptions = new ImageOptions();
+
+            // Set ShowHiddenPages and Transformation property
+            ImageOptions.ShowHiddenPages = true;
+            ImageOptions.Transformations = Transformation.Reorder;
+
+            // Set reorder options
+            ReorderPageOptions ReorderOptions = new ReorderPageOptions(CurrentPageNumber, NewPageNumber);
+
+            // Call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions and ImageOptions.
+            imageHandler.ReorderPage(guid, ReorderOptions, ImageOptions);
+
+            // Get document pages in image form
+            List<PageImage> pages = imageHandler.GetPages(guid, ImageOptions);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each page at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:ReorderDocumentPagesWithRenderOptionsImage
+        }
+
+        /// <summary>
+        /// Rotates pages of the document containing hidden pages in image based rendering
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        /// <param name="RotationAngle">Rotation angle</param>
+        /// <param name="DocumentPassword"></param>
+        public static void RotateDocumentPagesWithRenderOptionsAsImage(String DocumentName, int RotationAngle)
+        {
+            //ExStart:RotateDocumentPagesWithRenderOptionsAsImage
+            // Get configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create image handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            string guid = DocumentName;
+
+            // Initialize ImageOptions object 
+            ImageOptions options = new ImageOptions();
+
+            // Set ShowHiddenPages and Transformation property
+            options.ShowHiddenPages = true;
+            options.Transformations = Transformation.Rotate;
+
+            // Call RotatePage function
+            imageHandler.RotatePage(guid, new RotatePageOptions(3, RotationAngle), options);
+
+            // Get document pages in image form
+            List<PageImage> Images = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage image in Images)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(image.PageNumber + "_" + DocumentName, image.Stream);
+            }
+            //ExEnd:RotateDocumentPagesWithRenderOptionsAsImage
+        }
         #endregion
-        
+
         #region GeneralRepresentation
         /// <summary>
         /// Renders a document as it is (original form)
@@ -1338,7 +1500,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderOriginal
 
         }
-        
+
         /// <summary>
         /// Renders a document in PDF form
         /// </summary>
@@ -1416,7 +1578,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderWordDocumentAsPDFWithTrackedChanges
 
         }
-        
+
         /// <summary>
         /// Renders a document in PDF form with watermark 
         /// </summary>
@@ -1506,7 +1668,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             PdfFileOptions.JpegQuality = 5;
 
             // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
-            FileContainer container = imageHandler.GetPdfFile(DocumentName,PdfFileOptions);
+            FileContainer container = imageHandler.GetPdfFile(DocumentName, PdfFileOptions);
 
             //Change the extension of the file and assign to a string type variable filename
             String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
@@ -1561,7 +1723,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             FileListContainer container = imageHandler.GetFileList();
 
             // Load file list for custom path
-            FileListContainer container1 = imageHandler.GetFileList(options);            
+            FileListContainer container1 = imageHandler.GetFileList(options);
 
             foreach (var node in container.Files)
             {
@@ -1615,7 +1777,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
         }
-        
+
         /// <summary>
         /// Renders a document from FTP location 
         /// </summary>
@@ -1956,7 +2118,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Console.WriteLine(exp.Message);
             }
         }
-        
+
         /// <summary>
         /// Removes cache file older than specified date 
         /// </summary>
@@ -1983,8 +2145,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
         #endregion
 
-        #region Others        
-        
+        #region Others
+
         /// <summary>
         /// Gets all supported document formats
         /// </summary>
@@ -2006,7 +2168,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             Console.ReadKey();
         }
-         
+
         #endregion
     }
 

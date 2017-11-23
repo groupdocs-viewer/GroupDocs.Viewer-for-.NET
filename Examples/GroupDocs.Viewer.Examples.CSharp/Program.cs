@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Amazon.S3;
+using GroupDocs.Viewer.Config;
+using GroupDocs.Viewer.Handler;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,11 +23,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Utilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
-
             #region ViewerHtmlPresentation
 
-            //Render a power point presentation in html form
-            ViewGenerator.RenderDocumentAsHtml("word.doc");
+            //Render a document in html form
+            //ViewGenerator.RenderDocumentAsHtml("word.doc");
 
             //Render a spreadsheet in html form
             //ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx");
@@ -39,7 +42,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render a document in html form with resource prefix
             //ViewGenerator.RenderDocumentAsHtmlWithResourcePrefix("word.doc");
-            
+
             //Render hidden pages in Visio file in html form 
             //ViewGenerator.RenderHiddenPagesOfVisioAsHtml("sample.vdx");
 
@@ -159,7 +162,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Get document info by stream
             //ViewGenerator.GetDocumentInfoByStream("word.doc"); 
             #endregion
-            
+
             #region EmailAttachments
             //Get email attachment files
             //ViewGenerator.GetEmailAttachments("sample.msg");
@@ -169,13 +172,35 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Get email attachment image representation
             //ViewGenerator.GetEmailAttachmentImageRepresentation("sample.msg");
-             
+
             #endregion
 
             #region CustomFonts
             //Set custom font directories
             //ViewGenerator.SetCustomFontDirectory("word.doc");
-               
+
+            #endregion
+
+            #region CustomCacheDataHandler
+            // Following section demonstrates the usage of ICacheDataHandler
+            /*
+            
+            //NOTES: 1. Set your credentials in app.config
+            //       2. Set bucket name
+
+            var viewerConfig = Utilities.GetConfigurations();
+            var amazonS3Client = new AmazonS3Client();
+            var amazonS3FileManager = new AmazonS3FileManager(amazonS3Client, "usman-aziz-test-bucket");
+            var amazonS3CacheDataHandler = new AmazonS3CacheDataHanlder(amazonS3FileManager);
+             
+            var handler = new ViewerHtmlHandler(viewerConfig, null, amazonS3CacheDataHandler);
+
+            var pagesHtml = handler.GetPages("word.doc");
+
+            Debug.Assert(pagesHtml.Count > 0);
+            Debug.Assert(!string.IsNullOrEmpty(pagesHtml[0].HtmlContent));
+            */
+
             #endregion
         }
     }
