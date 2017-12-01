@@ -13,7 +13,7 @@ This Application allows a user to see the Html or Image Representation of a docu
 
 * Visual Studio 2012 or Later.
 * Download the code, open it in MS Visual Studio 2012 
-* Download *GroupDocs.Viewer 17.10* Or add from Nuget.
+* Download *GroupDocs.Viewer 17.11* Or add from Nuget.
 * Add the Reference of GroupDocs.Viewer into the project.
 * Update the required or missing libraries from Nuget.
 * Run the code.
