@@ -874,29 +874,14 @@ request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
 
             foreach (AttachmentBase attachment in docInfo.Attachments)
             {
-
+                FileContainer container = _htmlHandler.GetFile(attachment);
                 var attachmentHtmlOptions = new HtmlOptions()
                 {
                     IsResourcesEmbedded = Utils.IsImage(fileName),
                     HtmlResourcePrefix = string.Format("/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()))) + "&pageNumber={page-number}&resourceName=",
                 };
                 List<PageHtml> pages = _htmlHandler.GetPages(attachment, attachmentHtmlOptions);
-                var attachmentInfo = new DocumentInfoContainer();
-                if (Path.GetExtension(attachment.Name.Trim()) != "")
-                {
-                    attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()));
-                }
-                else
-                {
-                    try
-                    {
-                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".msg");
-                    }
-                    catch
-                    {
-                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".eml");
-                    }
-                }
+                var attachmentInfo = _htmlHandler.GetDocumentInfo(container.Stream);
 
                 fileData.PageCount += attachmentInfo.Pages.Count;
                 fileData.Pages.AddRange(attachmentInfo.Pages);
