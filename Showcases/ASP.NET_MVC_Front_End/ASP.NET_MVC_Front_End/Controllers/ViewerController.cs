@@ -413,7 +413,7 @@ namespace MvcSample.Controllers
                     JpegQuality = parameters.Quality.GetValueOrDefault(),
                     PageNumbersToRender = new List<int>(new int[] { pageNumber }),
                     ExtractText = _usePdfInImageEngine
-            };
+                };
 
                 if (parameters.Rotate && parameters.Width.HasValue)
                 {
@@ -446,7 +446,7 @@ namespace MvcSample.Controllers
 
                 return this.JsonOrJsonP(new FailedResponse { Reason = e.Message }, null);
             }
-         
+
         }
 
         public ActionResult GetResourceForHtml(GetResourceForHtmlParameters parameters)
@@ -476,7 +476,7 @@ namespace MvcSample.Controllers
 
                 return this.JsonOrJsonP(new FailedResponse { Reason = e.Message }, null);
             }
-         
+
         }
 
         public ActionResult RotatePage(RotatePageParameters parameters)
@@ -489,7 +489,7 @@ namespace MvcSample.Controllers
                 DocumentInfoContainer documentInfoContainer = _imageHandler.GetDocumentInfo(guid);
                 int pageNumber = documentInfoContainer.Pages[pageIndex].Number;
 
-                RotatePageOptions rotatePageOptions = new RotatePageOptions( pageNumber, parameters.RotationAmount);
+                RotatePageOptions rotatePageOptions = new RotatePageOptions(pageNumber, parameters.RotationAmount);
 
                 _imageHandler.RotatePage(guid, rotatePageOptions);
                 DocumentInfoContainer container = _imageHandler.GetDocumentInfo(guid);
@@ -522,8 +522,8 @@ namespace MvcSample.Controllers
                 int pageNumber = documentInfoContainer.Pages[parameters.OldPosition].Number;
                 int newPosition = parameters.NewPosition + 1;
 
-                ReorderPageOptions reorderPageOptions = new ReorderPageOptions( pageNumber, newPosition);
-                _imageHandler.ReorderPage(guid,reorderPageOptions);
+                ReorderPageOptions reorderPageOptions = new ReorderPageOptions(pageNumber, newPosition);
+                _imageHandler.ReorderPage(guid, reorderPageOptions);
 
                 return ToJsonResult(new ReorderPageResponse());
 
@@ -588,7 +588,7 @@ namespace MvcSample.Controllers
                                 filePath, page.PageNumber));
                     }
                     // update path to image resource
-                  
+
 
                     cssList.Add(text);
 
@@ -772,9 +772,24 @@ namespace MvcSample.Controllers
             string[] attachmentUrls = new string[0];
             foreach (AttachmentBase attachment in docInfo.Attachments)
             {
-                 
+
                 List<PageImage> pages = _imageHandler.GetPages(attachment);
-                var attachmentInfo = _imageHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()));
+                var attachmentInfo = new DocumentInfoContainer();
+                if (Path.GetExtension(attachment.Name.Trim()) != "")
+                {
+                    attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()));
+                }
+                else
+                {
+                    try
+                    {
+                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".msg");
+                    }
+                    catch
+                    {
+                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".eml");
+                    }
+                }
                 fileData.PageCount += pages.Count;
                 fileData.Pages.AddRange(attachmentInfo.Pages);
 
@@ -859,14 +874,30 @@ request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
 
             foreach (AttachmentBase attachment in docInfo.Attachments)
             {
-                                
+
                 var attachmentHtmlOptions = new HtmlOptions()
                 {
                     IsResourcesEmbedded = Utils.IsImage(fileName),
                     HtmlResourcePrefix = string.Format("/document-viewer/GetResourceForHtml?documentPath={0}", HttpUtility.UrlEncode(fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()))) + "&pageNumber={page-number}&resourceName=",
                 };
                 List<PageHtml> pages = _htmlHandler.GetPages(attachment, attachmentHtmlOptions);
-                var attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()));
+                var attachmentInfo = new DocumentInfoContainer();
+                if (Path.GetExtension(attachment.Name.Trim()) != "")
+                {
+                    attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + Path.GetFileNameWithoutExtension(attachment.Name.Trim()) + Path.GetExtension(attachment.Name.Trim()));
+                }
+                else
+                {
+                    try
+                    {
+                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".msg");
+                    }
+                    catch
+                    {
+                        attachmentInfo = _htmlHandler.GetDocumentInfo(htmlConfig.CachePath + "\\" + fileName.Replace(".", "_") + "\\attachments\\" + attachment.Name.Replace(":", "_") + ".eml");
+                    }
+                }
+
                 fileData.PageCount += attachmentInfo.Pages.Count;
                 fileData.Pages.AddRange(attachmentInfo.Pages);
                 List<string> attachmentCSSList;
@@ -886,7 +917,7 @@ request.WatermarkPosition, request.WatermarkWidth, request.WatermarkOpacity),
             result.documentDescription = documentInfoJson;
             result.docType = docInfo.DocumentType;
             result.fileType = docInfo.FileType;
-                
+
             result.pageHtml = htmlPages.Select(_ => _.HtmlContent).ToArray();
             result.pageCss = new[] { string.Join(" ", cssList) };
         }
