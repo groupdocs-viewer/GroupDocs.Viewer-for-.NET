@@ -23,6 +23,7 @@ var ShowDownloads = true;
 var ShowFileSelection = true;
 var ShowThubmnailPanel = true;
 var ShowPagingPanel = true;
+var ShowPrint = true;
 var TotalDocumentPages = 0;
 var CurrentDocumentPage = 1;
 

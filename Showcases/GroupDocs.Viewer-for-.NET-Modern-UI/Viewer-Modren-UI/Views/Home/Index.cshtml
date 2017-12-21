@@ -36,6 +36,7 @@
       //ShowFileSelection = false;
       //ShowThubmnailPanel = false;
       //ShowPagingPanel = false;
+      //ShowPrint = false;
       //EnableContextMenu = true;
 
       // Set Default values
@@ -83,10 +84,14 @@
           </md-optgroup>
         </md-select>
       </div>
-      <md-button ng-click="nextDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsFileSelection">
-        <md-icon>navigate_next</md-icon>
-        <md-tooltip>Next Document</md-tooltip>
-      </md-button>
+        <md-button ng-click="nextDocument()" class="md-icon-button" ng-disabled="!selectedFile" ng-hide="ShowHideTools.IsFileSelection">
+            <md-icon>navigate_next</md-icon>
+            <md-tooltip>Next Document</md-tooltip>
+        </md-button>
+        <md-button ng-click="this.print()" class="md-icon-button" ng-hide="ShowHideTools.IsShowPrint">
+            <md-icon>print</md-icon>
+            <md-tooltip>Print Document</md-tooltip>
+        </md-button>
       <md-menu ng-hide="ShowHideTools.IsShowDownloads">
         <md-button class="md-icon-button" ng-click="this.openMenu($mdOpenMenu, $event)">
           <md-icon>file_download</md-icon>
@@ -112,7 +117,6 @@
               <md-icon md-menu-origin md-menu-align-target>file_download</md-icon>
               Download Original
             </md-button>
-
           </md-menu-item>
         </md-menu-content>
       </md-menu>

@@ -27,7 +27,8 @@ ngApp.value('ShowHideTools', {
     IsShowZooming: !ShowZooming,
     IsShowRotateImage: !ShowRotateImage,
     IsShowPagingPanel: !ShowPagingPanel,
-    IsShowDownloads: !ShowDownloads
+    IsShowDownloads: !ShowDownloads,
+    IsShowPrint: !ShowPrint
 });
 
 ngApp.factory('FilesFactory', function ($resource) {
@@ -54,6 +55,9 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
             $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
         });
     };
+    $scope.print = function () {
+        window.print();
+    };
     $scope.openMenu = function ($mdOpenMenu, ev) {
         $mdOpenMenu(ev);
     };
@@ -78,7 +82,8 @@ ngApp.controller('ToolbarController', function ToolbarController($rootScope, $sc
         IsShowZooming: ShowHideTools.IsShowZooming,
         IsShowRotateImage: ShowHideTools.IsShowRotateImage,
         IsShowPagingPanel: ShowHideTools.IsShowPagingPanel,
-        IsShowDownloads: ShowHideTools.IsShowDownloads
+        IsShowDownloads: ShowHideTools.IsShowDownloads,
+        IsShowPrint: ShowHideTools.IsShowPrint
     };
     $scope.isImage = isImage;
     $scope.$on('selected-file-changed', function ($event, selectedFile) {
