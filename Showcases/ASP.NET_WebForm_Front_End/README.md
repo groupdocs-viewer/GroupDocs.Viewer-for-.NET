@@ -4,21 +4,21 @@ This Application allows a user to see the Html or Image Representation of a docu
 
 # Pre-Requisites
 
-* Visual Studio 2012 or later.
-* Any latest browsers (Firefox, Chrome ,IE9 or greater, Safari etc. )
-* GroupDocs.Viewer 17.10.
+* Visual Studio 2015 or later
+* Any latest browsers (Firefox, Chrome ,IE9 or greater, Safari etc.)
+* GroupDocs.Viewer for .NET 17.12
 
 
 # Installation
 
-* Visual Studio 2012 or Later.
-* Download the code, open it in MS Visual Studio 2012 
-* Download *GroupDocs.Viewer 17.10* Or add from Nuget.
-* Add the Reference of GroupDocs.Viewer into the project.
-* Update the required or missing libraries from Nuget.
-* Run the code.
+* Visual Studio 2015 or Later
+* Download the code, open it in MS Visual Studio 2015 
+* Download *GroupDocs.Viewer for .NET 17.12* Or add from NuGet
+* Add the Reference of GroupDocs.Viewer into the project
+* Update the required or missing libraries from NuGet
+* Run the code
 
 # Apply Licence
 
-* Open Global.asax.cs file.
-* Set license file in Application_Start function.
+* Open Global.asax.cs file
+* Set license file in Application_Start function
