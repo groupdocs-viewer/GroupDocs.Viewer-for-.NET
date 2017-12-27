@@ -101,7 +101,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
         {
             _fileManager.DeleteDirectory(CacheFolderName);
         }
-
+        public void ClearCache(string guid)
+        {
+            _fileManager.DeleteDirectory(CacheFolderName + "/" + ToRelativeDirectoryName(guid));
+        }
         public string GetFilePath(CacheFileDescription cacheFileDescription)
         {
             string path;

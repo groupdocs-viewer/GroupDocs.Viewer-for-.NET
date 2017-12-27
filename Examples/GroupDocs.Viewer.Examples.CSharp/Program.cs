@@ -79,6 +79,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render CAD document as responsive HTML
             //ViewGenerator.RenderDocumentAsResponsiveHtml("sample.dwg");
 
+            //Render document as Html with resource minification
+            //ViewGenerator.RenderDocumentAsHtmlWithEnableMinification("candy.pdf");
+
+            //Render MS Project document as Html with PorjectOptions
+            //ViewGenerator.RenderProjectDocumentAsHtmlWithProjectOptions("sample.mpp");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -107,6 +113,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Get text coordinates in image based rendering
             //ViewGenerator.GetTextCorrdinates("sample.docx");
 
+            //Render MS Project document as Image with PorjectOptions
+            //ViewGenerator.RenderProjectDocumentAsImageWithProjectOptions("sample.mpp");
             #endregion
 
             #region GeneralRepresentation
@@ -121,6 +129,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render document as PDF with comments
             //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");
+
+
+            //Render MS Project document as PDF with PorjectOptions
+            //ViewGenerator.RenderProjectDocumentAsPDFWithProjectOptions("sample.mpp");
             #endregion
 
             #region InputDataHandlers
@@ -150,6 +162,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Removes cache files older than 2 days
             //ViewGenerator.RemoveCacheFiles(TimeSpan.FromDays(2));
+
+            //Removes cache files for specific document
+            //ViewGenerator.RemoveCacheFiles("candy.pdf");
             #endregion
 
             #region DocumentInfo
@@ -184,18 +199,22 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region CustomCacheDataHandler
             // Following section demonstrates the usage of ICacheDataHandler
             /*
-            
+
             //NOTES: 1. Set your credentials in app.config
             //       2. Set bucket name
 
-            var viewerConfig = Utilities.GetConfigurations();
+            ViewerConfig config = Utilities.GetConfigurations();
+
             var amazonS3Client = new AmazonS3Client();
             var amazonS3FileManager = new AmazonS3FileManager(amazonS3Client, "usman-aziz-test-bucket");
             var amazonS3CacheDataHandler = new AmazonS3CacheDataHanlder(amazonS3FileManager);
              
-            var handler = new ViewerHtmlHandler(viewerConfig, null, amazonS3CacheDataHandler);
+            var handler = new ViewerHtmlHandler(config, null, amazonS3CacheDataHandler);
 
-            var pagesHtml = handler.GetPages("word.doc");
+            var pagesHtml = handler.GetPages("candy.pdf");
+
+            // To clear cache
+            //handler.ClearCache("candy.pdf");
 
             Debug.Assert(pagesHtml.Count > 0);
             Debug.Assert(!string.IsNullOrEmpty(pagesHtml[0].HtmlContent));
