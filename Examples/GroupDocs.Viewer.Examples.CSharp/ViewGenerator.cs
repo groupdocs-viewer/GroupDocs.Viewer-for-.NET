@@ -609,6 +609,65 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
+        /// Renders specific layer from CAD document  
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderSpecificLayerOfCadDocument(String DocumentName)
+        {
+            //ExStart:RenderSpecificLayerOfCadDocument_18.1
+            // Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
+            string guid = DocumentName;
+
+            // Set CAD options to render two Layers
+            HtmlOptions options = new HtmlOptions(); 
+            options.CadOptions.Layers.Add("electrical");
+            options.CadOptions.Layers.Add("walls");
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderSpecificLayerOfCadDocument_18.1
+        }
+
+        /// <summary>
+        /// Renders document with default font setting
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderDocumentAsHtmlWithDefaultFontSetting(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlWithDefaultFontSetting_18.1
+            // Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set default font
+            HtmlOptions options = new HtmlOptions();
+            options.DefaultFontName = "Calibri";
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlWithDefaultFontSetting_18.1
+        }
+
+        /// <summary>
         /// Gets list of all Layouts from CAD document
         /// </summary>
         /// <param name="DocumentName">File name</param> 
@@ -1087,6 +1146,38 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
             //ExEnd:RenderProjectDocumentAsHtmlWithProjectOptions_17.12
+        }
+
+        /// <summary>
+        /// Renders Presentation document into Html along with the slide notes
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderPresentationDocumentWithNotes(string DocumentName)
+        {
+            //ExStart:RenderPresentationDocumentWithNotes_18.11
+            // Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Set guid
+            string guid = DocumentName;
+
+            // Instantiate HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            options.SlidesOptions.RenderNotes = true; // Default value is false
+
+            // Get document pages in Html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderPresentationDocumentWithNotes_18.11
         }
         #endregion
 
@@ -2221,7 +2312,34 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
 
+        /// <summary>
+        /// Gets layers' information of CAD documents
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void GetLayersInfoForCadDcouments(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetLayersInfoForCadDcouments_18.1
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
 
+                // Create image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = "withLayers.dwg";
+
+                CadDocumentInfoContainer documentInfo = (CadDocumentInfoContainer)imageHandler.GetDocumentInfo(guid);
+
+                // Loop through all layers contained in the drawing 
+                foreach (string layer in documentInfo.Layers)
+                    Console.WriteLine("Layer name: {0}", layer);
+                //ExEnd:GetLayersInfoForCadDcouments_18.1
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
         #endregion
 
         #region DocumentCache
