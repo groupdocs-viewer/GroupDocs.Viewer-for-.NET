@@ -85,6 +85,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render MS Project document as Html with PorjectOptions
             //ViewGenerator.RenderProjectDocumentAsHtmlWithProjectOptions("sample.mpp");
 
+            //Render document with default font setting
+            //ViewGenerator.RenderDocumentAsHtmlWithDefaultFontSetting("sample.pdf");
+
+            //Render specific layers of Cad document
+            //ViewGenerator.RenderSpecificLayerOfCadDocument("sample.dwg");
+
+            //Render Presentation document containing slide notes
+            //ViewGenerator.RenderPresentationDocumentWithNotes("sample.pptx");
             #endregion
 
             #region ViewerImagePresentation
@@ -176,6 +184,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Get document info by stream
             //ViewGenerator.GetDocumentInfoByStream("word.doc"); 
+
+            //Get layers' info in Cad document
+            //ViewGenerator.GetLayersInfoForCadDcouments("sample.dwg");
+
             #endregion
 
             #region EmailAttachments
