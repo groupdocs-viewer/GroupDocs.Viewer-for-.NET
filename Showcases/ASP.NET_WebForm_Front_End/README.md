@@ -4,7 +4,7 @@ This Application allows a user to see the Html or Image Representation of a docu
 
 ## Important Note
 
-> We have **permanently stoped the support & maintenance for this app** and we encourage you to explore our latest - **[Document Viewer Front-End App (MVC Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC-App)** and **[Document Viewer Front-End App (WebForms Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-webforms-App)** with many features and also support & maintenance for these apps only available and will be continued.
+> We have **stopped the support & maintenance for this app** and we encourage you to explore our latest - **[Document Viewer Front-End App (MVC Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC-App)** and **[Document Viewer Front-End App (WebForms Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-webforms-App)** with many features and also support & maintenance for these apps only available and will be continued.
 
 # Pre-Requisites
 
