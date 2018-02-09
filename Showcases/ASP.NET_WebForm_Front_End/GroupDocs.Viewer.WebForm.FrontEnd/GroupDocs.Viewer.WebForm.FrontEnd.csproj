@@ -135,6 +135,7 @@
     <Content Include="Scripts\installableViewer.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="packages.config" />
+    <Content Include="App_Data\demo.docx" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -868,6 +869,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\temp\" />
     <Folder Include="bin\" />
     <Folder Include="Content\TempStorage\" />
     <Folder Include="Uploads\Temp\" />
@@ -897,7 +899,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

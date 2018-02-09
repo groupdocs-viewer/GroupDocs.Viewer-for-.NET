@@ -74,10 +74,9 @@
             width: 650,
             height: 900,
             printWithWatermark: true,
-            //watermarkPosition: 'Diagonal',
-            //watermarkText: '透かし文字、Watermark for Html',
-            //watermarkColor: 0x78FF0000,
-            //watermarkOpacity: 255,        
+            watermarkPosition: 'BottomCenter',
+            watermarkText: '透かし文字、Watermark for Html',
+            watermarkColor: 0x78000000,  
  
             isResourcesEmbedded: true,
             useHtmlBasedEngine: true,
@@ -90,7 +89,7 @@
             //supportPageRotation: true
 
         });
-        EnableRightClickMenu = false;
+        EnableRightClickMenu = true;
         $('#viewerHtmlDiv')[0].oncontextmenu = function () { return EnableRightClickMenu; };
     });
     //For Image Representation
