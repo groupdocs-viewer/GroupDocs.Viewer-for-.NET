@@ -1881,6 +1881,7 @@ $.extend(jSaaspose.PortalService.prototype, {
                 'attr:{transform:$root.watermarkTransform($data, $element), ' +
                 'y:$root.watermarkPosition.indexOf(\'Top\') == -1 ? 100 * $data.prop() :\'10\'}" font-family="Verdana" font-size="10" x="0" y="0" ></text>' +
                 '</svg>';
+                htmlBasedWatermarkMarkup = "";
             }
             else {
                 htmlBasedWatermarkMarkup = "";
