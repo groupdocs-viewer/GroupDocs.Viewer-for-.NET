@@ -1179,6 +1179,40 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderPresentationDocumentWithNotes_18.11
         }
+
+        /// <summary>
+        /// Renders PDF document into Html with image quality settings
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderPDFDocumentAsHtmlWithImageQuality(string DocumentName)
+        {
+            //ExStart:RenderPDFDocumentAsHtmlWithImageQuality_18.3
+            // Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Set guid
+            string guid = DocumentName;
+
+            // Instantiate HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //Set desired image quality in the output HTML document
+            HtmlOptions htmlOptions = new HtmlOptions();
+            htmlOptions.PdfOptions.ImageQuality = ImageQuality.High;
+
+            // Get document pages in Html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderPDFDocumentAsHtmlWithImageQuality_18.3
+        }
         #endregion
 
         #region ImageRepresentation
