@@ -1,9 +1,8 @@
+> ## *Showcases in this directory are not updated and maintained anymore. The source code is kept here for reference only. For latest updates, checkout our [new and feature-rich sample applications](https://github.com/groupdocs-viewer).*
+
 # Showcases
 
 In GroupDocs.Viewer for .NET Front-End has been disintegrated. So the GroupDocs.Viewer has become a UI-Less back end API. Therefore, the front-ends has been published as open sourced sample projects/showcases. The users can seek the knwoledge about implementation of the project and make the changes according to their needs.Also the users can enjoy the free scripts and skins of the viewer front-ends for their own projects. The list of the published front-ends has been written below
-
-## Important Note
-> We encourage you to explore our latest - **[Document Viewer Front-End App (MVC Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC-App)** and **[Document Viewer Front-End App (WebForms Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-webforms-App)** with many features and also support & maintenance for these apps only available and will be continued.
 
 Directory | Description
 --------- | -----------
