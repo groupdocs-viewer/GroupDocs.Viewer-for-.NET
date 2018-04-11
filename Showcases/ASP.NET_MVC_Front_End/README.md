@@ -1,10 +1,8 @@
+> ## *Showcases in this directory are not updated and maintained anymore. The source code is kept here for reference only. For latest updates, checkout our [new and feature-rich sample applications](https://github.com/groupdocs-viewer).*
+
 # ASP.Net MVC Front End Powered by GroupDocs.Viewer
 
 This Application allows a user to see the Html or Image Representation of a document. User can apply watermark and apply other trnasformations like Reordering and rotation to the output pages.
-
-## Important Note
-
-> We have **stopped the support & maintenance for this app** and we encourage you to explore our latest - **[Document Viewer Front-End App (MVC Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC-App)** and **[Document Viewer Front-End App (WebForms Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-webforms-App)** with many features and also support & maintenance for these apps only available and will be continued.
 
 # Pre-Requisites
 
