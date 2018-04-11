@@ -14,6 +14,9 @@ using GroupDocs.Viewer.Domain.Containers;
 using System.IO;
 using GroupDocs.Viewer.Handler.Input;
 using System.Globalization;
+using Amazon.S3.Model;
+using Amazon.S3;
+using GroupDocs.Viewer.Examples.CSharp.SimpleFileStorageInterfaces;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -619,11 +622,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerConfig config = Utilities.GetConfigurations();
 
             // Create html handler
-            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
             string guid = DocumentName;
 
             // Set CAD options to render two Layers
-            HtmlOptions options = new HtmlOptions(); 
+            HtmlOptions options = new HtmlOptions();
             options.CadOptions.Layers.Add("electrical");
             options.CadOptions.Layers.Add("walls");
 
@@ -1032,7 +1035,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ReorderPageOptions ReorderOptions = new ReorderPageOptions(CurrentPageNumber, NewPageNumber);
 
             // Call ViewerHandler's Reorder page function by passing initialized ReorderPageOptions and HtmlOptions.
-            handler.ReorderPage(guid, ReorderOptions, HtmlOptions); 
+            handler.ReorderPage(guid, ReorderOptions, HtmlOptions);
 
             // Get document pages in html form
             List<PageHtml> pages = handler.GetPages(guid, HtmlOptions);
@@ -1212,6 +1215,65 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
             //ExEnd:RenderPDFDocumentAsHtmlWithImageQuality_18.3
+        }
+
+        /// <summary>
+        /// Renders print area only in Excel document
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderPrintAreaOnlyInExcel(String DocumentName)
+        {
+            //ExStart:RenderPrintAreaOnlyInExcel_18.4
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Enable redering of print area
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.RenderPrintAreaOnly = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderPrintAreaOnlyInExcel_18.4
+        }
+
+        /// <summary>
+        /// Renders hidden columsn and rows in Excel document
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderHiddenContentInExcel(String DocumentName)
+        {
+            //ExStart:RenderHiddenContentInExcel_18.4
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Enable redering of hidden rows and columns
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.ShowHiddenRows = true;
+            options.CellsOptions.ShowHiddenColumns = true;
+
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderHiddenContentInExcel_18.4
         }
         #endregion
 
@@ -1697,6 +1759,70 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderProjectDocumentAsImageWithProjectOptions_17.12
         }
+
+        /// <summary>
+        /// Renders print area only in Excel document
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderPrintAreaOnlyAsImageInExcel(String DocumentName)
+        {
+            //ExStart:RenderPrintAreaOnlyAsImageInExcel_18.4
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Enable redering of print area
+            ImageOptions options = new ImageOptions();
+            options.CellsOptions.RenderPrintAreaOnly = true;
+
+            // Get pages 
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:RenderPrintAreaOnlyAsImageInExcel_18.4
+        }
+
+        /// <summary>
+        /// Renders hidden columsn and rows in Excel document
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderHiddenContentInExcelAsImage(String DocumentName)
+        {
+            //ExStart:RenderHiddenContentAsImageInExcel_18.4
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Enable redering of hidden rows and columns
+            ImageOptions options = new ImageOptions();
+            options.CellsOptions.ShowHiddenRows = true;
+            options.CellsOptions.ShowHiddenColumns = true;
+
+            // Get pages 
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:RenderHiddenContentAsImageInExcel_18.4
+        }
+
         #endregion
 
         #region GeneralRepresentation
@@ -1956,6 +2082,68 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderProjectDocumentAsPDFWithProjectOptions_17.12
         }
 
+        /// <summary>
+        /// Renders print area only in Excel documents as PDF
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderPrintAreasInExcelAsPDF(string DocumentName)
+        {
+            //ExStart:RenderPrintAreasInExcelAsPDF_18.4
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Enable redering of print area
+            PdfFileOptions options = new PdfFileOptions();
+            options.CellsOptions.RenderPrintAreaOnly = true;
+
+            // Get PDF file 
+            FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+            // Set file name
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save file at disk
+            Utilities.SaveFile(filename, fileContainer.Stream);
+            //ExEnd:RenderPrintAreasInExcelAsPDF_18.4
+        }
+
+        /// <summary>
+        /// Renders hidden columns and rows in Excel documents as PDF
+        /// </summary>
+        /// <param name="DocumentName">File name</param> 
+        public static void RenderHiddenContentInExcelAsPDF(string DocumentName)
+        {
+            //ExStart:RenderHiddenContentInExcelAsPDF_18.4
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Enable redering of hidden rows and columns
+            PdfFileOptions options = new PdfFileOptions();
+            options.CellsOptions.ShowHiddenRows = true;
+            options.CellsOptions.ShowHiddenColumns = true;
+
+            // Get PDF file 
+            FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+            // Set file name
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save file at disk
+            Utilities.SaveFile(filename, fileContainer.Stream);
+            //ExEnd:RenderHiddenContentInExcelAsPDF_18.4
+        }
 
         /// <summary>
         /// Loads directory structure as file tree
@@ -2415,7 +2603,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 // Init viewer image or html handler
                 ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
 
-                //Clear files from cache older than specified time interval 
+                //Clear files from cache older than specified time interval - Marked as obsolete
                 viewerImageHandler.ClearCache(OlderThanDays);
                 //ExEnd:RemoveCacheFilesTimeSpan
             }
@@ -2474,6 +2662,46 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.ReadKey();
         }
 
+        #endregion
+        #region AmazonS3FileStorageOperations
+        //ExStart:AmazonS3FileStorage-Usage_18.4
+        public static void GetHtmlPagesFromAmazonS3FileStorage(string filePath, string bucketName)
+        {
+            //TODO: set your Amazon S3 credentials in app.config file
+            string FileName = "sample.doc";
+            string BucketName = "your-bucket-name";
+            UploadFile(FileName, BucketName);
+
+            AmazonS3Client amazonS3Client = new AmazonS3Client();
+            AmazonS3FileStorage fileManager = new AmazonS3FileStorage(amazonS3Client, bucketName);
+
+            ViewerHtmlHandler handler = new ViewerHtmlHandler(fileManager);
+
+            List<PageHtml> pages = handler.GetPages(filePath);
+
+            foreach (PageHtml page in pages)
+            {
+                //TODO: save pages
+            }
+
+            fileManager.Dispose();
+        }
+
+        private static void UploadFile(string fileName, string bucketName)
+        {
+            using (var amazonS3Client = new AmazonS3Client())
+            {
+                PutObjectRequest request = new PutObjectRequest
+                {
+                    Key = "files/" + fileName,
+                    BucketName = bucketName,
+                    InputStream = File.OpenRead(fileName)
+                };
+
+                amazonS3Client.PutObject(request);
+            }
+        }
+        //ExEnd:AmazonS3FileStorage-Usage_18.4
         #endregion
     }
 

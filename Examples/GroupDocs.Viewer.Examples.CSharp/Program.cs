@@ -93,6 +93,13 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render Presentation document containing slide notes
             //ViewGenerator.RenderPresentationDocumentWithNotes("sample.pptx");
+
+            //Render Excel document as HTML with print area only settings
+            //ViewGenerator.RenderPrintAreaOnlyInExcel("sample.xlsx");
+
+            //Render hidden columns and rows in Excel document
+            //ViewGenerator.RenderHiddenContentInExcel("sample.xlsx");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -123,6 +130,13 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render MS Project document as Image with PorjectOptions
             //ViewGenerator.RenderProjectDocumentAsImageWithProjectOptions("sample.mpp");
+
+            //Render Excel document as image with print area only settings
+            //ViewGenerator.RenderPrintAreaOnlyAsImageInExcel("sample.xlsx");
+
+            //Render hidden columns and rows in Excel document
+            //ViewGenerator.RenderHiddenContentInExcelAsImage("sample.xlsx");
+
             #endregion
 
             #region GeneralRepresentation
@@ -138,16 +152,26 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render document as PDF with comments
             //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");
 
+            //Render Excel document as PDF with print area only settings
+            //ViewGenerator.RenderPrintAreasInExcelAsPDF("sample.xlsx");
 
             //Render MS Project document as PDF with PorjectOptions
             //ViewGenerator.RenderProjectDocumentAsPDFWithProjectOptions("sample.mpp");
+
+            //Render hidden columns and rows in Excel document
+            //ViewGenerator.RenderHiddenContentInExcelAsPDF("sample.xlsx");
+
             #endregion
 
             #region InputDataHandlers
             //Render a document from Azure Storage 
             //ViewGenerator.RenderDocFromAzure("word.doc");
+
             //Render a document from ftp location 
             //ViewGenerator.RenderDocFromAzure("word.doc");
+
+            //Render document from Amazon S3 file storage
+            //ViewGenerator.GetHtmlPagesFromAmazonS3FileStorage("sample.doc", "your-bucket-name");
             #endregion
 
             #region OtherImprovements
