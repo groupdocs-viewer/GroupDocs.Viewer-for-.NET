@@ -100,6 +100,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render hidden columns and rows in Excel document
             //ViewGenerator.RenderHiddenContentInExcel("sample.xlsx");
 
+            //Set header fields' labels when rendering email messages
+            //ViewGenerator.SetFieldLabelsWhenRenderingEmailMessage("sample.msg");
             #endregion
 
             #region ViewerImagePresentation
@@ -137,6 +139,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render hidden columns and rows in Excel document
             //ViewGenerator.RenderHiddenContentInExcelAsImage("sample.xlsx");
 
+            //Render email messages with page size settings
+            ViewGenerator.RenderEmailDocumentAsImageWithPageSizeSettings("sample.msg");
             #endregion
 
             #region GeneralRepresentation
@@ -160,6 +164,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Render hidden columns and rows in Excel document
             //ViewGenerator.RenderHiddenContentInExcelAsPDF("sample.xlsx");
+
+            //Render email messages with page size settings
+            //ViewGenerator.RenderEmailDocumentAsPDFWithPageSizeSettings("sample.msg");
 
             #endregion
 
