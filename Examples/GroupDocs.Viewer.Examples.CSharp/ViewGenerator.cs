@@ -1275,6 +1275,40 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderHiddenContentInExcel_18.4
         }
+
+        /// <summary>
+        /// Set field labels when rendering email documents
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void SetFieldLabelsWhenRenderingEmailMessage(String DocumentName)
+        {
+            //ExStart:ChangeFieldLabelsWhenRenderingEmailMessage_18.5
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set field labels 
+            HtmlOptions htmlOptions = new HtmlOptions();
+            htmlOptions.EmailOptions.FieldLabels[EmailField.From] = "Sender";
+            htmlOptions.EmailOptions.FieldLabels[EmailField.To] = "Receiver";
+            htmlOptions.EmailOptions.FieldLabels[EmailField.Sent] = "Date";
+            htmlOptions.EmailOptions.FieldLabels[EmailField.Subject] = "Topic";
+
+            // Render document with custom field labels
+            List<PageHtml> pages = htmlHandler.GetPages(guid, htmlOptions);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:ChangeFieldLabelsWhenRenderingEmailMessage_18.5
+        }
+
         #endregion
 
         #region ImageRepresentation
@@ -1823,6 +1857,37 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderHiddenContentAsImageInExcel_18.4
         }
 
+        /// <summary>
+        /// Renders .msg file as image with page size settings
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderEmailDocumentAsImageWithPageSizeSettings(String DocumentName)
+        {
+            //ExStart:RenderEmailDocumentAsImageWithPageSizeSettings_18.5
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Set page size
+            ImageOptions options = new ImageOptions();
+            options.EmailOptions.PageSize = PageSize.A4;
+
+            // Get pages 
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:RenderEmailDocumentAsImageWithPageSizeSettings_18.5
+        }
+
         #endregion
 
         #region GeneralRepresentation
@@ -2188,6 +2253,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:LoadFileTree
 
+        }
+
+        /// <summary>
+        /// Renders .msg file as PDF with page size settings
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderEmailDocumentAsPDFWithPageSizeSettings(String DocumentName)
+        {
+            //ExStart:RenderEmailDocumentAsPDFWithPageSizeSettings_18.5
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            string guid = DocumentName;
+
+            // Set page size
+            PdfFileOptions options = new PdfFileOptions();
+            options.EmailOptions.PageSize = PageSize.A4;
+
+            // Get PDF file 
+            FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+            // Set file name
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save file at disk
+            Utilities.SaveFile(filename, fileContainer.Stream);
+            //ExEnd:RenderEmailDocumentAsPDFWithPageSizeSettings_18.5
         }
 
         #endregion
