@@ -20,9 +20,10 @@ Directory | Description
 
 + **Website:** [www.groupdocs.com](http://www.groupdocs.com)
 + **Product Home:** [GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net)
-+ **Product API References:** [API of GroupDocs.Viewer for .NET](https://apireference.groupdocs.com/net/viewer)
-+ **Download:** [Download GroupDocs.Viewer for .NET](http://downloads.groupdocs.com/viewer/net)
++ **API References:** [GroupDocs.Viewer for .NET API Reference Guide](https://apireference.groupdocs.com/net/viewer)
++ **Installation:** [GroupDocs.Viewer for .NET NuGet Package](https://www.nuget.org/packages/GroupDocs.Viewer/)
 + **Documentation:** [GroupDocs.Viewer for .NET Documentation](https://docs.groupdocs.com/display/viewernet/Home)
-+ **Forum:** [GroupDocs.Viewer for .NET Forum](https://forum.groupdocs.com/c/viewer)
++ **Free Support:** [GroupDocs.Viewer for .NET Free Support Forum](https://forum.groupdocs.com/c/viewer)
++ **Paid Support:** [GroupDocs.Viewer for .NET Paid Supprot Helpdesk](https://helpdesk.groupdocs.com/)
 + **Blog:** [GroupDocs.Viewer for .NET Blog](https://blog.groupdocs.com/category/groupdocs-viewer-product-family/)
 
