@@ -24,6 +24,6 @@ Directory | Description
 + **Installation:** [GroupDocs.Viewer for .NET NuGet Package](https://www.nuget.org/packages/GroupDocs.Viewer/)
 + **Documentation:** [GroupDocs.Viewer for .NET Documentation](https://docs.groupdocs.com/display/viewernet/Home)
 + **Free Support:** [GroupDocs.Viewer for .NET Free Support Forum](https://forum.groupdocs.com/c/viewer)
-+ **Paid Support:** [GroupDocs.Viewer for .NET Paid Supprot Helpdesk](https://helpdesk.groupdocs.com/)
++ **Paid Support:** [GroupDocs.Viewer for .NET Paid Support Helpdesk](https://helpdesk.groupdocs.com/)
 + **Blog:** [GroupDocs.Viewer for .NET Blog](https://blog.groupdocs.com/category/groupdocs-viewer-product-family/)
 
