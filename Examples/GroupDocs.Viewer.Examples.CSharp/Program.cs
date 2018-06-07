@@ -102,6 +102,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //Set header fields' labels when rendering email messages
             //ViewGenerator.SetFieldLabelsWhenRenderingEmailMessage("sample.msg");
+
+            // Render password protected document with force password validation
+            //ViewGenerator.RenderDocumentAsHtmlWithForcePasswordValidation("sample.docx");
             #endregion
 
             #region ViewerImagePresentation
@@ -140,7 +143,13 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ViewGenerator.RenderHiddenContentInExcelAsImage("sample.xlsx");
 
             //Render email messages with page size settings
-            ViewGenerator.RenderEmailDocumentAsImageWithPageSizeSettings("sample.msg");
+            //ViewGenerator.RenderEmailDocumentAsImageWithPageSizeSettings("sample.msg");
+
+            // Tiled rendering of CAD documents
+            //ViewGenerator.TiledRenderingOfCADDocuments("sample.dwg");
+
+            // Tiled rendering of CAD documents with manual size setting
+            //ViewGenerator.TiledRenderingOfCADDocumentsWithManualSizeSettings("sample.dwg");
             #endregion
 
             #region GeneralRepresentation
