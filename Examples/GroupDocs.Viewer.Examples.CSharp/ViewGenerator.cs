@@ -44,7 +44,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions();
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -86,7 +86,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Instantiate the HtmlOptions object 
             HtmlOptions options = new HtmlOptions();
 
-            options.IsResourcesEmbedded = false;
+            options.EmbedResources = false;
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
@@ -128,7 +128,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions { Transformations = Transformation.Reorder };
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -203,7 +203,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions();
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
             options.EnableResponsiveRendering = true;
 
             //Get document pages in html form
@@ -359,7 +359,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions();
 
             //To get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = false;
+            options.EmbedResources = false;
 
             //Set resource prefix
             options.HtmlResourcePrefix = "http://example.com/api/pages/{page-number}/resources/{resource-name}";
@@ -529,7 +529,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions();
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -751,7 +751,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions options = new HtmlOptions();
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
 
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
@@ -1029,7 +1029,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             HtmlOptions.Transformations = Transformation.Reorder;
 
             // To get html representations of pages with embedded resources
-            HtmlOptions.IsResourcesEmbedded = true;
+            HtmlOptions.EmbedResources = true;
 
             // Set reorder options
             ReorderPageOptions ReorderOptions = new ReorderPageOptions(CurrentPageNumber, NewPageNumber);
@@ -1308,6 +1308,47 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:ChangeFieldLabelsWhenRenderingEmailMessage_18.5
         }
+
+        /// <summary>
+        /// Render document as HTML with force password validation settings
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderDocumentAsHtmlWithForcePasswordValidation(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlWithForcePasswordValidation_18.6
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            //Set the password to be validated on every call
+            config.ForcePasswordValidation = true;
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            //to get html representations of pages with embedded resources
+            options.EmbedResources = true;
+
+            // Set document password
+            options.Password = "password";
+            //options.PageNumbersToConvert = Enumerable.Range(1, 3).ToList();
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlWithForcePasswordValidation_18.6
+        }
+
 
         #endregion
 
@@ -1888,6 +1929,105 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderEmailDocumentAsImageWithPageSizeSettings_18.5
         }
 
+        /// <summary>
+        /// Renders CAD document with tiled rendering
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void TiledRenderingOfCADDocuments(String DocumentName)
+        {
+            //ExStart:TiledRenderingOfCADDocuments_18.6
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            // Get document width and height
+            DocumentInfoContainer docInfo = imageHandler.GetDocumentInfo(guid);
+            int width = docInfo.Pages[0].Width;
+            int height = docInfo.Pages[0].Height;
+
+            // Set tile width and height as a half of image total width
+            int tileWidth = width / 2;
+            int tileHeight = height / 2;
+
+            int pointX = 0;
+            int pointY = 0;
+            //Create image options and add four tiles, one for each quarter
+            ImageOptions options = new ImageOptions();
+            Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            options.CadOptions.Tiles.Add(tile);
+            pointX += tileWidth;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            options.CadOptions.Tiles.Add(tile);
+
+            pointX = 0;
+            pointY += tileHeight;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            options.CadOptions.Tiles.Add(tile);
+
+            pointX += tileWidth;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            options.CadOptions.Tiles.Add(tile);
+            // The pages list will contain four images, one for each quarter
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:TiledRenderingOfCADDocuments_18.6
+        }
+        /// <summary>
+        /// Renders CAD document with tiled rendering
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void TiledRenderingOfCADDocumentsWithManualSizeSettings(String DocumentName)
+        {
+            //ExStart:TiledRenderingOfCADDocumentsWithManualSizeSettings_18.6
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // File guid
+            string guid = DocumentName;
+
+            //Set same ScaleFactor or Width and Height properties as used for GetPages method
+            DocumentInfoOptions docInfoOptions = new DocumentInfoOptions();
+            docInfoOptions.CadOptions.ScaleFactor = 100;
+            // Get width and height
+            DocumentInfoContainer docInfo = imageHandler.GetDocumentInfo(guid, docInfoOptions);
+            int width = docInfo.Pages[0].Width;
+            int height = docInfo.Pages[0].Height;
+
+            // Set tile width and height as a half of image total width
+            int tileWidth = width / 2;
+            int tileHeight = height / 2;
+
+            int pointX = 0;
+            int pointY = 0;
+            //Create image options and add tile
+            ImageOptions options = new ImageOptions();
+            options.CadOptions.ScaleFactor = 100;
+            Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            options.CadOptions.Tiles.Add(tile);
+
+            // The pages list will contain four images, one for each quarter
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:TiledRenderingOfCADDocumentsWithManualSizeSettings_18.6
+        }
+
         #endregion
 
         #region GeneralRepresentation
@@ -2425,7 +2565,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
                 // Setup html conversion options
                 HtmlOptions htmlOptions = new HtmlOptions();
-                htmlOptions.IsResourcesEmbedded = false;
+                htmlOptions.EmbedResources = false;
 
                 // Init viewer html handler
                 ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
@@ -2698,7 +2838,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 // Init viewer image or html handler
                 ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
 
-                //Clear files from cache older than specified time interval - Marked as obsolete
+                //Clear files from cache older than specified time interval - Marked as obsolete and will be removed in v18.7.
                 viewerImageHandler.ClearCache(OlderThanDays);
                 //ExEnd:RemoveCacheFilesTimeSpan
             }
