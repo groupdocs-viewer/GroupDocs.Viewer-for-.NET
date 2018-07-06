@@ -208,9 +208,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Removes cache files
             //ViewGenerator.RemoveCacheFiles();
 
-            //Removes cache files older than 2 days
-            //ViewGenerator.RemoveCacheFiles(TimeSpan.FromDays(2));
-
             //Removes cache files for specific document
             //ViewGenerator.RemoveCacheFiles("candy.pdf");
             #endregion
