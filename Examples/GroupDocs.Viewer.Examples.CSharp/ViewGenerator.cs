@@ -2824,29 +2824,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
 
-        /// <summary>
-        /// Removes cache file older than specified date 
-        /// </summary>
-        public static void RemoveCacheFiles(TimeSpan OlderThanDays)
-        {
-            try
-            {
-                //ExStart:RemoveCacheFilesTimeSpan
-                // Setup GroupDocs.Viewer config
-                ViewerConfig config = Utilities.GetConfigurations();
-
-                // Init viewer image or html handler
-                ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
-
-                //Clear files from cache older than specified time interval - Marked as obsolete and will be removed in v18.7.
-                viewerImageHandler.ClearCache(OlderThanDays);
-                //ExEnd:RemoveCacheFilesTimeSpan
-            }
-            catch (System.Exception exp)
-            {
-                Console.WriteLine(exp.Message);
-            }
-        }
+        
 
         /// <summary>
         /// Removes cache files for specific document

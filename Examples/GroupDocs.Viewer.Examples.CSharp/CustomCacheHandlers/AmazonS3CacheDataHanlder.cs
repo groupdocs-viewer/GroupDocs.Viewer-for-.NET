@@ -97,8 +97,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             return entity.LastModified;
         }
 
+        public void ClearCache()
+        {
+            _fileManager.DeleteDirectory(CacheFolderName);
+        }
+
         public void ClearCache(TimeSpan olderThan)
         {
+            // Obsolete method
             _fileManager.DeleteDirectory(CacheFolderName);
         }
         public void ClearCache(string guid)
