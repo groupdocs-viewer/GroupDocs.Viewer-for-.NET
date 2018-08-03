@@ -1981,6 +1981,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:TiledRenderingOfCADDocuments_18.6
         }
+       
         /// <summary>
         /// Renders CAD document with tiled rendering
         /// </summary>
@@ -2028,6 +2029,35 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:TiledRenderingOfCADDocumentsWithManualSizeSettings_18.6
         }
 
+        /// <summary>
+        /// Renders part of MS Project document with time interval
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderMSProjectDocumentWithSpecifiedTimeInterval(String DocumentName)
+        {
+            //ExStart:RenderMSProjectDocumentWithSpecifiedTimeInterval_18.8
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            string guid = DocumentName;
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Set Project options to render tasks from year 2018 only
+            ImageOptions options = new ImageOptions();
+            options.ProjectOptions.StartDate = new DateTime(2018, 01, 01);
+            options.ProjectOptions.EndDate = new DateTime(2018, 12, 31);
+            
+            List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+            foreach (PageImage page in pages)
+            {
+                // Save each image at disk
+                Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+            }
+            //ExEnd:RenderMSProjectDocumentWithSpecifiedTimeInterval_18.8
+        }
         #endregion
 
         #region GeneralRepresentation
@@ -2425,6 +2455,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderEmailDocumentAsPDFWithPageSizeSettings_18.5
         }
 
+        /// <summary>
+        /// Renders part of MS Project document with time interval as PDF
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval(String DocumentName)
+        {
+            //ExStart:RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval_18.8
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            string guid = DocumentName;
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+            // Set Project options to render tasks from year 2018 only.
+            PdfFileOptions options = new PdfFileOptions();
+            options.ProjectOptions.StartDate = new DateTime(2018, 01, 01);
+            options.ProjectOptions.EndDate = new DateTime(2018, 12, 31);
+
+            // Get PDF file 
+            FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+            // Set file name
+            String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
+
+            //Save file at disk
+            Utilities.SaveFile(filename, fileContainer.Stream);
+            //ExEnd:RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval_18.8
+        }
         #endregion
 
         #region InputDataHandlers
