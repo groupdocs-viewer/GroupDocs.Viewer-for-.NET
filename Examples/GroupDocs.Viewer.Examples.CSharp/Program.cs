@@ -105,6 +105,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Render password protected document with force password validation
             //ViewGenerator.RenderDocumentAsHtmlWithForcePasswordValidation("sample.docx");
+
+            // Render Outlook data files with limit of items
+            //ViewGenerator.RenderOutlookDataFileWithLimitOfItems("sample.ost");
+
             #endregion
 
             #region ViewerImagePresentation
@@ -150,6 +154,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Tiled rendering of CAD documents with manual size setting
             //ViewGenerator.TiledRenderingOfCADDocumentsWithManualSizeSettings("sample.dwg");
+
+            // Obtain start and end date from MS Project document
+            //ViewGenerator.ObtainStartAndEndDateFromMSProjectDocument("sample.mpp");
             #endregion
 
             #region GeneralRepresentation
@@ -177,6 +184,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render email messages with page size settings
             //ViewGenerator.RenderEmailDocumentAsPDFWithPageSizeSettings("sample.msg");
 
+            // Render Outlook Data Files with limit of items
+            //ViewGenerator.RenderOutlookDataFileWithLimitOfItemsAsPDF("sample.ost");
             #endregion
 
             #region InputDataHandlers

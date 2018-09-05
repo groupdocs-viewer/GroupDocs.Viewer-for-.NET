@@ -1277,7 +1277,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Set field labels when rendering email documents
+        /// Sets field labels when rendering email documents
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void SetFieldLabelsWhenRenderingEmailMessage(String DocumentName)
@@ -1310,7 +1310,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
-        /// Render document as HTML with force password validation settings
+        /// Renders document as HTML with force password validation settings
         /// </summary>
         /// <param name="DocumentName"></param>
         public static void RenderDocumentAsHtmlWithForcePasswordValidation(String DocumentName)
@@ -1349,7 +1349,35 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExEnd:RenderDocumentAsHtmlWithForcePasswordValidation_18.6
         }
 
+        /// <summary>
+        /// Renders Outlook Data File documents with limit of items
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderOutlookDataFileWithLimitOfItems(String DocumentName)
+        {
+            //ExStart:RenderOutlookDataFileWithLimitOfItems_18.9
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+           
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set Outlook options to render content with a specified limit
+            HtmlOptions options = new HtmlOptions();
+            options.OutlookOptions.MaxItemsInFolder = 1000;
+
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderOutlookDataFileWithLimitOfItems_18.9
+        }
         #endregion
 
         #region ImageRepresentation
@@ -2058,6 +2086,30 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderMSProjectDocumentWithSpecifiedTimeInterval_18.8
         }
+
+        /// <summary>
+        /// Obtains start and end dates from MS Project document
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void ObtainStartAndEndDateFromMSProjectDocument(String DocumentName)
+        {
+            //ExStart:ObtainStartAndEndDateFromMSProjectDocument_18.9
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Set guid
+            string guid = DocumentName;
+
+            // Create html handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config); 
+
+            ProjectDocumentInfoContainer documentInfo = (ProjectDocumentInfoContainer)imageHandler.GetDocumentInfo(guid);
+
+            // Output document start and end dates
+            Console.WriteLine("Project start date: {0}", documentInfo.StartDate);
+            Console.WriteLine("Project end date: {0}", documentInfo.EndDate);
+            //ExEnd:ObtainStartAndEndDateFromMSProjectDocument_18.9
+        }
         #endregion
 
         #region GeneralRepresentation
@@ -2415,8 +2467,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Console.WriteLine("Guid: {0} | Name: {1} | Document type: {2} | File type: {3} | Extension: {4} | Size: {5} | LastModificationDate: {6}",
                         node.Guid,
                         node.Name,
-                        node.DocumentType,
-                        node.FileType,
+                        node.FileFormat, 
                         node.Extension,
                         node.Size,
                         node.LastModificationDate);
@@ -2484,6 +2535,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Save file at disk
             Utilities.SaveFile(filename, fileContainer.Stream);
             //ExEnd:RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval_18.8
+        }
+
+        /// <summary>
+        /// Renders Outlook Data File documents with limit of items
+        /// </summary>
+        /// <param name="DocumentName"></param>
+        public static void RenderOutlookDataFileWithLimitOfItemsAsPDF(String DocumentName)
+        {
+            //ExStart:RenderOutlookDataFileWithLimitOfItemsAsPDF_18.9
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            // Set Project options to render number of items
+            PdfFileOptions options = new PdfFileOptions();
+            options.OutlookOptions.MaxItemsInFolder = 1000;
+
+            // Get PDF file 
+            FileContainer fileContainer = htmlHandler.GetPdfFile(guid, options);
+
+            // Access PDF file stream.
+            Stream pdfFileStream = fileContainer.Stream;
+            //Save file
+
+            Utilities.SaveFile(guid, fileContainer.Stream);
+            //ExEnd:RenderOutlookDataFileWithLimitOfItemsAsPDF_18.9
         }
         #endregion
 
@@ -2715,10 +2796,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(guid, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-                Console.WriteLine("Extension: {0}", documentInfo.Extension);
-                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
+                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
@@ -2760,10 +2839,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(uri, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-                Console.WriteLine("Extension: {0}", documentInfo.Extension);
-                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
+                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
@@ -2805,10 +2882,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(stream, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-                Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-                Console.WriteLine("Extension: {0}", documentInfo.Extension);
-                Console.WriteLine("FileType: {0}", documentInfo.FileType);
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
+                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
