@@ -88,6 +88,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render document with default font setting
             //ViewGenerator.RenderDocumentAsHtmlWithDefaultFontSetting("sample.pdf");
 
+            //Render document excluding fonts list
+            //ViewGenerator.RenderDocumentAsHtmlExcludingFontsList("sample.pptx");
+
             //Render specific layers of Cad document
             //ViewGenerator.RenderSpecificLayerOfCadDocument("sample.dwg");
 

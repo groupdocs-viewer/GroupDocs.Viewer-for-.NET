@@ -829,6 +829,39 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
+        /// Renders document into html excluding fonts list that are possibly installed on the underlying machine
+        /// </summary>
+        /// <param name="DocumentName">File name</param>
+        public static void RenderDocumentAsHtmlExcludingFontsList(String DocumentName)
+        {
+            //ExStart:RenderDocumentAsHtmlExcludingFontsList_18.10
+            //Get Configurations
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+            // Guid implies that unique document name 
+            string guid = DocumentName;
+
+            //Instantiate the HtmlOptions object
+            HtmlOptions options = new HtmlOptions();
+
+            options.ExcludeFontsList.Add("Times New Roman");
+            options.ExcludeFontsList.Add("Arial");
+
+            //Get document pages in html form
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderDocumentAsHtmlExcludingFontsList_18.10
+        }
+
+        /// <summary>
         /// Shows grid lines for Excel files in html representation
         /// </summary>
         /// <param name="DocumentName"></param>

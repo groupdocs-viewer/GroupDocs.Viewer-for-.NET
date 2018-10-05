@@ -35,7 +35,7 @@ namespace GroupDocs.Viewer.Model
             config.StoragePath = Storage_Path;
             //Uncomment the below line for cache purpose
             config.CachePath = Storage_Path + "\\Temp";
-            config.UseCache = true;
+            config.EnableCaching = true;
             return config;
             //ExEnd:Configurations
 
