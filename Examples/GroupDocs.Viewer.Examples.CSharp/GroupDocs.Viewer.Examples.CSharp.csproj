@@ -43,8 +43,8 @@
       <HintPath>..\packages\AWSSDK.S3.3.3.14\lib\net35\AWSSDK.S3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GroupDocs.Viewer, Version=18.9.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\GroupDocs.Viewer.18.9.0\lib\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=18.10.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\GroupDocs.Viewer.18.10.0\lib\GroupDocs.Viewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

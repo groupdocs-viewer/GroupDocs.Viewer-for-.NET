@@ -43,7 +43,7 @@ namespace GroupDocs.Viewer.Model
             HtmlOptions options = new HtmlOptions();
             
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
 
             // Set password if document is password protected. 
             if(!String.IsNullOrEmpty(DocumentPassword))
@@ -88,7 +88,7 @@ namespace GroupDocs.Viewer.Model
             //Instantiate the HtmlOptions object 
             HtmlOptions options = new HtmlOptions();
 
-            options.IsResourcesEmbedded = false;
+            options.EmbedResources = false;
             // Set password if document is password protected. 
             if (!String.IsNullOrEmpty(DocumentPassword))
                 options.Password = DocumentPassword;
@@ -176,7 +176,7 @@ namespace GroupDocs.Viewer.Model
             HtmlOptions options = new HtmlOptions {  Transformations=Transformation.Reorder };
 
             //to get html representations of pages with embedded resources
-            options.IsResourcesEmbedded = true;
+            options.EmbedResources = true;
             
             // Set password if document is password protected. 
              if (!String.IsNullOrEmpty(DocumentPassword))
