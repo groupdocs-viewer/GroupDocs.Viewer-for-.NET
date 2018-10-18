@@ -1,6 +1,6 @@
 # Showcases
 
-In GroupDocs.Viewer for .NET Front-End has been disintegrated. So the GroupDocs.Viewer has become a UI-Less back end API. Therefore, the front-ends has been published as open sourced sample projects/showcases. The users can seek the knwoledge about implementation of the project and make the changes according to their needs.Also the users can enjoy the free scripts and skins of the viewer front-ends for their own projects. The list of the published front-ends has been written below
+The front-ends provided in this section are open source and they are developed to help users seek the knowledge about the implementation of document viewer applications using GroupDocs.Viewer for .NET. The users can enjoy these open source document viewer applications and modify them as per their requirements. The following is the list of the available front ends.
 
 Directory | Description
 --------- | -----------
