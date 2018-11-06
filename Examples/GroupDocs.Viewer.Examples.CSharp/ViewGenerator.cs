@@ -1391,7 +1391,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ExStart:RenderOutlookDataFileWithLimitOfItems_18.9
             //Get Configurations
             ViewerConfig config = Utilities.GetConfigurations();
-           
+
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
             // Guid implies that unique document name 
@@ -2042,7 +2042,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:TiledRenderingOfCADDocuments_18.6
         }
-       
+
         /// <summary>
         /// Renders CAD document with tiled rendering
         /// </summary>
@@ -2109,7 +2109,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ImageOptions options = new ImageOptions();
             options.ProjectOptions.StartDate = new DateTime(2018, 01, 01);
             options.ProjectOptions.EndDate = new DateTime(2018, 12, 31);
-            
+
             List<PageImage> pages = imageHandler.GetPages(guid, options);
 
             foreach (PageImage page in pages)
@@ -2134,7 +2134,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             string guid = DocumentName;
 
             // Create html handler
-            ViewerImageHandler imageHandler = new ViewerImageHandler(config); 
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
             ProjectDocumentInfoContainer documentInfo = (ProjectDocumentInfoContainer)imageHandler.GetDocumentInfo(guid);
 
@@ -2500,7 +2500,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Console.WriteLine("Guid: {0} | Name: {1} | Document type: {2} | File type: {3} | Extension: {4} | Size: {5} | LastModificationDate: {6}",
                         node.Guid,
                         node.Name,
-                        node.FileFormat, 
+                        node.FileFormat,
                         node.Extension,
                         node.Size,
                         node.LastModificationDate);
@@ -2726,6 +2726,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
         }
 
         /// <summary>
+        /// Gets image attachment of email message
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetEmailAttachmentsFromStream(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetEmailAttachmentsFromStream_18.11
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler handler = new ViewerImageHandler(config);
+                Attachment attachment = new Attachment(DocumentName, "attachment-image.png");
+
+                /// Get attachment original file using document stream
+                using (FileStream fileStream = (FileStream)Utilities.GetDocumentStream(DocumentName))
+                using (FileContainer fileContainer = handler.GetFile(fileStream, attachment))
+                {
+                    Console.WriteLine("Attach stream lenght: {0}", fileContainer.Stream.Length);
+                }
+                //ExEnd:GetEmailAttachmentsFromStream_18.11
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
         /// Gets html representation of attachment files
         /// </summary>
         /// <param name="DocumentName">Input document name</param>
@@ -2770,7 +2800,52 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Console.WriteLine(exp.Message);
             }
         }
+        /// <summary>
+        /// Gets html representation of attachment files
+        /// </summary>
+        /// <param name="DocumentName">Input document name</param>
+        public static void GetEmailAttachmentHTMLRepresentationFromStream(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetEmailAttachmentHTMLRepresentationFromStream_18.11
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
 
+                // Setup html conversion options
+                HtmlOptions htmlOptions = new HtmlOptions();
+                htmlOptions.EmbedResources = false;
+
+                Stream fileStream = Utilities.GetDocumentStream(DocumentName);
+                // Init viewer html handler
+                ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+                DocumentInfoContainer info = handler.GetDocumentInfo(fileStream);
+
+                // Iterate over the attachments collection
+                foreach (AttachmentBase attachment in info.Attachments)
+                {
+                    Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType);
+
+                    // Get HTML representation of the attachment
+                    List<PageHtml> pages = handler.GetPages(fileStream, attachment, htmlOptions);
+                    foreach (PageHtml page in pages)
+                    {
+                        Console.WriteLine("  Page: {0}, size: {1}", page.PageNumber, page.HtmlContent.Length);
+                        foreach (HtmlResource htmlResource in page.HtmlResources)
+                        {
+                            Stream resourceStream = handler.GetResource(attachment, htmlResource);
+                            Console.WriteLine("     Resource: {0}, size: {1}", htmlResource.ResourceName, resourceStream.Length);
+                        }
+                    }
+                }
+                //ExEnd:GetEmailAttachmentHTMLRepresentationFromStream_18.11
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
         /// <summary>
         /// Gets image representation of attachment files
         /// </summary>
@@ -2829,8 +2904,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(guid, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
-                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
@@ -2872,8 +2947,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(uri, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
-                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
@@ -2915,8 +2990,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(stream, options);
 
                 Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat); 
-                Console.WriteLine("Extension: {0}", documentInfo.Extension); 
+                Console.WriteLine("FileFormat: {0}", documentInfo.FileFormat);
+                Console.WriteLine("Extension: {0}", documentInfo.Extension);
                 Console.WriteLine("Guid: {0}", documentInfo.Guid);
                 Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
                 Console.WriteLine("Name: {0}", documentInfo.Name);
@@ -2992,7 +3067,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
         }
 
-        
+
 
         /// <summary>
         /// Removes cache files for specific document
