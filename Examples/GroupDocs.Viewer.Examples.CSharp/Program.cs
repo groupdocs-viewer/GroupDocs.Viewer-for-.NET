@@ -243,8 +243,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Get email attachment files
             //ViewGenerator.GetEmailAttachments("sample.msg");
 
-            //Get email attachment html representation
+            //Get email attachments from document stream
+            //ViewGenerator.GetEmailAttachmentsFromStream("sample.msg");
+
+            //Get email attachment's HTML representation
             //ViewGenerator.GetEmailAttachmentHTMLRepresentation("sample.msg");
+
+            //Get email attachment's HTML representation from document stream
+            //ViewGenerator.GetEmailAttachmentHTMLRepresentationFromStream("sample.msg");
 
             //Get email attachment image representation
             //ViewGenerator.GetEmailAttachmentImageRepresentation("sample.msg");
