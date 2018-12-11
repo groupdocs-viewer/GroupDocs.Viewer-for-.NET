@@ -492,7 +492,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
             string guid = DocumentName;
 
-            // Set Cells options to hide overflowing text
+            // Set Cells options to ignore empty rows
             HtmlOptions options = new HtmlOptions();
             options.CellsOptions.IgnoreEmptyRows = true; // default value is false
 
@@ -505,6 +505,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
             }
             //ExEnd:RenderExcelAsHtmlIgnoringEmptyRows
+
+        }
+
+        /// <summary>
+        /// Renders Excel file as Html ignoring the empty columns
+        /// </summary>
+        /// <param name="DocumentName">file/document name</param>
+        public static void RenderExcelAsHtmlIgnoringEmptyColumns(string DocumentName)
+        {
+
+            //ExStart:RenderExcelAsHtmlIgnoringEmptyColumns_18.12
+            ViewerConfig config = Utilities.GetConfigurations();
+
+            // Create html handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+            string guid = DocumentName;
+
+            // Set Cells options to ignore empty columns
+            HtmlOptions options = new HtmlOptions();
+            options.CellsOptions.IgnoreEmptyColumns = true; // default value is false
+
+            // Get pages
+            List<PageHtml> pages = htmlHandler.GetPages(guid, options);
+
+            foreach (PageHtml page in pages)
+            {
+                //Save each page at disk
+                Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
+            }
+            //ExEnd:RenderExcelAsHtmlIgnoringEmptyColumns_18.12
 
         }
 
@@ -1016,7 +1046,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
         {
             // Setup GroupDocs.Viewer config
             ViewerConfig config = Utilities.GetConfigurations();
-            config.LocalesPath = @"D:\from office working\for aspose\GroupDocsViewer\GroupDocs.Viewer.Examples\Data\Locale";
+            config.LocalesPath = @"\Data\Locale";
 
             CultureInfo cultureInfo = new CultureInfo("fr-FR");
             ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
@@ -1411,6 +1441,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             }
             //ExEnd:RenderOutlookDataFileWithLimitOfItems_18.9
         }
+
+        
         #endregion
 
         #region ImageRepresentation
@@ -2143,6 +2175,42 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.WriteLine("Project end date: {0}", documentInfo.EndDate);
             //ExEnd:ObtainStartAndEndDateFromMSProjectDocument_18.9
         }
+
+        /// <summary>
+        /// Renders messages from specified Outlook folder
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void RenderMessagesFromSpecifiedOutlookFolder(String DocumentName)
+        {
+            try
+            {
+                //ExStart:RenderMessagesFromSpecifiedOutlookFolder_18.12
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Create image options with specified folder name (use HtmlOptions to render into HTML)
+                ImageOptions options = new ImageOptions();
+                options.OutlookOptions.FolderName = "Inbox\\Sub Folder 1";
+
+                // Render document into image (List<PageHtml> is returned when rendering into HTML)
+                List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+                foreach (PageImage page in pages)
+                {
+                    // Save each image at disk
+                    Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+                }
+                //ExEnd:RenderMessagesFromSpecifiedOutlookFolder_18.12
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
         #endregion
 
         #region GeneralRepresentation
@@ -2594,10 +2662,43 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Access PDF file stream.
             Stream pdfFileStream = fileContainer.Stream;
+            
             //Save file
-
             Utilities.SaveFile(guid, fileContainer.Stream);
             //ExEnd:RenderOutlookDataFileWithLimitOfItemsAsPDF_18.9
+        }
+
+        /// <summary>
+        /// Renders messages as PDF from specified Outlook folder
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void RenderMessagesFromSpecifiedOutlookFolderAsPDF(String DocumentName)
+        {
+            try
+            {
+                //ExStart:RenderMessagesFromSpecifiedOutlookFolderAsPDF_18.12
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Create pdf options with specified folder name
+                PdfFileOptions options = new PdfFileOptions();
+                options.OutlookOptions.FolderName = "Inbox";
+
+                // Get pdf document
+                FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+                //Save file
+                Utilities.SaveFile(guid, fileContainer.Stream);
+                //ExEnd:RenderMessagesFromSpecifiedOutlookFolderAsPDF_18.12
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
         }
         #endregion
 
@@ -3026,7 +3127,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
                 // Create image handler
                 ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-                string guid = "withLayers.dwg";
+                string guid = DocumentName;
 
                 CadDocumentInfoContainer documentInfo = (CadDocumentInfoContainer)imageHandler.GetDocumentInfo(guid);
 
@@ -3034,6 +3135,67 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 foreach (string layer in documentInfo.Layers)
                     Console.WriteLine("Layer name: {0}", layer);
                 //ExEnd:GetLayersInfoForCadDcouments_18.1
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets list of Outlook folders
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void GetListOfOutlookFolders(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetListOfOutlookFolders_18.12
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Get Outlook document info
+                OutlookDocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(guid) as OutlookDocumentInfoContainer;
+
+                foreach (string folderName in documentInfoContainer.Folders)
+                    Console.WriteLine("Folder name: {0}", folderName);
+                //ExEnd:GetListOfOutlookFolders_18.12
+            }
+            catch (System.Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets list of sub-folders from specified Outlook folder
+        /// </summary>
+        /// <param name="DocumentName">Name of input document</param>
+        public static void GetListOfSubFoldersFromSpecifiedFolder(String DocumentName)
+        {
+            try
+            {
+                //ExStart:GetListOfSubFoldersFromSpecifiedFolder_18.12
+                // Setup GroupDocs.Viewer config
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Create option object with specified folder name
+                DocumentInfoOptions options = new DocumentInfoOptions();
+                options.OutlookOptions.FolderName = "Inbox";
+                // Get outlook document info
+                OutlookDocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(guid, options) as OutlookDocumentInfoContainer;
+
+                foreach (string folderName in documentInfoContainer.Folders)
+                    Console.WriteLine("Folder name: {0}", folderName);
+                //ExEnd:GetListOfSubFoldersFromSpecifiedFolder_18.12
             }
             catch (System.Exception exp)
             {
