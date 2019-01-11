@@ -15,266 +15,277 @@ namespace GroupDocs.Viewer.Examples.CSharp
         static void Main(string[] args)
         {
 
-            //ExStart:ApplyingLicense
             /**
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
             //Utilities.ApplyLicense();
-            //ExEnd:ApplyingLicense
 
             #region ViewerHtmlPresentation
 
             //Render a document in html form
-            //ViewGenerator.RenderDocumentAsHtml("word.doc");
+            Renderer.HTMLRepresentation.RenderDocument("word.doc");
 
             //Render a spreadsheet in html form
-            //ViewGenerator.RenderDocumentAsHtml("spreadsheet.xlsx");
-
-            //Render a MS word document by replacing its 1st page order with 2nd page 
-            //ViewGenerator.RenderDocumentAsHtml("large_will_not_getting_processed.docx");
+            Renderer.HTMLRepresentation.RenderDocument("spreadsheet.xlsx");
 
             //Render a word document in html form and also apply a text as watermark on each page
-            //ViewGenerator.RenderDocumentAsHtml("word.doc", "Show me as watermark", Color.Purple);
+            Renderer.HTMLRepresentation.RenderDocument("word.doc", "Show me as watermark", Color.Purple);
 
             //Render a document located at a web location
-            // ViewGenerator.RenderDocumentAsHtml(new Uri("http://www.example.com/sample.doc"));
+            Renderer.HTMLRepresentation.RenderDocument(new Uri("http://www.example.com/sample.doc"));
 
             //Render a document in html form with resource prefix
-            //ViewGenerator.RenderDocumentAsHtmlWithResourcePrefix("word.doc");
+            Renderer.HTMLRepresentation.RenderDocumentWithResourcePrefix("word.doc");
 
             //Render hidden pages in Visio file in html form 
-            //ViewGenerator.RenderHiddenPagesOfVisioAsHtml("sample.vdx");
+            Renderer.HTMLRepresentation.RenderHiddenPagesOfVisio("sample.vdx");
 
             //Render Excel document in html form with internal hyperlink prefix
-            //ViewGenerator.RenderExcelAsHtmlWithInternalHyperlinkPrefix("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderExcelWithInternalHyperlinkPrefix("sample.xlsx");
 
             //Render simple document into html with PreventGlyphsGrouping settings
-            //ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf");
+            Renderer.HTMLRepresentation.RenderPDFDocumentWithEnablePreciseRendering("sample.pdf");
 
             //Render Excel file as Html specifying number of rows per page
-            //ViewGenerator.RenderExcelAsHtmlWithCountRowsPerPage("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderExcelWithCountRowsPerPage("sample.xlsx");
 
             //Render Excel file as Html specifying text overflow mode
-            //ViewGenerator.RenderExcelAsHtmlWithTextOverflowMode("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderExcelWithTextOverflowMode("sample.xlsx");
 
             //Render CAD document including the layouts 
-            //ViewGenerator.RenderLayoutsOfCADDocument("sample.dwg");
+            Renderer.HTMLRepresentation.RenderLayoutsOfCADDocument("sample.dwg");
 
             //Render Excel file as Html specifying text overflow mode
-            //ViewGenerator.RenderSpecificLayoutOfCADDocument("sample.dwg");
+            Renderer.HTMLRepresentation.RenderSpecificLayoutOfCADDocument("sample.dwg");
 
             //Gets list of all Layouts from CAD document
-            //ViewGenerator.GetListOfLayoutsOfCADDocument("sample.dwg");
-
-            //Gets list of all Layouts from CAD document
-            //ViewGenerator.RenderDocumentAsHtmlWithEnablePreciseRendering("sample.pdf");
+            Renderer.HTMLRepresentation.RenderPDFDocumentWithEnablePreciseRendering("sample.pdf");
 
             //Render document with comments as HTML
-            //ViewGenerator.RenderDocumentAsHtmlWithComments("sample.doc");
+            Renderer.HTMLRepresentation.RenderDocumentWithComments("sample.doc");
 
             //Render Excel document ignoring empty rows
-            //ViewGenerator.RenderExcelAsHtmlIgnoringEmptyRows("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderExcelIgnoringEmptyRows("sample.xlsx");
 
             //Render Excel document ignoring empty columns
-            //ViewGenerator.RenderExcelAsHtmlIgnoringEmptyColumns("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderExcelIgnoringEmptyColumns("sample.xlsx");
 
             //Render CAD document as responsive HTML
-            //ViewGenerator.RenderDocumentAsResponsiveHtml("sample.dwg");
+            Renderer.HTMLRepresentation.RenderDocumentAsResponsiveHtml("sample.dwg");
 
             //Render document as Html with resource minification
-            //ViewGenerator.RenderDocumentAsHtmlWithEnableMinification("candy.pdf");
+            Renderer.HTMLRepresentation.RenderDocumentWithEnableMinification("candy.pdf");
 
             //Render MS Project document as Html with PorjectOptions
-            //ViewGenerator.RenderProjectDocumentAsHtmlWithProjectOptions("sample.mpp");
+            Renderer.HTMLRepresentation.RenderProjectDocumentWithProjectOptions("sample.mpp");
 
             //Render document with default font setting
-            //ViewGenerator.RenderDocumentAsHtmlWithDefaultFontSetting("sample.pdf");
+            Renderer.HTMLRepresentation.RenderDocumentWithDefaultFontSetting("sample.pdf");
 
             //Render document excluding fonts list
-            //ViewGenerator.RenderDocumentAsHtmlExcludingFontsList("sample.pptx");
+            Renderer.HTMLRepresentation.RenderDocumentExcludingFontsList("sample.pptx");
 
             //Render specific layers of Cad document
-            //ViewGenerator.RenderSpecificLayerOfCadDocument("sample.dwg");
+            Renderer.HTMLRepresentation.RenderSpecificLayerOfCADDocument("sample.dwg");
 
             //Render Presentation document containing slide notes
-            //ViewGenerator.RenderPresentationDocumentWithNotes("sample.pptx");
+            Renderer.HTMLRepresentation.RenderPresentationDocumentWithNotes("sample.pptx");
 
             //Render Excel document as HTML with print area only settings
-            //ViewGenerator.RenderPrintAreaOnlyInExcel("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderPrintAreaOnlyInExcel("sample.xlsx");
 
             //Render hidden columns and rows in Excel document
-            //ViewGenerator.RenderHiddenContentInExcel("sample.xlsx");
+            Renderer.HTMLRepresentation.RenderHiddenContentInExcel("sample.xlsx");
 
             //Set header fields' labels when rendering email messages
-            //ViewGenerator.SetFieldLabelsWhenRenderingEmailMessage("sample.msg");
+            Renderer.HTMLRepresentation.RenderEmailMessageWithCustomFieldLabels("sample.msg");
 
-            // Render password protected document with force password validation
-            //ViewGenerator.RenderDocumentAsHtmlWithForcePasswordValidation("sample.docx");
+            //Render password protected document with force password validation
+            Renderer.HTMLRepresentation.RenderDocumentWithForcePasswordValidation("sample.docx");
 
-            // Render Outlook data files with limit of items
-            //ViewGenerator.RenderOutlookDataFileWithLimitOfItems("sample.ost");
+            //Render Outlook data files with limit of items
+            Renderer.HTMLRepresentation.RenderOutlookDataFileWithLimitOfItems("sample.ost");
 
+            //Reoreder document pages
+            Renderer.HTMLRepresentation.ReorderDocumentPages("sample.pptx", 1, 2);
+
+            //Rotates document page
+            Renderer.HTMLRepresentation.RotateDocumentPages("sample.pptx", 90);
+
+            //Render email messages from Outlook Data Files
+            Renderer.HTMLRepresentation.RenderEmailAttachmentsFromOutlookDataFile("sample.pst");
+
+            //Renders Outlook Data Files using filters for the Subject and content of the message
+            Renderer.HTMLRepresentation.RenderOutlookDataFileUsingFilters("sample.pst");
+
+            //Show grid lines for Excel files in html representation 
+            Renderer.HTMLRepresentation.RenderExcelWithGridLinesOptions("spreadsheet.xlsx");
+
+            //Multiple pages per sheet 
+            Renderer.HTMLRepresentation.RenderMultipleExcelSheetsInOnePage("spreadsheet.xlsx");
+
+            //Show hidden sheets for Excel files in image representation 
+            Renderer.HTMLRepresentation.RenderHiddenSheetsInExcel("spreadsheet.xlsx");
             #endregion
 
             #region ViewerImagePresentation
 
-            //Render a power point presentation in images form.
-            //ViewGenerator.RenderDocumentAsImages("sample.pptx");
+            //Render a PowerPoint presentation in images form.
+            Renderer.ImageRepresentation.RenderDocument("sample.pptx");
 
             //Render a spreadsheet in images form.
-            //ViewGenerator.RenderDocumentAsImages("spreadsheet.xlsx");
+            Renderer.ImageRepresentation.RenderDocument("spreadsheet.xlsx");
 
-            //Render a MS word document by replacing its 1st page order with 2nd page. 
-            // ViewGenerator.RenderDocumentAsImages("word.doc",1,2);
+            //Reorder document pages
+            Renderer.ImageRepresentation.ReorderDocumentPages("word.doc", 1, 2);
 
-            //Render a word document in images form and also apply a text as watermark on each page.
-            // ViewGenerator.RenderDocumentAsImages("f1.pdf", "Show me as watermark", Color.Purple);
+            //Rotate document pages
+            Renderer.ImageRepresentation.RotateDocumentPages("word.doc", 180);
 
-            //Render a word document in images form and set the rotation angle to display the rotated page.
-            // ViewGenerator.RenderDocumentAsImages("word.doc", 180);
+            //Render a Word document with watermark on each page.
+            Renderer.ImageRepresentation.RenderDocument("sample.pdf", "Show me as watermark", Color.Purple);
 
             //Render a document located at a web location
-            // ViewGenerator.RenderDocumentAsImages(new Uri("http://www.example.com/sample.doc"));
+            Renderer.ImageRepresentation.RenderDocument(new Uri("http://www.example.com/sample.doc"));
 
-            //Render hidden pages in Visio file in image form 
-            //ViewGenerator.RenderHiddenPagesOfVisioAsImage("sample.vdx");
+            //Render hidden pages in Visio file in image form
+            Renderer.ImageRepresentation.RenderHiddenPagesOfVisio("sample.vdx");
 
             //Get text coordinates in image based rendering
-            //ViewGenerator.GetTextCorrdinates("sample.docx");
+            Renderer.ImageRepresentation.GetTextCorrdinates("sample.docx");
 
             //Render MS Project document as Image with PorjectOptions
-            //ViewGenerator.RenderProjectDocumentAsImageWithProjectOptions("sample.mpp");
+            Renderer.ImageRepresentation.RenderProjectDocumentWithProjectOptions("sample.mpp");
 
             //Render Excel document as image with print area only settings
-            //ViewGenerator.RenderPrintAreaOnlyAsImageInExcel("sample.xlsx");
+            Renderer.ImageRepresentation.RenderPrintAreaOnlyInExcel("sample.xlsx");
 
             //Render hidden columns and rows in Excel document
-            //ViewGenerator.RenderHiddenContentInExcelAsImage("sample.xlsx");
+            Renderer.ImageRepresentation.RenderHiddenContentInExcel("sample.xlsx");
 
             //Render email messages with page size settings
-            //ViewGenerator.RenderEmailDocumentAsImageWithPageSizeSettings("sample.msg");
+            Renderer.ImageRepresentation.RenderEmailDocumentWithPageSizeSettings("sample.msg");
 
-            // Tiled rendering of CAD documents
-            //ViewGenerator.TiledRenderingOfCADDocuments("sample.dwg");
+            //Tiled rendering of CAD documents
+            Renderer.ImageRepresentation.TiledRenderingOfCADDocuments("sample.dwg");
 
-            // Tiled rendering of CAD documents with manual size setting
-            //ViewGenerator.TiledRenderingOfCADDocumentsWithManualSizeSettings("sample.dwg");
+            //Tiled rendering of CAD documents with manual size setting
+            Renderer.ImageRepresentation.TiledRenderingOfCADDocumentsWithManualSizeSettings("sample.dwg");
 
-            // Obtain start and end date from MS Project document
-            //ViewGenerator.ObtainStartAndEndDateFromMSProjectDocument("sample.mpp");
-
-            // Render messages from specified folder in Outlook document
-            //ViewGenerator.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
+            //Render messages from specified folder in Outlook document
+            Renderer.ImageRepresentation.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
             #endregion
 
-            #region GeneralRepresentation
+            #region PFDRepresentation
             //Render the word document in the form of pdf markup
-            //ViewGenerator.RenderDocumentAsPDF("test.pdf");
-
-            //Render the document as it is (Original form)
-            //ViewGenerator.RenderDocumentAsOriginal("factsheet.pdf");
+            Renderer.PDFRepresentation.RenderDocument("test.pdf");
 
             //Render document as PDF with JpegQuality settings
-            //ViewGenerator.RenderDocumentAsPDFWithJpegQualitySettings("word.doc");
+            Renderer.PDFRepresentation.RenderDocumentWithJpegQualitySettings("word.doc");
 
             //Render document as PDF with comments
-            //ViewGenerator.RenderDocumentWithCommentsAsPDF("sample.doc");
+            Renderer.PDFRepresentation.RenderDocumentWithComments("sample.doc");
 
             //Render Excel document as PDF with print area only settings
-            //ViewGenerator.RenderPrintAreasInExcelAsPDF("sample.xlsx");
+            Renderer.PDFRepresentation.RenderPrintAreasInExcel("sample.xlsx");
 
             //Render MS Project document as PDF with PorjectOptions
-            //ViewGenerator.RenderProjectDocumentAsPDFWithProjectOptions("sample.mpp");
+            Renderer.PDFRepresentation.RenderProjectDocumentWithProjectOptions("sample.mpp");
 
             //Render hidden columns and rows in Excel document
-            //ViewGenerator.RenderHiddenContentInExcelAsPDF("sample.xlsx");
+            Renderer.PDFRepresentation.RenderHiddenContentInExcel("sample.xlsx");
 
             //Render email messages with page size settings
-            //ViewGenerator.RenderEmailDocumentAsPDFWithPageSizeSettings("sample.msg");
+            Renderer.PDFRepresentation.RenderEmailDocumentWithPageSizeSettings("sample.msg");
 
             // Render Outlook Data Files with limit of items
-            //ViewGenerator.RenderOutlookDataFileWithLimitOfItemsAsPDF("sample.ost");
+            Renderer.PDFRepresentation.RenderOutlookDataFileWithLimitOfItems("sample.ost");
 
             // Render messages as PDF from specified folder in Outlook document
-            //ViewGenerator.RenderMessagesFromSpecifiedOutlookFolderAsPDF("sample.ost");
+            Renderer.PDFRepresentation.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
             #endregion
+            
+            //Render the document as it is (Original form)
+            Renderer.GetOriginalDocument("test.pdf");
 
             #region InputDataHandlers
             //Render a document from Azure Storage 
-            //ViewGenerator.RenderDocFromAzure("word.doc");
+            //Renderer.RenderDocFromAzure("word.doc");
 
             //Render a document from ftp location 
-            //ViewGenerator.RenderDocFromAzure("word.doc");
+            //Renderer.RenderDocFromAzure("word.doc");
 
             //Render document from Amazon S3 file storage
-            //ViewGenerator.GetHtmlPagesFromAmazonS3FileStorage("sample.doc", "your-bucket-name");
+            //Renderer.GetHtmlPagesFromAmazonS3FileStorage("sample.doc", "your-bucket-name");
             #endregion
 
             #region OtherImprovements
-            //Show grid lines for Excel files in html representation 
-            //ViewGenerator.RenderWithGridLinesInExcel("spreadsheet.xlsx");
-            //Multiple pages per sheet 
-            // ViewGenerator.RenderMultiExcelSheetsInOnePage("testcc1.xlsx");
-            //Show hidden sheets for Excel files in image representation 
-            // ViewGenerator.RenderWithHiddenSheetsInExcel("spreadsheet.xlsx");
+
             //Render a document from ftp location 
-            //ViewGenerator.RenderWithLocales("word.doc");
+            Renderer.HTMLRepresentation.RenderWithLocales("word.doc");
+
             //Get all supported document formats 
-            //ViewGenerator.ShowAllSupportedFormats();
+            Renderer.ShowAllSupportedFormats();
 
             #endregion
 
             #region DocumentCache
             //Removes cache files
-            //ViewGenerator.RemoveCacheFiles();
+            //Renderer.RemoveCacheFiles();
 
             //Removes cache files for specific document
-            //ViewGenerator.RemoveCacheFiles("candy.pdf");
+            //Renderer.RemoveCacheFiles("candy.pdf");
             #endregion
 
             #region DocumentInfo
             //Get document info by guid
-            //ViewGenerator.GetDocumentInfoByGuid("word.doc");
+            //Renderer.GetDocumentInfoByGuid("word.doc");
 
             //Get document info by uri
-            //ViewGenerator.GetDocumentInfoByUri("http://www.example.com/sample.doc");
+            //Renderer.GetDocumentInfoByUri("http://www.example.com/sample.doc");
 
             //Get document info by stream
-            //ViewGenerator.GetDocumentInfoByStream("word.doc"); 
+            //Renderer.GetDocumentInfoByStream("word.doc"); 
 
             //Get layers' info in Cad document
-            //ViewGenerator.GetLayersInfoForCadDcouments("sample.dwg");
+            //Renderer.GetLayersInfoForCadDcouments("sample.dwg");
 
             //Get list of folders from Outlook message
-            //ViewGenerator.GetListOfOutlookFolders("sample.ost");
+            //Renderer.GetListOfOutlookFolders("sample.ost");
 
             //Get list of sub-folders from a folder
-            //ViewGenerator.GetListOfSubFoldersFromSpecifiedFolder("sample.ost");
+            //Renderer.GetListOfSubFoldersFromSpecifiedFolder("sample.ost");
+
+            //Obtain start and end date from MS Project document
+            //Renderer.ObtainStartAndEndDateFromMSProjectDocument("sample.mpp");
 
             #endregion
 
             #region EmailAttachments
             //Get email attachment files
-            //ViewGenerator.GetEmailAttachments("sample.msg");
+            //Renderer.GetEmailAttachments("sample.msg");
 
             //Get email attachments from document stream
-            //ViewGenerator.GetEmailAttachmentsFromStream("sample.msg");
+            //Renderer.GetEmailAttachmentsFromStream("sample.msg");
 
             //Get email attachment's HTML representation
-            //ViewGenerator.GetEmailAttachmentHTMLRepresentation("sample.msg");
+            //Renderer.RenderEmailAttachmentAsHTML("sample.msg");
 
             //Get email attachment's HTML representation from document stream
-            //ViewGenerator.GetEmailAttachmentHTMLRepresentationFromStream("sample.msg");
+            //Renderer.RenderEmailAttachmentAsHTMLFromStream("sample.msg");
 
             //Get email attachment image representation
-            //ViewGenerator.GetEmailAttachmentImageRepresentation("sample.msg");
+            //Renderer.RenderEmailAttachmentAsImage("sample.msg");
+
+            //Gets list of all Layouts from CAD document
+            //Renderer.GetListOfLayoutsOfCADDocument("sample.dwg");
 
             #endregion
 
             #region CustomFonts
             //Set custom font directories
-            //ViewGenerator.SetCustomFontDirectory("word.doc");
+            //Renderer.SetCustomFontDirectory("word.doc");
 
             #endregion
 

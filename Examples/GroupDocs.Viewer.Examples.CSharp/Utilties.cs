@@ -17,11 +17,11 @@ namespace GroupDocs.Viewer.Examples
 {
     public static class Utilities
     {
-        public const string StoragePath = "../../../Data/Storage/";
-        public const string OutputHtmlPath = "../../../Data/Output/html/";
-        public const string OutputImagePath = "../../../Data/Output/images/";
-        public const string OutputPath = "../../../Data/Output/";
-        public const string licensePath = "../../../Data/Storage/GroupDocs.Total.lic";
+        public const string STORAGE_PATH = "../../../Data/Storage/";
+        public const string OUTPUT_HTML_PATH = "../../../Data/Output/html/";
+        public const string OUTPUT_IMAGE_PATH = "../../../Data/Output/images/";
+        public const string OUTPUT_PATH = "../../../Data/Output/";
+        public const string LICENSE_PATH = "../../../Data/Storage/GroupDocs.Total.lic";
 
         #region Configurations
 
@@ -35,7 +35,7 @@ namespace GroupDocs.Viewer.Examples
             //ExStart:Configurations
             ViewerConfig config = new ViewerConfig();
             //set the storage path
-            config.StoragePath = StoragePath;
+            config.StoragePath = STORAGE_PATH;
             //Uncomment the below line for cache purpose
             config.EnableCaching = true;
             config.CacheFolderName = "cachefolder";
@@ -54,7 +54,7 @@ namespace GroupDocs.Viewer.Examples
             //ExStart:ConfigurationsWithDefaultFontName
             ViewerConfig config = new ViewerConfig();
             //set the storage path
-            config.StoragePath = StoragePath;
+            config.StoragePath = STORAGE_PATH;
             //Uncomment the below line for cache purpose
             //config.UseCache = true;
             return config;
@@ -183,7 +183,7 @@ namespace GroupDocs.Viewer.Examples
         public static void ApplyLicense()
         {
             License lic = new License();
-            lic.SetLicense(licensePath);
+            lic.SetLicense(LICENSE_PATH);
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:SaveAsHTML
                 // set an html file name with absolute path
-                String fname = Path.Combine(Path.GetFullPath(OutputHtmlPath), Path.GetFileNameWithoutExtension(filename) + ".html");
+                String fname = Path.Combine(Path.GetFullPath(OUTPUT_HTML_PATH), Path.GetFileNameWithoutExtension(filename) + ".html");
 
                 // create a file at the disk
                 System.IO.File.WriteAllText(fname, content);
@@ -275,7 +275,7 @@ namespace GroupDocs.Viewer.Examples
                 Image img = Image.FromStream(imageContent);
 
                 //save the image in the form of jpeg
-                img.Save(Path.Combine(Path.GetFullPath(OutputImagePath), Path.GetFileNameWithoutExtension(imageName)) + ".Jpeg", ImageFormat.Jpeg);
+                img.Save(Path.Combine(Path.GetFullPath(OUTPUT_IMAGE_PATH), Path.GetFileNameWithoutExtension(imageName)) + ".Jpeg", ImageFormat.Jpeg);
                 //ExEnd:SaveAsImage
             }
             catch (System.Exception ex)
@@ -292,7 +292,7 @@ namespace GroupDocs.Viewer.Examples
             try
             {
                 //ExStart:GetDocumentStream
-                FileStream fsSource = new FileStream(StoragePath + DocumentName,
+                FileStream fsSource = new FileStream(STORAGE_PATH + DocumentName,
                      FileMode.Open, FileAccess.Read);
 
                 // Read the source file into a byte array.
@@ -336,7 +336,7 @@ namespace GroupDocs.Viewer.Examples
             {
                 //ExStart:SaveAnyFile
                 //Create file stream
-                FileStream fileStream = File.Create(Path.Combine(Path.GetFullPath(OutputPath), filename), (int)content.Length);
+                FileStream fileStream = File.Create(Path.Combine(Path.GetFullPath(OUTPUT_PATH), filename), (int)content.Length);
 
                 // Initialize the bytes array with the stream length and then fill it with data
                 byte[] bytesInStream = new byte[content.Length];
