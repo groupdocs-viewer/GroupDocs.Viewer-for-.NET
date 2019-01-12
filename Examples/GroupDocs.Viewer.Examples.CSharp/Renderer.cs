@@ -91,12 +91,18 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 HtmlOptions options = new HtmlOptions();
 
                 options.EmbedResources = false;
-                // Set password if document is password protected. 
-                if (!String.IsNullOrEmpty(DocumentPassword))
-                    options.Password = DocumentPassword;
-
-                // Call AddWatermark and pass the reference of HtmlOptions object as 1st parameter
-                Utilities.PageTransformations.AddWatermark(ref options, WatermarkText, WatermarkColor, position, WatermarkWidth);
+                //Initialize watermark object by passing the text to display.
+                Watermark watermark = new Watermark(WatermarkText);
+                //Apply the watermark color by assigning System.Drawing.Color.
+                watermark.Color = System.Drawing.Color.Red;
+                //Set the watermark's position by assigning an enum WatermarkPosition's value.
+                watermark.Position = position;
+                //set an integer value as watermark width 
+                watermark.Width = 100;
+                // Set font name
+                watermark.FontName = "MS Gothic";
+                //Assign intialized and populated watermark object to ImageOptions or HtmlOptions objects
+                options.Watermark = watermark;
 
                 //Get document pages in html form
                 List<PageHtml> pages = htmlHandler.GetPages(guid, options);
@@ -107,52 +113,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
                 }
                 //ExEnd:RenderAsHtmlWithWaterMark
-            }
-
-            /// <summary>
-            ///  Renders document into html with page reordering
-            /// </summary>
-            /// <param name="DocumentName">file/document name</param>
-            /// <param name="CurrentPageNumber">Page existing order number</param>
-            /// <param name="NewPageNumber">Page new order number</param>
-            /// <param name="DocumentPassword">Password Parameter is optional</param>
-            public static void RenderDocument(String DocumentName, int CurrentPageNumber, int NewPageNumber, String DocumentPassword = null)
-            {
-                //ExStart:RenderAsHtmlAndReorderPage
-                //Get Configurations
-                ViewerConfig config = Utilities.GetConfigurations();
-
-                // Cast ViewerHtmlHandler class object to its base class(ViewerHandler).
-                ViewerHandler<PageHtml> handler = new ViewerHtmlHandler(config);
-
-                // Guid implies that unique document name 
-                string guid = DocumentName;
-
-                //Instantiate the HtmlOptions object with setting of Reorder Transformation
-                HtmlOptions options = new HtmlOptions { Transformations = Transformation.Reorder };
-
-                //to get html representations of pages with embedded resources
-                options.EmbedResources = true;
-
-                // Set password if document is password protected. 
-                if (!String.IsNullOrEmpty(DocumentPassword))
-                    options.Password = DocumentPassword;
-
-                //Call ReorderPage and pass the reference of ViewerHandler's class  parameter by reference. 
-                Utilities.PageTransformations.ReorderPage(ref handler, guid, CurrentPageNumber, NewPageNumber);
-
-                //down cast the handler(ViewerHandler) to viewerHtmlHandler
-                ViewerHtmlHandler htmlHandler = (ViewerHtmlHandler)handler;
-
-                //Get document pages in html form
-                List<PageHtml> pages = htmlHandler.GetPages(guid, options);
-
-                foreach (PageHtml page in pages)
-                {
-                    //Save each page at disk
-                    Utilities.SaveAsHtml(page.PageNumber + "_" + DocumentName, page.HtmlContent);
-                }
-                //ExEnd:RenderAsHtmlAndReorderPage
             }
 
             /// <summary>
@@ -1588,13 +1548,19 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
                 //Initialize ImageOptions Object
                 ImageOptions options = new ImageOptions();
-
-                // Set password if document is password protected. 
-                if (!String.IsNullOrEmpty(DocumentPassword))
-                    options.Password = DocumentPassword;
-
-                // Call AddWatermark and pass the reference of ImageOptions object as 1st parameter
-                Utilities.PageTransformations.AddWatermark(ref options, WatermarkText, WatermarkColor, position, WatermarkWidth);
+                
+                //Initialize watermark object by passing the text to display.
+                Watermark watermark = new Watermark(WatermarkText);
+                //Apply the watermark color by assigning System.Drawing.Color.
+                watermark.Color = System.Drawing.Color.Red;
+                //Set the watermark's position by assigning an enum WatermarkPosition's value.
+                watermark.Position = position;
+                //set an integer value as watermark width 
+                watermark.Width = 100;
+                // Set font name
+                watermark.FontName = "MS Gothic";
+                //Assign intialized and populated watermark object to ImageOptions or HtmlOptions objects
+                options.Watermark = watermark;
 
                 //Get document pages in image form
                 List<PageImage> Images = imageHandler.GetPages(guid, options);
