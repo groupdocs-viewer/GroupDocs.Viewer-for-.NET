@@ -21,7 +21,7 @@ namespace GroupDocs.Viewer.Examples
         public const string OUTPUT_HTML_PATH = "../../../Data/Output/html/";
         public const string OUTPUT_IMAGE_PATH = "../../../Data/Output/images/";
         public const string OUTPUT_PATH = "../../../Data/Output/";
-        public const string LICENSE_PATH = "../../../Data/Storage/GroupDocs.Total.lic";
+        public const string LICENSE_PATH = "D:/GroupDocs.Total.lic";
 
         #region Configurations
         /// <summary>

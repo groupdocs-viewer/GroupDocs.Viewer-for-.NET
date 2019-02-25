@@ -915,7 +915,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             {
                 // Setup GroupDocs.Viewer config
                 ViewerConfig config = Utilities.GetConfigurations();
-                config.LocalesPath = @"\Data\Locale";
+                //config.LocalesPath = @"\Data\Locale";
 
                 CultureInfo cultureInfo = new CultureInfo("fr-FR");
                 ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
@@ -1773,6 +1773,37 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
                 }
                 //ExEnd:RenderExcelAsImageWithCountRowsPerPageAndTextExtraction
+
+            }
+            /// <summary>
+            /// Added support to Renders Zips and Tars
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderCompressedFiles(string DocumentName)
+            {
+
+                //ExStart:RenderCompressedFiles_19.2
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Set html options to show grid lines
+                ImageOptions options = new ImageOptions();
+               
+
+                
+
+                // Get pages
+                List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+                foreach (PageImage page in pages)
+                {
+                    // Save each page at disk
+                    Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+                }
+                //ExEnd:RenderCompressedFiles_19.2
 
             }
 
