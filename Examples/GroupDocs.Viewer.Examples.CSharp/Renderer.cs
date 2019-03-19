@@ -917,9 +917,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 ViewerConfig config = Utilities.GetConfigurations();
                 //config.LocalesPath = @"\Data\Locale";
 
-                CultureInfo cultureInfo = new CultureInfo("fr-FR");
-                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
+                //CultureInfo cultureInfo = new CultureInfo("fr-FR");
+                //This constructor is obsolete and will be removed after v19.3. Please, instead, use the constructors that do not have CultureInfo argument.
+                // ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
 
+                ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+                
                 // File guid
                 string guid = DocumentName;
 
@@ -1789,11 +1792,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 ViewerImageHandler imageHandler = new ViewerImageHandler(config);
                 string guid = DocumentName;
 
-                // Set html options to show grid lines
+                // Set image options
                 ImageOptions options = new ImageOptions();
-               
-
-                
+                    
 
                 // Get pages
                 List<PageImage> pages = imageHandler.GetPages(guid, options);
@@ -1804,6 +1805,94 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
                 }
                 //ExEnd:RenderCompressedFiles_19.2
+
+            }
+            /// <summary>
+            /// Retrieving the list of root folders from archive documents
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void GetArchiveRootFoldersList(string DocumentName)
+            {
+
+                //ExStart:GetArchiveRootFoldersList_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Set html options to show grid lines
+                ImageOptions options = new ImageOptions();
+
+
+                // Get archive document info
+                ArchiveDocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(guid) as ArchiveDocumentInfoContainer;
+
+                // Get listing of root folders
+                foreach (string folderName in documentInfoContainer.Folders)
+                 Console.WriteLine("Folder name: {0}", folderName);
+
+                //ExEnd:GetArchiveRootFoldersList_19.3
+
+            }
+            /// <summary>
+            /// Retrieving the list of folders from the certain folder inside the archive
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void GetNestedLevelArchiveFoldersList(string DocumentName)
+            {
+
+                //ExStart:GetNestedLevelArchiveFoldersList_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // set option to retrieve list of folders from certain folder.
+                ImageOptions options = new ImageOptions();
+                options.ArchiveOptions.FolderName = "FirstLevelFolder/SecondLevelFolder";
+
+                // Get archive document info
+                ArchiveDocumentInfoContainer documentInfoContainer = imageHandler.GetDocumentInfo(guid) as ArchiveDocumentInfoContainer;
+
+                // Get listing of root folders
+                foreach (string folderName in documentInfoContainer.Folders)
+                    Console.WriteLine("Folder name: {0}", folderName);
+                
+
+                //ExEnd:GetNestedLevelArchiveFoldersList_19.3
+
+            }
+            /// <summary>
+            /// Rendering the list of folders from the certain folder inside the archive
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderCertainArchiveFolder(string DocumentName)
+            {
+
+                //ExStart:RenderCertainArchiveFolder_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // set option to retrieve list of folders from certain folder
+                ImageOptions options = new ImageOptions();
+                options.ArchiveOptions.FolderName = "FirstLevelFolder/SecondLevelFolder";
+
+                // Get pages
+                List<PageImage> pages = imageHandler.GetPages(guid, options);
+
+                foreach (PageImage page in pages)
+                {
+                    // Save each page at disk
+                    Utilities.SaveAsImage(page.PageNumber + "_" + DocumentName, page.Stream);
+                }
+
+
+                //ExEnd:RenderCertainArchiveFolder_19.3
 
             }
 
@@ -2252,6 +2341,42 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Console.WriteLine(exp.Message);
                 }
             }
+            /// <summary>
+            /// Rendering to PDF with Security Settings 
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderWithSecuritySettings(string DocumentName)
+            {
+
+                //ExStart:RenderPDFWithSecuritySettings_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Create PDF file security
+                string ownerPassword = "o123";
+                string userPassword = "u123";
+                PdfFilePermissions denyPrinting = PdfFilePermissions.All ^ PdfFilePermissions.Printing;
+
+                PdfFileSecurity pdfFileSecurity = new PdfFileSecurity(ownerPassword, userPassword, denyPrinting);
+
+                // Create options
+                PdfFileOptions pdfFileOptions = new PdfFileOptions();
+                pdfFileOptions.PdfFileSecurity = pdfFileSecurity;
+
+                // Get pdf document
+                FileContainer fileContainer = imageHandler.GetPdfFile(guid, pdfFileOptions);
+
+                //Save file
+                Utilities.SaveFile("sample.pdf", fileContainer.Stream);
+
+
+                //ExEnd:RenderPDFWithSecuritySettings_19.3
+
+            }
+
         }
 
         /// <summary>
@@ -2714,8 +2839,68 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Console.WriteLine(exp.Message);
                 }
             }
+            /// <summary>
+            /// Rendering specified folder(inside the archive) into PDF 
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderCertainArchiveFolder(string DocumentName)
+            {
 
-        } 
+                //ExStart:RenderCertainArchiveFolderToPDF_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Create pdf options with specified folder name
+                PdfFileOptions options = new PdfFileOptions();
+                options.ArchiveOptions.FolderName = "FolderName";
+
+                // Get pdf document
+                FileContainer fileContainer = imageHandler.GetPdfFile(guid, options);
+
+                //Save file
+                Utilities.SaveFile(guid, fileContainer.Stream);
+
+
+                //ExEnd:RenderCertainArchiveFolderToPDF_19.3
+
+            }
+            /// <summary>
+            /// Check printing restriction before PDF Rendering 
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void CheckPrintingRestriction(string DocumentName)
+            {
+
+                //ExStart:CheckPDFPrintingRestriction_19.3
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+                string guid = DocumentName;
+
+                // Retrieve document information
+                PdfDocumentInfoContainer documentInfo = imageHandler.GetDocumentInfo(guid) as PdfDocumentInfoContainer;
+
+                // Check the printing restrictions
+                bool printingAllowed = documentInfo.PrintingAllowed;
+
+                //ExEnd:CheckPDFPrintingRestriction_19.3
+                if (printingAllowed)
+                {
+                    Console.WriteLine("The PDF is ready for printing.");
+                }
+                else
+                {
+                    Console.WriteLine("Rstricted file: The printing is not allowed");
+                }
+            }
+
+            
+
+        }
 
         #region InputDataHandlers
 

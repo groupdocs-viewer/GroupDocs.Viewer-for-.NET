@@ -19,12 +19,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            Utilities.ApplyLicense();
+            //Utilities.ApplyLicense();
 
             #region ViewerHtmlPresentation
 
             //Render a document in html form
-            Renderer.HTMLRepresentation.RenderDocument("word.doc");
+            //Renderer.HTMLRepresentation.RenderDocument("word.doc");
 
             //Render a spreadsheet in html form
             //Renderer.HTMLRepresentation.RenderDocument("spreadsheet.xlsx");
@@ -176,7 +176,21 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render messages from specified folder in Outlook document
             //Renderer.ImageRepresentation.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
 
+            //Added support to Renders Zips and Tars
             //Renderer.ImageRepresentation.RenderCompressedFiles("sample.zip");
+
+            //Retrieving the list of root folders from archive documents
+            //Renderer.ImageRepresentation.GetArchiveRootFoldersList("sample.zip");
+
+            //Retrieving the list of folders from the certain folder inside the archive
+            // Renderer.ImageRepresentation.GetNestedLevelArchiveFoldersList("sample.zip");
+
+            //Rendering the list of folders from the certain folder inside the archive
+            //Renderer.ImageRepresentation.RenderCertainArchiveFolder("sample.zip");
+
+            //Rendering to PDF with Security Settings
+            //Renderer.ImageRepresentation.RenderWithSecuritySettings("word.doc");
+
             #endregion
 
             #region PFDRepresentation
@@ -206,8 +220,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             // Render messages as PDF from specified folder in Outlook document
             // Renderer.PDFRepresentation.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
+
+            //Check printing restriction before PDF Rendering
+            //Renderer.PDFRepresentation.CheckPrintingRestriction("candy.pdf");
+
             #endregion
-            
+
             //Render the document as it is (Original form)
             //Renderer.GetOriginalDocument("test.pdf");
 
@@ -316,6 +334,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             */
 
             #endregion
+
+            Console.WriteLine("All done.");
+            Console.ReadKey();
         }
     }
 }
