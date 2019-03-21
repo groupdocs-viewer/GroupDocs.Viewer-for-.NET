@@ -19,7 +19,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            //Utilities.ApplyLicense();
+            Utilities.ApplyLicense();
 
             #region ViewerHtmlPresentation
 
@@ -177,7 +177,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Renderer.ImageRepresentation.RenderMessagesFromSpecifiedOutlookFolder("sample.ost");
 
             //Added support to Renders Zips and Tars
-            //Renderer.ImageRepresentation.RenderCompressedFiles("sample.zip");
+            Renderer.ImageRepresentation.RenderCompressedFiles("sample.zip");
+            
 
             //Retrieving the list of root folders from archive documents
             //Renderer.ImageRepresentation.GetArchiveRootFoldersList("sample.zip");

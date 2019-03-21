@@ -1795,7 +1795,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 // Set image options
                 ImageOptions options = new ImageOptions();
                     
-
+                
                 // Get pages
                 List<PageImage> pages = imageHandler.GetPages(guid, options);
 
@@ -1851,6 +1851,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
                 // set option to retrieve list of folders from certain folder.
                 ImageOptions options = new ImageOptions();
+                
                 options.ArchiveOptions.FolderName = "FirstLevelFolder/SecondLevelFolder";
 
                 // Get archive document info
