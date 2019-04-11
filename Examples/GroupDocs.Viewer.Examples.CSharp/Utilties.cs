@@ -37,6 +37,9 @@ namespace GroupDocs.Viewer.Examples
             //Uncomment the below line for cache purpose
             config.EnableCaching = true;
             config.CacheFolderName = "cachefolder";
+
+            //config.FontDirectories = "FontsDirPath";
+            
             return config;
             //ExEnd:Configurations
 
