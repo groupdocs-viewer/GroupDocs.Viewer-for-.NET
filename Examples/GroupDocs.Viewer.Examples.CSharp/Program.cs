@@ -132,7 +132,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region ViewerImagePresentation
 
             //Render a PowerPoint presentation in images form.
-            Renderer.ImageRepresentation.RenderDocument("sample.cdr");
+            //Renderer.ImageRepresentation.RenderDocument("sample.cdr");
 
             //Render a spreadsheet in images form.
             //Renderer.ImageRepresentation.RenderDocument("spreadsheet.xlsx");
@@ -182,8 +182,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //Render files contained in zip archives that are stored on disk
             //Renderer.ImageRepresentation.RenderFilesFromDiskZips("sample.zip");
 
+            //Render files contained in password protected zip archives that are stored on disk
+            //Renderer.ImageRepresentation.RenderFilesFromPasswordProtectedDiskZips("password-protected.zip");
+
             //Render files contained in zip archives using stream
             //Renderer.ImageRepresentation.RenderZipFilesFromStream("sample.zip");
+
+            //Render files contained in password protected zip archives using stream
+            //Renderer.ImageRepresentation.RenderContainedFileinPasswordProtectedZipFromStream("password-protected.zip");
 
             //Retrieving the list of root folders from archive documents
             //Renderer.ImageRepresentation.GetArchiveRootFoldersList("sample.zip");

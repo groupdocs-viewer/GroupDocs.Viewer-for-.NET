@@ -1833,6 +1833,33 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             }
             /// <summary>
+            /// Render files contained in password protected zip archives that are stored on disk
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderFilesFromPasswordProtectedDiskZips(string DocumentName)
+            {
+
+                //ExStart:RenderFilesFromPasswordProtectedDiskZips_19.5
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html or image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+                //DocumentName is set as sample.zip
+                string guid = DocumentName;
+                
+                // Create attachment object
+                Attachment attachment = new Attachment(guid, "FirstLevelFolder/candy.pdf", "candy.pdf");
+
+                // Get attachment original file and print out Stream length
+                using (FileContainer fileContainer = imageHandler.GetFile(attachment,"password"))
+                {
+                    Console.WriteLine("Attach stream lenght: {0}", fileContainer.Stream.Length);
+                }
+                //ExEnd:RenderFilesFromPasswordProtectedDiskZips_19.5
+
+            }
+            /// <summary>
             /// Render files contained in zip archives using stream
             /// </summary>
             /// <param name="DocumentName">File/document name</param>
@@ -1858,6 +1885,36 @@ namespace GroupDocs.Viewer.Examples.CSharp
                     Console.WriteLine("Attach stream lenght: {0}", fileContainer.Stream.Length);
                 }
                 //ExEnd:RenderZipFilesFromStream_19.4
+
+            }
+            /// <summary>
+            /// Render files contained in password protected zip archives using stream
+            /// </summary>
+            /// <param name="DocumentName">File/document name</param>
+            public static void RenderContainedFileinPasswordProtectedZipFromStream(string DocumentName)
+            {
+
+                //ExStart:RenderContainedFileinPasswordProtectedZipFromStream_19.5
+                ViewerConfig config = Utilities.GetConfigurations();
+
+                // Create html or image handler
+                ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+               
+                //DocumentName is set as sample.zip
+                string guid = DocumentName;
+
+                // Create attachment object and print out its name and file type
+                Attachment attachment = new Attachment(guid, "FirstLevelFolder/candy.pdf", "candy.pdf");
+
+                Console.WriteLine("Attach name: {0}, Type: {1}", attachment.Name, attachment.FileType);
+
+                // Get attachment original file using document stream
+                using (FileStream fileStream = (FileStream)Utilities.GetDocumentStream(guid))
+                using (FileContainer fileContainer = imageHandler.GetFile(fileStream, attachment, "password"))
+                {
+                    Console.WriteLine("Attach stream lenght: {0}", fileContainer.Stream.Length);
+                }
+                //ExEnd:RenderContainedFileinPasswordProtectedZipFromStream_19.5
 
             }
             /// <summary>
