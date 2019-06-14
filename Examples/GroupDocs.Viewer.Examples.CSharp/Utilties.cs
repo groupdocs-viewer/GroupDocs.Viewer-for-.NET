@@ -108,19 +108,17 @@ namespace GroupDocs.Viewer.Examples
             // Set public and private keys to metered instance
             metered.SetMeteredKey(publicKey, privateKey);
 
-            // Get metered value before usage of the comparison
-            decimal amountBefore = GroupDocs.Viewer.Metered.GetConsumptionQuantity();
-
-            Console.WriteLine("Amount (MB) consumed before:" + amountBefore);
-
             // Get pages
             GroupDocs.Viewer.Handler.ViewerHtmlHandler htmlHandler = new GroupDocs.Viewer.Handler.ViewerHtmlHandler();
             List<GroupDocs.Viewer.Domain.Html.PageHtml> pages = htmlHandler.GetPages("input.pdf");
 
-            // Get metered value after usage of the comparison
+            // Get metered consumption quantity after usage of the comparison
             decimal amountAfter = GroupDocs.Viewer.Metered.GetConsumptionQuantity();
 
-            Console.WriteLine("Amount (MB) consumed after: " + amountAfter);
+            Console.WriteLine("Amount (MB) consumed: " + amountAfter);
+
+            // Get metered consumption credit (Since version 19.6) 
+            decimal creditAfter = GroupDocs.Viewer.Metered.GetConsumptionCredit();
             //ExEnd:GetMeteredLicenseConsumption
         }
         #endregion

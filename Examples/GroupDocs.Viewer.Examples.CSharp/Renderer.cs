@@ -2506,11 +2506,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
                 // Create/initialize image handler 
                 ViewerImageHandler imageHandler = new ViewerImageHandler(Utilities.GetConfigurations());
 
+                PdfFileOptions options = new PdfFileOptions();
                 // To Apply transformations on PDF file
-                // options.Transformations = Transformation.Rotate | Transformation.Reorder | Transformation.AddPrintAction;
+                options.Transformations = Transformation.AddPrintAction;
 
                 // Call GetPdfFile to get FileContainer type object which contains the stream of pdf file.
-                FileContainer container = imageHandler.GetPdfFile(DocumentName);
+                FileContainer container = imageHandler.GetPdfFile(DocumentName,options);
 
                 //Change the extension of the file and assign to a string type variable filename
                 String filename = Path.GetFileNameWithoutExtension(DocumentName) + ".pdf";
