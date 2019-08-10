@@ -2,7 +2,11 @@
 
 This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples), [Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases) and [Plugins](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases) for [GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net) that will help you in understanding the API's working and writing your own applications.
 
-GroupDocs.Viewer for .NET is a .NET API which provides the technology to create powerful document viewer component that allows you to display over 50 document formats in your .NET applications. The viewer can both rasterize documents and convert them to SVG+HTML+CSS, delivering true-text high-fidelity rendering. Supported file formats include: Microsoft Office, Visio, Project, and Outlook documents, PDFs, AutoCAD, image files (TIFF, JPG, BMP, GIF, TIFF, etc.) and more.
+GroupDocs.Viewer for .NET is a powerful document viewer API which supports over 140 document types to view documents in HTML5, Image or PDF modes with fast and high quality rendering.   
+Choose your own rendering strategy by processing document page-by-page, entire document at once or a custom pages range. 
+Customize document appearance via additional rendering options by adding watermarks, rotating and reordering pages, extracting document text with coordinates and much more!  
+
+Supported file formats include: Microsoft Office, Visio, Project, and Outlook documents, PDFs, AutoCAD, image files (TIFF, JPG, BMP, GIF, TIFF, etc.) and more.
 
 <p align="center">
 
@@ -26,4 +30,3 @@ Directory | Description
 + **Free Support:** [GroupDocs.Viewer for .NET Free Support Forum](https://forum.groupdocs.com/c/viewer)
 + **Paid Support:** [GroupDocs.Viewer for .NET Paid Support Helpdesk](https://helpdesk.groupdocs.com/)
 + **Blog:** [GroupDocs.Viewer for .NET Blog](https://blog.groupdocs.com/category/groupdocs-viewer-product-family/)
-
