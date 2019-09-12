@@ -13,12 +13,12 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
         public static void Run()
         {            
             FontSettings.SetFontSources(
-                new FolderFontSource(Constants.FontsPath, Fonts.SearchOption.TopFolderOnly));                       
+                new FolderFontSource(Utils.FontsPath, Fonts.SearchOption.TopFolderOnly));                       
             
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Constants.MISSING_FONT_ODG))
+            using (Viewer viewer = new Viewer(Utils.MISSING_FONT_ODG))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options);

@@ -11,11 +11,11 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
             MemoryStream attachmentStream = new MemoryStream();
             
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_MSG_WITH_ATTACHMENTS))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_MSG_WITH_ATTACHMENTS))
                 viewer.SaveAttachment("attachment-word.doc", attachmentStream); 
 
             using (Viewer viewer = new Viewer(() => attachmentStream))

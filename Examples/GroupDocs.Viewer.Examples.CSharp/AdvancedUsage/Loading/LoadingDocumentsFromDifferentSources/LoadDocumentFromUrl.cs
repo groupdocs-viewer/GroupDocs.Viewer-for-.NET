@@ -13,7 +13,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
         public static void Run()
         {
             string url = "https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/Examples/Resources/SampleFiles/sample.docx?raw=true";
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
             using (Viewer viewer = new Viewer(() => GetRemoteFile(url)))

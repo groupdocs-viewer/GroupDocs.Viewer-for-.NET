@@ -11,10 +11,10 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_DOCX_WITH_COMMENT))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX_WITH_COMMENT))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.RenderComments = true;

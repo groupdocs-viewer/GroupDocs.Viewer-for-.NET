@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {            
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_PDF))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_PDF))
             {
                 ViewInfoOptions options = ViewInfoOptions.ForHtmlView();
                 PdfViewInfo info = viewer.GetViewInfo(options) as PdfViewInfo;

@@ -11,9 +11,9 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
-            string filePath = Constants.SAMPLE_DOCX;
+            string filePath = Utils.SAMPLE_DOCX;
 
             using (Viewer viewer = new Viewer(filePath)) 
             {

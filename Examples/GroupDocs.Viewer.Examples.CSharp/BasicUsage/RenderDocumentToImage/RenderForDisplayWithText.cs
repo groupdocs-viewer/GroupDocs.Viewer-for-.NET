@@ -11,10 +11,10 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.png");
 
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX))
             {
                 PngViewOptions options = new PngViewOptions(pageFilePathFormat);
                 options.ExtractText = true;

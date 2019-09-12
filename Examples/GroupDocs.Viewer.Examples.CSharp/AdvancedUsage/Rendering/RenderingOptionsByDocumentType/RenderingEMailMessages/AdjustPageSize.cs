@@ -11,10 +11,10 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string filePath = Path.Combine(outputDirectory, "output.pdf");
 
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_MSG))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_MSG))
             {
                 PdfViewOptions options = new PdfViewOptions(filePath);
                 options.EmailOptions.PageSize = PageSize.A4;

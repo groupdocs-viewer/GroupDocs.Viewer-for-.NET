@@ -12,7 +12,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.QuickStart
         public static void Run()
         {
             string outputDirectory = Directory.GetCurrentDirectory();
-            string filePath = Constants.SAMPLE_DOCX;
+            string filePath = Utils.SAMPLE_DOCX;
             
             using (Viewer viewer = new Viewer(filePath))
             {

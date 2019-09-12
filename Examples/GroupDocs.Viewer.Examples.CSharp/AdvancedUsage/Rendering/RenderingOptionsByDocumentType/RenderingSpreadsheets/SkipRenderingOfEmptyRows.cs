@@ -11,10 +11,10 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_XLSX_WITH_EMPTY_ROW))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_XLSX_WITH_EMPTY_ROW))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.SpreadsheetOptions.SkipEmptyRows = true;

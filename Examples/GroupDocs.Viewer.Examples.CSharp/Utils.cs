@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
-    internal static class Constants
+    internal static class Utils
     {
         public const string LicensePath = "C://licenses//GroupDocs.Viewer.lic";
         public const string SamplesPath = "../../../Resources/SampleFiles";

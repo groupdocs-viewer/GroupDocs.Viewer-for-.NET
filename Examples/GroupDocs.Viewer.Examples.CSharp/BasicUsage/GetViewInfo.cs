@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage
     {
         public static void Run()
         {            
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_PDF))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_PDF))
             {
                 ViewInfo info = viewer.GetViewInfo(ViewInfoOptions.ForHtmlView());
 

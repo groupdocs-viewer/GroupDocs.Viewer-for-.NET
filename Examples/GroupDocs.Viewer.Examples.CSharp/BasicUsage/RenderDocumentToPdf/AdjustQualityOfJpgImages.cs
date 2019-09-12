@@ -11,10 +11,10 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf
     {
         public static void Run()
         {
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string filePath = Path.Combine(outputDirectory, "output.pdf");
 
-            using (Viewer viewer = new Viewer(Constants.JPG_IMAGE_PPTX))
+            using (Viewer viewer = new Viewer(Utils.JPG_IMAGE_PPTX))
             {               
                 PdfViewOptions options = new PdfViewOptions(filePath);
                 options.JpgQuality = 10;

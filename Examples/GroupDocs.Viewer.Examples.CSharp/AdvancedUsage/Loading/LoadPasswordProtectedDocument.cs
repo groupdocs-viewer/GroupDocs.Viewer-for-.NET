@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
     {
         public static void Run()
         {                       
-            string outputDirectory = Constants.GetOutputDirectoryPath();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
             string password = "12345";
 
@@ -19,7 +19,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
             GroupDocs.Viewer.Common.Func<LoadOptions> getLoadOptions = 
                 () => new LoadOptions(FileType.DOCX, password);
 
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_DOCX_WITH_PASSWORD, getLoadOptions))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX_WITH_PASSWORD, getLoadOptions))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options);

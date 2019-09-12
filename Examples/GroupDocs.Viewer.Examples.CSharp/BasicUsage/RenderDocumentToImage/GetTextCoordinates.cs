@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage
     {
         public static void Run()
         {               
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX))
             {
                 ViewInfoOptions options = ViewInfoOptions.ForPngView(true);
                 ViewInfo viewInfo = viewer.GetViewInfo(options);

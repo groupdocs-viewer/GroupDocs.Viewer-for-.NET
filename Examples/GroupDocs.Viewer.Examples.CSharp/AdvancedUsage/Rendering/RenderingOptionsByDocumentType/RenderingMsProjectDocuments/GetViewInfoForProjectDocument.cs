@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {
-            using (Viewer viewer = new Viewer(Constants.SAMPLE_MPP))
+            using (Viewer viewer = new Viewer(Utils.SAMPLE_MPP))
             {
                 ProjectManagementViewInfo info = viewer.GetViewInfo(
                     ViewInfoOptions.ForHtmlView()) as ProjectManagementViewInfo;
