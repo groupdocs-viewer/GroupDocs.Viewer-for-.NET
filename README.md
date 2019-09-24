@@ -1,6 +1,6 @@
 # GroupDocs.Viewer for .NET
 
-This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples), [Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases) and [Plugins](https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/tree/master/Showcases) for [GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net) that will help you in understanding the API's working and writing your own applications.
+This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples), [Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases) and [Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins) for [GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net) that will help you in understanding the API's working and writing your own applications.
 
 GroupDocs.Viewer for .NET is a powerful document viewer API which supports over 140 document types to view documents in HTML5, Image or PDF modes with fast and high quality rendering.   
 Choose your own rendering strategy by processing document page-by-page, entire document at once or a custom pages range. 
@@ -19,7 +19,7 @@ Directory | Description
 --------- | -----------
 [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples)  | Contains the package of all .NET C# examples and sample files that will help you learn how to use product features. 
 [Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases)  | The open source UI examples have been developed to help the developers in order to give them an idea that how they will integrate the GroupDocs.Viewer for .NET API in the front end applications. 
-[Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins/GroupDocs_Viewer_VSPlugin)  | Contains the plugins related to GroupDocs.Viewer for Visual Studio.
+[Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins)  | Contains the plugins related to GroupDocs.Viewer for Visual Studio.
 ## Resources
 
 + **Website:** [www.groupdocs.com](http://www.groupdocs.com)
