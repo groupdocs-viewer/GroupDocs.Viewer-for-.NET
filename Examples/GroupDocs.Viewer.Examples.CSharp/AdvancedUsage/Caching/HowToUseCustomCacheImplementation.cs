@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -165,3 +166,4 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Caching
         }
     }
 }
+#endif

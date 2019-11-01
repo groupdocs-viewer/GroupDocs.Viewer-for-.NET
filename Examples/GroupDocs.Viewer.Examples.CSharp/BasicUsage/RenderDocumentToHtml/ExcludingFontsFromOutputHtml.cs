@@ -5,7 +5,7 @@ using GroupDocs.Viewer.Options;
 namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml
 {
     /// <summary>
-    /// This example demonstrates how to exclude Times New Roman font from the output when rendering into HTML.
+    /// This example demonstrates how to exclude Arial font from the output when rendering into HTML.
     /// </summary>
     class ExcludingFontsFromOutputHtml
     {
@@ -18,7 +18,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml
             {
                 HtmlViewOptions options = 
                     HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                options.FontsToExclude.Add("Times New Roman");
+                options.FontsToExclude.Add("Arial");
 
                 viewer.View(options);
             }

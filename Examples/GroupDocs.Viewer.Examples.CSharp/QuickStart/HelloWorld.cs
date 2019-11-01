@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using GroupDocs.Viewer.Options;
 
 namespace GroupDocs.Viewer.Examples.CSharp.QuickStart
@@ -11,7 +10,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.QuickStart
     {
         public static void Run()
         {
-            string outputDirectory = Directory.GetCurrentDirectory();
+            string outputDirectory = Utils.GetOutputDirectoryPath();
             string filePath = Utils.SAMPLE_DOCX;
             
             using (Viewer viewer = new Viewer(filePath))

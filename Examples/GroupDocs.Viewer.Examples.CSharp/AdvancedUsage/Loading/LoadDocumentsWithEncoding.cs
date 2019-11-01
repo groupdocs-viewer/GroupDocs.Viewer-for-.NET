@@ -16,8 +16,8 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            GroupDocs.Viewer.Common.Func<LoadOptions> loadOptions = () => 
-                new LoadOptions(FileType.TXT, null, Encoding.GetEncoding("shift_jis"));
+            Common.Func<LoadOptions> loadOptions = () => 
+                new LoadOptions{ FileType = FileType.TXT, Encoding = Encoding.GetEncoding("shift_jis") };
 
             using (Viewer viewer = new Viewer(filePath, loadOptions))
             {

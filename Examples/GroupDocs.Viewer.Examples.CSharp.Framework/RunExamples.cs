@@ -77,7 +77,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region Render document to PDF
 
             //RenderToPdf.Run();
-            //
+
             //AdjustQualityOfJpgImages.Run();
             //ProtectPdfDocument.Run();
 

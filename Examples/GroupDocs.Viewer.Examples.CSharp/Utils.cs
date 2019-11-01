@@ -6,9 +6,16 @@ namespace GroupDocs.Viewer.Examples.CSharp
     internal static class Utils
     {
         public const string LicensePath = "C://licenses//GroupDocs.Viewer.lic";
-        public const string SamplesPath = "../../../Resources/SampleFiles";
-        public const string FontsPath = "../../../Resources/Fonts";
-        public const string OutputPath = "../../Output/";
+
+#if NETCOREAPP
+        public const string SamplesPath = "..\\..\\..\\..\\Resources\\SampleFiles";
+        public const string FontsPath = "..\\..\\..\\..\\Resources\\Fonts";
+        public const string OutputPath = "..\\..\\..\\..\\Output\\";
+#else
+        public const string SamplesPath = "..\\..\\..\\Resources\\SampleFiles";
+        public const string FontsPath = "..\\..\\..\\Resources\\Fonts";
+        public const string OutputPath = "..\\..\\..\\Output\\";
+#endif
 
         // Archives
         public static string SAMPLE_ZIP_WITH_FOLDERS => 
@@ -82,7 +89,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_missing_font.odg");
 
         private static string GetSampleFilePath(string filePath) =>
-            Path.Combine(SamplesPath, filePath);
+           Path.Combine(SamplesPath, filePath);
 
         public static string GetOutputDirectoryPath([CallerFilePath] string callerFilePath = null)
         {
@@ -91,7 +98,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             if (!Directory.Exists(outputDirectory))
                 Directory.CreateDirectory(outputDirectory);
 
-            return outputDirectory;
+            string path = Path.GetFullPath(outputDirectory);
+
+            return path;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
             string password = "12345";
 
             // Specify document password in load options
-            GroupDocs.Viewer.Common.Func<LoadOptions> getLoadOptions = 
-                () => new LoadOptions(FileType.DOCX, password);
+            Common.Func<LoadOptions> getLoadOptions = 
+                () => new LoadOptions { Password = password };
 
             using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX_WITH_PASSWORD, getLoadOptions))
             {

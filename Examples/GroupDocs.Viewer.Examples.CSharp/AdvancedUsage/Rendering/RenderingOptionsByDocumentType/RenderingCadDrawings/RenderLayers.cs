@@ -21,7 +21,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.CadOptions.Layers = new List<Layer>
                 {
-                    new Layer("TRIANGLE"),
                     new Layer("QUADRANT")
                 };
 

@@ -17,7 +17,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(Utils.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.3f);
+                options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.5f);
 
                 viewer.View(options);
             }

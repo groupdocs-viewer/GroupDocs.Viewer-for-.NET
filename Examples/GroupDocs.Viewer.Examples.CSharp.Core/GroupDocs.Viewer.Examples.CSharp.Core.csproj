@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="GroupDocs.Viewer" Version="19.10.0" />
+  </ItemGroup>
+
+</Project>

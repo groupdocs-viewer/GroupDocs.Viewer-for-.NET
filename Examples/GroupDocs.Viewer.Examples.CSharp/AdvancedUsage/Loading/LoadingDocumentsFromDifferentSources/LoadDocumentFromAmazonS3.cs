@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP
+using System;
 using System.IO;
 using Amazon.S3;
 using Amazon.S3.Model;
@@ -46,3 +47,4 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
         }
     }
 }
+#endif

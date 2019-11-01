@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETCOREAPP
+using System;
 using System.IO;
 using GroupDocs.Viewer.Options;
 using Microsoft.WindowsAzure.Storage;
@@ -57,3 +58,5 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
         }
     }
 }
+
+#endif

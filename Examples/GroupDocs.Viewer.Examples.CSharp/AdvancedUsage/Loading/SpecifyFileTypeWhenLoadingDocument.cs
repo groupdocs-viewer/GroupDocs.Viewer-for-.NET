@@ -15,7 +15,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
             using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX, 
-                () => new LoadOptions(FileType.DOCX)))
+                () => new LoadOptions { FileType = FileType.DOCX }))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options);
