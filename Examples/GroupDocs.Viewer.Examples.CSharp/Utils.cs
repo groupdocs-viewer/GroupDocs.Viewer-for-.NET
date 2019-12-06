@@ -5,17 +5,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
 {
     internal static class Utils
     {
-        public const string LicensePath = "C://licenses//GroupDocs.Viewer.lic";
+        public const string LicensePath = "./Resources/GroupDocs.Viewer.lic";
 
-#if NETCOREAPP
-        public const string SamplesPath = "..\\..\\..\\..\\Resources\\SampleFiles";
-        public const string FontsPath = "..\\..\\..\\..\\Resources\\Fonts";
-        public const string OutputPath = "..\\..\\..\\..\\Output\\";
-#else
-        public const string SamplesPath = "..\\..\\..\\Resources\\SampleFiles";
-        public const string FontsPath = "..\\..\\..\\Resources\\Fonts";
-        public const string OutputPath = "..\\..\\..\\Output\\";
-#endif
+        public const string SamplesPath = @"./Resources/SampleFiles";
+        public const string FontsPath = @"./Resources/Fonts";
+        public const string OutputPath = @"./Output";
 
         // Archives
         public static string SAMPLE_ZIP_WITH_FOLDERS => 
