@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_PPTX_HIDDEN_PAGE))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_PPTX_HIDDEN_PAGE))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.RenderHiddenPages = true;

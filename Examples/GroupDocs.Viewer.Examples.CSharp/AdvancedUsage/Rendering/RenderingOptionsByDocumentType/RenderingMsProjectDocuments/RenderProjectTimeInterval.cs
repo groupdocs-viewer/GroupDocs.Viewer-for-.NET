@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using GroupDocs.Viewer.Options;
+using GroupDocs.Viewer.Results;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments
 {
@@ -14,12 +15,15 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_MPP))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 
-                options.ProjectManagementOptions.StartDate = new DateTime(2008, 6, 1);
-                options.ProjectManagementOptions.EndDate = new DateTime(2008, 7, 1);
+                ProjectManagementViewInfo viewInfo = 
+                    viewer.GetViewInfo(ViewInfoOptions.FromHtmlViewOptions(options)) as ProjectManagementViewInfo;
+
+                options.ProjectManagementOptions.StartDate = viewInfo.StartDate;
+                options.ProjectManagementOptions.EndDate = viewInfo.StartDate.AddDays(7);
 
                 viewer.View(options);
             }

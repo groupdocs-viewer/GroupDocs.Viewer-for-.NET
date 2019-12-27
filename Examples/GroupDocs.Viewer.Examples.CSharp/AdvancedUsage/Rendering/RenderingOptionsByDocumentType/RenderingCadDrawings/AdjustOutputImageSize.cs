@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.5f);

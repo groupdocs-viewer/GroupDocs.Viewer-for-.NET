@@ -20,7 +20,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Caching
             FileCache cache = new FileCache(cachePath);
             ViewerSettings settings = new ViewerSettings(cache);
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX, settings))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX, settings))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 

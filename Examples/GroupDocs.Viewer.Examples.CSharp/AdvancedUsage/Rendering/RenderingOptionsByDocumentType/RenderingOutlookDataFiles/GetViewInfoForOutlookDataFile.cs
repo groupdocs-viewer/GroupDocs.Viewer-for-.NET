@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_OST_SUBFOLDERS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_OST_SUBFOLDERS))
             {
                 ViewInfoOptions options = ViewInfoOptions.ForHtmlView();
                 OutlookViewInfo rootFolderInfo = viewer.GetViewInfo(options)

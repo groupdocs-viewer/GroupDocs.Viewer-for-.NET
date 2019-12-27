@@ -15,7 +15,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
             MemoryStream attachmentStream = new MemoryStream();
             
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_MSG_WITH_ATTACHMENTS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS))
                 viewer.SaveAttachment("attachment-word.doc", attachmentStream); 
 
             using (Viewer viewer = new Viewer(() => attachmentStream))

@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromUrl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadPasswordProtectedDocument.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SetResourceLoadingTimeout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SpecifyFileTypeWhenLoadingDocument.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\AddWatermark.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderDocumentWithComments.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\SkipRenderingOfEmptyRows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\SplitWorksheetsIntoPages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWordProcessingDocuments\RenderTrackedChanges.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestFiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetSupportedFileFormats.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetViewInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\ProcessingAttachments\RenderDocumentAttachments.cs" />
@@ -131,6 +133,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_empty_row.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_external_image.doc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_folders.zip">

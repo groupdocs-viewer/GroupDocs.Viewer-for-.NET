@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_XLSX_WITH_TEXT_OVERFLOW))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX_WITH_TEXT_OVERFLOW))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.SpreadsheetOptions.TextOverflowMode = TextOverflowMode.HideText;

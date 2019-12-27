@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.HIEROGLYPHS_PDF))
+            using (Viewer viewer = new Viewer(TestFiles.HIEROGLYPHS_PDF))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.PdfOptions.DisableCharsGrouping = true;

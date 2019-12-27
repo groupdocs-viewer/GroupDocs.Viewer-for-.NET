@@ -13,13 +13,13 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
         {                       
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
-            string password = "12345";
 
-            // Specify document password in load options
-            Common.Func<LoadOptions> getLoadOptions = 
-                () => new LoadOptions { Password = password };
+            LoadOptions loadOptions = new LoadOptions
+            {
+                Password = "12345"
+            };
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX_WITH_PASSWORD, getLoadOptions))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX_WITH_PASSWORD, loadOptions))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options);

@@ -2,23 +2,26 @@
 using System.IO;
 using GroupDocs.Viewer.Options;
 
-namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml
+namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading
 {
     /// <summary>
-    /// This example demonstrates how to render document into responsive HTML.
+    /// This example demonstrates how to set timeout for loading external resources contained by a document.
     /// </summary>
-    class RenderToResponsiveHtml
+    class SetResourceLoadingTimeout
     {
         public static void Run()
         {                       
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
+            
+            LoadOptions loadOptions = new LoadOptions
+            {
+                ResourceLoadingTimeout = TimeSpan.FromSeconds(5)
+            };
 
-            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(TestFiles.WITH_EXTERNAL_IMAGE_DOC, loadOptions))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                options.RenderResponsive = true;                
-
                 viewer.View(options);
             }
 

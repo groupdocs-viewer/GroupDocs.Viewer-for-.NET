@@ -24,7 +24,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
             Console.WriteLine($"\nSource document rendered successfully.\nCheck output in {outputDirectory}.");
         }
 
-        private static Stream GetFileStream() => 
-            File.OpenRead(Utils.SAMPLE_DOCX);
+        private static Stream GetFileStream() => File.OpenRead(TestFiles.SAMPLE_DOCX);
     }
 }

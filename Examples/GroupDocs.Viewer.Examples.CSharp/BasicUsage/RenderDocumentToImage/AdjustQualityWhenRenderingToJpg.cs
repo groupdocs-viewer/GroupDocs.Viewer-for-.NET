@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.jpg");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX))
             {
                 JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
                 options.Quality = 50;

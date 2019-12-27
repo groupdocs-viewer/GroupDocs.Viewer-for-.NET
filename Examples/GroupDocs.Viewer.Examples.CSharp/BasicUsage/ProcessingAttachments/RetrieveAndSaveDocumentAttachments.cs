@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_MSG_WITH_ATTACHMENTS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS))
             {
                 IList<Attachment> attachments = viewer.GetAttachments();
                 foreach(Attachment attachment in attachments)

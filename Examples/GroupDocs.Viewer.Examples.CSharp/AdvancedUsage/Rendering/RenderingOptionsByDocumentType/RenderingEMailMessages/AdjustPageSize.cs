@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string filePath = Path.Combine(outputDirectory, "output.pdf");
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_MSG))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG))
             {
                 PdfViewOptions options = new PdfViewOptions(filePath);
                 options.EmailOptions.PageSize = PageSize.A4;

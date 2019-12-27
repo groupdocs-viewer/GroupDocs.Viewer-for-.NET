@@ -18,7 +18,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
-            using (Viewer viewer = new Viewer(Utils.MISSING_FONT_ODG))
+            using (Viewer viewer = new Viewer(TestFiles.MISSING_FONT_ODG))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options);

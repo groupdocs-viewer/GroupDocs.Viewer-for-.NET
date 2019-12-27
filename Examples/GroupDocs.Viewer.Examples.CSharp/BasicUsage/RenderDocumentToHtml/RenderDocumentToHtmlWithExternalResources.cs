@@ -17,7 +17,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml
             string resourceFilePathFormat = $"{outputDirectory}/page_{{0}}_{{1}}";
             string resourceUrlFormat = $"{outputDirectory}/page_{{0}}_{{1}}";
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX))
             {                
                 HtmlViewOptions options = HtmlViewOptions
                     .ForExternalResources(pageFilePathFormat, resourceFilePathFormat, resourceUrlFormat);

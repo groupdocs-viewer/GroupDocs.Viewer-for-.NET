@@ -27,8 +27,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             Console.WriteLine("Open RunExamples.cs. \nIn Main() method uncomment the example that you want to run.");
             Console.WriteLine("=====================================================");
 
-            //NOTE: Please uncomment the example you want to try out
-
             #region Quick Start
 
             SetLicenseFromFile.Run();
@@ -187,6 +185,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //LoadPasswordProtectedDocument.Run();
             //LoadDocumentsWithEncoding.Run();
             //SpecifyFileTypeWhenLoadingDocument.Run();
+            //SetResourceLoadingTimeout.Run();
 
             #region Loading documents from different sources
 

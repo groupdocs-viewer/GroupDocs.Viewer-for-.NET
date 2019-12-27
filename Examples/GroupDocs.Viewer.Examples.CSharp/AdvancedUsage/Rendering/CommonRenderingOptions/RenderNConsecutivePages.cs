@@ -16,7 +16,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
             int[] range = Enumerable.Range(1, 3).ToArray();
 
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_DOCX))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 viewer.View(options, range);

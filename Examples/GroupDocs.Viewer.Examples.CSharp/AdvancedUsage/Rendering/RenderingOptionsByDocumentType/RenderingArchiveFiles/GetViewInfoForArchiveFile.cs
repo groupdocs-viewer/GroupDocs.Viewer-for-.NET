@@ -11,7 +11,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     {
         public static void Run()
         {
-            using (Viewer viewer = new Viewer(Utils.SAMPLE_ZIP_WITH_FOLDERS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP_WITH_FOLDERS))
             {
                 ViewInfo info = viewer.GetViewInfo(ViewInfoOptions.ForHtmlView());
 
