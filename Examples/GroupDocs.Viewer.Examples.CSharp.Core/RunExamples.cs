@@ -142,6 +142,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //GetViewInfoForPdfDocument.Run();
             //AdjustImageQuality.Run();
             //EnableLayeredRendering.Run();
+            //RenderOriginalPageSize.Run();
 
             #endregion
 
