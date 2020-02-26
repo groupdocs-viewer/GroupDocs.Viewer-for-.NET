@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.C
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GroupDocs.Viewer.Examples.CSharp", "GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.shproj", "{52FCB48E-82A0-4201-ACA1-E9B6047E2047}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.Core", "GroupDocs.Viewer.Examples.CSharp.Core\GroupDocs.Viewer.Examples.CSharp.Core.csproj", "{A5DDB218-44E3-4006-B89B-DDC227C973F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Core", "GroupDocs.Viewer.Examples.CSharp.Core\GroupDocs.Viewer.Examples.CSharp.Core.csproj", "{A5DDB218-44E3-4006-B89B-DDC227C973F7}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
