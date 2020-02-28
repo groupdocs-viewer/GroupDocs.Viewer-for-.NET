@@ -95,6 +95,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderSelectedPages.Run();
             //ReplaceMissingFont.Run();
             //ReorderPages.Run();
+            //FlipRotatePages.Run();
             //RenderWithCustomFonts.Run();
 
             #endregion
