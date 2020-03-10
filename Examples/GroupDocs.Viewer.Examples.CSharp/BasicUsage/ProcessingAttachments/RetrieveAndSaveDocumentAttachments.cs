@@ -20,7 +20,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
                 foreach(Attachment attachment in attachments)
                 {
                     string filePath = Path.Combine(outputDirectory, attachment.FileName);  
-                    viewer.SaveAttachment(attachment.Id, File.OpenWrite(filePath)); 
+                    viewer.SaveAttachment(attachment, File.OpenWrite(filePath)); 
                 }
             }
 
