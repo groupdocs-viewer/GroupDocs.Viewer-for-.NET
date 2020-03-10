@@ -5,6 +5,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
     public static class TestFiles
     {
         // Archives
+        public static string SAMPLE_ZIP =>
+            GetSampleFilePath("sample.zip");
         public static string SAMPLE_ZIP_WITH_FOLDERS =>
             GetSampleFilePath("with_folders.zip");
 
