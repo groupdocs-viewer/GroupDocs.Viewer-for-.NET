@@ -118,6 +118,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderSingleLayout.Run();
             //SplitDrawingIntoTiles.Run();
             //AdjustOutputImageSize.Run();
+            //RenderingPlt.Run();
+            //RenderingHpg.Run();
 
             #endregion
 
