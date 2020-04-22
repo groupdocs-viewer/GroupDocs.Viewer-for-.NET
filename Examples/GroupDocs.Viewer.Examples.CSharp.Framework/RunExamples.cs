@@ -120,6 +120,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //AdjustOutputImageSize.Run();
             //RenderingPlt.Run();
             //RenderingHpg.Run();
+            //SetImageBackgroundColor.Run();
 
             #endregion
 
