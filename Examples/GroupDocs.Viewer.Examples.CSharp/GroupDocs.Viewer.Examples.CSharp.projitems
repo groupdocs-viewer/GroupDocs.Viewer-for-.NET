@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\GetViewInfoForCadDrawing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderAllLayouts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingHpg.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingPlt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderLayers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderSingleLayout.cs" />
@@ -122,6 +123,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.msg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.ost">

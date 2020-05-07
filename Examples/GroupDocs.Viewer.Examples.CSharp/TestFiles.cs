@@ -15,6 +15,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_layers_and_layouts.dwg");
         public static string SAMPLE_PLT =>
             GetSampleFilePath("sample.plt");
+
+        public static string SAMPLE_OBJ =>
+            GetSampleFilePath("sample.obj");
+
         public static string SAMPLE_HPG =>
             GetSampleFilePath("sample.hpg");
 
