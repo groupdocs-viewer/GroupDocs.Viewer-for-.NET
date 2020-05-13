@@ -120,6 +120,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //SplitDrawingIntoTiles.Run();
             //AdjustOutputImageSize.Run();
             //RenderingPlt.Run();
+            //RenderingObj.Run();
+            //RenderingCf2.Run();
             //RenderingHpg.Run();
             //SetImageBackgroundColor.Run();
 
