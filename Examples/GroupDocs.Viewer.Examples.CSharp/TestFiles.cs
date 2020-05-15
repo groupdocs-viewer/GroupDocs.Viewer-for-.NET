@@ -17,6 +17,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.plt");
         public static string SAMPLE_CF2 =>
             GetSampleFilePath("sample.cf2");
+        public static string SAMPLE_IGS =>
+            GetSampleFilePath("sample.igs");
         public static string SAMPLE_OBJ =>
             GetSampleFilePath("sample.obj");
         public static string SAMPLE_HPG =>
