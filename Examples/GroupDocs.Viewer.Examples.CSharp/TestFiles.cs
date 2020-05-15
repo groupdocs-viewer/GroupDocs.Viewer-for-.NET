@@ -49,6 +49,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_missing_font.pptx");
         public static string JPG_IMAGE_PPTX =>
             GetSampleFilePath("with_jpg_image.pptx");
+        public static string SAMPLE_FODP =>
+            GetSampleFilePath("sample.fodp");
 
         // Project Management documents
         public static string SAMPLE_MPP =>

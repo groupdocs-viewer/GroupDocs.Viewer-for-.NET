@@ -9,6 +9,7 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsB
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPresentationDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingSpreadsheets;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage;
@@ -124,6 +125,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingCf2.Run();
             //RenderingHpg.Run();
             //SetImageBackgroundColor.Run();
+            //RenderingFodp.Run();
 
             #endregion
 
