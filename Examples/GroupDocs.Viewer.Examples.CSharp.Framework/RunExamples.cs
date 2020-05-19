@@ -127,6 +127,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //SetImageBackgroundColor.Run();
             //RenderingFodp.Run();
             //RenderingIgs.Run();
+            //RenderingNotes.Run();
 
             #endregion
 
