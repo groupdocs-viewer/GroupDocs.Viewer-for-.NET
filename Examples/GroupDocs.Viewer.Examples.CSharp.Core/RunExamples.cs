@@ -6,6 +6,7 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderingOp
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingArchiveFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingCadDrawings;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingEMailMessages;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingImageFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
@@ -129,6 +130,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingFodp.Run();
             //RenderingIgs.Run();
             //RenderingNotes.Run();
+            //RenderingFodgAndOdg.Run();
 
             #endregion
 
