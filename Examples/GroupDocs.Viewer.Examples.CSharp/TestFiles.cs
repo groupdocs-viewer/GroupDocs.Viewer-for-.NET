@@ -31,6 +31,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_attachments.msg");
         public static string SAMPLE_OST =>
             GetSampleFilePath("sample.ost");
+        public static string SAMPLE_PST =>
+           GetSampleFilePath("sample.pst");
         public static string SAMPLE_OST_SUBFOLDERS =>
             GetSampleFilePath("with_subfolders.ost");
 
