@@ -101,7 +101,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ReorderPages.Run();
             //FlipRotatePages.Run();
             //RenderWithCustomFonts.Run();
-            RenderingTxt.Run();
+            //RenderingTxt.Run();
 
 
             #endregion
