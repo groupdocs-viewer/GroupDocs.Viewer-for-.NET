@@ -13,6 +13,7 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsB
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPresentationDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingSpreadsheets;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingTextDocuments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml;
@@ -100,6 +101,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //ReorderPages.Run();
             //FlipRotatePages.Run();
             //RenderWithCustomFonts.Run();
+            //RenderingTxt.Run();
+
 
             #endregion
 
