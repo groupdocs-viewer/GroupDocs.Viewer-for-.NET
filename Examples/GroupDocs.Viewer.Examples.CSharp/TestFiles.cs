@@ -73,6 +73,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_hidden_row_and_column.xlsx");
         public static string SAMPLE_XLSX_WITH_TEXT_OVERFLOW =>
             GetSampleFilePath("with_overflowing_text.xlsx");
+        public static string THREE_SHEETS =>
+            GetSampleFilePath("three_sheets.xlsx");
 
         // Word Processing documents
 

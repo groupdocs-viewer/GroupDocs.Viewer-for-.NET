@@ -179,6 +179,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //SkipRenderingOfEmptyRows.Run();
             //SplitWorksheetsIntoPages.Run();
             //RenderRowAndColumnHeadings.Run();
+            //GetWorksheetsNames.Run();
 
             #endregion
 
