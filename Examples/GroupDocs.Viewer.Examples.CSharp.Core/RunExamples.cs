@@ -19,6 +19,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
+using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 
 namespace GroupDocs.Viewer.Examples.CSharp
@@ -219,6 +220,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #endregion
 
+            #endregion
+
+            #region HowTo
+            //HowToDetermineFileType.FromFileExtension();
+            //HowToDetermineFileType.FromMediaType();
+            //HowToDetermineFileType.FromStream();
             #endregion
 
             Console.WriteLine();
