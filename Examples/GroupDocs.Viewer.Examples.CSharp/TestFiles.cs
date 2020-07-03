@@ -95,6 +95,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
         public static string SAMPLE_TXT =>
             GetSampleFilePath("sample.txt");
 
+        public static string SAMPLE_2_TXT =>
+            GetSampleFilePath("sample2.txt");
+
         // Graphics
         public static string MISSING_FONT_ODG =>
             GetSampleFilePath("with_missing_font.odg");
