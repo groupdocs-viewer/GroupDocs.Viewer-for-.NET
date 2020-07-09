@@ -1,0 +1,40 @@
+git:
+  submodules: false
+
+branches:
+  only:
+  - master
+  
+env:
+  global:
+    - PRODUCT=viewer
+    - PLATFORM=net
+    - ROOT_DIR=Docs/docs-common
+    - SRC_DIR=Docs/docs-common/public
+    - DEST_DIR=/var/www/docs.groupdocs.com/html
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv
+  -in deploy_key.enc -out ./deploy_key -d
+- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+- git submodule update --init --recursive Docs
+- git submodule foreach git pull origin master
+- eval "$(ssh-agent -s)"
+- chmod 600 ./deploy_key
+- echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- ssh-add ./deploy_key
+
+install:
+- curl -LO https://github.com/gohugoio/hugo/releases/download/v0.67.1/hugo_extended_0.67.1_Linux-64bit.deb
+- sudo dpkg -i hugo_extended_0.67.1_Linux-64bit.deb
+
+script:
+- cp -r Docs/content/* $ROOT_DIR/content/
+- hugo --source $ROOT_DIR --minify --config config.toml,ignore-total-config.toml
+- mkdir -p $SRC_DIR/search-json
+- mv $SRC_DIR/index.json $SRC_DIR/search-json/$PRODUCT-$PLATFORM.json
+
+after_success:
+- scp -i ./deploy_key -r $SRC_DIR/$PRODUCT $USER@$HOST:$DEST_DIR
+- scp -i ./deploy_key -r $SRC_DIR/product-sitemap.xml $USER@$HOST:$DEST_DIR/sitemaps/$PRODUCT-$PLATFORM.xml
+- scp -i ./deploy_key -r $SRC_DIR/search-json/$PRODUCT-$PLATFORM.json $USER@$HOST:$DEST_DIR/search-json/$PRODUCT-$PLATFORM.json
