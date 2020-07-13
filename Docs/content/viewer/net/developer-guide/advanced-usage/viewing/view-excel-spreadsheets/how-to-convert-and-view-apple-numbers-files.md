@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Introduction
 
-Numbes is Apple spreadsheet document format. It can be opened on Mac with Numbers application.
+Numbers is Apple spreadsheet document format. It can be opened on Mac with Numbers application.
 
 ![numbers in Mac](viewer/net/images/how-to-convert-and-view-apple-numbers-files/numbers-in-mac.png)
 
