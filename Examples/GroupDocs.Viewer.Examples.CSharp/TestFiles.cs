@@ -43,6 +43,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("hieroglyphs.pdf");
         public static string HIEROGLYPHS_1_PDF =>
             GetSampleFilePath("hieroglyphs_1.pdf");
+        public static string ENCRYPTED =>
+            GetSampleFilePath("encrypted.pdf");
 
         // Presentations
         public static string PPTX_WITH_NOTES =>
