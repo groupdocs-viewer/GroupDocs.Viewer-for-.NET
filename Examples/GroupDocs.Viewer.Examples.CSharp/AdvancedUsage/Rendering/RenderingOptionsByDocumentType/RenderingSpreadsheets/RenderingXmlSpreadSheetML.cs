@@ -15,7 +15,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             string pageFileFullPath = Path.Combine(outputDirectory, "Excel_2003_Xml_result.html");
 
             /* Because the XML extension is associated with both an XML text document and Excel 2003 XML SpreadSheetML, 
-             * specify the Excel2003XML fileType explicitly to render it as Excel 2003 XML SpreadSheetML.
+             * please specify the Excel2003XML fileType explicitly to render it as Excel 2003 XML SpreadSheetML.
              */
 
             LoadOptions loadOptions = new LoadOptions(FileType.Excel2003XML);
