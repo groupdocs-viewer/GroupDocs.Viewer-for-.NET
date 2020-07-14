@@ -3,7 +3,7 @@ id:  how-to-convert-and-view-apple-numbers-files
 url: viewer/net/how-to-convert-and-view-apple-numbers-files
 title: How to convert and view Apple numbers files
 weight: 2
-description: "In this article we show how to convert and view FODP and ODP files with GroupDocs.Viewer within your .NET applications."
+description: "In this article we show how to convert and view Apple numbers files with GroupDocs.Viewer within your .NET applications."
 keywords: 
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
