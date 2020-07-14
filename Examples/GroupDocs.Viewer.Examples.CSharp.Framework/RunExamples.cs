@@ -44,6 +44,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //GetSupportedFileFormats.Run();
             //GetViewInfo.Run();
+            //CheckFileIsEncrypted.Run();
 
             #region Processing attachments
 
