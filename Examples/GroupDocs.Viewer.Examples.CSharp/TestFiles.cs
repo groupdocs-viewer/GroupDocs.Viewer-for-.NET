@@ -75,6 +75,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_overflowing_text.xlsx");
         public static string THREE_SHEETS =>
             GetSampleFilePath("three_sheets.xlsx");
+        public static string SAMPLE_NUMBERS =>
+            GetSampleFilePath("sample.numbers");
 
         // Word Processing documents
 
