@@ -24,8 +24,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 viewer.View(options);
             }
 
-            pageFileFullPath = Path.Combine(outputDirectory, "Numbers_result_single_page.html");
-
             // TO JPG
             pageFileFullPath = Path.Combine(outputDirectory, "Numbers_result.jpg");
 
