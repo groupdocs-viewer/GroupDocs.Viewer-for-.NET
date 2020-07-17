@@ -8,8 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: True
 ---
-{{< alert style="info" >}}Welcome to the GroupDocs.Viewer for .NETGroupDocs.Viewer is a fast, powerful and high-quality file and document viewer API for .NET (C#, VB, etc) which allows you to display over 140 file formats in your desktop, web or mobile applications. The API provides flexible and fully customizable rendering options with an ability to render documents into HTML5, Image, and PDF to satisfy any requirements for different use cases. Our document viewer API is simple, intuitive and complete.With only a few lines of code, you can render/display your documents without installing any additional software and at the same time configure rendering options to fulfill your needs.{{< /alert >}}
-
+{{< alert style="info" >}}![](viewer/net/images/home.png) **Welcome to the GroupDocs.Viewer for .NET**  
+GroupDocs.Viewer is a fast, powerful and high-quality [file and document viewer](https://en.wikipedia.org/wiki/File_viewer) API for .NET (C#, VB, etc) which allows you to display over 140 file formats in your desktop, web or mobile applications. The API provides flexible and fully customizable rendering options with an ability to render documents into HTML5, Image, and PDFto satisfy any requirements for different use cases. Our document viewer API is simple, intuitive and complete.With only a few lines of code, you can render/display your documents without installing any additional software and at the same time configure rendering options to fulfill your needs
+{{< /alert >}}
 ## GroupDocs.Viewer for .NET Resources
 
 Following are the links to some useful resources you may need to accomplish your tasks.
