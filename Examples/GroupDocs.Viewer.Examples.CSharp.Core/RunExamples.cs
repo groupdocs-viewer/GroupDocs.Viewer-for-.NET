@@ -115,7 +115,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //GetViewInfoForArchiveFile.Run();
             //RenderArchiveFolder.Run();
             //SpecifyFilenameWhenRenderingArchiveFiles.Run();
-            //RenderingFodp.Run();
+            //RenderingRar.Run();
 
             #endregion
 

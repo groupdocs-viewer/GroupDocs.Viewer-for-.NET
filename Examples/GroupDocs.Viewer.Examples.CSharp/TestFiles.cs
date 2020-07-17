@@ -9,6 +9,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.zip");
         public static string SAMPLE_ZIP_WITH_FOLDERS =>
             GetSampleFilePath("with_folders.zip");
+        public static string SAMPLE_RAR_WITH_FOLDERS =>
+            GetSampleFilePath("with_folders.rar");
 
         // CAD drawings
         public static string SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS =>
