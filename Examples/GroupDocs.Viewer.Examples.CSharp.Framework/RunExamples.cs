@@ -115,6 +115,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderArchiveFolder.Run();
             //SpecifyFilenameWhenRenderingArchiveFiles.Run();
             //RenderingRar.Run();
+            //RenderingArchivesToMultipleAndSinglePagesHtml.Run();
 
             #endregion
 
