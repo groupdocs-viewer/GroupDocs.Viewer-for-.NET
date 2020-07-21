@@ -8,7 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-{{< alert style="info" >}}This page contains release notes for GroupDocs.Viewer for .NET 16.10.0.{{< /alert >}}
+{{< alert style="info" >}}
+This page contains release notes for [GroupDocs.Viewer for .NET 16.10.0](http://downloads.groupdocs.com/viewer/net/new-releases/groupdocs.viewer-for-.net-16.10.0/).
+{{< /alert >}}
 
 ## Major Features
 

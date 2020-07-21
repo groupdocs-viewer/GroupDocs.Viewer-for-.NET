@@ -8,4 +8,6 @@ keywords: GroupDocs.Viewer Developer Guide, GroupDocs.Viewer .NET Developer Guid
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-{{< alert style="info" >}}This section describes some basic and advanced use cases of GroupDocs.Viewer for .NET. Please refer to GitHub repository for more examples and samples.{{< /alert >}}
+{{< alert style="info" >}}
+This section describes some basic and advanced use cases of GroupDocs.Viewer for .NET. Please refer to [GitHub repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) for more examples and samples.
+{{< /alert >}}

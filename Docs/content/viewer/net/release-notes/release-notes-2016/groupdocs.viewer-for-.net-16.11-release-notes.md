@@ -8,7 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-{{< alert style="info" >}}This page contains release notes for GroupDocs.Viewer for .NET 16.11.0.{{< /alert >}}
+{{< alert style="info" >}}
+This page contains release notes for [GroupDocs.Viewer for .NET 16.11.0](http://downloads.groupdocs.com/viewer/net/new-releases/groupdocs.viewer-for-.net-16.11.0/).
+{{< /alert >}}
 
 ## Major Features
 
@@ -43,7 +45,10 @@ There are 2 new features and 15 improvements and fixes in this regular monthly r
 
 ## Public API and Backward Incompatible Changes
 
-{{< alert style="info" >}}This section lists public API changes that were introduced in GroupDocs.Viewer for .NET 16.11.0. It includes not only new and obsoleted public methods, but also a description of any changes in the behavior behind the scenes in GroupDocs.Viewer which may affect existing code. Any behavior introduced that could be seen as a regression and modifies existing behavior is especially important and is documented here.{{< /alert >}}
+{{< alert style="info" >}}
+**LoadFileTree** method is obsolete starting from version 16.11.0 and it is replaced with **GetFileList** method.  
+**GetFileList** method retrieves files and directories for specified path (or GroupDocs.Viewer's storage path) and works identically in **ViewerImageHandler** and **ViewerHtmlHandler**
+{{< /alert >}}
 
 ### Ability to set default font when rendering Email documents
 
