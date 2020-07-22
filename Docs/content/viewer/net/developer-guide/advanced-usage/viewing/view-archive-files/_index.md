@@ -10,11 +10,11 @@ hideChildren: False
 ---
 ## Overview
 
-The archive files are used to compress files to save space on disk or compress files to group them. There are different compression algorithms are used to compress files that's why we have different archive formats. The most popular archive formats are ZIP and TAR and it's highly likely that you've already packed and unpacked archive files. 
+The archive files are used to compress files to save space on disk or compress files to group them. There are different compression algorithms are used to compress files that's why we have different archive formats. The most popular archive formats are ZIP and TAR and it's highly likely that you've already packed and unpacked archive files.
 
 ## Supported Archive Formats
 
-The following archive formats are supported by the GroupDocs.Viewer for .NET. 
+The following archive formats are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the archive file by reading the information in the file header.
 
@@ -24,6 +24,7 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | [.TAR](https://wiki.fileformat.com/compression/tar) | [Consolidated Unix File Archive](https://wiki.fileformat.com/compression/tar) | Yes |
 | [.BZ2](https://wiki.fileformat.com/compression/bz2) | [Bzip2 compressed file](https://wiki.fileformat.com/compression/bz2) | Yes |
 | [.GZ](https://wiki.fileformat.com/compression/gz) | [Gnu Zipped File](https://wiki.fileformat.com/compression/gz) | Yes |
+| [.RAR](https://wiki.fileformat.com/compression/rar) | [Roshal ARchive File](https://wiki.fileformat.com/compression/rar) | Yes |
 
 ## In this section
 
