@@ -13,7 +13,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         public static void Run()
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
-            string pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result.html");
+            string pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result_{0}.html");
 
             // TO HTML
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS))
@@ -24,7 +24,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             }
 
             // TO JPG
-            pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result.jpg");
+            pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result_{0}.jpg");
 
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS))
             {
@@ -34,7 +34,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             }
 
             // TO PNG
-            pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result.png");
+            pageFilePathFormat = Path.Combine(outputDirectory, "RAR_result_{0}.png");
 
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS))
             {
@@ -88,9 +88,9 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         private static void RenderSpecificArchiveFolder()
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
-            string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
+            string pageFilePathFormat = Path.Combine(outputDirectory, "archive_folder_page_{0}.html");
 
-            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP_WITH_FOLDERS))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
                 options.ArchiveOptions.Folder = "ThirdFolderWithItems";
