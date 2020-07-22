@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\ReplaceMissingFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\FlipRotatePages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\GetViewInfoForArchiveFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderingArchivesToMultipleAndSinglePagesHtml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderingRar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\SpecifyFilenameWhenRenderingArchiveFiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderArchiveFolder.cs" />
