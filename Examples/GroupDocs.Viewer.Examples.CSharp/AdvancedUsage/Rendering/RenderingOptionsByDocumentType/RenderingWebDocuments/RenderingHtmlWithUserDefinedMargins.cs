@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments
+namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments
 {
     /// <summary>
     /// This example demonstrates how to render HTML files with user defined margins.

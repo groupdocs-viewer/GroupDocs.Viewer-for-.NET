@@ -21,6 +21,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -192,10 +193,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #endregion
 
             #region Rendering Word Processing Documents
-
             //RenderTrackedChanges.Run();
-            //RenderingHtmlWithUserDefinedMargins.Run();
+            #endregion
 
+            #region Rendering Web documents
+            //RenderingHtmlWithUserDefinedMargins.Run();
             #endregion
 
             #endregion
