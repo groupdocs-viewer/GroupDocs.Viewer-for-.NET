@@ -185,7 +185,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderPrintAreas.Run();
             //SkipRenderingOfEmptyColumns.Run();
             //SkipRenderingOfEmptyRows.Run();
-            //SplitWorksheetsIntoPages.Run();
+            //SplitWorksheetsIntoPages.SplitByRows();
+            //SplitWorksheetsIntoPages.SplitByRowsAndColumns();
             //RenderRowAndColumnHeadings.Run();
             //GetWorksheetsNames.Run();
             //RenderingNumbers.Run();

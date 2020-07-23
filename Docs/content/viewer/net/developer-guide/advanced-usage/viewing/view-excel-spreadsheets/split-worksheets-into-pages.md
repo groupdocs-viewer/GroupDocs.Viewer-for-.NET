@@ -4,37 +4,74 @@ url: viewer/net/split-worksheets-into-pages
 title: Split worksheets into pages
 weight: 8
 description: "This article explains how to split worksheets into pages when viewing Spreadsheets with GroupDocs.Viewer within your .NET applications."
-keywords: 
+keywords: excel, worksheet, partial, rendering
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-There might be the case when you do not want to render the whole Spreadsheet on a single page and limit the number of rows that would be rendered on each output page. In this situation, the GroupDocs.Viewer allows you to specify the number of rows in an Spreadsheet to be rendered on each page.
 
-The following steps are required for partial rendering of large Excel sheets.
+In case you want to achieve better experience in viewing large Excel worksheets you can split worksheets into pages instead of rendering the whole worksheet. There are two options here that are shown in the image below.
 
-*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfviewoptions)) object
-*   Instantiate [SpreadsheetOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions) object by calling [SpreadsheetOptions.ForSplitSheetIntoPages](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions/methods/forsplitsheetintopages) method and specifying desired *countRowsPerPage* parameter.
-*   Call [View](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/viewer/methods/view) method.
+![Split worksheets into pages](viewer/net/images/split-worksheets-into-pages/split-by-rows-and-split-by-rows-and-columns.png)
+
+Each option may be a better choice depending on how many rows and columns your spreadsheets have. When a spreadsheet has a lot of columns it is preferable to split worksheet by rows and columns.
+
+## How to split worksheet by rows only
+
+By default, we're splitting worksheets by rows only. The default "rows per page" value is 40. So, when you have a workbook with a single worksheet with 100 rows you'll get three pages where the first page will contain the first 40 rows, the second page next 40 rows, and the third page the last 20 rows.
+
+In the next example, we'll split the worksheet into two pages. We'll be using [this sample file](viewer/net/sample-files/split-worksheets-into-pages/two-pages.xlsx) and the following code:
 
 ```csharp
-            using (Viewer viewer = new Viewer("sample.xlsx"))
-            {
-                HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
-                viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForSplitSheetIntoPages(45);
-                viewer.View(viewOptions);
-            }
+using (Viewer viewer = new Viewer("two-pages.xlsx"))
+{
+    int countRowsPerPage = 15;
+
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+    viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForSplitSheetIntoPages(countRowsPerPage);
+
+    viewer.View(viewOptions);
+}
 ```
 
+The following screenshot shows two output pages.
+
+![Output HTML two pages](viewer/net/images/split-worksheets-into-pages/output-html-two-pages.png)
+
+## How to split worksheet by rows and columns
+
+Now, let's use [this sample file](viewer/net/sample-files/split-worksheets-into-pages/four-pages.xlsx) and split worksheet by rows and columns.
+
+```csharp
+using (Viewer viewer = new Viewer("four-pages.xlsx"))
+{
+    int countRowsPerPage = 15;
+    int countColumnsPerPage = 7;
+
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+    viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForSplitSheetIntoPages(countRowsPerPage, countColumnsPerPage);
+
+    viewer.View(viewOptions);
+}
+```
+
+After executing the code above we'll get four pages on the output.
+
+![Output HTML four pages](viewer/net/images/split-worksheets-into-pages/output-html-four-pages.png)
+
 ## More resources
+
 ### GitHub Examples
+
 You may easily run the code above and see the feature in action in our GitHub examples:
-*   [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)    
-*   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)    
-*   [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)     
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
-*   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
-*   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
+
+* [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
+* [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
+* [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
+* [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
+* [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
+* [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 
 ### Free Online App
+
 Along with full-featured .NET library we provide simple but powerful free Apps.
 You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.

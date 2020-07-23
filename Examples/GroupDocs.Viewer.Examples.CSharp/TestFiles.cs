@@ -83,6 +83,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.numbers");
         public static string SAMPLE_XML_SPREADSHEETML =>
             GetSampleFilePath("excel-2003-xml.xml");
+        public static string TWO_PAGES_XLSX =>
+            GetSampleFilePath("two-pages.xlsx");
+        public static string FOUR_PAGES_XLSX =>
+            GetSampleFilePath("four-pages.xlsx");
 
         // Word Processing documents
 
