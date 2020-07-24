@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Михаил Евграфов</Author>
+  <LastAuthor>Михаил Михайлов</LastAuthor>
+  <Created>2020-07-07T11:51:09Z</Created>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>7020</WindowHeight>
+  <WindowWidth>20490</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="document">
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="16" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Row>
+    <Cell><Data ss:Type="String">Employee</Data></Cell>
+    <Cell><Data ss:Type="String">Quarter</Data></Cell>
+    <Cell><Data ss:Type="String">Product</Data></Cell>
+    <Cell><Data ss:Type="String">Continent</Data></Cell>
+    <Cell><Data ss:Type="String">Country</Data></Cell>
+    <Cell><Data ss:Type="String">Sale</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">David</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Maxilaku</Data></Cell>
+    <Cell><Data ss:Type="String">Asia</Data></Cell>
+    <Cell><Data ss:Type="String">China</Data></Cell>
+    <Cell><Data ss:Type="Number">2000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">David</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">Maxilaku</Data></Cell>
+    <Cell><Data ss:Type="String">Asia</Data></Cell>
+    <Cell><Data ss:Type="String">India</Data></Cell>
+    <Cell><Data ss:Type="Number">500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">David</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">Chai</Data></Cell>
+    <Cell><Data ss:Type="String">Asia</Data></Cell>
+    <Cell><Data ss:Type="String">Korea</Data></Cell>
+    <Cell><Data ss:Type="Number">1200</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">David</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">Maxilaku</Data></Cell>
+    <Cell><Data ss:Type="String">Asia</Data></Cell>
+    <Cell><Data ss:Type="String">India</Data></Cell>
+    <Cell><Data ss:Type="Number">1500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">James</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Chang</Data></Cell>
+    <Cell><Data ss:Type="String">Europe</Data></Cell>
+    <Cell><Data ss:Type="String">France</Data></Cell>
+    <Cell><Data ss:Type="Number">500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">James</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">Chang</Data></Cell>
+    <Cell><Data ss:Type="String">Europe</Data></Cell>
+    <Cell><Data ss:Type="String">France</Data></Cell>
+    <Cell><Data ss:Type="Number">1500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">James</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">Chang</Data></Cell>
+    <Cell><Data ss:Type="String">Europe</Data></Cell>
+    <Cell><Data ss:Type="String">Germany</Data></Cell>
+    <Cell><Data ss:Type="Number">800</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">James</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">Chang</Data></Cell>
+    <Cell><Data ss:Type="String">Europe</Data></Cell>
+    <Cell><Data ss:Type="String">Italy</Data></Cell>
+    <Cell><Data ss:Type="Number">900</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">James</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">Chang</Data></Cell>
+    <Cell><Data ss:Type="String">Europe</Data></Cell>
+    <Cell><Data ss:Type="String">France</Data></Cell>
+    <Cell><Data ss:Type="Number">500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Miya</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Geitost</Data></Cell>
+    <Cell><Data ss:Type="String">America</Data></Cell>
+    <Cell><Data ss:Type="String">U.S.</Data></Cell>
+    <Cell><Data ss:Type="Number">1600</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Miya</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Chai</Data></Cell>
+    <Cell><Data ss:Type="String">America</Data></Cell>
+    <Cell><Data ss:Type="String">U.S.</Data></Cell>
+    <Cell><Data ss:Type="Number">600</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Miya</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">Geitost</Data></Cell>
+    <Cell><Data ss:Type="String">America</Data></Cell>
+    <Cell><Data ss:Type="String">Brazil</Data></Cell>
+    <Cell><Data ss:Type="Number">2000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Miya</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">Geitost</Data></Cell>
+    <Cell><Data ss:Type="String">America</Data></Cell>
+    <Cell><Data ss:Type="String">U.S.</Data></Cell>
+    <Cell><Data ss:Type="Number">500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Miya</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">Geitost</Data></Cell>
+    <Cell><Data ss:Type="String">America</Data></Cell>
+    <Cell><Data ss:Type="String">U.S.</Data></Cell>
+    <Cell><Data ss:Type="Number">900</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Total</Data></Cell>
+    <Cell><Data ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:Index="6"><Data ss:Type="Error">#VALUE!</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Selected/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
