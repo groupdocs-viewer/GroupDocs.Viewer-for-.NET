@@ -141,22 +141,22 @@ Added new properties to GroupDocs.Viewer.Options.htmlviewoptions](<https://apire
 
 ```csharp
 /// <summary>
-/// Left page margin (from HTML rendering only)
+/// Left page margin (for HTML rendering only)
 /// </summary>
 public float LeftMargin { get; set; }
 
 /// <summary>
-/// Right page margin (from HTML rendering only)
+/// Right page margin (for HTML rendering only)
 /// </summary>
 public float RightMargin { get; set; }
 
 /// <summary>
-/// Top page margin
+/// Top page margin (for HTML rendering only)
 /// </summary>
 public float TopMargin { get; set; }
 
 /// <summary>
-/// Bottom page margin
+/// Bottom page margin (for HTML rendering only)
 /// </summary>
 public float BottomMargin { get; set; }
 
