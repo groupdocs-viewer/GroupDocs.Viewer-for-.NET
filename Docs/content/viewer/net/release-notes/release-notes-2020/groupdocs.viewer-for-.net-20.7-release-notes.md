@@ -3,8 +3,8 @@ id: groupdocs-viewer-for-net-20-7-release-notes
 url: viewer/net/groupdocs-viewer-for-net-20-7-release-notes
 title: GroupDocs.Viewer for .NET 20.7 Release Notes
 weight: 57
-description: ""
-keywords: 
+description: "Features, improvements, and bugs-fixes that are shipped in GroupDocs.Viewer for .NET 20.7"
+keywords: release notes, groupdocs.viewer, .net, 20.7
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---

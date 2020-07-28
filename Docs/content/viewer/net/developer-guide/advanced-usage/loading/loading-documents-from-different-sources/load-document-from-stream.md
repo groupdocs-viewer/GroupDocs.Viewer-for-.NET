@@ -20,11 +20,11 @@ Following code snippet serves this purpose.
 ```csharp
 public static void LoadDocumentFromStream()
 {
-   using (Viewer viewer = new Viewer(GetFileStream)) 
+   using (Viewer viewer = new Viewer(GetFileStream))
     {
-    	HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+        HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
         viewer.View(viewOptions);
-	}         
+    }
 }
 
 private static Stream GetFileStream() => return File.OpenRead("sample.docx");
