@@ -2,7 +2,7 @@
 id: view-web-documents
 url: viewer/net/view-web-documents
 title: View Web Documents
-weight: 11
+weight: 22
 description: "This article contains use-cases of viewing Web files with GroupDocs.Viewer within your .NET applications."
 keywords: 
 productName: GroupDocs.Viewer for .NET

@@ -2,7 +2,7 @@
 id: groupdocs-viewer-for-net-20-7-release-notes
 url: viewer/net/groupdocs-viewer-for-net-20-7-release-notes
 title: GroupDocs.Viewer for .NET 20.7 Release Notes
-weight: 57
+weight: 60
 description: "Features, improvements, and bugs-fixes that are shipped in GroupDocs.Viewer for .NET 20.7"
 keywords: release notes, groupdocs.viewer, .net, 20.7
 productName: GroupDocs.Viewer for .NET
@@ -14,13 +14,13 @@ hideChildren: False
 
 There are 31 features, improvements, and bug-fixes in this release, most notable are:
 
-* [Support setting margins when converting HTML files]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-web-documents/how-to-convert-and-view-html-files-with-margins.md">}})
-* [Rendering text files into a single HTML page]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-text-files/how-to-convert-and-view-txt-files.md#convert-txt-to-html">}})
-* [Excel 2003 XML file (SpreadsheetML) (.xml) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-excel-spreadsheets/how-to-convert-and-view-excel-spreadsheetml-files.md">}})
-* [Apple numbers (.numbers) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-excel-spreadsheets/how-to-convert-and-view-apple-numbers-files.md">}})
+* Support setting margins when converting HTML files
+* Rendering text files into a single HTML page
+* Excel 2003 XML file (SpreadsheetML) (.xml) file-format support
+* Apple numbers (.numbers) file-format support
 * WinRAR Compressed Archive (.rar) file-format support
-* [Split up archives into multiple pages]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-archive-files/how-to-convert-and-view-archive-files.md#convert-archive-files-to-multiple-pages-html">}})
-* [How to check if a file is encrypted]({{< ref "viewer/net/developer-guide/basic-usage/how-to-check-if-file-is-encrypted.md">}})
+* Support splitting up archives into multiple pages by rows and columns
+* Support checking if a file is encrypted
 
 ## Full List of Issues Covering all Changes in this Release
 
@@ -62,36 +62,34 @@ There are 31 features, improvements, and bug-fixes in this release, most notable
 
 ### Behavior changes
 
-* In this version we've improved viewing of archives and text files - now it could be rendered to multiple/single pages, they are rendered to multiple pages by default
+{{< alert style="warning" >}}In this version we've improved viewing of archives and text files - now it could be rendered to multiple and single pages, they are rendered to multiple pages by default. See [How to convert archive files to HTML]({{< ref "how-to-convert-archive-files-to-html.md" >}}) and [How to convert and view TXT files]({{< ref "how-to-convert-and-view-txt-files.md" >}}) for more details.{{< /alert >}}
 
 ### Changes in the public API
 
-#### GroupDocs.Viewer.Options.ArchiveOptions
+### GroupDocs.Viewer.Viewer
 
-Added new property to GroupDocs.Viewer.Options.CadOptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/archiveoptions>) class
-
-```csharp
-/// <summary>
-/// Number of records per page (for rendering to HTML only)
-/// </summary>
-public int ItemsPerPage { get; set; }
-
-```
-
-#### GroupDocs.Viewer.Options.HtmlViewOptions
-
-Added new property to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/htmlviewoptions>) class
+Added new method _GetFileInfo()_ and related _FileInfo_ class to support checking if file is encrypted or not. See [How to check if file is encrypted]({{< ref "how-to-check-if-file-is-encrypted.md">}}) for more details and code sample.
 
 ```csharp
 /// <summary>
-/// Enables HTML content will be rendered to single page
+/// Returns information about file such as file-type and flag that indicates if file is encrypted.
 /// </summary>
-public bool RenderSinglePage { get; set; }
+/// <returns>The file information.</returns>
+/// <remarks>
+/// <b>Learn more</b>
+///   <list type="bullet">
+///     <item>
+///         Learn more about file information:
+///      <a target="_blank" href="https://docs.groupdocs.com/viewer/net/how-to-check-if-file-is-encrypted/">How to check if file is encrypted</a>
+///     </item>
+///   </list>
+/// </remarks>
+public FileInfo GetFileInfo()
 ```
 
 #### GroupDocs.Viewer.FileType
 
-Added new fields to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/filetype>) class
+Three new fields added to [GroupDocs.Viewer.FileType](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer/filetype>) class that reflect new file formats that we're supporting starting from v20.7.
 
 ```csharp
 /// <summary>
@@ -114,9 +112,77 @@ public static readonly FileType NUMBERS = new FileType("Apple numbers", ".number
 
 ```
 
+### GroupDocs.Viewer.Results.FileInfo
+
+Added _FileInfo_ class to support checking if file is encrypted or not.
+
+```csharp
+/// <summary>
+/// Contains information about file.
+/// </summary>
+[Serializable]
+public class FileInfo
+{
+    /// <summary>
+    /// The type of the file.
+    /// </summary>
+    public FileType FileType { get; }
+
+    /// <summary>
+    /// Indicates that file is encrypted.
+    /// </summary>
+    public bool Encrypted { get; set; }
+
+    /// <summary>
+    /// Initializes new instance of <see cref="FileType"/> class.
+    /// </summary>
+    /// <param name="fileType">The type of the file.</param>
+    /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="fileType"/> is null.</exception>
+    public FileInfo(FileType fileType)
+    {
+        if (fileType == null)
+            throw new ArgumentNullException(nameof(fileType));
+
+        FileType = fileType;
+    }
+
+    /// <summary>
+    /// Returns a string that represents the current object.
+    /// </summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string ToString()
+    {
+        return string.Format("{0}; Encrypted: {1}", FileType, Encrypted ? "Yes" : "No");
+    }
+}
+```
+
+#### GroupDocs.Viewer.Options.ArchiveOptions
+
+The new property _ItemsPerPage_ has been added to to [GroupDocs.Viewer.Options.CadOptions](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/archiveoptions>) class to support.
+
+```csharp
+/// <summary>
+/// Number of records per page (for rendering to HTML only)
+/// </summary>
+public int ItemsPerPage { get; set; }
+
+```
+
+#### GroupDocs.Viewer.Options.HtmlViewOptions
+
+Added new property _RenderSinglePage_ to [GroupDocs.Viewer.Options.HtmlViewOptions](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/htmlviewoptions>) class to support rendering text files to a single page see [Rendering text files into a single HTML page]({{< ref "how-to-convert-and-view-txt-files.md#convert-txt-to-html">}}) for more details.
+
+```csharp
+/// <summary>
+/// Enables HTML content will be rendered to single page
+/// </summary>
+public bool RenderSinglePage { get; set; }
+```
+
 #### GroupDocs.Viewer.Options.SpreadsheetOptions
 
-Added new property and one method to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions>) class
+The new factory method _ForSplitSheetIntoPages()_ and property _CountColumnsPerPage_ has been added to [GroupDocs.Viewer.Options.SpreadsheetOptions](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/spreadsheetoptions>) to support partial rendering of Excel spreadsheets by splitting worksheets into pages by rows and columns. See [Split worksheets into pages]({{< ref "split-worksheets-into-pages.md" >}}) documentation article for more details and code samples.
 
 ```csharp
 /// <summary>
@@ -137,7 +203,7 @@ public static SpreadsheetOptions ForSplitSheetIntoPages(int countRowsPerPage, in
 
 #### GroupDocs.Viewer.Options.WordProcessingOptions
 
-Added new properties to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/wordprocessingoptions>) class
+Added new properties to [GroupDocs.Viewer.Options.WordProcessingOptions](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/wordprocessingoptions>) class to support setting margins when rendering Web documents see [How to convert and view HTML files with user defined margins]({{< ref "how-to-convert-and-view-html-files-with-margins.md" >}}) documentation article for more details and code samples.
 
 ```csharp
 /// <summary>

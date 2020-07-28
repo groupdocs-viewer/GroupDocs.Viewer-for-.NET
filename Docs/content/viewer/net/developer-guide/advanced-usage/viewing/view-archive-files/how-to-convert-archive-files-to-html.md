@@ -1,7 +1,7 @@
 ---
 id:  how-to-convert-archive-files-to-html
 url: viewer/net/how-to-convert-archive-files-to-html
-title: How to convert and view archive files to HTML
+title: How to convert archive files to HTML
 weight: 2
 description: "In this article we show how to convert and view archive files with GroupDocs.Viewer within your .NET applications."
 keywords: 
