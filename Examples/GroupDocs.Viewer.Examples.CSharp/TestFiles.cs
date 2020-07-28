@@ -9,6 +9,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.zip");
         public static string SAMPLE_ZIP_WITH_FOLDERS =>
             GetSampleFilePath("with_folders.zip");
+        public static string SAMPLE_RAR_WITH_FOLDERS =>
+            GetSampleFilePath("with_folders.rar");
 
         // CAD drawings
         public static string SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS =>
@@ -43,6 +45,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("hieroglyphs.pdf");
         public static string HIEROGLYPHS_1_PDF =>
             GetSampleFilePath("hieroglyphs_1.pdf");
+        public static string ENCRYPTED =>
+            GetSampleFilePath("encrypted.pdf");
 
         // Presentations
         public static string PPTX_WITH_NOTES =>
@@ -75,6 +79,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_overflowing_text.xlsx");
         public static string THREE_SHEETS =>
             GetSampleFilePath("three_sheets.xlsx");
+        public static string SAMPLE_NUMBERS =>
+            GetSampleFilePath("sample.numbers");
+        public static string SAMPLE_XML_SPREADSHEETML =>
+            GetSampleFilePath("excel-2003-xml.xml");
+        public static string TWO_PAGES_XLSX =>
+            GetSampleFilePath("two-pages.xlsx");
+        public static string FOUR_PAGES_XLSX =>
+            GetSampleFilePath("four-pages.xlsx");
 
         // Word Processing documents
 
@@ -90,10 +102,15 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("shift_jis_encoded.txt");
         public static string WITH_EXTERNAL_IMAGE_DOC =>
             GetSampleFilePath("with_external_image.doc");
+        public static string SAMPLE_HTML =>
+            GetSampleFilePath("sample.htm");
 
         // Text
         public static string SAMPLE_TXT =>
             GetSampleFilePath("sample.txt");
+
+        public static string SAMPLE_2_TXT =>
+            GetSampleFilePath("sample2.txt");
 
         // Graphics
         public static string MISSING_FONT_ODG =>

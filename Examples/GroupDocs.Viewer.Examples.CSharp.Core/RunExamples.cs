@@ -21,6 +21,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -44,6 +45,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //GetSupportedFileFormats.Run();
             //GetViewInfo.Run();
+            //CheckFileIsEncrypted.Run();
 
             #region Processing attachments
 
@@ -114,7 +116,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //GetViewInfoForArchiveFile.Run();
             //RenderArchiveFolder.Run();
             //SpecifyFilenameWhenRenderingArchiveFiles.Run();
-            //RenderingFodp.Run();
+            //RenderingRar.Run();
+            //RenderingArchivesToMultipleAndSinglePagesHtml.Run();
 
             #endregion
 
@@ -182,16 +185,21 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderPrintAreas.Run();
             //SkipRenderingOfEmptyColumns.Run();
             //SkipRenderingOfEmptyRows.Run();
-            //SplitWorksheetsIntoPages.Run();
+            //SplitWorksheetsIntoPages.SplitByRows();
+            //SplitWorksheetsIntoPages.SplitByRowsAndColumns();
             //RenderRowAndColumnHeadings.Run();
             //GetWorksheetsNames.Run();
+            //RenderingNumbers.Run();
+            //RenderingXmlSpreadSheetML.Run();
 
             #endregion
 
             #region Rendering Word Processing Documents
-
             //RenderTrackedChanges.Run();
+            #endregion
 
+            #region Rendering Web documents
+            //RenderingHtmlWithUserDefinedMargins.Run();
             #endregion
 
             #endregion

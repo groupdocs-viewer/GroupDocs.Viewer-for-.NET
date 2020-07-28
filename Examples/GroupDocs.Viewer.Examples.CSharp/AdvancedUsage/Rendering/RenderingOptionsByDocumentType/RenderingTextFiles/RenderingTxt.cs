@@ -14,42 +14,53 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         public static void Run()
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
-            string pageFilePathFormat = Path.Combine(outputDirectory, "Txt_result.html");
+            string pageFileFullPath = Path.Combine(outputDirectory, "Txt_result.html");
 
-            // TO HTML
+            // TO MULTI PAGES HTML
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT))
             {
-                HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
+                HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFileFullPath);
+
+                viewer.View(options);
+            }
+
+            pageFileFullPath = Path.Combine(outputDirectory, "Txt_result_single_page.html");
+
+            // TO SINGLE HTML 
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_2_TXT))
+            {
+                HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFileFullPath);
+                options.RenderSinglePage = true;
 
                 viewer.View(options);
             }
 
             // TO JPG
-            pageFilePathFormat = Path.Combine(outputDirectory, "Txt_result.jpg");
+            pageFileFullPath = Path.Combine(outputDirectory, "Txt_result.jpg");
 
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT))
             {
-                JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
+                JpgViewOptions options = new JpgViewOptions(pageFileFullPath);
 
                 viewer.View(options);
             }
 
             // TO PNG
-            pageFilePathFormat = Path.Combine(outputDirectory, "Txt_result.png");
+            pageFileFullPath = Path.Combine(outputDirectory, "Txt_result.png");
 
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT))
             {
-                PngViewOptions options = new PngViewOptions(pageFilePathFormat);
+                PngViewOptions options = new PngViewOptions(pageFileFullPath);
 
                 viewer.View(options);
             }
 
             // TO PDF
-            pageFilePathFormat = Path.Combine(outputDirectory, "Txt_result.pdf");
+            pageFileFullPath = Path.Combine(outputDirectory, "Txt_result.pdf");
 
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT))
             {
-                PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
+                PdfViewOptions options = new PdfViewOptions(pageFileFullPath);
 
                 viewer.View(options);
             }

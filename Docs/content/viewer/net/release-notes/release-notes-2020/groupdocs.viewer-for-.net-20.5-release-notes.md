@@ -2,7 +2,7 @@
 id: groupdocs-viewer-for-net-20-5-release-notes
 url: viewer/net/groupdocs-viewer-for-net-20-5-release-notes
 title: GroupDocs.Viewer for .NET 20.5 Release Notes
-weight: 60
+weight: 80
 description: ""
 keywords: 
 productName: GroupDocs.Viewer for .NET

@@ -34,6 +34,8 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | [.XLTM](https://wiki.fileformat.com/spreadsheet/xltm) | [Microsoft Excel Macro-Enabled Template](https://wiki.fileformat.com/spreadsheet/xltm) | Yes |
 | .XLAM | Excel Open XML Macro-Enabled Add-In | Yes |
 | .SXC | StarOffice Calc Spreadsheet | Yes |
+| [.NUMBERS](https://wiki.fileformat.com/spreadsheet/numbers) | [Apple numbers](https://wiki.fileformat.com/spreadsheet/numbers) | Yes |
+
 
 ## In this section
 
