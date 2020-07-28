@@ -116,7 +116,7 @@ public static readonly FileType NUMBERS = new FileType("Apple numbers", ".number
 
 #### GroupDocs.Viewer.Options.SpreadsheetOptions
 
-Added new properties to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions>) class
+Added new property and one method to GroupDocs.Viewer.Options.htmlviewoptions](<https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions>) class
 
 ```csharp
 /// <summary>
