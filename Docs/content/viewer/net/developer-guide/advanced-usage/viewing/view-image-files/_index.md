@@ -45,6 +45,7 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | [.PS](https://wiki.fileformat.com/page-description-language/ps) | [PostScript (PS)](https://wiki.fileformat.com/page-description-language/ps) | Yes |
 | [.PSD](https://wiki.fileformat.com/image/psd) | [Adobe Photoshop Document (PSD)](https://wiki.fileformat.com/image/psd) | Yes |
 | [.SVG](https://wiki.fileformat.com/page-description-language/svg) | [Scalable Vector Graphics (SVG)](https://wiki.fileformat.com/page-description-language/svg) | Yes |
+| [.SVGZ](https://fileinfo.com/extension/svgz) | [Scalable Vector Graphics gZipped (SVGZ)](https://fileinfo.com/extension/svgz) | Yes |
 | [.TIF, .TIFF](https://wiki.fileformat.com/image/tiff) | [Tagged Image File Format (TIFF)](https://wiki.fileformat.com/image/tiff) | Yes |
 | [.WEBP](https://wiki.fileformat.com/image/webp) | [WebP Image](https://wiki.fileformat.com/image/webp) | Yes |
 | [.EMF](https://wiki.fileformat.com/image/emf) | [Windows Enhanced Metafile (EMF)](https://wiki.fileformat.com/image/emf)  | Yes |
