@@ -139,6 +139,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingNotes.Run();
             //RenderingFodgAndOdg.Run();
             //RenderingPstAndOst.Run();
+            //RenderingSvgAndSvgz.Run();
 
             #endregion
 
