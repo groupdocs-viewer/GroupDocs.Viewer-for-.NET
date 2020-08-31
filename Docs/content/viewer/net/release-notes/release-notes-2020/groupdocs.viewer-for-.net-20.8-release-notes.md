@@ -14,9 +14,9 @@ hideChildren: False
 
 There are 21 features, improvements, and bug-fixes in this release, most notable are:
 
-* Add Lotus Notes Database (.nsf) file-format support
-* Add Compressed SVG File (.svgz) file-format support
-* When watermark is added output HTML doesn't ends properly
+* [Added Lotus Notes Database (.nsf) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-lotus-notes-files/how-to-convert-and-view-nsf-files.md">}})
+* [Added Compressed SVG File (.svgz) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-image-files/how-to-convert-and-view-svg-and-svgz-files.md">}})
+* When watermark is added output HTML doesn't end properly
 
 ## Full List of Issues Covering all Changes in this Release
 
@@ -24,7 +24,7 @@ There are 21 features, improvements, and bug-fixes in this release, most notable
 | --- | --- | --- |
 |VIEWERNET-2393|Add Lotus Notes Database (.nsf) file-format support|Feature|
 |VIEWERNET-2607|Add Compressed SVG File (.svgz) file-format support|Feature|
-|VIEWERNET-2472|"File is corrupted or damaged" exception is thrown when rendring DXF file"|Bug|
+|VIEWERNET-2472|"File is corrupted or damaged" exception is thrown when rendering DXF file"|Bug|
 |VIEWERNET-2499|"A generic error occurred in GDI+" exception occurs when rendering DOCX file"|Bug|
 |VIEWERNET-2506|"Image export failed" exception when rendering ODG file"|Bug
 |VIEWERNET-2507|"Image export failed" when rendering JP2 file"|Bug|
@@ -41,7 +41,7 @@ There are 21 features, improvements, and bug-fixes in this release, most notable
 |VIEWERNET-2656|Can't open xlsm file|Bug|
 |VIEWERNET-2662|The column index should not be inside the pivottable report|Bug|
 |VIEWERNET-2663|GetViewInfo is stuck|Bug|
-|VIEWERNET-2694|When watermark is added output HTML doesn't ends properly|Bug|
+|VIEWERNET-2694|When watermark is added output HTML doesn't end properly|Bug|
 |VIEWERNET-2704|Document wrongly marked as encrypted.|Bug|
 
 ## Public API and Backward Incompatible Changes
