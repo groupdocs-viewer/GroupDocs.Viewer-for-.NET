@@ -22,6 +22,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -147,6 +148,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
 
+            #endregion
+
+            #region Lotus Notes data files
+            //RenderingNsf.Run();
             #endregion
 
             #region Rendering Outlook Data Files
