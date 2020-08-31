@@ -46,10 +46,6 @@ There are 21 features, improvements, and bug-fixes in this release, most notable
 
 ## Public API and Backward Incompatible Changes
 
-### Behavior changes
-
-{{< alert style="warning" >}}In this version we've improved viewing of archives and text files - now it could be rendered to multiple and single pages, they are rendered to multiple pages by default. See [How to convert archive files to HTML]({{< ref "how-to-convert-archive-files-to-html.md" >}}) and [How to convert and view TXT files]({{< ref "how-to-convert-and-view-txt-files.md" >}}) for more details.{{< /alert >}}
-
 ### Changes in the public API
 
 #### GroupDocs.Viewer.FileType
@@ -68,4 +64,36 @@ public static readonly FileType SVGZ = new FileType("Compressed Scalable Vector 
 /// Learn more about this file format <a href="https://fileinfo.com/extension/nsf">here</a>.
 /// </summary>
 public static readonly FileType NSF = new FileType("Lotus Notes Database", ".nsf")
+```
+
+#### GroupDocs.Viewer.Options.LotusNotesOptions
+
+public class [LotusNotesOptions](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/lotusnotesoptions>) class added to GroupDocs.Viewer.Options namespace. This class provides options for rendering Lotus Notes data files.
+
+```csharp
+/// <summary>
+/// Provides options for rendering Lotus Notes data files.
+/// </summary>
+public class LotusNotesOptions
+{
+    /// <summary>
+    /// The keywords used to filter messages.
+    /// </summary>
+    public string TextFilter { get; set; }
+
+    /// <summary>
+    /// The email-address used to filter messages by sender or recipient.
+    /// </summary>
+    public string AddressFilter { get; set; }
+
+    /// <summary>
+    /// The maximum number of messages or items for render.
+    /// </summary>
+    /// <remarks>
+    /// Lotus notes data files can be large and retrieving all messages can take significant time.
+    /// This setting limits maximum number of messages or items that are rendered.
+    /// Default value is 0 - all messages will be rendered
+    /// </remarks>
+    public int MaxItems { get; set; } = 0;
+}
 ```
