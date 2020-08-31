@@ -12,18 +12,16 @@ hideChildren: False
 
 ## Major Features  
 
-There are 23 features, improvements, and bug-fixes in this release, most notable are:
+There are 21 features, improvements, and bug-fixes in this release, most notable are:
 
 * Add Lotus Notes Database (.nsf) file-format support
 * Add Compressed SVG File (.svgz) file-format support
-* Support rendering PDF documents without annotations
 * When watermark is added output HTML doesn't ends properly
 
 ## Full List of Issues Covering all Changes in this Release
 
 | Key | Summary | Category |
 | --- | --- | --- |
-|VIEWERNET-1980|Support rendering PDF documents without annotations|Feature|
 |VIEWERNET-2393|Add Lotus Notes Database (.nsf) file-format support|Feature|
 |VIEWERNET-2607|Add Compressed SVG File (.svgz) file-format support|Feature|
 |VIEWERNET-2472|"File is corrupted or damaged" exception is thrown when rendring DXF file"|Bug|
@@ -40,7 +38,6 @@ There are 23 features, improvements, and bug-fixes in this release, most notable
 |VIEWERNET-2602|NullReferenceException when rendering a certain PDF to HTML|Bug|
 |VIEWERNET-2633|Particular HTML file to PDF rendering issue |Bug|
 |VIEWERNET-2643|Overflow error on VDX file|Bug|
-|VIEWERNET-2644|Can't open j2c image|Bug|
 |VIEWERNET-2656|Can't open xlsm file|Bug|
 |VIEWERNET-2662|The column index should not be inside the pivottable report|Bug|
 |VIEWERNET-2663|GetViewInfo is stuck|Bug|
