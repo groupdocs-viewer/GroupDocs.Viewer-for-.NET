@@ -16,7 +16,6 @@ There are 21 features, improvements, and bug-fixes in this release, most notable
 
 * [Added Lotus Notes Database (.nsf) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-lotus-notes-files/how-to-convert-and-view-nsf-files.md">}})
 * [Added Compressed SVG File (.svgz) file-format support]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-image-files/how-to-convert-and-view-svg-and-svgz-files.md">}})
-* When watermark is added output HTML doesn't end properly
 
 ## Full List of Issues Covering all Changes in this Release
 
@@ -50,7 +49,7 @@ There are 21 features, improvements, and bug-fixes in this release, most notable
 
 #### GroupDocs.Viewer.FileType
 
-Three new fields added to [GroupDocs.Viewer.FileType](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer/filetype>) class that reflect new file formats that we're supporting starting from v20.8.
+Two fields added to [GroupDocs.Viewer.FileType](<https://apireference.groupdocs.com/viewer/net/groupdocs.viewer/filetype>) class that reflect new file formats that we're supporting starting from v20.8.
 
 ```csharp
 /// <summary>
