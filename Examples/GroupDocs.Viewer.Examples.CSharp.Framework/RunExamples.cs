@@ -111,6 +111,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Rendering options by document type
 
+            #region Rendering Visio documents
+
+            //RenderingVisioDocumentsFigures.Run();
+
+            #endregion
+
             #region Rendering Archive Files
 
             //GetViewInfoForArchiveFile.Run();

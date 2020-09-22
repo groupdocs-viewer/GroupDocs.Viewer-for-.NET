@@ -65,6 +65,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
         // Project Management documents
         public static string SAMPLE_MPP =>
             GetSampleFilePath("sample.mpp");
+        // Visio files
+        public static string SAMPLE_VISIO =>
+            GetSampleFilePath("sample.vssx");
 
         // Spreadsheets
         public static string SAMPLE_XLSX =>
