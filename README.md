@@ -41,18 +41,18 @@ Directory | Description
 **Microsoft Visio:** VDW, VDX, VSD, VSDM, VSDX, VSS, VSSM, VSSX, VST, VSTM, VSTX, VSX, VTX\
 **Microsoft Project:** MPP, MPT, MPX\
 **Microsoft OneNote:** ONE\
-**OpenOffice:** ODG, OTG, OXPS, ODP, OTP, ODS, OTS, ODT, OTT, OXPS\
+**OpenOffice:** ODG, FODG, OTG, OXPS, ODP, OTP, FODS, ODS, OTS, ODT, OTT, OXPS\
 **AutoCAD:** DGN, DWF, DWT, DWG, DXF\
 **CorelDraw:** CDR\
-**Adobe Photoshop:** PSD\
+**Adobe Photoshop:** PSD, PSB\
 **Programming:** CS, VB, AS, AS3, ASM, BAT, C, CC, CMAKE, CPP, CSS, CXX, ERB, GROOVY, H, HAML, HH, JAVA, JS, JSON, LESS, LOG, M, MAKE, MD, ML, MM, PHP, PL, PROPERTIES, PY, RB, RST, SASS, SCALA, SCM, SCRIPT, SH, SML, SQL, VIM, YAML\
-**Image:** GIF, ICO, JP2, JPF, JPX, JPM, J2C, J2K, JPC, JPG, JPEG, SVG, TIF, TIFF\
+**Image:** GIF, ICO, JP2, JPF, JPX, JPM, J2C, J2K, JPC, JPG, JPEG, SVG, SVGZ, TIF, TIFF\
 **Markup:** HTML, MHT, MHTML, MD\
 **Portable:** PDF\
-**Archive:** TAR, ZIP, BZ2\
-**Email:** EML, EMLX, MSG, OST, PST\
+**Archive:** TAR, ZIP, BZ2, RAR\
+**Email:** EML, EMLX, MSG, OST, PST, NSF\
 **Metafile:** CGM, EMF, WMF\
-**Other:** IFC, STL, PS, XPS, TEX, SXC, DJVU, DNG, DIB, EPS
+**Other:** IFC, STL, PS, XPS, TEX, SXC, DJVU, DNG, DIB, EPS, HPG, PLT, IGS, CF2, OBJ
 
 ## Develop & Deploy GroupDocs.Viewer for .NET Anywhere
 
