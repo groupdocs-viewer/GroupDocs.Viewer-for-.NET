@@ -14,7 +14,7 @@ For today there a lot of image files formats that contain pixel bit map with col
 
 ## Supported Image Formats
 
-The following image formats are supported by the GroupDocs.Viewer for .NET. 
+The following image formats are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the image file by reading the information in the file header.
 
@@ -44,6 +44,7 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | [.PNG](https://wiki.fileformat.com/image/png) | [Portable Network Graphics (PNG)](https://wiki.fileformat.com/image/png) | Yes |
 | [.PS](https://wiki.fileformat.com/page-description-language/ps) | [PostScript (PS)](https://wiki.fileformat.com/page-description-language/ps) | Yes |
 | [.PSD](https://wiki.fileformat.com/image/psd) | [Adobe Photoshop Document (PSD)](https://wiki.fileformat.com/image/psd) | Yes |
+| [.PSB](https://wiki.fileformat.com/image/psb) | [Photoshop Large Document Format (PSB)](https://wiki.fileformat.com/image/psb) | Yes |
 | [.SVG](https://wiki.fileformat.com/page-description-language/svg) | [Scalable Vector Graphics (SVG)](https://wiki.fileformat.com/page-description-language/svg) | Yes |
 | [.SVGZ](https://fileinfo.com/extension/svgz) | [Scalable Vector Graphics gZipped (SVGZ)](https://fileinfo.com/extension/svgz) | Yes |
 | [.TIF, .TIFF](https://wiki.fileformat.com/image/tiff) | [Tagged Image File Format (TIFF)](https://wiki.fileformat.com/image/tiff) | Yes |
