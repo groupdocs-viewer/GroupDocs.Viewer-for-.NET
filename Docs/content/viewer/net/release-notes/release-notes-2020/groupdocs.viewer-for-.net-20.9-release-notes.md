@@ -12,7 +12,7 @@ hideChildren: False
 
 ## Major Features  
 
-There are 9 features, improvements, and bug-fixes in this release, most notable are:
+There are 10 features, improvements, and bug-fixes in this release, most notable are:
 
 * Added Adobe Photoshop Large Document Format (.psb) file format support
 * [Added feature to render only figures without scheme for Visio files]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-visio-documents/how-to-render-visio-files-figures.md">}})
@@ -30,6 +30,7 @@ There are 9 features, improvements, and bug-fixes in this release, most notable 
 |VIEWERNET-2710|Object reference not set to an instance of an object exception thrown when rendering DNG file|Bug|
 |VIEWERNET-2721|Wrong error message for not supported dgn version|Bug|
 |VIEWERNET-2744|Specified argument was out of the range of valid values|Bug|
+|VIEWERNET-2746|Сontent breaks on 5 page when converting to PDF|Bug|
 
 ## Public API and Backward Incompatible Changes
 
