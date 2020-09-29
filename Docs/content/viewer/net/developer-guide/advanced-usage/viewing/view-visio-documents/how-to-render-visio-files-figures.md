@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 When you are converting Visio files, you can choose what you want to render: Visio scheme pages or figures of Visio scheme.
 If Visio scheme does not contain pages - only figures will be rendered.
 
