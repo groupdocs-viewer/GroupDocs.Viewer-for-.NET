@@ -8,13 +8,15 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Presentation files are the files created by Microsoft PowerPoint, LibreOffice Impress, or Apache OpenOffice Impress programs. Typical presentation file contains slides where each slide may contain text, images, formatting, and other media. Presentations are commonly used in conferences in schools and universities.
+
+## Online PowerPoint Viewer
+
+To view PowerPoint files online please check out free **[PowerPoint Viewer](https://products.groupdocs.app/viewer/powerpoint)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Presentation Formats
 
-The following presentation formats are supported by the GroupDocs.Viewer for .NET. 
+The following presentation formats are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the presentation file by reading the information in the file header.
 

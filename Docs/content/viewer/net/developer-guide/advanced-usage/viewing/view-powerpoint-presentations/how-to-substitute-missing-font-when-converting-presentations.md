@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Background
-
 In case your presentation document contains a font that is not installed into the system GroupDocs.Viewer will use a default font. GroupDocs.Viewer enables you to specify font substitution with *DefaultFontName* setting.
 
 ## Font substitution
@@ -66,15 +64,19 @@ Output PDF with "Times New Roman" font:
 ![](viewer/net/images/how-to-substitute-missing-font-when-converting-presentations_3.png)
 
 ## More resources
-### GitHub Examples
-You may easily run the code above and see the feature in action in our GitHub examples:
-*   [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)    
-*   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)    
-*   [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)     
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
-*   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
-*   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 
-### Free Online App
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.
+### View PowerPoint Files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View PPT, PPTX, and ODP presentations online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/powerpoint)**.
+
+### GitHub Examples
+
+You may easily run the code above and see the feature in action in our GitHub examples:
+
+* [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
+* [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
+* [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
+* [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
+* [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
+* [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)

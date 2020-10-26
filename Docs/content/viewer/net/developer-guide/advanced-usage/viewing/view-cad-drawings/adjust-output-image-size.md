@@ -33,7 +33,7 @@ When rendering CAD drawings GroupDocs.Viewer provides following options:
 
 DWF drawing format consists of sheets, that may have different sizes, DWG and DXF drawing formats consists of the Model and Layouts. Refer to [Adjust output image size]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-cad-drawings/how-to-get-cad-layers-and-layouts.md" >}}) article that describes layouts rendering. Sizing rules described above, work for the drawings that consist of a one sheet or rendered without layouts and provide only one page as an output. In this section we will review how sizing works when the output consist of several pages. Later in this article, for convenience, we will refer to Model and layouts as sheets.
 
-By default, when we render DWF format with several sheets, or DWG and DXF formats with layouts,  each sheet is rendered into separate page, that has it's own size. 
+By default, when we render DWF format with several sheets, or DWG and DXF formats with layouts,  each sheet is rendered into separate page, that has it's own size.
 
 If only one of *Height* or *Width* is set, value of another side for every sheet will be calculated from the ratio in size of that sheet. For example if *Height* is set as 600 and the ratio of the height to width in first sheet is 6 to 5 and second sheet is 6 to 4, then the width of the resulting pages will be 500px and 400px respectively.
 
@@ -43,17 +43,18 @@ When the *ScaleFactor* option is set, it will be used to form resulting page 
 
 ## More resources
 
+### View CAD Drawings Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View DXF, DWG, and DWF files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/cad)**.
+
 ### GitHub Examples
 
 You may easily run the code above and see the feature in action in our GitHub examples:
+
 * [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
 * [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
 * [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
 * [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
 * [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
 * [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
-
-### Free Online App
-
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.

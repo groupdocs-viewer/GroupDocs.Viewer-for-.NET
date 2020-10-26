@@ -8,13 +8,15 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Lotus Notes Data Files are created and used by Lotus Notes to store messages, contacts, calendars, and other account information.
+
+## Online NSF Viewer
+
+To view NSF files online please check out free **[NSF Viewer](https://products.groupdocs.app/viewer/nsf)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Lotus Notes Files
 
-The following Lotus Notes Data Files are supported by the GroupDocs.Viewer for .NET. 
+The following Lotus Notes Data Files are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the Lotus Notes Data file by reading the information in the file header.
 

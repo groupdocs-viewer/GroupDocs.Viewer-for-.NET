@@ -8,8 +8,6 @@ keywords: lotus notes database
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 NSF (Notes Storage Facility) is a database format, developed by IBM. It contains e-mail messages, contacts, and appointments.  
 
 ## View NSF files
@@ -89,6 +87,11 @@ The following screenshot shows the output PDF file opened in a browser.
 
 ## More resources
 
+### View NSF files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View NSF files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/nsf)**.
+
 ### GitHub Examples
 
 You may easily run the code above and see the feature in action in our GitHub examples:
@@ -99,8 +102,3 @@ You may easily run the code above and see the feature in action in our GitHub e
 * [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
 * [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
 * [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
-
-### Free Online App
-
-Along with a full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view your documents with free to use online [GroupDocs Viewer App](https://products.groupdocs.app/viewer).

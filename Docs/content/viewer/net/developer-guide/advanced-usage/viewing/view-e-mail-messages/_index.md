@@ -8,13 +8,15 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
+E-mail file formats are used by e-mail applications such as Microsoft Outlook or Apple Mail to store data including email messages, attachments, formatting, and other media.
 
-E-mail file formats are used by e-mail applications such as Microsoft Outlook or Apple Mail to store data including email messages, attachments, formatting, and other media. 
+## Online E-mail Viewer
+
+To view E-mail messages online please check out free **[E-mail Viewer](https://products.groupdocs.app/viewer/email)** powered by GroupDocs.Viewer for .NET
 
 ## Supported E-Mail Formats
 
-The following image E-Mail files are supported by the GroupDocs.Viewer for .NET. 
+The following image E-Mail files are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the E-Mail file by reading the information in the file header.
 

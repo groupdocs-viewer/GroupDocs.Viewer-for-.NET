@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 Archive file formats are related to files compression. There various archive formats:
 Mostly used in Windows: ZIP, RAR
 Mostly used in Linux (Unix): TAR, BZIP2 (BZ2), GZIP
@@ -61,6 +59,11 @@ The following screenshot shows the output HTML file opened in a browser.
 
 ## More resources
 
+### View Archive Files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View ZIP and TAR files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/archive)**.
+
 ### GitHub Examples
 
 You may easily run the code above and see the feature in action in our GitHub examples:
@@ -71,8 +74,3 @@ You may easily run the code above and see the feature in action in our GitHub e
 * [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
 * [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
 * [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
-
-### Free Online App
-
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.

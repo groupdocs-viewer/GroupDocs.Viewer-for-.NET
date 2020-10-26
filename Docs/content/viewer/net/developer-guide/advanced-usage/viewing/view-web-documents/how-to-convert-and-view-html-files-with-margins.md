@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 When you are converting HTML files, you can ajdust top/bottom, left/right page margins in final document.
 The units of margins are typography points.\
 Default values are:\
@@ -91,6 +89,11 @@ The following screenshot shows the output PDF file opened in an Acrobat Reader.\
 
 ## More resources
 
+### View WEB Files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View HTML and XML files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/web)**.
+
 ### GitHub Examples
 
 You may easily run the code above and see the feature in action in our GitHub examples:
@@ -101,8 +104,3 @@ You may easily run the code above and see the feature in action in our GitHub e
 * [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
 * [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
 * [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
-
-### Free Online App
-
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.

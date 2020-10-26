@@ -8,9 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Project files are used for organizing, tracking, and maintaining projects and created by Project Management applications such as Microsoft Project. Project Management files contain a collection of tasks, resources and Gantt charts.
+
+## Online MS Project Viewer
+
+To view MS Project files online please check out free **[Project Viewer](https://products.groupdocs.app/viewer/project)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Project Management Formats
 

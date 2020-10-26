@@ -8,10 +8,12 @@ keywords: visio documents
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Visio documents include formats used by Microsoft Visio. These formats contain tecnhocal drawings with figures. 
 You can open these files with Microsoft Visio.
+
+## Online Visio Viewer
+
+To view Visio files online please check out free **[Visio Viewer](https://products.groupdocs.app/viewer/visio)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Visio Formats
 

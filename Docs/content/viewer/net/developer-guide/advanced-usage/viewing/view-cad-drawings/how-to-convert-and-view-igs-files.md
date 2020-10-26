@@ -8,13 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 IGS is a 2D/3D vector format file based on the Initial Graphics Exchange Specification (IGES). It consists of text instructions and all lines are fixed 80 bytes length with 72 bytes of data.
 
 It can be opened with desktop applications like e.g. Autodesk AutoCAD.
 
-In case you need to view an IGS file in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with GroupDocs.Viewer for .NET. 
+In case you need to view an IGS file in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with GroupDocs.Viewer for .NET.
 
 ## How to convert IGS files
 
@@ -42,7 +40,7 @@ To convert IGS files to JPG with GroupDocs.Viewer for .NET use following code:
 using (Viewer viewer = new Viewer("sample.igs"))
 {
        JpgViewOptions options = new JpgViewOptions("output.jpg");
-	   viewer.View(options);
+	viewer.View(options);
 }
 ```
 
@@ -74,7 +72,6 @@ To convert IGS files to PDF with GroupDocs.Viewer for .NET use following code:
 using (Viewer viewer = new Viewer("sample.igs"))
 {
        PdfViewOptions options = new PdfViewOptions("output.pdf");
-	
        viewer.View(options);
 }
 ```
@@ -84,15 +81,19 @@ The following screenshot shows the output PDF file opened in an Acrobat Reader.
 ![](viewer/net/images/how-to-convert-and-view-igs-files_3.png)
 
 ## More resources
-### GitHub Examples
-You may easily run the code above and see the feature in action in our GitHub examples:
-*   [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)    
-*   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)    
-*   [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)     
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
-*   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
-*   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 
-### Free Online App
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.
+### View CAD Drawings Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View DXF, DWG, and DWF files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/cad)**.
+
+### GitHub Examples
+
+You may easily run the code above and see the feature in action in our GitHub examples:
+
+* [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
+* [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
+* [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
+* [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
+* [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
+* [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)

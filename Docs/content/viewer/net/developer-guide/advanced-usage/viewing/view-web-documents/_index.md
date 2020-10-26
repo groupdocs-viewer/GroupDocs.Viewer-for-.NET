@@ -8,9 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Web documents include formats used by Internet websites and Web servers. These formats contain pages that can include text, graphics, tables, formatting, and other media. The most commonly used applications for Text files are Web browsers: Google chrome, Internet Explorer, Opera, Mozilla Firefox and other.
+
+## Online WEB Viewer
+
+To view WEB files online please check out free **[WEB Viewer](https://products.groupdocs.app/viewer/web)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Web Formats
 

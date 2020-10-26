@@ -8,9 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Text files contain plain unformatted text. Text files can be opened by text-editor apps such as Microsoft Notepad or text-processing apps like Microsoft Word.
+
+## Online Text Viewer
+
+To view Text files online please check out free **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/total)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Text Files
 

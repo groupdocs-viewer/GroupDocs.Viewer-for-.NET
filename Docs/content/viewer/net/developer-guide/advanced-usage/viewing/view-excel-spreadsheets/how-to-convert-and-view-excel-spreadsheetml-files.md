@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 SpreadsheetML is Excel 2003 document format in XML file. It can be opened by Microsoft Excel 2003 or later applications.
 
 ![ExcelSpreadSheetML opened in Excel](viewer/net/images/how-to-convert-and-view-excel-spreadsheetml-files/spreadsheetml-in-excel.png)
@@ -82,6 +80,11 @@ The following screenshot shows the output PDF file opened in an Acrobat Reader.
 
 ## More resources
 
+### View Excel Files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View Excel XLS, XLSX, and XLSB files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/excel)**.
+
 ### GitHub Examples
 
 You may easily run the code above and see the feature in action in our GitHub examples:
@@ -92,8 +95,3 @@ You may easily run the code above and see the feature in action in our GitHub e
 * [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
 * [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
 * [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
-
-### Free Online App
-
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.

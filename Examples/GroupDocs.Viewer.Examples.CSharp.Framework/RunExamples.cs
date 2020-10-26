@@ -71,11 +71,16 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToPng.Run();
             //RenderToJpg.Run();
-            //
+
             //GetTextCoordinates.Run();
             //RenderForDisplayWithText.Run();
             //AdjustQualityWhenRenderingToJpg.Run();
             //AdjustImageSize.Run();
+            //RenderingWmzAndWmf.Run();
+            //RenderingEmzAndEmf.Run();
+            //RenderingCdr.Run();
+            //RenderingCmx.Run();
+
 
             #endregion
 
@@ -248,6 +253,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //HowToDetermineFileType.FromFileExtension();
             //HowToDetermineFileType.FromMediaType();
             //HowToDetermineFileType.FromStream();
+
+            //HowToLogging.ToConsole();
+            //HowToLogging.ToFile();
             #endregion
 
             Console.WriteLine();

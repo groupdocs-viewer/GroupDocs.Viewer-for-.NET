@@ -8,8 +8,6 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Introduction
-
 MPP is Microsoft Project file. It contains tasks with timelines, budjets, employee resources information, and also tasks may contain user notes.
 
 ## View MPP files with notes
@@ -28,7 +26,7 @@ To convert MPP files to HTML with GroupDocs.Viewer for .NET use following code:
 using (Viewer viewer = new Viewer("sample.mpp"))
 {
        HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources("output_{0}.html");
-	   options.RenderNotes = true;
+       options.RenderNotes = true;
 
        viewer.View(options);
 }
@@ -46,14 +44,14 @@ The following screenshot shows the output HTML with the notes file opened in a b
 
 ### Convert MPP to JPG with notes
 
-To convert MPP files to JPG with GroupDocs.Viewer for .NET use following code: 
+To convert MPP files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.mpp"))
 {
        JpgViewOptions options = new JpgViewOptions("output.jpg");
-	   options.RenderNotes = true;
-	  
+       options.RenderNotes = true;
+
        viewer.View(options);
 }
 ```
@@ -116,15 +114,19 @@ The following screenshot shows the page of output PDF with notes file opened in
 ![](viewer/net/images/how-to-convert-and-view-ms-project-documents-with-notes_8.png)
 
 ## More resources
-### GitHub Examples
-You may easily run the code above and see the feature in action in our GitHub examples:
-*   [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)    
-*   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)    
-*   [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)     
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
-*   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
-*   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 
-### Free Online App
-Along with full-featured .NET library we provide simple but powerful free Apps.
-You are welcome to view Word, PDF, Excel, PowerPoint documents with free to use online **[GroupDocs Viewer App](https://products.groupdocs.app/viewer)**.
+### View MS Project Files Online
+
+Along with full-featured .NET library we provide simple but powerful free online Apps.
+View MS Project MPP, MPT, and MPX files online with **[GroupDocs Viewer App](https://products.groupdocs.app/viewer/project)**.
+
+### GitHub Examples
+
+You may easily run the code above and see the feature in action in our GitHub examples:
+
+* [GroupDocs.Viewer for .NET examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
+* [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
+* [Document Viewer for .NET MVC UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
+* [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
+* [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)
+* [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)

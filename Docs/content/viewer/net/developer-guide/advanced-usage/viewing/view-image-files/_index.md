@@ -8,9 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 For today there a lot of image files formats that contain pixel bit map with color(or black and white) values, some of them you can find in cameras (like JPEG, CR2) or in FAXes/scanners (TIF, TIFF). Some formats use image compression (like JPEG), for some formats use it optional (TIF/TIFF).
+
+## Online Image Viewer
+
+To view images online please check out free **[Image viewer](https://products.groupdocs.app/viewer/image)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Image Formats
 
@@ -23,6 +25,7 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | [.BMP](https://wiki.fileformat.com/image/bmp) | [Bitmap Picture (BMP)](https://wiki.fileformat.com/image/bmp) | Yes |
 | [.CGM](https://wiki.fileformat.com/page-description-language/cgm) | [Computer Graphics Metafile](https://wiki.fileformat.com/page-description-language/cgm) | Yes |
 | [.CDR](https://wiki.fileformat.com/image/cdr) | [CorelDraw Vector Graphic Drawing (CDR)](https://wiki.fileformat.com/image/cdr)[](https://wiki.fileformat.com/image/cdr/) | Yes |
+| [.CMX](https://wiki.fileformat.com/image/cmx) | [Corel Metafile Exchange (CMX)](https://wiki.fileformat.com/image/cmx)[](https://wiki.fileformat.com/image/cmx/) | Yes |
 | [.DCM](https://wiki.fileformat.com/image/dcm) | [Digital Imaging and Communications in Medicine (DICOM)](https://wiki.fileformat.com/image/dicom) | Yes |
 | [.DJVU](https://wiki.fileformat.com/image/djvu) | [Deja Vu (DjVu)](https://wiki.fileformat.com/image/djvu) | Yes |
 | [.DNG](https://wiki.fileformat.com/image/dng) | [Digital Negative Specification](https://wiki.fileformat.com/image/dng) | Yes |

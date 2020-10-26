@@ -50,6 +50,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\SplitDrawingIntoTiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\AdjustPageSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\RenameEmailFields.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCmx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCdr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingEmzAndEmf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingWmzAndWmf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingSvgAndSvgz.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingFodgAndOdg.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingLotusNotesDataFiles\RenderingNsf.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\CheckFileIsEncrypted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\GetPdfStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HowTo\HowToDetermineFileType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HowTo\HowToLogging.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetSupportedFileFormats.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetViewInfo.cs" />
@@ -146,10 +151,19 @@
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\password_protected.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cdr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cf2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.emz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.fodg">
@@ -195,6 +209,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.vssx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.wmz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.xlsx">

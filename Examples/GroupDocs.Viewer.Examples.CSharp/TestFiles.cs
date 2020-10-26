@@ -124,6 +124,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
           GetSampleFilePath("sample.fodg");
         public static string SAMPLE_SVGZ =>
              GetSampleFilePath("sample.svgz");
+        public static string SAMPLE_WMZ =>
+             GetSampleFilePath("sample.wmz");
+        public static string SAMPLE_EMZ =>
+             GetSampleFilePath("sample.emz");
+        public static string SAMPLE_CDR =>
+             GetSampleFilePath("sample.cdr");
+        public static string SAMPLE_CMX =>
+             GetSampleFilePath("sample.cmx");
 
         private static string GetSampleFilePath(string filePath) =>
            Path.Combine(Utils.SamplesPath, filePath);

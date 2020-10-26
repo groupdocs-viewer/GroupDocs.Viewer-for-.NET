@@ -8,9 +8,11 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-## Overview
-
 Text files include plain text e.g. TXT and LOG files and rich text formats e.g. DOCX and ODT files. Rich text formats contain pages that can include text, graphics, tables, formatting, and other media. The most commonly used applications for Text files are Microsoft Word, LibreOffice Writer, Apache OpenOffice Writer, and Apple Pages.
+
+## Online Word Viewer
+
+To view Word files online please check out free **[Word Viewer](https://products.groupdocs.app/viewer/word)** powered by GroupDocs.Viewer for .NET
 
 ## Supported Text Formats
 
