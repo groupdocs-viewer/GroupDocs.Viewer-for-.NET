@@ -4,13 +4,11 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocumentsFromDifferentSources;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderingOptions;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingArchiveFiles;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingCadDrawings;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingEMailMessages;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingImageFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPresentationDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingSpreadsheets;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingTextDocuments;
@@ -22,7 +20,6 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -60,7 +57,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToHtmlWithEmbeddedResources.Run();
             //RenderToHtmlWithExternalResources.Run();
-
+            
             //ExcludingFontsFromOutputHtml.Run();
             //MinifyHtmlDocument.Run();
             //RenderToResponsiveHtml.Run();
@@ -111,16 +108,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderWithCustomFonts.Run();
             //RenderingTxt.Run();
 
-
             #endregion
 
             #region Rendering options by document type
-
-            #region Rendering Visio documents
-
-            //RenderingVisioDocumentsFigures.Run();
-
-            #endregion
 
             #region Rendering Archive Files
 
@@ -132,37 +122,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #endregion
 
-            #region Rendering CAD Drawings
-
-            //GetViewInfoForCadDrawing.Run();
-            //RenderAllLayouts.Run();
-            //RenderLayers.Run();
-            //RenderSingleLayout.Run();
-            //SplitDrawingIntoTiles.Run();
-            //AdjustOutputImageSize.Run();
-            //RenderingPlt.Run();
-            //RenderingObj.Run();
-            //RenderingCf2.Run();
-            //RenderingHpg.Run();
-            //SetImageBackgroundColor.Run();
-            //RenderingFodp.Run();
-            //RenderingIgs.Run();
-            //RenderingNotes.Run();
-            //RenderingFodgAndOdg.Run();
-            //RenderingPstAndOst.Run();
-            //RenderingSvgAndSvgz.Run();
-
-            #endregion
-
             #region Rendering E-Mail Messages
 
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
 
-            #endregion
-
-            #region Lotus Notes data files
-            //RenderingNsf.Run();
             #endregion
 
             #region Rendering Outlook Data Files
@@ -250,7 +214,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //HowToDetermineFileType.FromFileExtension();
             //HowToDetermineFileType.FromMediaType();
             //HowToDetermineFileType.FromStream();
-            
+
             //HowToLogging.ToConsole();
             //HowToLogging.ToFile();
             #endregion

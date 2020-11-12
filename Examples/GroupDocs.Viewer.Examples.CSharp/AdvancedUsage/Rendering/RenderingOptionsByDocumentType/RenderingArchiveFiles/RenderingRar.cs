@@ -93,7 +93,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                options.ArchiveOptions.Folder = "ThirdFolderWithItems";
+                options.ArchiveOptions.Folder = @"with_folders\ThirdFolderWithItems";
 
                 viewer.View(options);
             }

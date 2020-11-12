@@ -60,7 +60,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToHtmlWithEmbeddedResources.Run();
             //RenderToHtmlWithExternalResources.Run();
-            //
+            
             //ExcludingFontsFromOutputHtml.Run();
             //MinifyHtmlDocument.Run();
             //RenderToResponsiveHtml.Run();
@@ -80,7 +80,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingEmzAndEmf.Run();
             //RenderingCdr.Run();
             //RenderingCmx.Run();
-
 
             #endregion
 
@@ -116,12 +115,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Rendering options by document type
 
-            #region Rendering Visio documents
-
-            //RenderingVisioDocumentsFigures.Run();
-
-            #endregion
-
             #region Rendering Archive Files
 
             //GetViewInfoForArchiveFile.Run();
@@ -132,37 +125,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #endregion
 
-            #region Rendering CAD Drawings
-
-            //GetViewInfoForCadDrawing.Run();
-            //RenderAllLayouts.Run();
-            //RenderLayers.Run();
-            //RenderSingleLayout.Run();
-            //SplitDrawingIntoTiles.Run();
-            //AdjustOutputImageSize.Run();
-            //RenderingPlt.Run();
-            //RenderingObj.Run();
-            //RenderingCf2.Run();
-            //RenderingHpg.Run();
-            //SetImageBackgroundColor.Run();
-            //RenderingFodp.Run();
-            //RenderingIgs.Run();
-            //RenderingNotes.Run();
-            //RenderingFodgAndOdg.Run();
-            //RenderingPstAndOst.Run();
-            //RenderingSvgAndSvgz.Run();
-
-            #endregion
-
             #region Rendering E-Mail Messages
 
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
 
-            #endregion
-
-            #region Lotus Notes data files
-            //RenderingNsf.Run();
             #endregion
 
             #region Rendering Outlook Data Files
@@ -253,7 +220,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //HowToDetermineFileType.FromFileExtension();
             //HowToDetermineFileType.FromMediaType();
             //HowToDetermineFileType.FromStream();
-
+            
             //HowToLogging.ToConsole();
             //HowToLogging.ToFile();
             #endregion
