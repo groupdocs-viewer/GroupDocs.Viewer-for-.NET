@@ -6,6 +6,7 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderingOp
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingArchiveFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingEMailMessages;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingImageFiles;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
@@ -57,7 +58,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToHtmlWithEmbeddedResources.Run();
             //RenderToHtmlWithExternalResources.Run();
-            
+
             //ExcludingFontsFromOutputHtml.Run();
             //MinifyHtmlDocument.Run();
             //RenderToResponsiveHtml.Run();
@@ -127,6 +128,10 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
 
+            #endregion
+
+            #region Lotus Notes data files
+            //RenderingNsf.Run();
             #endregion
 
             #region Rendering Outlook Data Files
