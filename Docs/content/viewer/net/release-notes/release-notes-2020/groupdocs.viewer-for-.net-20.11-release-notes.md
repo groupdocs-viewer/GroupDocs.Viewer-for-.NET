@@ -14,7 +14,7 @@ hideChildren: False
 
 There are 21 features, improvements, and bug-fixes in this release, most notable are:
 
-* [Rendering archives in HTML with Windows explorer behavior]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-archive-files/_index.md">}})
+* [Rendering archives in HTML with Windows explorer behavior]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-archive-files/navigation-in-archive-files.md">}})
 * Automatically recalculating CAD drawing size when it is required
 * Fixed images and text positioning when rendering Excel as HTML/image/PDF in Linux
 
@@ -52,4 +52,4 @@ In this version we've improved viewing of archives - now you can navigate betwee
 
 ![Windows explorer navigation style](viewer/net/images/navigation-in-archive-files/navigation.gif)
 
-For more details and code snippets check [Rendering archives in HTML with Windows explorer behavior]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-archive-files/_index.md">}}) documentation article.
+For more details and code snippets check [Folder navigation in archive files]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-archive-files/navigation-in-archive-files.md">}}) documentation article.
