@@ -10,9 +10,9 @@ hideChildren: False
 ---
 Excel worksheet columns and rows numeration are described by letters (A, B, C, etc.) for columns and by numbers (1, 2, 3, etc.) for rows, numeration is located in headings of Excel worksheet. The column headings are used to identify the column and row numbers are used to identify the row in the worksheet. The combination of the column letter and the row number (A1, D3, F7, etc.) is called cell reference and used to identify the cell in the worksheet. 
 
-The column and row headings are highlighted in the following screenshot. 
+The column and row headings are highlighted in the following screenshot.
 
-![](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings.png)
+![Row and column headings in Excel](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings.png)
 
 ## Background
 
@@ -20,35 +20,32 @@ Let's take a sample workbook and open it with Excel. Then we'll process the same
 
 The following screenshot shows the default spreadsheet view in Excel.
 
-![](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_1.png)
+![Spreadsheet in Excel](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_1.png)
 
 When processing spreadsheets with GroupDocs.Viewer the row and column headings are not shown by default.
 
-The following screenshot shows the default spreadsheet HTML view in a browser. 
+The following screenshot shows the default spreadsheet HTML view in a browser.
 
-![](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_2.png)
+![Spreadsheet without headings when viewing output HTML in a browser](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_2.png)
 
-## How to show spreadsheet column and row headings
-
-{{< alert style="danger" >}}This feature is supported when rendering worksheets into a single page when SpreadsheetOptions is set to SpreadsheetOptions.ForOnePagePerSheet().{{< /alert >}}
+## Solution
 
 To show of column and row headings in the output document you just need to set [HtmlViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfviewoptions)) object [SpreadsheetOptions.RenderHeadings](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/spreadsheetoptions/properties/renderheadings) property to true
 
 The following code sample shows how to enable rendering of column and row headings (this example can be also found in our [public examples repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/Examples/GroupDocs.Viewer.Examples.CSharp/AdvancedUsage/Rendering/RenderingOptionsByDocumentType/RenderingSpreadsheets/RenderRowAndColumnHeadings.cs).)
 
 ```csharp
-            using (Viewer viewer = new Viewer("sample.xlsx"))
-            {
-                HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
-                viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForOnePagePerSheet();
-                viewOptions.SpreadsheetOptions.RenderHeadings = true;
-                viewer.View(viewOptions);
-            }
+using (Viewer viewer = new Viewer("sample.xlsx"))
+{
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+    viewOptions.SpreadsheetOptions.RenderHeadings = true;
+    viewer.View(viewOptions);
+}
 ```
 
 When headings rendering is enabled, the spreadsheet HTML view in a browser will contain row and column headings as shown in the screenshot below.
 
-![](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_3.png)
+![Spreadsheet headings when viewing output HTML in a browser](viewer/net/images/how-to-show-spreadsheet-column-and-row-headings_3.png)
 
 ## More resources
 
