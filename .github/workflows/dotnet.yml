@@ -1,0 +1,23 @@
+name: Test .NET Core build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Restore dependencies
+      run: dotnet restore Examples/GroupDocs.Viewer.Examples.CSharp.Core
+    - name: Test build for .NET Core project
+      run: dotnet build --no-restore Examples/GroupDocs.Viewer.Examples.CSharp.Core
