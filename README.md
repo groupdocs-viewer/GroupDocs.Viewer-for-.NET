@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET.svg?branch=master)](https://travis-ci.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
+
 # Document Viewer .NET API
 
 GroupDocs.Viewer for .NET is a powerful [Document Viewer API](https://products.groupdocs.com/viewer/net) which [supports over 160 file formats](https://docs.groupdocs.com/viewer/net/supported-document-formats/) to view documents in HTML5, Image or PDF modes with fast and high quality rendering. The Viewer Library allows to customize the rendering strategy by processing document page-by-page, entire document at once or a custom pages range. Developers may also customize document appearance via additional rendering options by adding watermarks, rotation and reordering pages, extracting document text with coordinates and much more.
