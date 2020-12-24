@@ -1,10 +1,8 @@
 ﻿#if !NETCOREAPP
+using Azure.Storage.Blobs;
+using GroupDocs.Viewer.Options;
 using System;
 using System.IO;
-using GroupDocs.Viewer.Options;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocumentsFromDifferentSources
 {
@@ -30,31 +28,30 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
                 
         public static Stream DownloadFile(string blobName)
         {
-            CloudBlobContainer container = GetContainer();
+            BlobContainerClient containerClient = GetContainerClient();
 
-            CloudBlob blob = container.GetBlobReference(blobName);
+            // Get a reference to a blob
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
             MemoryStream memoryStream = new MemoryStream();
-            blob.DownloadToStream(memoryStream);
+            blobClient.DownloadTo(memoryStream);
             memoryStream.Position = 0;
             return memoryStream;
         }
 
-        private static CloudBlobContainer GetContainer()
+        private static BlobContainerClient GetContainerClient()
         {
             string accountName = "***";
             string accountKey = "***";
-            string endpoint = $"https://{accountName}.blob.core.windows.net/";
+            string endpointSuffix = "core.windows.net";
             string containerName = "***";
 
-            StorageCredentials storageCredentials = new StorageCredentials(accountName, accountKey);
-            CloudStorageAccount cloudStorageAccount = new CloudStorageAccount(
-                storageCredentials, new Uri(endpoint), null, null, null);
-            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            string connectionString = $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix={endpointSuffix}";
 
-            CloudBlobContainer container = cloudBlobClient.GetContainerReference(containerName);
-            container.CreateIfNotExists();
+            // Create a BlobContainerClient object which will be used to create a container client
+            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, containerName);
 
-            return container;
+            return blobContainerClient;
         }
     }
 }

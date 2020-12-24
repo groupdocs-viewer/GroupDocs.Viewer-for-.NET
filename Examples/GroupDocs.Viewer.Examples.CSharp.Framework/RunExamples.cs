@@ -60,7 +60,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToHtmlWithEmbeddedResources.Run();
             //RenderToHtmlWithExternalResources.Run();
-
+            
             //ExcludingFontsFromOutputHtml.Run();
             //MinifyHtmlDocument.Run();
             //RenderToResponsiveHtml.Run();
@@ -130,10 +130,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
 
-            #endregion
-
-            #region Lotus Notes data files
-            //RenderingNsf.Run();
             #endregion
 
             #region Rendering Outlook Data Files
@@ -224,7 +220,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //HowToDetermineFileType.FromFileExtension();
             //HowToDetermineFileType.FromMediaType();
             //HowToDetermineFileType.FromStream();
-
+            
             //HowToLogging.ToConsole();
             //HowToLogging.ToFile();
             #endregion
