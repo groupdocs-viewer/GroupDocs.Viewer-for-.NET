@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-Excel worksheet columns and rows numeration are described by letters (A, B, C, etc.) for columns and by numbers (1, 2, 3, etc.) for rows, numeration is located in headings of Excel worksheet. The column headings are used to identify the column and row numbers are used to identify the row in the worksheet. The combination of the column letter and the row number (A1, D3, F7, etc.) is called cell reference and used to identify the cell in the worksheet. 
+Excel worksheet columns and rows numeration are described by letters (A, B, C, etc.) for columns and by numbers (1, 2, 3, etc.) for rows, numeration is located in headings of Excel worksheet. The column headings are used to identify the column and row numbers are used to identify the row in the worksheet. The combination of the column letter and the row number (A1, D3, F7, etc.) is called cell reference and used to identify the cell in the worksheet.
 
 The column and row headings are highlighted in the following screenshot.
 

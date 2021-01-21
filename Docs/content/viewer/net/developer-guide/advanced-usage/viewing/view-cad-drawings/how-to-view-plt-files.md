@@ -60,7 +60,7 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 
 ### Convert PLT to PNG
 
-To convert PLT/HPG files to PNG with GroupDocs.Viewer for .NET use following code: 
+To convert PLT/HPG files to PNG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.plt"))
@@ -81,7 +81,7 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 
 ### Convert PLT to PDF
 
-To convert PLT/HPG files to PDF with GroupDocs.Viewer for .NET use following code: 
+To convert PLT/HPG files to PDF with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.plt"))

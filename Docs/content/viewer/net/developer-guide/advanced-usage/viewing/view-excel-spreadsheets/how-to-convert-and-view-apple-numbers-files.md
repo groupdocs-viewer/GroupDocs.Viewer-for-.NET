@@ -64,7 +64,7 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 
 ### Convert Apple numbers to PDF
 
-To convert Apple numbersfiles to PDF with GroupDocs.Viewer for .NET use following code:
+To convert Apple numbers files to PDF with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.numbers"))

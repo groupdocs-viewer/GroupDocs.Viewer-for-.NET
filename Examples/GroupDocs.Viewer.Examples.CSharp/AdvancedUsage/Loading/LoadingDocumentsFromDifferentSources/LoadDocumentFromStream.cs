@@ -13,8 +13,9 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
-                        
-            using (Viewer viewer = new Viewer(GetFileStream)) 
+            Stream stream = GetFileStream();         
+            
+            using (Viewer viewer = new Viewer(stream)) 
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 
@@ -24,6 +25,9 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
             Console.WriteLine($"\nSource document rendered successfully.\nCheck output in {outputDirectory}.");
         }
 
-        private static Stream GetFileStream() => File.OpenRead(TestFiles.SAMPLE_DOCX);
+        private static Stream GetFileStream()
+        {
+            return File.OpenRead(TestFiles.SAMPLE_DOCX);
+        }
     }
 }

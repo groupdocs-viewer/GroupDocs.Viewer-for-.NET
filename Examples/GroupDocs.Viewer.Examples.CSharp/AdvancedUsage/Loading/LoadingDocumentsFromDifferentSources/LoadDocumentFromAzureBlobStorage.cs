@@ -16,8 +16,8 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
             string blobName = "sample.docx";
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
-
-            using (Viewer viewer = new Viewer(() => DownloadFile(blobName)))
+            Stream stream = DownloadFile(blobName);
+            using (Viewer viewer = new Viewer(stream))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);                
                 viewer.View(options);

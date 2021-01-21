@@ -14,7 +14,7 @@ I've created three worksheets and left their default names that is shown on the 
 
 ## Retrieving the names of the worksheets
 
-To get the names of the worksheets call [GetViewInfo()](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer/viewer/methods/getviewinfo) method that returns an object which contains a list of pages (worksheets). Each page has its name. 
+To get the names of the worksheets call [GetViewInfo()](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer/viewer/methods/getviewinfo) method that returns an object which contains a list of pages (worksheets). Each page has its name.
 The following code sample shows how to get and print out the names of the worksheets (this example can be also found in our [public examples repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/Examples/GroupDocs.Viewer.Examples.CSharp/AdvancedUsage/Rendering/RenderingOptionsByDocumentType/RenderingSpreadsheets/GetWorksheetsNames.cs).)
 
 ```csharp

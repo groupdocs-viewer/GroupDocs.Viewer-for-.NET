@@ -25,8 +25,8 @@ To render to HTML with external resources use following code:
 ```csharp
 using (Viewer viewer = new Viewer("document.dwg"))
 {
-    HtmlViewOptions viewOptions = 
-        HtmlViewOptions.ForExternalResources("page_{0}.html","page_{0}/resource_{1}","page_{0}/resources");
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForExternalResources(
+        "page_{0}.html","page_{0}/resource_{1}","page_{0}/resources");
 
     viewer.View(viewOptions);
 }

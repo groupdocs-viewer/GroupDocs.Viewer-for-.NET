@@ -16,7 +16,7 @@ To view Text files online please check out free **[GroupDocs Viewer App](https:/
 
 ## Supported Text Files
 
-The following Text Files are supported by the GroupDocs.Viewer for .NET. 
+The following Text Files are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the Text file by analyzing file contents.
 

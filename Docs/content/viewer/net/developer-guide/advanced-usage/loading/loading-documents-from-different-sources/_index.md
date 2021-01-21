@@ -16,11 +16,13 @@ GroupDocs.Viewer also enables you to render of remotely located documents. The
 ```csharp
 public static void LoadDocument()
 {
-   using (Viewer viewer = new Viewer(GetFileStream))
-    {
-        HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
-        viewer.View(viewOptions);
-    }
+   Stream stream = GetFileStream();
+   
+   using (Viewer viewer = new Viewer(stream))
+   {
+       HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+       viewer.View(viewOptions);
+   }
 }
 
 private static Stream GetFileStream()

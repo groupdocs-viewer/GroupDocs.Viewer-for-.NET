@@ -11,42 +11,43 @@ hideChildren: False
 Following example demonstrates how to render document from Azure Blob Storage.
 
 ```csharp
-        string blobName = "sample.docx";
+string blobName = "sample.docx";
+Stream stream = DownloadFile(blobName);
 
-        using (Viewer viewer = new Viewer(() => DownloadFile(blobName)))
-        {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+using (Viewer viewer = new Viewer())
+{
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
 
-            viewer.View(viewOptions);
-        }
+    viewer.View(viewOptions);
+}
 
-        public static Stream DownloadFile(string blobName)
-        {
-            BlobContainerClient containerClient = GetContainerClient();
+public static Stream DownloadFile(string blobName)
+{
+    BlobContainerClient containerClient = GetContainerClient();
 
-            // Get a reference to a blob
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+    // Get a reference to a blob
+    BlobClient blobClient = containerClient.GetBlobClient(blobName);
 
-            MemoryStream memoryStream = new MemoryStream();
-            blobClient.DownloadTo(memoryStream);
-            memoryStream.Position = 0;
-            return memoryStream;
-        }
+    MemoryStream memoryStream = new MemoryStream();
+    blobClient.DownloadTo(memoryStream);
+    memoryStream.Position = 0;
+    return memoryStream;
+}
 
-        private static BlobContainerClient GetContainerClient()
-        {
-            string accountName = "***";
-            string accountKey = "***";
-            string endpointSuffix = "core.windows.net";
-            string containerName = "***";
+private static BlobContainerClient GetContainerClient()
+{
+    string accountName = "***";
+    string accountKey = "***";
+    string endpointSuffix = "core.windows.net";
+    string containerName = "***";
 
-            string connectionString = $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix={endpointSuffix}";
+    string connectionString = $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix={endpointSuffix}";
 
-            // Create a BlobContainerClient object which will be used to create a container client
-            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, containerName);
+    // Create a BlobContainerClient object which will be used to create a container client
+    BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, containerName);
 
-            return blobContainerClient;
-        }
+    return blobContainerClient;
+}
 ```
 
 ## More resources

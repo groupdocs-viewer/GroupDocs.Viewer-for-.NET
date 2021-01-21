@@ -16,7 +16,7 @@ To view PDF files online please check out free **[PDF Viewer](https://products.g
 
 ## Supported Page Layout Formats
 
-The following Page Layout formats are supported by the GroupDocs.Viewer for .NET. 
+The following Page Layout formats are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the Page Layout file by reading the information in the file header.
 

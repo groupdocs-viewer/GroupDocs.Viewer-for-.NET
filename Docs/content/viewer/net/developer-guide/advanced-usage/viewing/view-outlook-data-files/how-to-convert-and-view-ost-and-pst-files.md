@@ -16,7 +16,7 @@ OST files - contain data, that downloaded from Exchange Server.
 ## View OST and PST files
 
 The OST/PST can be opened with Microsoft Outlook.
-In case you need to view a PST/OST file in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with GroupDocs.Viewer for .NET. 
+In case you need to view a PST/OST file in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with GroupDocs.Viewer for .NET.
 ![](viewer/net/images/how-to-convert-and-view-ost-and-pst-files.png)
 
 ### Convert OST and PST to HTML

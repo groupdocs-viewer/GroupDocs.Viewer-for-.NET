@@ -34,13 +34,13 @@ The following screenshot shows the output HTML file opened in a browser.
 
 ### Convert IGS to JPG
 
-To convert IGS files to JPG with GroupDocs.Viewer for .NET use following code: 
+To convert IGS files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.igs"))
 {
        JpgViewOptions options = new JpgViewOptions("output.jpg");
-	viewer.View(options);
+       viewer.View(options);
 }
 ```
 

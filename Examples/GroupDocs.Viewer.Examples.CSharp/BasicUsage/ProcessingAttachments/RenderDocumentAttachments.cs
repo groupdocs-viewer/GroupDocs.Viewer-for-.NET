@@ -23,7 +23,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
                 viewer.SaveAttachment(attachment, attachmentStream);
             }
 
-            using (Viewer viewer = new Viewer(() => attachmentStream))
+            using (Viewer viewer = new Viewer(attachmentStream))
             {
                 HtmlViewOptions options =
                     HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);

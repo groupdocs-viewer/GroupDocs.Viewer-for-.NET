@@ -20,7 +20,7 @@ And as you can see the background color of the output image below is white.
 
 Now, lets set background color and convert CAD drawing one more time.
 
-To set background color you need to specify the [BackgroundColor](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/cadoptions/properties/backgroundcolor) property value in the [CadOptions](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/cadoptions) class. 
+To set background color you need to specify the [BackgroundColor](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/cadoptions/properties/backgroundcolor) property value in the [CadOptions](https://apireference.groupdocs.com/viewer/net/groupdocs.viewer.options/cadoptions) class.
 
 The following code snippet shows how to set background color.
 

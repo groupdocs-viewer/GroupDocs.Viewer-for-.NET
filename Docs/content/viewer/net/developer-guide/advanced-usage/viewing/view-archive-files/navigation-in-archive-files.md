@@ -8,13 +8,13 @@ keywords: folder windows explorer navigation
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-When rendering contents of the archive to single-page HTML, Windows Explorer style like navigation is implemented, to use this you should set RenderSinglePage option to true:
+When rendering contents of the archive to single-page HTML, Windows Explorer style like navigation is implemented, to use this you should set RenderToSinglePage option to true:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.zip"))
 {
     HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
-    viewOptions.RenderSinglePage = true;
+    viewOptions.RenderToSinglePage = true;
 
     viewer.View(viewOptions);
 }

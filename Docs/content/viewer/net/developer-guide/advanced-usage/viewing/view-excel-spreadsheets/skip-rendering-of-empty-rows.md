@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-Sometimes Excel document contains information at the beginning of the worksheet and after that, it contains some count of empty (blank) rows. In case, if the number of empty rows is considerably huge, the rendering time increases and hence, it affects the performance. 
+Sometimes Excel document contains information at the beginning of the worksheet and after that, it contains some count of empty (blank) rows. In case, if the number of empty rows is considerably huge, the rendering time increases and hence, it affects the performance.
 
 ## The Solution
 

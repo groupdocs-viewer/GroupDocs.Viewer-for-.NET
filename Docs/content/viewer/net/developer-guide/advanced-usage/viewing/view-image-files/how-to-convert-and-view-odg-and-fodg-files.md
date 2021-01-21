@@ -37,7 +37,7 @@ The following screenshot shows the output HTML file opened in a browser.
 
 ### Convert FODG to JPG
 
-To convert FODG files to JPG with GroupDocs.Viewer for .NET use following code: 
+To convert FODG files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.fodg"))
@@ -54,7 +54,7 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 
 ### Convert FODG to PNG
 
-To convert PLT/HPG files to PNG with GroupDocs.Viewer for .NET use following code: 
+To convert PLT/HPG files to PNG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.fodg"))
@@ -71,7 +71,7 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 
 ### Convert FODG to PDF
 
-To convert FODG files to PDF with GroupDocs.Viewer for .NET use following code: 
+To convert FODG files to PDF with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.fodg"))

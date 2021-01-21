@@ -38,7 +38,7 @@ To convert TXT files to single HTML with GroupDocs.Viewer for .NET use followin
 using (Viewer viewer = new Viewer("sample.txt"))
 {
        HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources("output.html");
-       options.RenderSinglePage = true;
+       options.RenderToSinglePage = true;
 
        viewer.View(options);
 }
@@ -50,7 +50,7 @@ The following screenshot shows the output HTML file opened in a browser.
 
 ### Convert TXT to JPG
 
-To convert TXT files to JPG with GroupDocs.Viewer for .NET use following code: 
+To convert TXT files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.txt"))

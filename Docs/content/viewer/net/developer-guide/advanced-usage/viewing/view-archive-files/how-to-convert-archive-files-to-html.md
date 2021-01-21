@@ -23,7 +23,7 @@ If you convert archive files to HTML, you can choose beetween multiple and singl
 
 ### Convert archive files to multiple pages HTML
 
-If property RenderSinglePage is set to false (by default), you can set ItemsPerPage property - the number of items per page (default is 16), it is for rendering to HTML only.
+If property RenderToSinglePage is set to false (by default), you can set ItemsPerPage property - the number of items per page (default is 16), it is for rendering to HTML only.
 To convert archive files to multiple pages HTML with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
@@ -48,7 +48,7 @@ To convert archive files to single page HTML with GroupDocs.Viewer for .NET use
 using (Viewer viewer = new Viewer("sample.zip"))
 {
        HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources("output.html");
-       options.RenderSinglePage = true;
+       options.RenderToSinglePage = true;
        viewer.View(options);
 }
 ```

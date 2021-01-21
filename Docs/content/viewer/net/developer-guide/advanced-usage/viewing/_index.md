@@ -10,6 +10,4 @@ hideChildren: False
 ---
 GroupDocs.Viewer enables you to render documents with a huge set of additional options to customize output document appearance. For more details please refer to:
 
-
 ## Articles in this section
-

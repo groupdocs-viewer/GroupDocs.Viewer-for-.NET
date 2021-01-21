@@ -19,7 +19,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 
-                options.RenderSinglePage = true; 
+                options.RenderToSinglePage = true; 
 
                 viewer.View(options);
             }
@@ -33,7 +33,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 
                 /*
-                 * If options.RenderSinglePage is set to false (by default), 
+                 * If options.RenderToSinglePage is set to false (by default), 
                  * you can set the number of items per page (default is 16), this property is for rendering to HTML only 
                  */
                 options.ArchiveOptions.ItemsPerPage = 10;

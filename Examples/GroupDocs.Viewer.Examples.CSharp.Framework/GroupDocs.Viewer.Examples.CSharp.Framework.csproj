@@ -55,14 +55,14 @@
     <Reference Include="Azure.Core, Version=1.6.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Core.1.6.0\lib\net461\Azure.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Storage.Blobs, Version=12.8.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Azure.Storage.Blobs.12.8.0-beta.1\lib\netstandard2.0\Azure.Storage.Blobs.dll</HintPath>
+    <Reference Include="Azure.Storage.Blobs, Version=12.7.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Storage.Blobs.12.7.0\lib\netstandard2.0\Azure.Storage.Blobs.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Storage.Common, Version=12.7.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Azure.Storage.Common.12.7.0-beta.1\lib\netstandard2.0\Azure.Storage.Common.dll</HintPath>
+    <Reference Include="Azure.Storage.Common, Version=12.6.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Storage.Common.12.6.0\lib\netstandard2.0\Azure.Storage.Common.dll</HintPath>
     </Reference>
-    <Reference Include="GroupDocs.Viewer, Version=20.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\GroupDocs.Viewer.20.12.0\lib\net20\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=21.1.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\GroupDocs.Viewer.21.1.0\lib\net20\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>

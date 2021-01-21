@@ -50,9 +50,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\SplitDrawingIntoTiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\AdjustPageSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\RenameEmailFields.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingAi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingApng.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCmx.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCdr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingEmzAndEmf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingTga.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingWmzAndWmf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingSvgAndSvgz.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingFodgAndOdg.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingTextFiles\RenderingTxt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingVisioDocuments\RenderingVisioFigures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWebDocuments\RenderingHtmlWithUserDefinedMargins.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWebDocuments\RenderingChmFiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWordProcessingDocuments\RenderTrackedChanges.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\CheckFileIsEncrypted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\GetPdfStream.cs" />
@@ -128,6 +132,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -154,10 +161,19 @@
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\password_protected.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.ai">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.apng">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cdr">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cf2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cmx">

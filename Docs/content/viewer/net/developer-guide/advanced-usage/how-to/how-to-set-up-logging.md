@@ -43,7 +43,6 @@ using (Viewer viewer = new Viewer("sample.docx",viewerSettings))
 
     viewer.View(viewOptions);
 }
-
 ```
 
 ## Logging to Console
@@ -64,7 +63,6 @@ using (Viewer viewer = new Viewer("sample.docx",viewerSettings))
 
     viewer.View(viewOptions);
 }
-
 ```
 
 ## Implementing custom logger

@@ -12,7 +12,7 @@ hideChildren: False
 
 ![](viewer/net/images/rendering-pages-to-the-same-size-as-the-size-of-pages-in-a-source-document.png)
 
-When viewing PDF documents in JPG and PNG formats by default GroupDocs.Viewer calculates output image size for better viewing quality. In case you want to make output JPG and PNG images to be the same size in pixels as the size of pages in a source PDF document GropDocs.Viewer provides a new option called [RenderOriginalPageSize](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfoptions/properties/renderoriginalpagesize) of the [PdfOptions ](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfoptions) class. 
+When viewing PDF documents in JPG and PNG formats by default GroupDocs.Viewer calculates output image size for better viewing quality. In case you want to make output JPG and PNG images to be the same size in pixels as the size of pages in a source PDF document GroupDocs.Viewer provides a new option called [RenderOriginalPageSize](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfoptions/properties/renderoriginalpagesize) of the [PdfOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfoptions) class.
 
 The following code snippet shows how to convert pages to the same size as the size of pages in a source document ([This example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/Examples/GroupDocs.Viewer.Examples.CSharp/AdvancedUsage/Rendering/RenderingOptionsByDocumentType/RenderingPdfDocuments/RenderOriginalPageSize.cs) can be also found in our public [GitHub repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET).)
 

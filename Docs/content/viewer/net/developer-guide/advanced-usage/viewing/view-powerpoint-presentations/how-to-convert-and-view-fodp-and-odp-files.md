@@ -10,7 +10,7 @@ hideChildren: False
 ---
 FODP is Flat Open Document Presentation in XML format for presentations. It can be opened with LibreOffice (OpenOffice) Impress.
 
-ODP is Open Document Presentation too, but it formatted using the OASIS XML-based OpenDocument standard and consists of an archive with a set of files and a [manifest](https://en.wikipedia.org/wiki/Manifest_file) file. 
+ODP is Open Document Presentation too, but it formatted using the OASIS XML-based OpenDocument standard and consists of an archive with a set of files and a [manifest](https://en.wikipedia.org/wiki/Manifest_file) file.
 
 ![](viewer/net/images/how-to-convert-and-view-fodp-and-odp-files.png)
 
@@ -50,7 +50,7 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 
 ### Convert FODP(ODP) to PNG
 
-To convert FODP(ODP) files to PNG with GroupDocs.Viewer for .NET use following code: 
+To convert FODP(ODP) files to PNG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.fodp"))
@@ -66,7 +66,7 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 
 ### Convert FODP(ODP) to PDF
 
-To convert FODP(ODP) files to PDF with GroupDocs.Viewer for .NET use following code: 
+To convert FODP(ODP) files to PDF with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.fodp"))

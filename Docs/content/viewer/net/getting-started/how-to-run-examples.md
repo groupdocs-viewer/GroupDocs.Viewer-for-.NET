@@ -14,25 +14,24 @@ We offer multiple solutions on how you can run GroupDocs.Viewer examples, by bui
 
 Please choose one from the following list:
 
-
 ## Build project from scratch
 
-*   Open Visual Studio and go to **File** -> **New** -> **Project**.
-*   Select appropriate project type - Console App, ASP.NET Web Application etc.
-*   Install **GroupDocs.Viewer for .NET** from Nuget or official GroupDocs website following this guide.
-*   Code your first application with **GroupDocs.Viewer for .NET** like this    
-    ```csharp
-    string documentPath = @"C:\sample.docx"; // NOTE: Put here actual path for your document
-    using (Viewer viewer = new Viewer(documentPath))
-    {
-       // The file path format e.g. 'page_{0}.html'
-       string filePathFormat = @"C:\output\page-{0}.html";
-       HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(filePathFormat);
-       viewer.View(options);
-    }
-    ```    
-*   Build and Run your project. 
-*   Rendered document pages will appear inside "*C:\\output\\" *directory. 
+* Open Visual Studio and go to **File** -> **New** -> **Project**.
+* Select appropriate project type - Console App, ASP.NET Web Application etc.
+* Install **GroupDocs.Viewer for .NET** from Nuget or official GroupDocs website following this guide.
+* Code your first application with **GroupDocs.Viewer for .NET** like this
+  ```csharp
+  string documentPath = @"C:\sample.docx"; // NOTE: Put here actual path for your document
+  using (Viewer viewer = new Viewer(documentPath))
+  {
+     // The file path format e.g. 'page_{0}.html'
+     string filePathFormat = @"C:\output\page-{0}.html";
+     HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(filePathFormat);
+     viewer.View(options);
+  }
+  ```
+* Build and Run your project.
+* Rendered document pages will appear inside "*C:\\output\\" *directory.
 
 ## Run back-end examples
 
@@ -50,12 +49,13 @@ Un-comment the function you want to run and comment the rest.
 ## Run MVC examples
 
 You can run [GroupDocs.Viewer for .NET MVC Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC) following these steps:
-*   Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC/archive/master.zip) from GitHub or clone this repository    
-    ```csharp
-    git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC   
-    ```    
-*   Open solution in the VisualStudio. Update common parameters in **web.config** and example related properties in the **configuration.yml** to meet your requirements.
-*   Open [http://localhost:8080/viewer](http://localhost:8080/viewer) in your favorite browser
+
+* Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC/archive/master.zip) from GitHub or clone this repository
+  ```csharp
+  git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC   
+  ```
+* Open solution in the VisualStudio. Update common parameters in **web.config** and example related properties in the **configuration.yml** to meet your requirements.
+* Open [http://localhost:8080/viewer](http://localhost:8080/viewer) in your favorite browser
 
 For more details about project configuration please refer to this [guide](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC#configuration).
 
@@ -63,12 +63,12 @@ For more details about project configuration please refer to this [guide](https
 
 You can run [GroupDocs.Viewer for .NET Web.Forms Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms) following these steps:
 
-*   Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/archive/master.zip) from GitHub or clone this repository    
-    ```csharp
-    git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms
-    ```    
-*   Open solution in the VisualStudio. Update common parameters in **web.config** and example related properties in the **configuration.yml** to meet your requirements.
-*   Open [http://localhost:8080/viewer](http://localhost:8080/viewer) in your favorite browser
+* Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/archive/master.zip) from GitHub or clone this repository
+  ```csharp
+  git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms
+  ```    
+* Open solution in the VisualStudio. Update common parameters in **web.config** and example related properties in the **configuration.yml** to meet your requirements.
+* Open [http://localhost:8080/viewer](http://localhost:8080/viewer) in your favorite browser
 
 For more details about project configuration please refer to this [guide](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms#configuration).
 

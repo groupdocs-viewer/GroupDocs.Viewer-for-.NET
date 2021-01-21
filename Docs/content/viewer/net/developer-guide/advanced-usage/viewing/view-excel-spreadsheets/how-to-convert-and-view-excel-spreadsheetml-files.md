@@ -19,7 +19,7 @@ SpreadsheetML is Excel 2003 document format in XML file. It can be opened by Mic
 To convert Excel 2003 SpreadSheetML files to HTML with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
-using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml"), new LoadOptions(FileType.Excel2003XML))
+using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml", new LoadOptions(FileType.Excel2003XML))
 {
        HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources("output.html");
        viewer.View(options);
@@ -35,7 +35,7 @@ The following screenshot shows the output HTML file opened in a browser.
 To convert Excel 2003 SpreadSheetML files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
-using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml"), new LoadOptions(FileType.Excel2003XML))
+using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml", new LoadOptions(FileType.Excel2003XML))
 {
        JpgViewOptions options = new JpgViewOptions("output.jpg");
        viewer.View(options);
@@ -51,7 +51,7 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 To convert Excel 2003 SpreadSheetML files to PNG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
-using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml"), new LoadOptions(FileType.Excel2003XML))
+using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml", new LoadOptions(FileType.Excel2003XML))
 {
        PngViewOptions options = new PngViewOptions("output.png");
        viewer.View(options);
@@ -67,7 +67,7 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 To convert Excel 2003 SpreadSheetMLfiles to PDF with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
-using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml"), new LoadOptions(FileType.Excel2003XML))
+using (Viewer viewer = new Viewer("sample-excel-2003-xml.xml", new LoadOptions(FileType.Excel2003XML))
 {
        PdfViewOptions options = new PdfViewOptions("output.pdf");
        viewer.View(options);

@@ -30,7 +30,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_2_TXT))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFileFullPath);
-                options.RenderSinglePage = true;
+                options.RenderToSinglePage = true;
 
                 viewer.View(options);
             }

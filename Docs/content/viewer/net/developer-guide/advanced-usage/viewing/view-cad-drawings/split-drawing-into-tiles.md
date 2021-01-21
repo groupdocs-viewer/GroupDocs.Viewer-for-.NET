@@ -16,7 +16,7 @@ Tiled rendering or (rendering by coordinates) is the process of rendering CAD dr
 
 Before you start rendering by coordinates, you should obtain the overall width and height of the document using the [GetViewtInfo](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method of [Viewer](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/viewer) object as shown in the code sample below. After you know the width and height, determine the starting point (X and Y coordinates) and the width and the height of the tile (region you want to render). Add the tiles to [CadOptions.Tiles](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/cadoptions/properties/tiles) list as shown in the sample below. The coordinates start from the bottom left corner of the drawing and have only positive values as shown in the sample picture below. 
 
-Overall size of the document is 650px height and 750px width. The selected tile starts at coordinate X: 250 and Y: 100 and has a width 150px, height: 200px 
+Overall size of the document is 650px height and 750px width. The selected tile starts at coordinate X: 250 and Y: 100 and has a width 150px, height: 200px
 
 ![](viewer/net/images/split-drawing-into-tiles_1.jpg)
 

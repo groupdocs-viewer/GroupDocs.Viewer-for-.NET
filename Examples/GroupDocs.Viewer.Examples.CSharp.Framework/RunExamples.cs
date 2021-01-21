@@ -60,7 +60,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //RenderToHtmlWithEmbeddedResources.Run();
             //RenderToHtmlWithExternalResources.Run();
-            
+
             //ExcludingFontsFromOutputHtml.Run();
             //MinifyHtmlDocument.Run();
             //RenderToResponsiveHtml.Run();
@@ -80,6 +80,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingEmzAndEmf.Run();
             //RenderingCdr.Run();
             //RenderingCmx.Run();
+            //RenderingAi.Run();
+            //RenderingTga.Run();
+            //RenderingApng.Run();
 
             #endregion
 
@@ -183,6 +186,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Rendering Web documents
             //RenderingHtmlWithUserDefinedMargins.Run();
+            //RenderingChmFiles.Run();
             #endregion
 
             #endregion
@@ -220,7 +224,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //HowToDetermineFileType.FromFileExtension();
             //HowToDetermineFileType.FromMediaType();
             //HowToDetermineFileType.FromStream();
-            
+
             //HowToLogging.ToConsole();
             //HowToLogging.ToFile();
             #endregion

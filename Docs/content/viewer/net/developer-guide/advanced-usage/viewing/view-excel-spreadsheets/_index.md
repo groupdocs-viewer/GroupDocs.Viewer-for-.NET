@@ -16,7 +16,7 @@ To view Excel files online please check out free **[Excel viewer](https://produc
 
 ## Supported Spreadsheets Formats
 
-The following Spreadsheet formats are supported by the GroupDocs.Viewer for .NET. 
+The following Spreadsheet formats are supported by the GroupDocs.Viewer for .NET.
 
 Auto Detection means that GroupDocs.Viewer for .NET can determine the type of the Spreadsheet file by reading the information in the file header.
 
@@ -37,7 +37,6 @@ Auto Detection means that GroupDocs.Viewer for .NET can determine the type of th
 | .XLAM | Excel Open XML Macro-Enabled Add-In | Yes |
 | .SXC | StarOffice Calc Spreadsheet | Yes |
 | [.NUMBERS](https://wiki.fileformat.com/spreadsheet/numbers) | [Apple numbers](https://wiki.fileformat.com/spreadsheet/numbers) | Yes |
-
 
 ## In this section
 

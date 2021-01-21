@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for .NET
 hideChildren: False
 ---
-When you are converting HTML files, you can ajdust top/bottom, left/right page margins in final document.
+When you are converting HTML files, you can adjust top/bottom, left/right page margins in final document.
 The units of margins are typography points.\
 Default values are:\
 Top/Bottom - 72\

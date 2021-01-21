@@ -20,14 +20,14 @@ GroupDocs.Viewer also allows filtering the rendered messages using the followin
 As an example, when setting [LotusNotesOptions.TextFilter](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/lotusnotesoptions/properties/textfilter)as 'Microsoft'  the API will render all messages that contain the text 'Microsoft' in the message's subject or body. Whereas, setting [LotusNotesOptions.](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/lotusnotesoptions/properties/addressfilter)[AddressFilter](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/lotusnotesoptions/properties/addressfilter)as 'susan' will filter messages that contain 'susan' as a part of the sender's or recipient's address. The following code samples show how to filter the messages.
 
 ```csharp
-            using (Viewer viewer = new Viewer("sample.nsf"))
-            {
-                HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
-                HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                options.LotusNotesOptions.TextFilter = "April 2015";
-                options.LotusNotesOptions.AddressFilter = "test@test.com";
-                viewer.View(viewOptions);
-            }
+using (Viewer viewer = new Viewer("sample.nsf"))
+{
+    HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+    HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
+    options.LotusNotesOptions.TextFilter = "April 2015";
+    options.LotusNotesOptions.AddressFilter = "test@test.com";
+    viewer.View(viewOptions);
+}
 ```
 
 ## More resources

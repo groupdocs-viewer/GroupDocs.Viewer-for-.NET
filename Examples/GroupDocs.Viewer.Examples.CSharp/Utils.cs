@@ -5,7 +5,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 {
     internal static class Utils
     {
-        public const string LicensePath = "./Resources/GroupDocs.Viewer.lic";
+        public const string LicensePath = @"C:\licenses\GroupDocs.Viewer.lic";
 
         public const string SamplesPath = @"./Resources/SampleFiles";
         public const string FontsPath = @"./Resources/Fonts";

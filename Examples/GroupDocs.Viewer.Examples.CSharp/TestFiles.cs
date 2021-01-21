@@ -15,6 +15,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
         // CAD drawings
         public static string SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS =>
             GetSampleFilePath("with_layers_and_layouts.dwg");
+        public static string SAMPLE_AI =>
+            GetSampleFilePath("sample.ai");
         public static string SAMPLE_PLT =>
             GetSampleFilePath("sample.plt");
         public static string SAMPLE_CF2 =>
@@ -132,6 +134,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
              GetSampleFilePath("sample.cdr");
         public static string SAMPLE_CMX =>
              GetSampleFilePath("sample.cmx");
+        public static string SAMPLE_TGA =>
+            GetSampleFilePath("sample.tga");
+        public static string SAMPLE_APNG =>
+            GetSampleFilePath("sample.apng");
+
+        // Web 
+        public static string SAMPLE_CHM =>
+             GetSampleFilePath("sample.chm");
 
         private static string GetSampleFilePath(string filePath) =>
            Path.Combine(Utils.SamplesPath, filePath);

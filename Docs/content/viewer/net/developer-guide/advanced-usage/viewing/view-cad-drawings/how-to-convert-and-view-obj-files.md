@@ -37,13 +37,13 @@ The following screenshot shows the output HTML file opened in a browser.
 
 ### Convert OBJ to JPG
 
-To convert OBJ files to JPG with GroupDocs.Viewer for .NET use following code: 
+To convert OBJ files to JPG with GroupDocs.Viewer for .NET use following code:
 
 ```csharp
 using (Viewer viewer = new Viewer("sample.obj"))
 {
        JpgViewOptions options = new JpgViewOptions("output.jpg");
-	//options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
+       //options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
        //options.CadOptions = CadOptions.ForRenderingByWidthAndHeight(400,400); // Render image and set output size to 400x400
        //options.CadOptions = CadOptions.ForRenderingByWidth(500); // Render image, fix width by 500 px and recalculate height
        //options.CadOptions = CadOptions.ForRenderingByHeight(500); // Render image, fix height by 500 px and recalculate width
@@ -64,7 +64,7 @@ To convert PLT/HPG files to PNG with GroupDocs.Viewer for .NET use following c
 using (Viewer viewer = new Viewer("sample.obj"))
 {
        PngViewOptions options = new PngViewOptions("output.png");
-	//options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
+       //options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
        //options.CadOptions = CadOptions.ForRenderingByWidthAndHeight(400,400); // Render image and set output size to 400x400
        //options.CadOptions = CadOptions.ForRenderingByWidth(500); // Render image, fix width by 500 px and recalculate height
        //options.CadOptions = CadOptions.ForRenderingByHeight(500); // Render image, fix height by 500 px and recalculate width
@@ -85,7 +85,7 @@ To convert OBJ files to PDF with GroupDocs.Viewer for .NET use following code:�
 using (Viewer viewer = new Viewer("sample.obj"))
 {
        PdfViewOptions options = new PdfViewOptions("output.pdf");
-	//options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
+       //options.CadOptions = CadOptions.ForRenderingByScaleFactor(0.7f); // Render image and reduce it by 30%
        //options.CadOptions = CadOptions.ForRenderingByWidthAndHeight(400,400); // Render image and set output size to 400x400
        //options.CadOptions = CadOptions.ForRenderingByWidth(500); // Render image, fix width by 500 px and recalculate height
        //options.CadOptions = CadOptions.ForRenderingByHeight(500); // Render image, fix height by 500 px and recalculate width

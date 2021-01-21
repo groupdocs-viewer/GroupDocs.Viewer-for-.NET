@@ -12,16 +12,16 @@ When rendering MS Project documents GroupDocs.Viewer tries to find optimal outpu
 
 The [TimeUnit](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/timeunit) enumeration contains the following members:
 
-*   *Unknown* - The unknown, unspecified time scale
-*   *Days* - The one day interval
-*   *ThirdsOfMonths* - The one third of the month
-*   *Months* - The one month interval
+* *Unknown* - The unknown, unspecified time scale
+* *Days* - The one day interval
+* *ThirdsOfMonths* - The one third of the month
+* *Months* - The one month interval
 
 The following are the steps to be followed to set time interval:
 
-*   Create [HtmlViewOption](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/htmlviewoptions) / [PngViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pngviewoptions) / [JpgViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/jpgviewoptions) / [PdfViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfviewoptions) object;
-*   Set [ProjectManagementOptions.TimeUnit](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/projectmanagementoptions/properties/timeunit) property;
-*   Call [View](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/viewer/methods/view) method.
+* Create [HtmlViewOption](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/htmlviewoptions) / [PngViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pngviewoptions) / [JpgViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/jpgviewoptions) / [PdfViewOptions](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/pdfviewoptions) object;
+* Set [ProjectManagementOptions.TimeUnit](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer.options/projectmanagementoptions/properties/timeunit) property;
+* Call [View](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/viewer/methods/view) method.
 
 The following code samples show how to render MS Project document by time intervals.
 
