@@ -113,10 +113,17 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //FlipRotatePages.Run();
             //RenderWithCustomFonts.Run();
             //RenderingTxt.Run();
+            //SetImageSizeLimits.Run();
 
             #endregion
 
             #region Rendering options by document type
+
+            #region Rendering CAD Files
+
+            //RenderingPc3Files.Run();
+
+            #endregion
 
             #region Rendering Archive Files
 
@@ -132,6 +139,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             //AdjustPageSize.Run();
             //RenameEmailFields.Run();
+            //DateTimeFormatAndTimeZoneOffset.Run();
 
             #endregion
 
@@ -152,6 +160,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //AdjustImageQuality.Run();
             //EnableLayeredRendering.Run();
             //RenderOriginalPageSize.Run();
+            //DisableTextSelection.Run();
 
             #endregion
 
@@ -177,6 +186,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //GetWorksheetsNames.Run();
             //RenderingNumbers.Run();
             //RenderingXmlSpreadSheetML.Run();
+            //RenderingByPageBreaks.Run();
 
             #endregion
 

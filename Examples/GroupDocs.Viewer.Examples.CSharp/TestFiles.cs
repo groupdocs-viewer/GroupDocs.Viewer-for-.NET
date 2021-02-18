@@ -27,6 +27,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.obj");
         public static string SAMPLE_HPG =>
             GetSampleFilePath("sample.hpg");
+        public static string SAMPLE_PC3_CONFIG =>
+            GetSampleFilePath("small_page.pc3");
 
         // Email messages
         public static string SAMPLE_MSG =>
@@ -41,6 +43,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("with_subfolders.ost");
         public static string SAMPLE_NSF =>
             GetSampleFilePath("sample.nsf");
+        public static string SAMPLE_EML =>
+           GetSampleFilePath("sample.eml");
 
         // PDFs
         public static string SAMPLE_PDF =>
@@ -51,6 +55,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("hieroglyphs_1.pdf");
         public static string ENCRYPTED =>
             GetSampleFilePath("encrypted.pdf");
+        public static string ONE_PAGE_TEXT_PDF =>
+            GetSampleFilePath("one-page-text.pdf");
 
         // Presentations
         public static string PPTX_WITH_NOTES =>
@@ -76,6 +82,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("sample.xlsx");
         public static string SAMPLE_XLSX_WITH_PRINT_AREAS =>
             GetSampleFilePath("with_four_print_areas.xlsx");
+        public static string PAGE_BREAKS_XLSX =>
+            GetSampleFilePath("page-breaks.xlsx");
         public static string SAMPLE_XLSX_WITH_EMPTY_COLUMN =>
             GetSampleFilePath("with_empty_column.xlsx");
         public static string SAMPLE_XLSX_WITH_EMPTY_ROW =>
