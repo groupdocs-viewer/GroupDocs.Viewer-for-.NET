@@ -35,29 +35,32 @@ Directory | Description
 - Render documents with comments, notes, and custom fonts.
 - Replace missing fonts while rendering.
 
-## Supported Formats for HTML, Image, PDF Rendering
+## Supported document Formats
 
-**Archives:** TAR, ZIP, RAR, BZ2, GZIP \
-**Ebook:** EPUB, MOBI \
-**Apple:** NUMBERS \
-**Microsoft Word:** DOC, DOCM, DOCX, DOT, DOTM, DOTX, RTF, TXT\
-**Microsoft Excel:** XLS, XLSB, XLSM, XLSX, XLT, XLTX, XLAM, XLTM\
-**Microsoft PowerPoint:** PPT, PPTX, PPTM, PPS, PPSX, PPSM, POT, POTM, POTX\
-**Microsoft Visio:** VDW, VDX, VSD, VSDM, VSDX, VSS, VSSM, VSSX, VST, VSTM, VSTX, VSX, VTX\
-**Microsoft Project:** MPP, MPT, MPX\
-**Microsoft OneNote:** ONE\
-**OpenOffice:** ODG, FODG, OTG, XPS, ODP, FODP, OTP, FODS, ODS, OTS, ODT, OTT, OXPS\
-**AutoCAD:** DGN, DWF, DWT, DWG, DXF\
-**CorelDraw:** CDR, CMX\
-**Adobe Photoshop:** PSD, PSB\
-**Programming:** CS, VB, AS, AS3, ASM, BAT, C, CC, CMAKE, CPP, CSS, CXX, ERB, GROOVY, H, HAML, HH, JAVA, JS, JSON, LESS, LOG, M, MAKE, MD, ML, MM, PHP, PL, PROPERTIES, PY, RB, RST, SASS, SCALA, SCM, SCRIPT, SH, SML, SQL, VIM, YAML, DIFF\
-**Image:** AI, GIF, ICO, JP2, JPF, JPX, JPM, J2C, J2K, JPC, JPG, JPEG, SVG, SVGZ, TIF, TIFF, TGA, PNG, APNG, BMP, WEBP, PCL, DICOM\
-**Markup:** HTML, MHT, MHTML, MD, XML\
-**Portable:** PDF\
-**Archive:** TAR, ZIP, BZ2, RAR\
-**Email:** EML, EMLX, MSG, OST, PST, NSF\
-**Metafile:** CGM, EMF, EMZ, WMF, WMZ\
-**Other:** IFC, STL, PS, TEX, SXC, DJVU, DNG, DIB, EPS, HPG, PLT, IGS, CF2, OBJ, CHM, CSV, TSV, VCF
+| Family                      | Formats                                                                                                                                     |
+| --------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------- |
+| Archive formats             | `ZIP`, `TAR`, `BZ2`, `RAR`, `GZIP`                                                                                                 |
+| Apple formats               | `Numbers` 																														   |
+| PDF formats                 | `PDF`, `XPS`, `OXPS`, `TEX`                                                                                                        |
+| CAD formats                 | `DXF`, `DWG` , `DWT`, `STL`, `IFC`,`DWF` , `DWFX`, `DGN`, `PLT`,`CF2`,`OBJ`, `HPG`, `IGS`                                          |
+| Microsoft Word              | `DOC`, `DOCM` , `DOCX`, `DOT`, `DOTM`, `DOTX`,`RTF`                                                                                      |
+| Microsoft Excel             | `XLS`, `XLSB`, `XLSM`, `XLSX`, `XLT`, `XLTM`, `XLTX`,`Excel 2003 XML`,`XLAM`                                                       |
+| Microsoft PowerPoint        | `PPT`, `POT`, `POTM`, `POTX`, `PPS`, `PPSM`, `PPSX`, `PPTM`, `PPTX`                                                                |
+| Microsoft Visio             | `VSD`,`VSDX`,`VSDM`,`VDW`, `VDX`, `VSDX`, `VSS`,`VSSX`,`VSSM`,`VST`,`VSTX`, `VSX`, `VTX`,`VSTM`                                    |
+| Microsoft Project           | `MPP`, `MPT`,`MPX`                                                                                                                 |
+| Help files                  | `CHM`                                                                                                                              | 
+| Email formats               | `EML`, `EMLX`, `MSG`, `NSF`, `MBOX`, `PST`,`OST`, `VCF`                                                                                   |
+| OpenDocument Formats        | `ODT`, `ODP`,`FODP`, `ODS`,`FODS`, `OTT`,`OTS`,`ODG`,`FODG`,`OTG`,`OTP`,`SXC`                                                      |
+| Plain Text File             | `TXT`,`TSV`                                                                                                                       |
+| Comma-Separated Values      | `CSV`                                                                                                                              |
+| HyperText Markup Language   | `HTML`, `MHT`, `MHTML`, `SVG`,`SVGZ`                                                                                               |
+| Extensible Markup Language  | `XML`,`XML`, `XPS`                                                                                                                 |
+| AutoCAD Drawing File Format | `DGN`, `DWG`, `DXF`                                                                                                                |
+| Image files                 | `BMP`, `CAL`, `DCX`,`CGM`,`PCL`,`PSB`, `DIB`, `EMF`,`EMZ`,`WEBP`,`DNG`,`CDR`,`CMX`, `GIF`, <br/> `JP2`,                                    `JPG`,`JPF`,`JPM`,`J2C`,`J2K`,`JPC`,`JPX`,`MIL`, `MIL`, `PCD`, `PCT`, `PCX`, `PNG`, <br/>`Animated PNG`, `PSD`,`PS`, `RAS`, `TGA`,`TIFF`,`WMF`,`WMZ`,`EPS`, `AI`  |
+| Electronic publication      | `EPUB`,`MOBI`,`DJVU`                                                                                                                       |
+| Windows Icon                | `ICO`                                                                                                                              |
+| Medical image files         | `DCM` |
+| Programming Language Formats | `AS`, `AS3`, `ASM`, `BAT`, `C`, `CC`, `CMAKE`, `CPP`, `CS`,`VB`, `CSS`, `CXX`, `DIFF`, `ERB`, <br/> `GROOVY`, `H`,`HAML`, `HH`, `JAVA`, `JS`, `JSON`, `LESS`, `LOG`, `M`, `MAKE`, `MD`, `ML`, <br/> `MM`, `PHP`, `PL`, `PROPERTIES`, `PY`, `RB`, `RST`, `SASS`, `SCALA`, `SCM`, `SCRIPT`, <br/> `SH`, `SML`, `SQL`, `VIM`, `YAML`|  
 
 ## Develop & Deploy GroupDocs.Viewer for .NET Anywhere
 
