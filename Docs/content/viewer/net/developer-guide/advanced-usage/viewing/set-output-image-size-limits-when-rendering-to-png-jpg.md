@@ -1,7 +1,7 @@
 ---
-id: set-output-image-size-limits
-url: viewer/net/set-output-image-size-limits
-title: Set output image size limits
+id: set-output-image-size-limits-when-rendering-to-png-jpg
+url: viewer/net/set-output-image-size-limits-when-rendering-to-png-jpg
+title: Set output image size limits when rendering to PNG/JPG
 weight: 10
 description: "This article explains how to set output image size limits for PNG/JPG output when rendering documents with GroupDocs.Viewer within your .NET applications."
 keywords: limit max size width height
@@ -52,6 +52,8 @@ public interface IMaxSizeOptions
 ```
 
 Note: If you set Width/Height in options, MaxWidth/MaxHeight options will be ignored.
+
+If you want to render single image to PDF/HTML, please refer to the [following article]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/set-output-image-size-limits-when-rendering-to-pdf-html.md" >}}).
 
 ## More resources
 

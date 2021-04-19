@@ -17,7 +17,7 @@ There are 51 features, improvements, and bug-fixes in this release, most notable
 * Email Mailbox File (.mbox) file-format support
 * [Time Format and TimeZone setting when rendering Email documents to HTML]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-e-mail-messages/datetime-format-and-time-zone-when-rendering-to-html.md">}})
 * [Render spreadsheet by page breaks]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-excel-spreadsheets/render-by-page-breaks.md">}})
-* [Support MaxHeight and MaxWidth options when rendering to JPG/PNG]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/set-output-image-size-limits.md">}})
+* [Support MaxHeight and MaxWidth options when rendering to JPG/PNG]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/set-output-image-size-limits-when-rendering-to-png-jpg.md">}})
 * [Support for PC3 file printer configuration when rendering CAD formats]({{< ref "viewer/net/developer-guide/advanced-usage/viewing/view-cad-drawings/how-to-apply-pc3-config-file.md">}})
 * Render presentations documents to single-page HTML
 * Add support of rendering text in PDF files as images
