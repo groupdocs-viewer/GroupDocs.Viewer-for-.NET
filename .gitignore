@@ -221,3 +221,6 @@ ModelManifest.xml
 *.bat
 
 deploy_key
+
+#License files
+*.lic
