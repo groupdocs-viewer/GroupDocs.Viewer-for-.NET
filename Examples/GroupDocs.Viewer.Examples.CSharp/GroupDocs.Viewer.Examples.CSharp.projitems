@@ -9,11 +9,8 @@
     <Import_RootNamespace>GroupDocs.Viewer.Examples.CSharp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Caching\HowToUseCustomCacheImplementation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Caching\UseCacheWhenProcessingDocuments.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadDocumentsWithEncoding.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromAmazonS3.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromAzureBlobStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromFtp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromLocalDisk.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromStream.cs" />
