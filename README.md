@@ -12,9 +12,9 @@ GroupDocs.Viewer for .NET is a powerful [Document Viewer API](https://products.g
 
 Directory | Description
 --------- | -----------
-[Docs](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Docs)  | Product documentation containing the Developer's Guide, Release Notes and more.
-[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples)  | C# examples and sample files that will help you learn how to use product features. 
-[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases)  | The open source UI that can help integrate GroupDocs.Viewer for .NET API in front end applications. 
+[Demos](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos)  | Contains demo projects that demonstrate product features.
+[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples)  | C# examples and sample files that will help you learn how to use product features.
+[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Showcases)  | The open source UI that can help integrate GroupDocs.Viewer for .NET API in front end applications.
 [Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins)  | Contains Visual Studio plugins related to GroupDocs.Viewer.
 
 ## Render & Display Documents via .NET
