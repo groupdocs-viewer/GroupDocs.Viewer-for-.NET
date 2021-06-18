@@ -2,7 +2,7 @@
 # GroupDocs.Viewer for .NET WPF Example
 ###### version 1.0.0
 ![Build](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WPF/actions/workflows/dotnet-desktop.yml/badge.svg)
-[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/blob/master/LICENSE)
 
 ## System Requirements
 - .NET Core 3.1
@@ -47,7 +47,7 @@ In order to demonstrate GroupDocs.Viewer for .NET reach and powerful features we
 ## Demo Video
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/master/Demos/WPF/Resources/groupdocs.viewer.wpf.gif" width="100%" style="width:100%;">
+    <img src="https://raw.githubusercontent.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WPF/main/Resources/groupdocs.viewer.wpf.gif" width="100%" style="width:100%;">
 </p>
 
 ## Features

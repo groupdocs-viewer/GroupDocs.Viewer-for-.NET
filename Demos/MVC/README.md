@@ -4,7 +4,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/6an4msspo1lh4two/branch/master?svg=true)](https://ci.appveyor.com/project/egorovpavel/groupdocs-viewer-for-net-mvc/branch/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9e1b19953654028b3afa801237fa66d)](https://www.codacy.com/app/GroupDocs/GroupDocs.Viewer-for-.NET-MVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC&amp;utm_campaign=Badge_Grade)
-[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC/blob/master/LICENSE)
 
 ## System Requirements
 - .NET Framework 4.5

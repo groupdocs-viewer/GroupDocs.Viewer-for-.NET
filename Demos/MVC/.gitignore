@@ -1,0 +1,36 @@
+# Tool Runtime Dir
+packages/
+node_modules/
+
+# Visual Studio
+.vs/
+
+# User-specific files
+*.user
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.zip
+package-lock.json
+
+# Resources
+src/Resources/*
+!src/Resources/.gitkeep
+
+# Licenses
+src/Licenses
+!src/Licenses/.gitkeep
+
+# Document samples
+src/DocumentSamples
+!src/DocumentSamples/.gitkeep
+
+# Git
+!.gitkeep
+
+# Finder in OSX
+.DS_Store
+
+#License files
+.lic
