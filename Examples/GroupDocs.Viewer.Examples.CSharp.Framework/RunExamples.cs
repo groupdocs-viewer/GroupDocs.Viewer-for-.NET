@@ -204,7 +204,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #region Caching
 
             //UseCacheWhenProcessingDocuments.Run();
-            //HowToUseCustomCacheImplementation.Run();
 
             #endregion
 
@@ -221,8 +220,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //LoadDocumentFromStream.Run();
             //LoadDocumentFromUrl.Run();
             //LoadDocumentFromFtp.Run();
-            //LoadDocumentFromAmazonS3.Run();
-            //LoadDocumentFromAzureBlobStorage.Run();
 
             #endregion
 
