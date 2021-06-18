@@ -1,0 +1,34 @@
+﻿<Window x:Class="GroupDocs.Viewer.WPF.MainWindow" Icon="Resources/application.ico"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GroupDocs.Viewer.WPF"
+        mc:Ignorable="d"
+        Title="GroupDocs.Viewer for WPF"  Height="744" Width="839" WindowStartupLocation="CenterScreen">
+	<DockPanel>
+		<ToolBar DockPanel.Dock="Top" Height="32" >
+			<Button Name="openFileBtn" Click="openFileBtn_Click">
+				<Image Source="/Resources/open_file.ico" />
+			</Button>
+			<Separator/>
+			<Button Name="firstPageBtn" Click="FirstPageBtn_Click">
+				<Image Source="/Resources/first.ico" />
+			</Button>
+			<Button x:Name="prevPageBtn" Click="PrevPageBtn_Click">
+				<Image Source="/Resources/prev.ico" />
+			</Button>
+			<Label Name="lblPagesStatus" />
+			<Button Name="nextPageBtn" Click="NextPageBtn_Click">
+				<Image Source="/Resources/next.ico" />
+			</Button>
+			<Button x:Name="lastPageBtn" Click="LastPageBtn_Click">
+				<Image Source="/Resources/last.ico" />
+			</Button>
+			<Separator/>
+			<Label Content="License status:" />
+			<Label Name="lblStatus" Content="Not licensed" />
+		</ToolBar>
+		<WebBrowser Name="webBrowerMain"></WebBrowser>
+	</DockPanel>
+</Window>

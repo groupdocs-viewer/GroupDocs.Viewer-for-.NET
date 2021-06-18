@@ -1,0 +1,138 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "viewer": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "less"
+        }
+      },
+      "root": "apps/viewer",
+      "sourceRoot": "apps/viewer/src",
+      "prefix": "client",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "../resources/viewer",
+            "index": "apps/viewer/src/index.html",
+            "main": "apps/viewer/src/main.ts",
+            "polyfills": "apps/viewer/src/polyfills.ts",
+            "tsConfig": "apps/viewer/tsconfig.app.json",
+            "assets": ["apps/viewer/src/favicon.ico", "apps/viewer/src/assets"],
+            "styles": ["apps/viewer/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/viewer/src/environments/environment.ts",
+                  "with": "apps/viewer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "viewer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "viewer:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "viewer:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/viewer/tsconfig.app.json",
+              "apps/viewer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/viewer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/viewer/jest.config.js",
+            "tsConfig": "apps/viewer/tsconfig.spec.json",
+            "setupFile": "apps/viewer/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "viewer-e2e": {
+      "root": "apps/viewer-e2e",
+      "sourceRoot": "apps/viewer-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/viewer-e2e/cypress.json",
+            "tsConfig": "apps/viewer-e2e/tsconfig.e2e.json",
+            "devServerTarget": "viewer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "viewer:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/viewer-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/viewer-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "viewer"
+}
