@@ -18,8 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadPasswordProtectedDocument.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SetResourceLoadingTimeout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SpecifyFileTypeWhenLoadingDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CancelRenderWithCancellationToken.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\AddWatermark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\CancelRenderWithCancellationToken.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderDocumentWithComments.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderDocumentWithNotes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderHiddenPages.cs" />
