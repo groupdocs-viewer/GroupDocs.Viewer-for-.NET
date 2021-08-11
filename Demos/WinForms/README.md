@@ -2,8 +2,7 @@
 # GroupDocs.Viewer for .NET Windows Forms Example
 ###### version 1.0.0
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ce8rk88mwysa4mkr/branch/main?svg=true)](https://ci.appveyor.com/project/mikhail-evgrafov/groupdocs-viewer-for-net-winforms/branch/main)
-[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/Demos/WinForms/LICENSE)
 
 ## System Requirements
 - .NET Framework 4.6.1
