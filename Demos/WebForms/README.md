@@ -2,9 +2,7 @@
 # GroupDocs.Viewer for .NET Web.Forms Example
 ###### version 1.18.0
 
-[![Build status](https://ci.appveyor.com/api/projects/status/awgrd3a91i34y4oh/branch/master?svg=true)](https://ci.appveyor.com/project/egorovpavel/groupdocs-viewer-for-net-webforms/branch/master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/98113faeb1504f749e1d436726b7a0ba)](https://www.codacy.com/app/GroupDocs/GroupDocs.Viewer-for-.NET-WebForms?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms&amp;utm_campaign=Badge_Grade)
-[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/blob/master/LICENSE)
 
 ## System Requirements
 - .NET Framework 4.5
