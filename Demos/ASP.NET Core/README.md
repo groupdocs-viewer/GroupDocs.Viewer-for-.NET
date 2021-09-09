@@ -45,10 +45,6 @@ GroupDocs.Viewer supports over [170 file-formats](https://docs.groupdocs.com/vie
 
 ## How to run
 
-You can run this sample by one of following methods
-
-### Build from source
-
 Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/archive/master.zip) from github or clone this repository.
 
 ```bash
