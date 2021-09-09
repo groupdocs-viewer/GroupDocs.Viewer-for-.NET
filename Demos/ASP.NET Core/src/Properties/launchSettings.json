@@ -1,0 +1,14 @@
+﻿{
+  "profiles": {
+    "GroupDocs.Viewer.AspNetCore": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "viewer",
+      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
