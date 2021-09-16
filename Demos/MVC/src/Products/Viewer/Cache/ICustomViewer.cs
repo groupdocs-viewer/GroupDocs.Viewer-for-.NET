@@ -1,4 +1,5 @@
-﻿using GroupDocs.Viewer.Results;
+﻿using System.IO;
+using GroupDocs.Viewer.Results;
 
 namespace GroupDocs.Viewer.MVC.Products.Viewer.Cache
 {
@@ -7,6 +8,8 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Cache
         GroupDocs.Viewer.Viewer GetViewer();
 
         void CreateCache();
+
+        Stream GetPdf();
 
         ViewInfo GetViewInfo();
     }

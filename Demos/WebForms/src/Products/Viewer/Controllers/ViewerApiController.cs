@@ -418,6 +418,63 @@ namespace GroupDocs.Viewer.WebForms.Products.Viewer.Controllers
         }
 
         /// <summary>
+        /// Loads PDF document.
+        /// </summary>
+        /// <param name="loadDocumentRequest">PostedDataEntity.</param>
+        /// <returns>Data of all document pages.</returns>
+        [HttpPost]
+        [Route("printPdf")]
+        public HttpResponseMessage PrintPdf(PostedDataEntity loadDocumentRequest)
+        {
+            try
+            {
+                Stream pdfStream = GetPdf(loadDocumentRequest);
+                string fileName = Path.GetFileName(loadDocumentRequest.guid);
+                string pdfFileName = Path.ChangeExtension(fileName, ".pdf");
+
+                // return document description
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new StreamContent(pdfStream);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                response.Content.Headers.ContentDisposition.FileName = pdfFileName;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // set exception message
+                return this.Request.CreateResponse(HttpStatusCode.InternalServerError, Resources.GenerateException(ex, loadDocumentRequest.password));
+            }
+        }
+
+        /// <summary>
+        /// Gets PDF data
+        /// </summary>
+        /// <param name="postedData">Posted data with document guid.</param>
+        /// <returns>Document pages data, dimensions and rotation angles.</returns>
+        private static Stream GetPdf(PostedDataEntity postedData)
+        {
+            string documentGuid = postedData.guid;
+            string password = string.IsNullOrEmpty(postedData.password) ? null : postedData.password;
+            var fileFolderName = Path.GetFileName(documentGuid).Replace(".", "_");
+            string fileCacheSubFolder = Path.Combine(cachePath, fileFolderName);
+
+            if (!File.Exists(documentGuid))
+                throw new GroupDocsViewerException("File not found.");
+
+            IViewerCache cache = new FileViewerCache(cachePath, fileCacheSubFolder);
+            Options.LoadOptions loadOptions = GetLoadOptions(password);
+
+            ICustomViewer viewer = globalConfiguration.Viewer.GetIsHtmlMode()
+                ? (ICustomViewer)new HtmlViewer(documentGuid, cache, loadOptions)
+                : (ICustomViewer)new PngViewer(documentGuid, cache, loadOptions);
+
+            Stream pdfStream = viewer.GetPdf();
+            return pdfStream;
+        }
+
+        /// <summary>
         /// Gets page dimensions and rotation angle.
         /// </summary>
         /// <param name="page">Page object.</param>
