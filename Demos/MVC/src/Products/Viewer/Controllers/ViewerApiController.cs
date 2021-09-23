@@ -31,11 +31,6 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ViewerApiController : ApiController
     {
-        /// <summary>
-        /// Map for locking keys in viewer cache.
-        /// </summary>
-        protected static readonly ConcurrentDictionary<string, object> KeyLockerMap = new ConcurrentDictionary<string, object>();
-
         private static readonly Common.Config.GlobalConfiguration globalConfiguration = new Common.Config.GlobalConfiguration();
 
         private static readonly string cachePath = Path.Combine(globalConfiguration.Viewer.GetFilesDirectory(), globalConfiguration.Viewer.GetCacheFolderName());
@@ -166,7 +161,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
             string password = string.Empty;
             try
             {
-                string documentGuid = postedData.guid;
+                string documentGuid = GetFilePath(postedData.guid);
                 int pageNumber = postedData.page;
                 password = string.IsNullOrEmpty(postedData.password) ? null : postedData.password;
 
@@ -211,7 +206,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
         {
             try
             {
-                var documentGuid = postedData.guid;
+                var documentGuid = GetFilePath(postedData.guid);
                 var pageNumber = postedData.pages[0];
                 string password = string.IsNullOrEmpty(postedData.password) ? null : postedData.password;
 
@@ -264,6 +259,8 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
         {
             if (!string.IsNullOrEmpty(path))
             {
+                path = GetFilePath(path);
+
                 if (File.Exists(path))
                 {
                     HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -435,7 +432,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
 
                 // return document description
                 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-              
+
                 response.Content = new StreamContent(pdfStream);
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
                 response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
@@ -532,7 +529,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
         /// </summary>
         /// <param name="password">Document password.</param>
         /// <returns>Load options object.</returns>
-        private static Options.LoadOptions GetLoadOptions(string password)
+        private static LoadOptions GetLoadOptions(string password)
         {
             Options.LoadOptions loadOptions = new Options.LoadOptions
             {
@@ -596,10 +593,10 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
         /// <param name="postedData">Posted data with document guid.</param>
         /// <param name="loadAllPages">Flag to load all pages.</param>
         /// <returns>Document pages data, dimensions and rotation angles.</returns>
-        private static LoadDocumentEntity GetDocumentPages(PostedDataEntity postedData, bool loadAllPages, bool printVersion = false)
+        private LoadDocumentEntity GetDocumentPages(PostedDataEntity postedData, bool loadAllPages, bool printVersion = false)
         {
             // get/set parameters
-            string documentGuid = postedData.guid;
+            string documentGuid = GetFilePath(postedData.guid);
             string password = string.IsNullOrEmpty(postedData.password) ? null : postedData.password;
 
             var fileFolderName = Path.GetFileName(documentGuid).Replace(".", "_");
@@ -631,14 +628,22 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
             return loadDocumentEntity;
         }
 
+        private string GetFilePath(string filename)
+        {
+            if (Path.IsPathRooted(filename))
+                return filename;
+
+            return Path.Combine(globalConfiguration.Viewer.GetFilesDirectory(), filename);
+        }
+
         /// <summary>
         /// Gets PDF data
         /// </summary>
         /// <param name="postedData">Posted data with document guid.</param>
         /// <returns>Document pages data, dimensions and rotation angles.</returns>
-        private static Stream GetPdf(PostedDataEntity postedData)
+        private Stream GetPdf(PostedDataEntity postedData)
         {
-            string documentGuid = postedData.guid;
+            string documentGuid = GetFilePath(postedData.guid);
             string password = string.IsNullOrEmpty(postedData.password) ? null : postedData.password;
             var fileFolderName = Path.GetFileName(documentGuid).Replace(".", "_");
             string fileCacheSubFolder = Path.Combine(cachePath, fileFolderName);
@@ -648,7 +653,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
 
             IViewerCache cache = new FileViewerCache(cachePath, fileCacheSubFolder);
             LoadOptions loadOptions = GetLoadOptions(password);
-            
+
             ICustomViewer viewer = globalConfiguration.Viewer.GetIsHtmlMode()
                 ? (ICustomViewer)new HtmlViewer(documentGuid, cache, loadOptions)
                 : (ICustomViewer)new PngViewer(documentGuid, cache, loadOptions);
@@ -690,7 +695,7 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Controllers
             return loadDocumentEntity;
         }
 
-       private static void TryCreatePagesInfoXml(string fileCacheSubFolder, dynamic viewInfo, out string pagesInfoPath)
+        private static void TryCreatePagesInfoXml(string fileCacheSubFolder, dynamic viewInfo, out string pagesInfoPath)
         {
             if (!Directory.Exists(fileCacheSubFolder))
             {
