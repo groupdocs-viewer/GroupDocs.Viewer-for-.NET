@@ -95,3 +95,9 @@ viewer:
   # presentation regardless of whether they are in
   # the document itself or not
   showGridLines: true
+  # Shows/hides language menu
+  showLanguageMenu: true
+  # Default UI language
+  defaultLanguage: 'en'
+  # Supported languages
+  supportedLanguages: ["ar", "ca", "cs", "da", "de", "el", "en", "es", "fil", "fr", "he", "hi", "id", "it", "ja", "kk", "ko", "ms", "nl", "pl", "pt", "ro", "ru", "sv", "vi", "th", "tr", "uk", "zh-hans", "zh-hant" ]

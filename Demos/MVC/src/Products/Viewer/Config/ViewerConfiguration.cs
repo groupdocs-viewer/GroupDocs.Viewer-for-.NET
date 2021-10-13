@@ -57,6 +57,47 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Config
         [JsonProperty]
         private string cacheFolderName = "cache";
 
+        [JsonProperty]
+        private bool showLanguageMenu = true;
+
+        [JsonProperty]
+        private string defaultLanguage = "en";
+
+        [JsonProperty] 
+        private string[] supportedLanguages = new string[] 
+        {
+            "ar", // العربية
+            "ca", // Català
+            "cs", // Čeština
+            "da", // Dansk
+            "de", // Deutsch
+            "el", // Ελληνικά
+            "en", // English
+            "es", // Español
+            "fil", // Filipino
+            "fr", // Français
+            "he", // עברית
+            "hi", // हिन्दी
+            "id", // Indonesia
+            "it", // Italiano
+            "ja", // 日本語
+            "kk", // Қазақ Тілі
+            "ko", // 한국어
+            "ms", // Melayu
+            "nl", // Nederlands
+            "pl", // Polski
+            "pt", // Português
+            "ro", // Română
+            "ru", // Русский
+            "sv", // Svenska
+            "vi", // Tiếng Việt
+            "th", // ไทย
+            "tr", // Türkçe
+            "uk", // Українська
+            "zh-hans", // 中文
+            "zh-hant", // 中文
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewerConfiguration"/> class.
         /// </summary>
@@ -100,6 +141,9 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Config
             this.watermarkText = valuesGetter.GetStringPropertyValue("watermarkText", this.watermarkText);
             this.printAllowed = valuesGetter.GetBooleanPropertyValue("printAllowed", this.printAllowed);
             this.showGridLines = valuesGetter.GetBooleanPropertyValue("showGridLines", this.showGridLines);
+            this.showLanguageMenu = valuesGetter.GetBooleanPropertyValue("showLanguageMenu", this.showLanguageMenu);
+            this.defaultLanguage = valuesGetter.GetStringPropertyValue("defaultLanguage", this.defaultLanguage);
+            this.supportedLanguages = valuesGetter.GetStringArrayPropertyValue("supportedLanguages", this.supportedLanguages);
         }
 
         private static bool IsFullPath(string path)
@@ -258,6 +302,36 @@ namespace GroupDocs.Viewer.MVC.Products.Viewer.Config
         public bool GetShowGridLines()
         {
             return this.showGridLines;
+        }
+
+        public void SetShowLanguageMenu(bool showLanguageMenu)
+        {
+            this.showLanguageMenu = showLanguageMenu;
+        }
+
+        public bool GetShowLanguageMenu()
+        {
+            return this.showLanguageMenu;
+        }
+
+        public void SetDefaultLanguage(string defaultLanguage)
+        {
+            this.defaultLanguage = defaultLanguage;
+        }
+
+        public string GetDefaultLanguage()
+        {
+            return this.defaultLanguage;
+        }
+
+        public void SetSupportedLanguages(string[] supportedLanguages)
+        {
+            this.supportedLanguages = supportedLanguages;
+        }
+
+        public string[] GetSupportedLanguages()
+        {
+            return this.supportedLanguages;
         }
     }
 }

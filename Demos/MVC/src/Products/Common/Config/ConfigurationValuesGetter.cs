@@ -1,38 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace GroupDocs.Viewer.MVC.Products.Common.Config
 {
     public class ConfigurationValuesGetter
     {
-        private readonly dynamic Configuration;
+        private readonly dynamic configuration;
 
         public ConfigurationValuesGetter(dynamic configuration)
         {
-            this.Configuration = configuration;
+            this.configuration = configuration;
         }
 
         public string GetStringPropertyValue(string propertyName)
         {
-            return (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName].ToString())) ?
-                this.Configuration[propertyName].ToString() :
+            return (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName].ToString())) ?
+                this.configuration[propertyName].ToString() :
                 null;
         }
 
         public string GetStringPropertyValue(string propertyName, string defaultValue)
         {
-            return (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName].ToString())) ?
-                this.Configuration[propertyName].ToString() :
+            return (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName].ToString())) ?
+                this.configuration[propertyName].ToString() :
                 defaultValue;
+        }
+
+        public string[] GetStringArrayPropertyValue(string propertyName, string[] defaultValue)
+        {
+            if (this.configuration != null && this.configuration[propertyName] != null)
+            {
+                var array = this.configuration[propertyName] as Newtonsoft.Json.Linq.JArray;
+                if (array != null)
+                    return array.ToObject<string[]>();
+            }
+
+            return defaultValue;
         }
 
         public int GetIntegerPropertyValue(string propertyName, int defaultValue)
         {
             int value;
-            value = (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName].ToString())) ?
-                Convert.ToInt32(this.Configuration[propertyName]) :
+            value = (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName].ToString())) ?
+                Convert.ToInt32(this.configuration[propertyName]) :
                 defaultValue;
             return value;
         }
@@ -42,14 +51,14 @@ namespace GroupDocs.Viewer.MVC.Products.Common.Config
             int value;
             if (!string.IsNullOrEmpty(innerPropertyName))
             {
-                value = (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName][innerPropertyName].ToString())) ?
-                    Convert.ToInt32(this.Configuration[propertyName][innerPropertyName]) :
+                value = (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName][innerPropertyName].ToString())) ?
+                    Convert.ToInt32(this.configuration[propertyName][innerPropertyName]) :
                     defaultValue;
             }
             else
             {
-                value = (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName].ToString())) ?
-                    Convert.ToInt32(this.Configuration[propertyName]) :
+                value = (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName].ToString())) ?
+                    Convert.ToInt32(this.configuration[propertyName]) :
                     defaultValue;
             }
 
@@ -58,7 +67,7 @@ namespace GroupDocs.Viewer.MVC.Products.Common.Config
 
         public bool GetBooleanPropertyValue(string propertyName, bool defaultValue)
         {
-            return (this.Configuration != null && this.Configuration[propertyName] != null && !string.IsNullOrEmpty(this.Configuration[propertyName].ToString())) ? Convert.ToBoolean(this.Configuration[propertyName]) : defaultValue;
+            return (this.configuration != null && this.configuration[propertyName] != null && !string.IsNullOrEmpty(this.configuration[propertyName].ToString())) ? Convert.ToBoolean(this.configuration[propertyName]) : defaultValue;
         }
     }
 }
