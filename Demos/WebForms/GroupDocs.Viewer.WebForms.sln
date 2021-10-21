@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.WebForms", "src\GroupDocs.Viewer.WebForms.csproj", "{7B296703-AC7B-4FA6-BD42-BEC76D0C6DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.WebForms.Test", "GroupDocs.Viewer.WebForms.Test\GroupDocs.Viewer.WebForms.Test.csproj", "{C0E13EC1-3C31-4D1C-AD67-A68D228FE8C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.WebForms.Test", "tests\GroupDocs.Viewer.WebForms.Test\GroupDocs.Viewer.WebForms.Test.csproj", "{C0E13EC1-3C31-4D1C-AD67-A68D228FE8C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
