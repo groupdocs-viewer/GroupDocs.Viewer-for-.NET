@@ -1,6 +1,6 @@
-# GroupDocs.Viewer for .NET Demos
+# GroupDocs.Viewer for .NET Demo Projects
 
-This folder contains the following demo projects
+This folder contains the following demo projects:
 
 | Folder       | Project Type |
 |--------------|--------------|
