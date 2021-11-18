@@ -28,7 +28,7 @@ namespace GroupDocs.Viewer.MVC.Test
         [Test]
         public void ViewStatusTest()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "/../../../src";            
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/../../../../src";            
             using (var server = new DirectServer(path))
             {
                 var request = new SerialisableRequest
@@ -52,7 +52,7 @@ namespace GroupDocs.Viewer.MVC.Test
         [Test]
         public void FileTreeStatusCodeTest()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "/../../../src";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "/../../../../src";
             using (var server = new DirectServer(path))
             {
                 var request = new SerialisableRequest
