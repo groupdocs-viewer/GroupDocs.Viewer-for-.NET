@@ -26,6 +26,7 @@ namespace GroupDocs.Viewer.Forms.UI
 
         public MainForm()
         {
+            MainForm.CheckForIllegalCrossThreadCalls = true;
             InitializeComponent();
             SetLicense();
             UpdateControlsVisibility();
@@ -35,36 +36,51 @@ namespace GroupDocs.Viewer.Forms.UI
             MemoryPageStreamFactory = new MemoryPageStreamFactory();
         }
 
+        public void InvokeIfRequired(MethodInvoker action)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
         /// <summary>
         /// Update controls visibility.
         /// </summary>
         private void UpdateControlsVisibility()
         {
-            // If viewinfo != null (document loaded) - enable all page buttons.
-            firstPageBtn.Enabled = lastPageBtn.Enabled = prevPageBtn.Enabled = nextPageBtn.Enabled = (ViewInfo != null);
-
-            // If viewinfo != null (document loaded) and document with 1 or more pages - all buttons should be visible.
-            firstPageBtn.Visible = lastPageBtn.Visible = prevPageBtn.Visible = nextPageBtn.Visible = (ViewInfo != null && ViewInfo.Pages.Count > 1);
-
-            if (ViewInfo != null)
+            InvokeIfRequired(() =>
             {
-                firstPageBtn.Enabled = lastPageBtn.Enabled = (ViewInfo.Pages.Count > 0);
+                // If viewinfo != null (document loaded) - enable all page buttons.
+                firstPageBtn.Enabled = lastPageBtn.Enabled = prevPageBtn.Enabled = nextPageBtn.Enabled = (ViewInfo != null);
 
-                if (CurrentPage <= 1)
+                // If viewinfo != null (document loaded) and document with 1 or more pages - all buttons should be visible.
+                firstPageBtn.Visible = lastPageBtn.Visible = prevPageBtn.Visible = nextPageBtn.Visible = (ViewInfo != null && ViewInfo.Pages.Count > 1);
+
+                if (ViewInfo != null)
                 {
-                    firstPageBtn.Enabled = false;
+                    firstPageBtn.Enabled = lastPageBtn.Enabled = (ViewInfo.Pages.Count > 0);
+
+                    if (CurrentPage <= 1)
+                    {
+                        firstPageBtn.Enabled = false;
+                    }
+
+                    if (CurrentPage > 1)
+                    {
+                        firstPageBtn.Enabled = true;
+                    }
+
+                    lastPageBtn.Enabled = (ViewInfo.Pages.Count != CurrentPage) && (ViewInfo.Pages.Count > 0);
+
+                    prevPageBtn.Enabled = (CurrentPage != 1);
+                    nextPageBtn.Enabled = (CurrentPage != ViewInfo.Pages.Count);
                 }
-
-                if (CurrentPage > 1)
-                {
-                    firstPageBtn.Enabled = true;
-                }
-
-                lastPageBtn.Enabled = (ViewInfo.Pages.Count != CurrentPage) && (ViewInfo.Pages.Count > 0);
-
-                prevPageBtn.Enabled = (CurrentPage != 1);
-                nextPageBtn.Enabled = (CurrentPage != ViewInfo.Pages.Count);
-            }
+            });
         }
 
         /// <summary>
@@ -155,14 +171,20 @@ namespace GroupDocs.Viewer.Forms.UI
                         }
 
                         ViewFile(Viewer);
-                        openFileBtn.Enabled = true;
+                        InvokeIfRequired(() =>
+                        {
+                            openFileBtn.Enabled = true;
+                        });
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error occured! {ex.Message}");
                         ViewInfo = null;
                         DisplayViewInfo();
-                        openFileBtn.Enabled = true;
+                        InvokeIfRequired(() =>
+                        {
+                            openFileBtn.Enabled = true;
+                        });
                     }
                 }).Start();
             }
@@ -211,7 +233,15 @@ namespace GroupDocs.Viewer.Forms.UI
         /// <param name="text"></param>
         private void SetFormTitle(string text)
         {
-            this.Text = GeneralTitle + " - " + text;
+            if (this.InvokeRequired)
+            {
+                Action invokeDelegate = delegate { SetFormTitle(text); };
+                this.Invoke(invokeDelegate);
+            }
+            else
+            {
+                this.Text = GeneralTitle + " - " + text;
+            }
         }
 
         /// <summary>
@@ -220,7 +250,15 @@ namespace GroupDocs.Viewer.Forms.UI
         /// <param name="text"></param>
         private void SetPagesInfoText(string text)
         {
-            pagesStatusLabel.Text = text;
+            if (this.InvokeRequired)
+            {
+                Action invokeDelegate = delegate { SetPagesInfoText(text); };
+                this.Invoke(invokeDelegate);
+            }
+            else
+            {
+                pagesStatusLabel.Text = text;
+            }
         }
 
         /// <summary>
@@ -230,8 +268,15 @@ namespace GroupDocs.Viewer.Forms.UI
         /// <param name="e">Event arguments.</param>
         private void SetLabelText(ToolStripLabel control, string text)
         {
-            control.Text = text;
-
+            if (this.InvokeRequired)
+            {
+                Action invokeDelegate = delegate { SetLabelText(control, text); };
+                this.Invoke(invokeDelegate);
+            }
+            else
+            {
+                control.Text = text;
+            }
         }
 
         /// <summary>
