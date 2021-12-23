@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -151,7 +153,14 @@ namespace GroupDocs.Viewer.Examples.CSharp
         public static string SAMPLE_CHM =>
              GetSampleFilePath("sample.chm");
 
-        private static string GetSampleFilePath(string filePath) =>
-           Path.Combine(Utils.SamplesPath, filePath);
+        private static string GetSampleFilePath(string filePath)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return Path.Combine(Utils.SamplesPath, filePath);
+
+            var assembly = System.Reflection.Assembly.GetEntryAssembly();
+            var entryAssemblyDirectory = Path.GetDirectoryName(assembly.Location);
+            return Path.Combine(entryAssemblyDirectory, Utils.SamplesPath, filePath);
+        }
     }
 }
