@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GroupDocs.Viewer.Examples.CSharp.Core": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
