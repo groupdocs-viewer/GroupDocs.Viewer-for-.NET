@@ -8,7 +8,7 @@
     <PackageReference Include="GroupDocs.Viewer.UI" Version="3.1.5" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="3.1.3" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="3.1.2" />
-    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="3.1.10" />
+    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>
