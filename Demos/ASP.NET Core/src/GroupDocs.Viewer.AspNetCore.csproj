@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer.UI" Version="3.1.6" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="3.1.3" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="3.1.2" />
-    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="3.1.11" />
+    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.0" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="6.0.0" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="6.0.0" />
+    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +30,9 @@
     <None Update="Files\sample.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Files\sample.pptx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-
 
 </Project>

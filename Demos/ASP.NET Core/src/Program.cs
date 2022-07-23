@@ -1,26 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+var builder = WebApplication.CreateBuilder(args);
 
-namespace GroupDocs.Viewer.AspNetCore
-{
-    public class Program
+builder.Services
+    .AddGroupDocsViewerUI();
+
+builder.Services
+    .AddControllers()
+    .AddGroupDocsViewerSelfHostApi(config =>
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+        //Trial limitations https://docs.groupdocs.com/viewer/net/evaluation-limitations-and-licensing-of-groupdocs-viewer/
+        //Temporary license can be requested at https://purchase.groupdocs.com/temporary-license
+        //config.SetLicensePath("c:\\licenses\\GroupDocs.Viewer.lic"); // or set environment variable 'GROUPDOCS_LIC_PATH'
+    })
+    .AddLocalStorage("./Files")
+    .AddLocalCache("./Cache");
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+var app = builder.Build();
+
+app
+    .UseRouting()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapGet("/", async context =>
+        {
+            await context.Response.WriteAsync("Viewer UI can be accessed at '/viewer' endpoint.");
+        });
+        endpoints.MapGroupDocsViewerUI(options =>
+        {
+            options.UIPath = "/viewer";
+            options.APIEndpoint = "/viewer-api";
+        });
+        endpoints.MapGroupDocsViewerApi(options =>
+        {
+            options.ApiPath = "/viewer-api";
+        });
+    });
+
+app.Run();
