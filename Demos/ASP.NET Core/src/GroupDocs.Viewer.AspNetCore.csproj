@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.0" />
+    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.1" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="6.0.0" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="6.0.0" />
     <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.0" />
