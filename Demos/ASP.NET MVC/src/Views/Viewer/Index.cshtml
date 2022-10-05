@@ -1,0 +1,23 @@
+﻿@using GroupDocs.Viewer.AspNetMvc.Core
+@{
+    var apiEndpoint = $"/{Constants.API_PATH}";
+    var uiSettingsPath = $"/{Constants.API_PATH}/{Constants.LOAD_CONFIG_ACTION_NAME}";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GroupDocs.Viewer for .NET ASP.NET MVC Demo</title>
+</head>
+<body>
+    <app-root></app-root>
+    <script type="text/javascript">
+        var apiEndpoint = "@apiEndpoint";
+        var uiSettingsPath = "@uiSettingsPath";
+    </script>
+    <script src="~/ClientApp/dist/runtime.js" type="module"></script>
+    <script src="~/ClientApp/dist/polyfills.js" type="module"></script>
+    <script src="~/ClientApp/dist/main.js" type="module"></script>
+</body>
+</html>

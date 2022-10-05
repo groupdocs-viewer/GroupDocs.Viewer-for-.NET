@@ -1,0 +1,109 @@
+<gd-loading-mask [loadingMask]="isLoading"></gd-loading-mask>
+<div class="wrapper" (contextmenu)="onRightClick()">
+  <div class="top-panel" *ngIf="!runPresentation">
+    <gd-logo [logo]="'viewer'" icon="eye"></gd-logo>
+    <gd-top-toolbar class="toolbar-panel">
+      <gd-button [icon]="'folder-open'" title="{{'Browse files' | translate}}" (click)="openModal(browseFilesModal)"
+                 *ngIf="browseConfig" ></gd-button>
+
+      <gd-select class="mobile-hide select-left noselect" [disabled]="formatDisabled" [options]="options" (selected)="selectZoom($event)"
+                 [showSelected]="{ name: zoom+'%', value : zoom, separator:false }" *ngIf="zoomConfig" ></gd-select>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'search-plus'" title="{{'Zoom In' | translate}}" (click)="zoomIn()"
+                 *ngIf="zoomConfig" ></gd-button>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'search-minus'" title="{{'Zoom Out' | translate}}"
+                 (click)="zoomOut()" *ngIf="zoomConfig" ></gd-button>
+
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-double-left'" title="{{'First Page' | translate }}"
+                 (click)="toFirstPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-left'" title="{{'Previous Page' | translate}}"
+                 (click)="prevPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+      <div class="current-page-number noselect" [ngClass]="{'active': !formatDisabled}" *ngIf="formatIcon !== 'file-excel'">{{currentPage}}/{{countPages}}</div>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-right'" title="{{'Next Page' | translate }}"
+                 (click)="nextPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-double-right'" title="{{'Last Page' | translate }}"
+                 (click)="toLastPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'undo'" title="{{'Rotate CCW' | translate}}" (click)="rotate(-90)"
+                 *ngIf="rotateConfig && formatIcon !== 'file-excel'" ></gd-button>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'redo'" title="{{'Rotate CW' | translate}}"  (click)="rotate(90)"
+                 *ngIf="rotateConfig && formatIcon !== 'file-excel'" ></gd-button>
+
+      <gd-button [disabled]="formatDisabled" [icon]="'download'" title="{{'Download' | translate}}"
+                 (click)="downloadFile()" *ngIf="downloadConfig" ></gd-button>
+      <gd-button [disabled]="formatDisabled" [icon]="'print'" title="{{'Print' | translate}}" (click)="printFile()"
+                 *ngIf="printConfig" ></gd-button>
+
+      <gd-button [disabled]="formatDisabled" [icon]="'search'" title="{{'Search' | translate}}" (click)="openSearch()"
+                 *ngIf="searchConfig && !ifPresentation()" ></gd-button>
+      <gd-search (hidePanel)="showSearch = !$event" *ngIf="showSearch" ></gd-search>
+
+      <div class="toolbar-panel-right">
+        <div class="language-menu mobile-hide" *ngIf="showLanguageMenu">
+          <gd-select class="select-language-menu noselect" [disabled]="false" [options]="supportedLanguages"
+            (selected)="selectLanguage($event)" [showSelected]="selectedLanguage"></gd-select>
+        </div>
+
+        <gd-button class="thumbnails-button btn-right" [disabled]="formatDisabled" [icon]="'th-large'" title="{{'Thumbnails' | translate}}"
+                   (click)="openThumbnails()" *ngIf="thumbnailsConfig && isDesktop && formatIcon !== 'file-excel' && (!ifPresentation() ||
+                   ifPresentation() && runPresentation)"></gd-button>
+        <gd-button class="thumbnails-button mobile-hide btn-right smp-start-stop" [disabled]="formatDisabled" [icon]="'play'" title="{{'Run presentation' | translate}}"
+                   (click)="startPresentation()" *ngIf="ifPresentation() && !runPresentation">{{'Present' | translate}}</gd-button>
+      </div>
+    </gd-top-toolbar>
+  </div>
+  <div class="top-panel" *ngIf="runPresentation">
+    <gd-top-toolbar class="toolbar-panel">
+      <div class="slides-title">Viewer</div>
+      <div class="slides-filename">{{getFileName()}}</div>
+      <div class="slides-buttons">
+        <gd-select class="mobile-hide select-right" [disabled]="formatDisabled" [options]="timerOptions" (selected)="toggleTimer($event)"
+        [icon]="'clock'" *ngIf="zoomConfig" ></gd-select>
+        <gd-button class="mobile-hide" *ngIf="presentationRunning()" [disabled]="formatDisabled" [icon]="'pause'" title="{{'Pause presenting' | translate}}"
+        (click)="pausePresenting()"></gd-button>
+        <gd-button class="mobile-hide" *ngIf="presentationPaused()" [disabled]="formatDisabled" [icon]="'step-forward'" title="{{'Resume presenting' | translate}}"
+        (click)="resumePresenting()"></gd-button>
+        <gd-button class="mobile-hide btn-right smp-start-stop" [disabled]="formatDisabled" [icon]="'stop'" title="{{'Stop presenting' | translate}}"
+        (click)="closeFullScreen(true)">{{'Stop' | translate}} </gd-button>
+      </div>
+    </gd-top-toolbar>
+  </div>
+  <div class="doc-panel" *ngIf="file" #docPanel>
+    <gd-thumbnails *ngIf="showThumbnails && !ifPresentation() && isDesktop" [pages]="viewerConfig.preloadPageCount == 0 ? file.pages : file.thumbnails" [isHtmlMode]="htmlModeConfig"
+                   [guid]="file.guid" [mode]="htmlModeConfig" (selectedPage)="selectCurrentPage($event)"></gd-thumbnails>
+    <gd-thumbnails *ngIf="showThumbnails && ifPresentation() && !runPresentation && isDesktop" [pages]="viewerConfig.preloadPageCount == 0 ? file.pages : file.thumbnails" [isHtmlMode]="htmlModeConfig"
+                   [guid]="file.guid" [mode]="htmlModeConfig" (selectedPage)="selectCurrentPage($event)" gdScrollable [isPresentation]="ifPresentation()"></gd-thumbnails>
+
+    <gd-document class="gd-document" *ngIf="(file &&
+                                            (ifExcel() && !htmlModeConfig) ||
+                                            (ifPresentation() && isDesktop && !runPresentation) ||
+                                            (!ifExcel() && !ifPresentation()))" [file]="file" [mode]="htmlModeConfig" [showActiveSlide]="true" gdScrollable
+                 [preloadPageCount]="viewerConfig.preloadPageCount || 0" [selectedPage]="selectedPageNumber" gdRenderPrint [htmlMode]="htmlModeConfig" gdMouseWheel (mouseWheelUp)="onMouseWheelUp()" (mouseWheelDown)="onMouseWheelDown()"></gd-document>
+    <gd-excel-document class="gd-document" *ngIf="file && ifExcel() && htmlModeConfig" [file]="file" [mode]="htmlModeConfig" gdScrollable
+                 [preloadPageCount]="viewerConfig.preloadPageCount || 0" gdRenderPrint [htmlMode]="htmlModeConfig"></gd-excel-document>
+    <gd-run-presentation class="gd-document" *ngIf="(file && ifPresentation() && runPresentation) ||
+                                                    (file && ifPresentation() && !isDesktop)" [file]="file" [currentPage]="currentPage" [mode]="htmlModeConfig"
+                                                    (selectedPage)="selectCurrentPage($event)"
+                 [preloadPageCount]="0"></gd-run-presentation>
+    <div class="slides-nav" *ngIf="runPresentation">
+      <div class="timer" *ngIf="showCountDown()">
+        <fa-icon [icon]="['fas','circle-notch']" [spin]="true"></fa-icon><span [ngClass]="secondsLeft >= 10 ? 'seconds-remaining two-digits' : 'seconds-remaining'">{{secondsLeft}}</span>
+      </div>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-left'"
+      (click)="prevPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+      <gd-button class="mobile-hide" [disabled]="formatDisabled" [icon]="'angle-right'"
+      (click)="nextPage()" *ngIf="pageSelectorConfig && formatIcon !== 'file-excel'" ></gd-button>
+    </div>
+  </div>
+
+  <gd-init-state [icon]="'eye'" [text]="'Drop file here to upload'" *ngIf="!file" (fileDropped)="fileDropped($event)">
+    {{'Click' | translate}} <fa-icon [icon]="['fas','folder-open']"></fa-icon> {{'to open file' | translate}}<br>
+    {{'Or drop file here' | translate}}
+  </gd-init-state>
+
+  <gd-browse-files-modal (urlForUpload)="upload($event)" [files]="files" (selectedDirectory)="selectDir($event)"
+                         (selectedFileGuid)="selectFile($event, '', browseFilesModal, '')"
+                         [uploadConfig]="uploadConfig"></gd-browse-files-modal>
+
+  <gd-error-modal></gd-error-modal>
+  <gd-password-required></gd-password-required>
+</div>

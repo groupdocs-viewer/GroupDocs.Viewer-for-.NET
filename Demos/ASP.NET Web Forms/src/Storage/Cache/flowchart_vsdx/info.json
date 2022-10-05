@@ -1,0 +1,18 @@
+{
+  "FileType": "vsdx",
+  "PrintAllowed": true,
+  "Pages": [
+    {
+      "Width": 1056,
+      "Height": 816,
+      "Number": 1,
+      "Name": "Page-1"
+    },
+    {
+      "Width": 1056,
+      "Height": 816,
+      "Number": 2,
+      "Name": "VBackground-1"
+    }
+  ]
+}

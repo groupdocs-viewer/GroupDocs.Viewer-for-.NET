@@ -1,0 +1,31 @@
+{
+  "name": "groupdocs-viewer-ui",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --configuration=production"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^14.1.0",
+    "@angular/common": "^14.1.0",
+    "@angular/compiler": "^14.1.0",
+    "@angular/core": "^14.1.0",
+    "@angular/forms": "^14.1.0",
+    "@angular/platform-browser": "^14.1.0",
+    "@angular/platform-browser-dynamic": "^14.1.0",
+    "@angular/router": "^14.1.0",
+    "@groupdocs.examples.angular/viewer": "^0.8.92",
+    "rxjs": "^7.5.6",
+    "tslib": "^2.4.0",
+    "zone.js": "^0.11.7"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.1.0",
+    "@angular/cli": "^14.1.0",
+    "@angular/compiler-cli": "^14.1.0",
+    "@types/node": "^18.0.6",
+    "typescript": "^4.7.4"
+  }
+}

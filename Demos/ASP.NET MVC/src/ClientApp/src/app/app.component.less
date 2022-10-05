@@ -1,0 +1,256 @@
+@import (css) url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import "./variables";
+
+:host * {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.current-page-number {
+  margin-left: 7px;
+  font-size  : 14px;
+  color      : @regent-gray;
+  width      : 37px;
+  height     : 37px;
+  line-height: 37px;
+  text-align : center;
+
+  &.active {
+    color: #fff;
+  }
+}
+
+.wrapper {
+  align-items: stretch;
+  height     : 100%;
+  width      : 100%;
+  position   : fixed;
+  top        : 0;
+  bottom     : 0;
+  left       : 0;
+  right      : 0;
+}
+
+.doc-panel {
+  display       : flex;
+  height        : calc(100vh - 60px);
+  flex-direction: row;
+}
+
+.top-panel {
+  display    : flex;
+  align-items: center;
+  width      : 100%;
+}
+
+.toolbar-panel {
+  background-color: @nav-main-background;
+  width           : 100%;
+}
+
+.toolbar-panel-right {
+  display: flex;
+  flex: 1;
+  place-content: flex-end;
+}
+
+.btn-right {
+  margin-right: 7px;
+}
+
+.smp-start-stop {
+  ::ng-deep .button {
+    flex-direction: row;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0px 10px !important;
+  }
+}
+
+.language-menu {
+  margin-right: 15px;
+}
+
+.select-language-menu {
+  ::ng-deep .select {
+    width: 100%;
+    ::ng-deep .dropdown-menu {
+      overflow-y: scroll;
+      max-height: 90%;
+    }
+  }
+ 
+  ::ng-deep .selected-value {
+    max-width: 100%;
+  }
+}
+
+.thumbnails-button {
+  ::ng-deep .button {
+    margin-left: 0 !important;
+  }
+}
+
+
+::ng-deep .tools {
+
+  .button,
+  .selected-value,
+  .nav-caret {
+    color: #fff !important;
+
+    &.inactive {
+      color: @regent-gray  !important;
+    }
+  }
+
+  .button {
+    flex-flow: column;
+  }
+
+  .select-left {
+    .select {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      top: 40px;
+      left: 0px;
+    }
+  }
+
+  .select-right {
+    .select {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      top: 40px;
+      right: 0px;
+    }
+  }
+
+  .dropdown-menu .option {
+    color: @dove-gray  !important;
+  }
+
+  .dropdown-menu .option:hover {
+    background-color: @folder  !important;
+  }
+
+  .icon-button {
+    margin: 0px 0px 0px 15px !important;
+  }
+
+  .select {
+    width      : 37px;
+    height     : 37px;
+    margin-left: 7px;
+    line-height: 37px;
+    text-align : center;
+  }
+
+  .slides-title {
+    color: white;
+    padding-left: 12px;
+    font-size: 18px;
+  }
+
+  .slides-filename {
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 20px;
+    overflow: hidden;
+  }
+
+  .slides-buttons {
+    display: flex;
+    ::ng-deep .select {
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  ::ng-deep .gd-nav-search-container 
+  .icon-button {
+    margin: 0 0 0 7px !important;
+  }
+}
+
+.slides-nav {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  ::ng-deep .button {
+    font-size: 37px;
+    background-color: @porcelain;
+    border-radius: 3px;
+  }
+  ::ng-deep .timer {
+    font-size: 42px;
+    line-height: 6px;
+    color: @regent-gray;
+    position: relative;
+    .seconds-remaining {
+      position: absolute;
+      margin-left: 5px;
+      font-size: 16px;
+      top: 18px;
+      left: 12px;
+      &.two-digits {
+        left: 6px !important;
+      }
+    }
+  }
+}
+
+::ng-deep .page.presentation .gd-wrapper {
+  pointer-events: none;
+}
+
+@media (max-width: 1037px) {
+
+  .mobile-hide,
+  .current-page-number {
+    display: none;
+  }
+
+  ::ng-deep .tools {
+    gd-button:nth-child(1)>.icon-button {
+      margin: 0px 0px 0px 10px !important;
+    }
+
+    .icon-button {
+      height: 60px;
+      width : 60px;
+    }
+
+    .gd-nav-search-btn {
+      .icon-button {
+        height: 37px;
+        width : 37px;
+      }
+
+      .button {
+        font-size: 14px;
+      }
+    }
+
+    .gd-nav-search-container {
+      top: 59px !important;
+    }
+  }
+}

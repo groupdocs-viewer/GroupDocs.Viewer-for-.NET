@@ -19,29 +19,15 @@ GroupDocs.Viewer supports over [170 file-formats](https://docs.groupdocs.com/vie
 </p>
 
 ## Features
-
-- Clean, modern and intuitive design
-- Easily switchable colour theme (create your own colour theme in 5 minutes)
 - Responsive design
-- Mobile support (open application on any mobile device)
-- Support over 170 document and image formats including **DOCX**, **PPTX**, and **XLSX**
-- HTML and image modes
-- Fully customizable navigation panel
-- Open password protected documents
+- Fully customizable navigation panel & thumbnails
 - Text searching & highlighting
-- Download documents
-- Upload documents
-- Print document
-- Rotate pages
+- Download & upload documents
+- Print document as PDF 
 - Zoom in/out documents without quality loss in HTML mode
-- Thumbnails
-- Smooth page navigation
-- Smooth document scrolling
+- Smooth page navigation & scrolling
 - Preload pages for faster document rendering
-- Multi-language support for displaying errors
-- Display two or more pages side by side (when zooming out)
-- Cross-browser support (Safari, Chrome, Opera, Firefox)
-- Cross-platform support (Windows, Linux, MacOS)
+- Multi-language support
 
 ## How to run
 
@@ -70,11 +56,15 @@ Open the app by navigating to <http://localhost:8080/viewer> in your favorite br
 
 The MIT License (MIT).
 
-Please have a look at the LICENSE.md for more details
+Please have a look at the [LICENSE](LICENSE) for more details
 
-## GroupDocs Document Viewer on other platforms
+## More Demo Projects
 
-- [JAVA DropWizard Document Viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos/Dropwizard)
-- [JAVA Spring Document viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos/Spring)
+- [Java Dropwizard Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos/Dropwizard) 
+- [Java Spring Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos/Spring)
+- [ASP.NET Web Forms Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/ASP.NET%20Web%20Forms)
+- [ASP.NET MVC Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/ASP.NET%20MVC)
+- [Windows Forms Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/Windows%20Forms)
+- [WPF Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/WPF)
 
-[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/net) | [Documentation](https://docs.groupdocs.com/viewer/net/) | [Demo](https://products.groupdocs.app/viewer/total) | [API Reference](https://apireference.groupdocs.com/net/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
+[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/net) | [Documentation](https://docs.groupdocs.com/viewer/net/) | [Demo](https://products.groupdocs.app/viewer/total) | [API Reference](https://apireference.groupdocs.com/net/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
