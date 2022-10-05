@@ -63,7 +63,7 @@ Please have a look at the [LICENSE](LICENSE) for more details
 - [Java Spring Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos/Spring)
 - [ASP.NET Core Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/ASP.NET%20Core)
 - [ASP.NET Web Forms Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/ASP.NET%20Web%20Forms)
-- [Windows Forms Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/WinForms)
+- [Windows Forms Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/Windows%20Forms)
 - [WPF Demo](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos/WPF)
 
 [Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/net) | [Documentation](https://docs.groupdocs.com/viewer/net/) | [Demo](https://products.groupdocs.app/viewer/total) | [API Reference](https://apireference.groupdocs.com/net/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
