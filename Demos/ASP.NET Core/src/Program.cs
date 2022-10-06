@@ -11,8 +11,8 @@ builder.Services
         //Temporary license can be requested at https://purchase.groupdocs.com/temporary-license
         //config.SetLicensePath("c:\\licenses\\GroupDocs.Viewer.lic"); // or set environment variable 'GROUPDOCS_LIC_PATH'
     })
-    .AddLocalStorage("./Files")
-    .AddLocalCache("./Cache");
+    .AddLocalStorage("./Storage/Files")
+    .AddLocalCache("./Storage/Cache");
 
 var app = builder.Build();
 
