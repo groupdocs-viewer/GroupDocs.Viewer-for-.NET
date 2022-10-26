@@ -14,23 +14,32 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Files\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Files\password.pdf">
+    <None Update="Storage\Files\flowchart.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Files\sample.docx">
+    <None Update="Storage\Files\groupdocs.pptx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Files\sample.pdf">
+    <None Update="Storage\Files\house-plan.dwg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Files\sample.xlsx">
+    <None Update="Storage\Files\invoice.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Files\sample.pptx">
+    <None Update="Storage\Files\resume.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Storage\Files\resume.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Storage\Files\software-development-plan.mpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Storage\Files\vector-image.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
