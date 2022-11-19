@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AsyncKeyedLock, Version=5.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AsyncKeyedLock.5.0.1\lib\netstandard2.0\AsyncKeyedLock.dll</HintPath>
+    </Reference>
     <Reference Include="GroupDocs.Viewer, Version=22.9.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>packages\GroupDocs.Viewer.22.9.0\lib\net40\GroupDocs.Viewer.dll</HintPath>
     </Reference>
@@ -135,7 +138,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ViewerController.cs" />
     <Compile Include="Controllers\ViewerApiController.cs" />
-    <Compile Include="Core\Caching\AsyncDuplicateLock.cs" />
     <Compile Include="Core\Caching\CachedPage.cs" />
     <Compile Include="Core\Caching\CacheKeys.cs" />
     <Compile Include="Core\Caching\CachingViewer.cs" />
@@ -160,7 +162,6 @@
     <Compile Include="Core\Utils\PathUtils.cs" />
     <Compile Include="Core\FileTypeResolution\IFileTypeResolver.cs" />
     <Compile Include="Core\FileTypeResolution\FileExtensionFileTypeResolver.cs" />
-    <Compile Include="Core\IAsyncLock.cs" />
     <Compile Include="Core\IFileCache.cs" />
     <Compile Include="Core\IFileStorage.cs" />
     <Compile Include="Core\IPageFormatter.cs" />

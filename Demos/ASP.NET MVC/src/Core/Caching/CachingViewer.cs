@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncKeyedLock;
 using GroupDocs.Viewer.AspNetMvc.Core.Entities;
 using GroupDocs.Viewer.AspNetMvc.Core.Extensions;
 
@@ -10,7 +11,7 @@ namespace GroupDocs.Viewer.AspNetMvc.Core.Caching
     {
         private readonly IViewer _viewer;
         private readonly IFileCache _fileCache;
-        private readonly IAsyncLock _asyncLock;
+        private readonly AsyncKeyedLocker<string> _asyncLock;
 
         public string PageExtension =>
             _viewer.PageExtension;
@@ -18,7 +19,7 @@ namespace GroupDocs.Viewer.AspNetMvc.Core.Caching
         public Page CreatePage(int pageNumber, byte[] data) =>
             _viewer.CreatePage(pageNumber, data);
 
-        public CachingViewer(IViewer viewer, IFileCache fileCache, IAsyncLock asyncLock)
+        public CachingViewer(IViewer viewer, IFileCache fileCache, AsyncKeyedLocker<string> asyncLock)
         {
             _viewer = viewer;
             _fileCache = fileCache;
