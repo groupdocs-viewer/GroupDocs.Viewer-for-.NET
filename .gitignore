@@ -224,3 +224,6 @@ deploy_key
 
 #License files
 *.lic
+
+#Cache files
+Cache/

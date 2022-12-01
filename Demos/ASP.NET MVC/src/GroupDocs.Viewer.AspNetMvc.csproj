@@ -216,14 +216,6 @@
     <Content Include="Views\Viewer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
-    <TypeScriptCompile Include="ClientApp\src\main.ts" />
-    <TypeScriptCompile Include="ClientApp\src\polyfills.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <Content Include="ClientApp\.browserslistrc" />
     <Content Include="ClientApp\angular.json" />
