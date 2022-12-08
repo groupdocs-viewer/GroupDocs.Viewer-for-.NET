@@ -21,8 +21,10 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <!--Set to True to enable client app build-->
+    <BuildClientApp>false</BuildClientApp>
+    <ClientRoot>ClientApp\</ClientRoot>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,8 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupDocs.Viewer, Version=22.9.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>packages\GroupDocs.Viewer.22.9.0\lib\net40\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=22.11.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\GroupDocs.Viewer.22.11.0\lib\net40\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -265,11 +267,12 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="InstallPackages" BeforeTargets="BeforeBuild" Condition="'$(BuildClientApp)' == 'True'">
+    <Message Importance="high" Text="*** Installing npm packages ***" />
+    <Exec WorkingDirectory="$(ClientRoot)" Command="npm install" ContinueOnError="false" />
   </Target>
-  <Target Name="AfterBuild">
+  <Target Name="BuildClient" BeforeTargets="BeforeBuild" DependsOnTargets="InstallPackages" Condition="'$(BuildClientApp)' == 'True'">
+    <Message Importance="high" Text="*** Bundling client files ***" />
+    <Exec WorkingDirectory="$(ClientRoot)" Command="npm run build" ContinueOnError="false" />
   </Target>
-  -->
 </Project>

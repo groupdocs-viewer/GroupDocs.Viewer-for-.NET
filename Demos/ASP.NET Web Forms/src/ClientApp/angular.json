@@ -70,7 +70,7 @@
                 "input": "src/index.prod.html",
                 "output": "index.html"
               },
-              "outputPath": "../assets",
+              "outputPath": "dist",
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,

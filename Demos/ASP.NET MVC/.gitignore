@@ -34,3 +34,6 @@ src/DocumentSamples
 
 #License files
 .lic
+
+#Angular temp files
+.angular
