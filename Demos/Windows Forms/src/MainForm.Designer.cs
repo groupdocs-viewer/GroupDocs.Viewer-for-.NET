@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.webBrowerMain = new System.Windows.Forms.WebBrowser();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openFileBtn = new System.Windows.Forms.ToolStripButton();
             this.firstPageBtn = new System.Windows.Forms.ToolStripButton();
@@ -40,20 +40,23 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.licenseStatusLabel = new System.Windows.Forms.ToolStripLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // webBrowerMain
+            // pictureBox
             // 
-            this.webBrowerMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowerMain.Location = new System.Drawing.Point(-8, 42);
-            this.webBrowerMain.Margin = new System.Windows.Forms.Padding(3, 39, 3, 3);
-            this.webBrowerMain.MinimumSize = new System.Drawing.Size(20, 39);
-            this.webBrowerMain.Name = "webBrowerMain";
-            this.webBrowerMain.Size = new System.Drawing.Size(831, 664);
-            this.webBrowerMain.TabIndex = 0;
+            //this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(3, 39, 3, 3);
+            this.pictureBox.MinimumSize = new System.Drawing.Size(20, 39);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(823, 666);
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -149,21 +152,34 @@
             this.licenseStatusLabel.Size = new System.Drawing.Size(73, 36);
             this.licenseStatusLabel.Text = "Not licensed";
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(823, 666);
+            this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(823, 705);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.webBrowerMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(839, 744);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Viewer for .NET Windows Forms";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,7 +187,7 @@
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser webBrowerMain;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton openFileBtn;
         private System.Windows.Forms.ToolStripButton firstPageBtn;
@@ -182,6 +198,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel licenseStatusLabel;
         private System.Windows.Forms.ToolStripLabel pagesStatusLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

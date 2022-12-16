@@ -29,6 +29,10 @@
 			<Label Content="License status:" />
 			<Label Name="lblStatus" Content="Not licensed" />
 		</ToolBar>
-		<WebBrowser Name="webBrowerMain"></WebBrowser>
-	</DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+            <StackPanel>
+                <Image Name="imageMain" Stretch="Uniform" />
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

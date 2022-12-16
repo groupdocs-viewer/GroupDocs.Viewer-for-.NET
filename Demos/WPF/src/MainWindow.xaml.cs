@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace GroupDocs.Viewer.WPF
 {
@@ -164,7 +165,7 @@ namespace GroupDocs.Viewer.WPF
                                 {
                                     ViewInfo = null;
                                     CurrentFilePath = null;
-                                    webBrowerMain.Navigate("about:blank");
+                                    imageMain.Source = null;
                                     DisplayViewInfo();
                                 });
 
@@ -201,13 +202,15 @@ namespace GroupDocs.Viewer.WPF
         {
             if (ViewInfo != null)
             {
-                HtmlViewOptions htmlViewOptions = HtmlViewOptions.ForEmbeddedResources(WorkMemoryPageStreamFactory);
+                PngViewOptions htmlViewOptions = new PngViewOptions(WorkMemoryPageStreamFactory);
                 viewer.View(htmlViewOptions, page);
 
                 Dispatcher.Invoke(() =>
                 {
                     WorkMemoryPageStreamFactory.Stream.Position = 0;
-                    this.webBrowerMain.NavigateToStream(WorkMemoryPageStreamFactory.Stream);
+                    imageMain.Source = BitmapFrame.Create(WorkMemoryPageStreamFactory.Stream,
+                        BitmapCreateOptions.None,
+                        BitmapCacheOption.OnLoad);
                 });
             }
 

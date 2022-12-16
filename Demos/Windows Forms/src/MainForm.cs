@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using System.Drawing;
 using System.Windows.Forms;
 using GroupDocs.Viewer.Exceptions;
 using GroupDocs.Viewer.Options;
@@ -163,7 +164,7 @@ namespace GroupDocs.Viewer.Forms.UI
                             {
                                 ViewInfo = null;
                                 CurrentFilePath = null;
-                                webBrowerMain.DocumentText = string.Empty;
+                                pictureBox.Image = null;
                                 DisplayViewInfo();
 
                                 throw;
@@ -199,11 +200,14 @@ namespace GroupDocs.Viewer.Forms.UI
         {
             if (ViewInfo != null)
             {
-                HtmlViewOptions htmlViewOptions = HtmlViewOptions.ForEmbeddedResources(MemoryPageStreamFactory);
+                PngViewOptions htmlViewOptions = new PngViewOptions(MemoryPageStreamFactory);
                 viewer.View(htmlViewOptions, page);
 
                 MemoryPageStreamFactory.Stream.Position = 0;
-                webBrowerMain.DocumentStream = MemoryPageStreamFactory.Stream;
+                InvokeIfRequired(() =>
+                {
+                    pictureBox.Image = Image.FromStream(MemoryPageStreamFactory.Stream);
+                });
             }
 
             UpdateControlsVisibility();
