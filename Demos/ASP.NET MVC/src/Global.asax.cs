@@ -11,6 +11,7 @@ using GroupDocs.Viewer.AspNetMvc.Core.Caching;
 using GroupDocs.Viewer.AspNetMvc.Core.Storage;
 using Unity;
 using Unity.WebApi;
+using AsyncKeyedLock;
 
 namespace GroupDocs.Viewer.AspNetMvc
 {
@@ -49,7 +50,7 @@ namespace GroupDocs.Viewer.AspNetMvc
             container.RegisterType<IPageFormatter, NoopPageFormatter>();
             container.RegisterType<IViewerLicenser, LicenseFileViewerLicenser>();
             container.RegisterType<IFileTypeResolver, FileExtensionFileTypeResolver>();
-            container.RegisterType<IAsyncLock, AsyncDuplicateLock>();
+            container.RegisterSingleton<AsyncKeyedLocker<string>>();
 
             container.RegisterFactory<IViewer>(c =>
             {
@@ -71,7 +72,7 @@ namespace GroupDocs.Viewer.AspNetMvc
                 }
 
                 var fileCache = c.Resolve<IFileCache>();
-                var asyncLock = c.Resolve<IAsyncLock>();
+                var asyncLock = c.Resolve<AsyncKeyedLocker<string>>();
 
                 return new CachingViewer(viewer, fileCache, asyncLock);
             });
