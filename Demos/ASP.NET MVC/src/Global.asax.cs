@@ -50,11 +50,7 @@ namespace GroupDocs.Viewer.AspNetMvc
             container.RegisterType<IPageFormatter, NoopPageFormatter>();
             container.RegisterType<IViewerLicenser, LicenseFileViewerLicenser>();
             container.RegisterType<IFileTypeResolver, FileExtensionFileTypeResolver>();
-            container.RegisterSingleton(new AsyncKeyedLocker<string>(o =>
-            {
-                o.PoolSize = 20;
-                o.PoolInitialFill = 1;
-            }));
+            container.RegisterSingleton<AsyncKeyedLocker<string>>();
 
             container.RegisterFactory<IViewer>(c =>
             {
