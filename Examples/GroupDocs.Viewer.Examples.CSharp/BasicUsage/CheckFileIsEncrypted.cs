@@ -12,7 +12,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage
         {            
             using (Viewer viewer = new Viewer(TestFiles.ENCRYPTED))
             {
-                FileInfo fileInfo = viewer.GetFileInfo();
+                Results.FileInfo fileInfo = viewer.GetFileInfo();
 
                 Console.WriteLine("File type is: " + fileInfo.FileType);
                 Console.WriteLine("File encrypted: " + fileInfo.Encrypted);
