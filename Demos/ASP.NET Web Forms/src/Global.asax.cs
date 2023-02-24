@@ -11,6 +11,7 @@ using GroupDocs.Viewer.AspNetWebForms.Core.PageFormatting;
 using GroupDocs.Viewer.AspNetWebForms.Core.Storage;
 using GroupDocs.Viewer.AspNetWebForms.Core.Viewers;
 using GroupDocs.Viewer.AspNetWebForms.Core;
+using AsyncKeyedLock;
 
 namespace GroupDocs.Viewer.AspNetWebForms
 {
@@ -48,7 +49,7 @@ namespace GroupDocs.Viewer.AspNetWebForms
             container.RegisterType<IPageFormatter, NoopPageFormatter>();
             container.RegisterType<IViewerLicenser, LicenseFileViewerLicenser>();
             container.RegisterType<IFileTypeResolver, FileExtensionFileTypeResolver>();
-            container.RegisterType<IAsyncLock, AsyncDuplicateLock>();
+            container.RegisterSingleton<AsyncKeyedLocker<string>>();
 
             container.RegisterFactory<IViewer>(c =>
             {
@@ -70,7 +71,7 @@ namespace GroupDocs.Viewer.AspNetWebForms
                 }
 
                 var fileCache = c.Resolve<IFileCache>();
-                var asyncLock = c.Resolve<IAsyncLock>();
+                var asyncLock = c.Resolve<AsyncKeyedLocker<string>>();
 
                 return new CachingViewer(viewer, fileCache, asyncLock);
             });
