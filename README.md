@@ -1,6 +1,6 @@
 # Document Viewer .NET API
 
-GroupDocs.Viewer for .NET is a powerful [Document Viewer API](https://products.groupdocs.com/viewer/net) which [supports over 170 file formats](https://docs.groupdocs.com/viewer/net/supported-document-formats/) to view documents in HTML5, Image or PDF modes with fast and high quality rendering. The Viewer Library allows to customize the rendering strategy by processing document page-by-page, entire document at once or a custom pages range. Developers may also customize document appearance via additional rendering options by adding watermarks, rotation and reordering pages, extracting document text with coordinates and much more.
+This powerful .NET document processing API supports rendering of [170+ format formats](https://docs.groupdocs.com/viewer/net/supported-document-formats/) to HTML5, image, and PDF formats, with more than 130 formats supported for auto-detection.
 
 <p align="center">
   <a title="Download complete GroupDocs.Viewer for .NET source code" href="https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/archive/master.zip">
@@ -14,82 +14,73 @@ Directory | Description
 [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples)  | C# examples and sample files that will help you learn how to use product features.
 [Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins)  | Contains Visual Studio plugins related to GroupDocs.Viewer.
 
-## Render & Display Documents via .NET
+## Features
 
-- View documents by rendering in HTML, image or PDF format.
-- Reuse common resources across several HTML pages.
-- Make each HTML page self=sufficient by rendering it with embedded resources.
-- Render files in the lossless PNG file format or lossy JPG compressed image format.
-- Apply page rotation or change page order when rendering a document to HTML or image formats.
-- Apply the specified text as watermark to all pages while being rendered into HTML or image.
-- Boost document loading speed to optimize application performance via caching.
-- Perform document text extract for PNG and JPG formats.
-- Fetch basic information about source documents.
-- Extract information about PDF document printing restrictions.
-- Fetch start and end dates of a project from MS Project file.
-- Minify HTML & CSS to improve the rendering process.
-- [Apply watermark](https://docs.groupdocs.com/viewer/net/add-text-watermark/) on the output pages of HTML, image or PDF files.
-- Render documents with comments, notes, and custom fonts.
-- Replace missing fonts while rendering.
+- Viewing documents by rendering as HTML5, images, or PDF.
+- Rendering documents as self-contained HTML pages with embedded resources.
+- Rendering files in lossless PNG format or lossy JPG compressed format.
+- Rotating or reordering pages when rendering.
+- Getting information about document and rendering results, such as file type and number of pages on the output.
+- Getting a list of folders in an archive.
+- Getting a list of layers and layouts in a CAD drawing.
+- Getting a list of folders in an Outlook data file.
+- Getting information about the limitations of PDF documents.
+- Getting project start and end dates from an MS Project file.
+- Minifying HTML and CSS.
+- Rendering to responsive HTML.
+- Adding text watermarks on output pages.
+- Rendering documents with comments and notes.
+- Rendering documents using custom fonts.
+- Replacing missing fonts when rendering.
 
-## Supported document Formats
+## Supported formats
 
-| Family                      | Formats                                                                                                                                     |
-| --------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------- |
-| Archive formats             | `ZIP`, `TAR`, `BZ2`, `RAR`, `GZIP`                                                                                                 |
-| Apple formats               | `Numbers` 																														   |
-| PDF formats                 | `PDF`, `XPS`, `OXPS`, `TEX`                                                                                                        |
-| CAD formats                 | `DXF`, `DWG` , `DWT`, `STL`, `IFC`,`DWF` , `DWFX`, `DGN`, `PLT`,`CF2`,`OBJ`, `HPG`, `IGS`                                          |
-| Microsoft Word              | `DOC`, `DOCM` , `DOCX`, `DOT`, `DOTM`, `DOTX`,`RTF`                                                                                      |
-| Microsoft Excel             | `XLS`, `XLSB`, `XLSM`, `XLSX`, `XLT`, `XLTM`, `XLTX`,`Excel 2003 XML`,`XLAM`                                                       |
-| Microsoft PowerPoint        | `PPT`, `POT`, `POTM`, `POTX`, `PPS`, `PPSM`, `PPSX`, `PPTM`, `PPTX`                                                                |
-| Microsoft Visio             | `VSD`,`VSDX`,`VSDM`,`VDW`, `VDX`, `VSDX`, `VSS`,`VSSX`,`VSSM`,`VST`,`VSTX`, `VSX`, `VTX`,`VSTM`                                    |
-| Microsoft Project           | `MPP`, `MPT`,`MPX`                                                                                                                 |
-| Help files                  | `CHM`                                                                                                                              | 
-| Email formats               | `EML`, `EMLX`, `MSG`, `NSF`, `MBOX`, `PST`,`OST`, `VCF`                                                                                   |
-| OpenDocument Formats        | `ODT`, `ODP`,`FODP`, `ODS`,`FODS`, `OTT`,`OTS`,`ODG`,`FODG`,`OTG`,`OTP`,`SXC`                                                      |
-| Plain Text File             | `TXT`,`TSV`                                                                                                                       |
-| Comma-Separated Values      | `CSV`                                                                                                                              |
-| HyperText Markup Language   | `HTML`, `MHT`, `MHTML`, `SVG`,`SVGZ`                                                                                               |
-| Extensible Markup Language  | `XML`,`XML`, `XPS`                                                                                                                 |
-| AutoCAD Drawing File Format | `DGN`, `DWG`, `DXF`                                                                                                                |
-| Image files                 | `BMP`, `CAL`, `DCX`,`CGM`,`PCL`,`PSB`, `DIB`, `EMF`,`EMZ`,`WEBP`,`DNG`,`CDR`,`CMX`, `GIF`, <br/> `JP2`,                                    `JPG`,`JPF`,`JPM`,`J2C`,`J2K`,`JPC`,`JPX`,`MIL`, `MIL`, `PCD`, `PCT`, `PCX`, `PNG`, <br/>`Animated PNG`, `PSD`,`PS`, `RAS`, `TGA`,`TIFF`,`WMF`,`WMZ`,`EPS`, `AI`  |
-| Electronic publication      | `EPUB`,`MOBI`,`DJVU`                                                                                                                       |
-| Windows Icon                | `ICO`                                                                                                                              |
-| Medical image files         | `DCM` |
-| Programming Language Formats | `AS`, `AS3`, `ASM`, `BAT`, `C`, `CC`, `CMAKE`, `CPP`, `CS`,`VB`, `CSS`, `CXX`, `DIFF`, `ERB`, <br/> `GROOVY`, `H`,`HAML`, `HH`, `JAVA`, `JS`, `JSON`, `LESS`, `LOG`, `M`, `MAKE`, `MD`, `ML`, <br/> `MM`, `PHP`, `PL`, `PROPERTIES`, `PY`, `RB`, `RST`, `SASS`, `SCALA`, `SCM`, `SCRIPT`, <br/> `SH`, `SML`, `SQL`, `VIM`, `YAML`|  
+**Microsoft Word®:** DOC, DOCM, DOCX, DOT, DOTM, DOTX\
+**Microsoft Excel®:** XLS, XLSB, XLSM, XLSX, XLT, XLTX, XLAM\
+**Microsoft PowerPoint®:** PPT, PPTX, PPTM, PPS, PPSX, PPSM, POT, POTM, POTX\
+**Microsoft Visio®:** VDW, VDX, VSD, VSDM, VSDX, VSS, VSSM, VSSX, VST, VSTM, VSTX, VSX, VTX\
+**Microsoft Project®:** MPP, MPT, MPX\
+**Microsoft OneNote®:** ONE\
+**OpenOffice®:** ODG, OTG, OXPS, ODP, OTP, ODS, OTS, ODT, OTT, OXPS\
+**AutoCAD®:** DGN, DWF, DWT, DWG, DXF\
+**CorelDraw®:** CDR\
+**Adobe Photoshop®:** PSD, PSB\
+**IBM Notes:** NSF\
+**Source code:** CS, VB, AS, AS3, and other\
+**Image:** GIF, ICO, JP2, JPF, JPX, JPM, J2C, J2K, JPC, JPG, JPEG, SVG, TIF, TIFF\
+**Markup:** HTML, MHT, MHTML, MD\
+**Portable:** PDF\
+**Archive:** TAR, ZIP, BZ2, RAR, GZ\
+**Email:** EML, EMLX, MSG, OST, PST\
+**Metafile:** CGM, EMF, WMF, WMZ, EMZ, CMX\
+**Other:** IFC, STL, PS, XPS, TEX, SXC, DJVU, DNG, DIB, EPS
 
-## Develop & Deploy GroupDocs.Viewer for .NET Anywhere
+## Platform independence
 
-**Microsoft Windows:** Microsoft Windows Desktop & Server (x86, x64), Windows Azure\
-**macOS:** Mac OS X\
-**Linux:** Ubuntu, OpenSUSE, CentOS, and others\
-**Development Environments:** Microsoft Visual Studio, Xamarin.Android, Xamarin.IOS, Xamarin.Mac, MonoDevelop\
-**Supported Frameworks:** .NET Framework 2.0 or higher, .NET Standard 2.0, .NET Core 3.1 and higher
+GroupDocs.Viewer for .NET does not require any external software or third-party tools and supports any 32-bit or 64-bit operating system with .NET Framework, .NET Core, or .NET installed. The supported operating systems and platforms are listed below:
 
-## Get Started with GroupDocs.Viewer for .NET
+**Windows:** Microsoft Windows Server 2003 and later, Microsoft Windows XP, Vista, 7, 8, 8.1, 10, 11\
+**Mac:** Mac OS X\
+**Linux:** Linux (Ubuntu, OpenSUSE, CentOS and others)\
+**Development Environments:** Microsoft Visual Studio, Microsoft Visual Studio for Mac, Rider from JetBrains\
+**Supported Frameworks:** .NET Framework, .NET Core, and .NET
 
-Are you ready to give GroupDocs.Viewer for .NET a try? Simply execute `Install-Package GroupDocs.Viewer` from Package Manager Console in Visual Studio to fetch & reference GroupDocs.Viewer assembly in your project. If you already have GroupDocs.Viewer for .Net and want to upgrade it, please execute `Update-Package GroupDocs.Viewer` to get the latest version.
+## Get started
 
-## How to render DOCX to HTML
+To fetch and reference the `GroupDocs.Viewer` assembly in your project, execute `Install-Package GroupDocs.Viewer` from the Package Manager Console in Visual Studio. To update the GroupDocs.Viewer for .NET, please execute `Update-Package GroupDocs.Viewer` to get the latest version.
+
+Please check the [GitHub Repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) for other common usage scenarios.
+
+## C# code to render XLSX file to HTML
 
 ```csharp
-using (Viewer viewer = new Viewer("sample.docx"))
+using (Viewer viewer = new Viewer("invoice.xlsx"))
 {
-    HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources();
-    viewer.View(options);
+   HtmlViewOptions options = 
+       HtmlViewOptions.ForEmbeddedResources();
+
+   viewer.View(options);
 }
 ```
 
-## Add watermark to the output HTML
-
-```csharp
-using (Viewer viewer = new Viewer("sample.docx"))
-{
-    HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources();
-    options.Watermark = new Watermark("This is a watermark");
-    viewer.View(options);
-}
-```
-
-[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/net) | [Documentation](https://docs.groupdocs.com/viewer/net/) | [Demo](https://products.groupdocs.app/viewer/family) | [API Reference](https://apireference.groupdocs.com/net/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Search](https://search.groupdocs.com/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
+[Product Page](https://products.groupdocs.com/viewer/net/) | [Docs](https://docs.groupdocs.com/viewer/net/) | [Demos](https://products.groupdocs.app/viewer/family) | [API Reference](https://reference.groupdocs.com/viewer/net/) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Search](https://search.groupdocs.com/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license/)
