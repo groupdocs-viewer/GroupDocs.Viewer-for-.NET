@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer" Version="23.4.0" />
+    <PackageReference Include="GroupDocs.Viewer" Version="23.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
   </ItemGroup>
 
