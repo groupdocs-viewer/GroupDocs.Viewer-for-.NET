@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.11" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="6.0.0" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="6.0.0" />
-    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.13" />
+    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.14" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="6.0.2" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="6.0.2" />
+    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
