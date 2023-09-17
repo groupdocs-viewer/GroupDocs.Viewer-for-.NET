@@ -1,8 +1,8 @@
 <gd-loading-mask [loadingMask]="isLoading"></gd-loading-mask>
 <div class="wrapper" (contextmenu)="onRightClick()">
   <div class="top-panel" *ngIf="!runPresentation">
-    <gd-logo [logo]="'viewer'" icon="eye"></gd-logo>
-    <gd-top-toolbar class="toolbar-panel">
+    <gd-logo [logo]="'viewer'" icon="eye" *ngIf="showToolBar"></gd-logo>
+    <gd-top-toolbar class="toolbar-panel" *ngIf="showToolBar">
       <gd-button [icon]="'folder-open'" title="{{'Browse files' | translate}}" (click)="openModal(browseFilesModal)"
                  *ngIf="browseConfig" ></gd-button>
 
@@ -35,7 +35,7 @@
 
       <gd-button [disabled]="formatDisabled" [icon]="'search'" title="{{'Search' | translate}}" (click)="openSearch()"
                  *ngIf="searchConfig && !ifPresentation()" ></gd-button>
-      <gd-search (hidePanel)="showSearch = !$event" *ngIf="showSearch" ></gd-search>
+      <gd-search (hidePanel)="openSearch(false)" #search [hidden]="!showSearch" ></gd-search>
 
       <div class="toolbar-panel-right">
         <div class="language-menu mobile-hide" *ngIf="showLanguageMenu">
@@ -76,7 +76,7 @@
     <gd-document class="gd-document" *ngIf="(file &&
                                             (ifExcel() && !htmlModeConfig) ||
                                             (ifPresentation() && isDesktop && !runPresentation) ||
-                                            (!ifExcel() && !ifPresentation()))" [file]="file" [mode]="htmlModeConfig" [showActiveSlide]="true" gdScrollable
+                                            (!ifExcel() && !ifPresentation()))" [file]="file" [mode]="htmlModeConfig" [showActiveSlide]="true" gdScrollableEdited
                  [preloadPageCount]="viewerConfig.preloadPageCount || 0" [selectedPage]="selectedPageNumber" gdRenderPrint [htmlMode]="htmlModeConfig" gdMouseWheel (mouseWheelUp)="onMouseWheelUp()" (mouseWheelDown)="onMouseWheelDown()"></gd-document>
     <gd-excel-document class="gd-document" *ngIf="file && ifExcel() && htmlModeConfig" [file]="file" [mode]="htmlModeConfig" gdScrollable
                  [preloadPageCount]="viewerConfig.preloadPageCount || 0" gdRenderPrint [htmlMode]="htmlModeConfig"></gd-excel-document>
