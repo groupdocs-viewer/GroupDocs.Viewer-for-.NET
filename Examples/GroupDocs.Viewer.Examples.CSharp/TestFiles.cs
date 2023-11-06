@@ -59,6 +59,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetSampleFilePath("encrypted.pdf");
         public static string ONE_PAGE_TEXT_PDF =>
             GetSampleFilePath("one-page-text.pdf");
+        public static string OXPS_EMBEDDED_FONT =>
+            GetSampleFilePath("resume.oxps");
 
         // Presentations
         public static string PPTX_WITH_NOTES =>
