@@ -74,6 +74,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\AdjustImageQuality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\DisableCharactersGrouping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\EnableFontHinting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\DisableFontLicenseVerifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\RenderOriginalPageSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\EnableLayeredRendering.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\GetViewInfoForPdfDocument.cs" />
@@ -168,6 +169,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\password_protected.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\resume.oxps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.ai">

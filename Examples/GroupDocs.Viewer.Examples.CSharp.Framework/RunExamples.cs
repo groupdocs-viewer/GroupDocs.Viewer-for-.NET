@@ -161,6 +161,8 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //EnableLayeredRendering.Run();
             //RenderOriginalPageSize.Run();
             //DisableTextSelection.Run();
+            //DisableFontLicenseVerifications.Run();
+            //DisableFontLicenseVerifications.Run();
 
             #endregion
 
