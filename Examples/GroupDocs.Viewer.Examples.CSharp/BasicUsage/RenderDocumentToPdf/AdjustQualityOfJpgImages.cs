@@ -17,7 +17,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf
             using (Viewer viewer = new Viewer(TestFiles.JPG_IMAGE_PPTX))
             {               
                 PdfViewOptions options = new PdfViewOptions(filePath);
-                options.JpgQuality = 10;
 
                 viewer.View(options);
             }
