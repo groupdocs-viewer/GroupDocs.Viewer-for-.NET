@@ -20,6 +20,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 
     Console.WriteLine("Open RunExamples.cs. \nIn Main() method uncomment the example that you want to run.");
     Console.WriteLine("=====================================================");
@@ -153,9 +154,9 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsB
 //EnableLayeredRendering.Run();
 //RenderOriginalPageSize.Run();
 //DisableTextSelection.Run();
-DisableFontLicenseVerifications.Run();
+//DisableFontLicenseVerifications.Run();
 
-    #endregion
+#endregion
 
 #region Rendering MS Project Documents
 
@@ -190,6 +191,13 @@ DisableFontLicenseVerifications.Run();
 #region Rendering Web documents
 //RenderingHtmlWithUserDefinedMargins.Run();
 //RenderingChmFiles.Run();
+#endregion
+
+#region Rendering Lotus messages
+
+//RenderingNsf.Run();
+//FilterLotusNotesMessages.Run();
+
 #endregion
 
 #endregion

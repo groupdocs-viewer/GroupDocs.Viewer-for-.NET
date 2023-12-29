@@ -201,6 +201,13 @@ namespace GroupDocs.Viewer.Examples.CSharp
             //RenderingChmFiles.Run();
             #endregion
 
+            #region Rendering Lotus messages
+
+            //RenderingNsf.Run();
+            //FilterLotusNotesMessages.Run();
+
+            #endregion
+
             #endregion
 
             #region Caching

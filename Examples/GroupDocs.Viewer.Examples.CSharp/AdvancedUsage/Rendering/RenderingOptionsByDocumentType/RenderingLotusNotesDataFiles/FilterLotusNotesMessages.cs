@@ -17,8 +17,8 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF))
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
-                //options.LotusNotesOptions.TextFilter = "April 2015";
-                options.LotusNotesOptions.AddressFilter = "campaign@banckle.com";
+                options.MailStorageOptions.TextFilter = "April 2015";
+                options.MailStorageOptions.AddressFilter = "campaign@banckle.com";
 
                 viewer.View(options);
             }
