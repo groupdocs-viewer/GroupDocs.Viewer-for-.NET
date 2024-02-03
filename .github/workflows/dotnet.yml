@@ -1,4 +1,4 @@
-name: Test .NET Core build
+name: Test .NET build
 
 on:
   push:
@@ -16,8 +16,8 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 6.0.0
     - name: Restore dependencies
-      run: dotnet restore Examples/GroupDocs.Viewer.Examples.CSharp.Core
-    - name: Test build for .NET Core project
-      run: dotnet build --no-restore Examples/GroupDocs.Viewer.Examples.CSharp.Core
+      run: dotnet restore Examples/GroupDocs.Viewer.Examples.CSharp.NET6
+    - name: Test build for .NET  project
+      run: dotnet build --no-restore Examples/GroupDocs.Viewer.Examples.CSharp.NET6
