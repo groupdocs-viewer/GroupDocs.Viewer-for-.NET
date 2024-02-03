@@ -14,7 +14,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string outputFile = Path.Combine(outputDirectory, "result_image_size_limit.jpg");
 
-            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2))
+            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX))
             {
                 JpgViewOptions options =
                    new JpgViewOptions(outputFile);

@@ -30,69 +30,69 @@ namespace GroupDocs.Viewer.Examples.CSharp
     {
         static void Main()
         {
-            Console.WriteLine("Open RunExamples.cs. \nIn Main() method uncomment the example that you want to run.");
+            Console.WriteLine("GroupDocs.Viewer for .NET examples.");
             Console.WriteLine("=====================================================");
 
             #region Quick Start
 
             SetLicenseFromFile.Run();
-            //SetLicenseFromStream.Run();
-            //SetMeteredLicense.Run();
+            SetLicenseFromStream.Run();
+            SetMeteredLicense.Run();
             HelloWorld.Run();
 
             #endregion
 
             #region Basic Usage
 
-            //GetSupportedFileFormats.Run();
-            //GetViewInfo.Run();
-            //CheckFileIsEncrypted.Run();
+            GetSupportedFileFormats.Run();
+            GetViewInfo.Run();
+            CheckFileIsEncrypted.Run();
 
             #region Processing attachments
 
-            //RetrieveAndPrintDocumentAttachments.Run();
-            //RetrieveAndSaveDocumentAttachments.Run();
-            //RenderDocumentAttachments.Run();
+            RetrieveAndPrintDocumentAttachments.Run();
+            RetrieveAndSaveDocumentAttachments.Run();
+            RenderDocumentAttachments.Run();
 
             #endregion
 
             #region Render document to HTML
 
-            //RenderToHtmlWithEmbeddedResources.Run();
-            //RenderToHtmlWithExternalResources.Run();
+            RenderToHtmlWithEmbeddedResources.Run();
+            RenderToHtmlWithExternalResources.Run();
 
-            //ExcludingFontsFromOutputHtml.Run();
-            //MinifyHtmlDocument.Run();
-            //RenderToResponsiveHtml.Run();
+            ExcludingFontsFromOutputHtml.Run();
+            MinifyHtmlDocument.Run();
+            RenderToResponsiveHtml.Run();
 
             #endregion
 
             #region Render document to Image
 
-            //RenderToPng.Run();
-            //RenderToJpg.Run();
+            RenderToPng.Run();
+            RenderToJpg.Run();
 
-            //GetTextCoordinates.Run();
-            //RenderForDisplayWithText.Run();
-            //AdjustQualityWhenRenderingToJpg.Run();
-            //AdjustImageSize.Run();
-            //RenderingWmzAndWmf.Run();
-            //RenderingEmzAndEmf.Run();
-            //RenderingCdr.Run();
-            //RenderingCmx.Run();
-            //RenderingAi.Run();
-            //RenderingTga.Run();
-            //RenderingApng.Run();
+            GetTextCoordinates.Run();
+            RenderForDisplayWithText.Run();
+            AdjustQualityWhenRenderingToJpg.Run();
+            AdjustImageSize.Run();
+            RenderingWmzAndWmf.Run();
+            RenderingEmzAndEmf.Run();
+            RenderingCdr.Run();
+            RenderingCmx.Run();
+            RenderingAi.Run();
+            RenderingTga.Run();
+            RenderingApng.Run();
 
             #endregion
 
             #region Render document to PDF
 
-            //RenderToPdf.Run();
-            //GetPdfStream.Run();
+            RenderToPdf.Run();
+            GetPdfStream.Run();
 
-            //AdjustQualityOfJpgImages.Run();
-            //ProtectPdfDocument.Run();
+            AdjustQualityOfJpgImages.Run();
+            ProtectPdfDocument.Run();
 
             #endregion
 
@@ -102,18 +102,18 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Common rendering options
 
-            //AddWatermark.Run();
-            //RenderDocumentWithComments.Run();
-            //RenderDocumentWithNotes.Run();
-            //RenderHiddenPages.Run();
-            //RenderNConsecutivePages.Run();
-            //RenderSelectedPages.Run();
-            //ReplaceMissingFont.Run();
-            //ReorderPages.Run();
-            //FlipRotatePages.Run();
-            //RenderWithCustomFonts.Run();
-            //RenderingTxt.Run();
-            //SetImageSizeLimits.Run();
+            AddWatermark.Run();
+            RenderDocumentWithComments.Run();
+            RenderDocumentWithNotes.Run();
+            RenderHiddenPages.Run();
+            RenderNConsecutivePages.Run();
+            RenderSelectedPages.Run();
+            ReplaceMissingFont.Run();
+            ReorderPages.Run();
+            FlipRotatePages.Run();
+            RenderWithCustomFonts.Run();
+            RenderingTxt.Run();
+            SetImageSizeLimits.Run();
 
             #endregion
 
@@ -121,90 +121,90 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Rendering CAD Files
 
-            //RenderingPc3Files.Run();
+            RenderingPc3Files.Run();
 
             #endregion
 
             #region Rendering Archive Files
 
-            //GetViewInfoForArchiveFile.Run();
-            //RenderArchiveFolder.Run();
-            //SpecifyFilenameWhenRenderingArchiveFiles.Run();
-            //RenderingRar.Run();
-            //RenderingArchivesToMultipleAndSinglePagesHtml.Run();
+            GetViewInfoForArchiveFile.Run();
+            RenderArchiveFolder.Run();
+            SpecifyFilenameWhenRenderingArchiveFiles.Run();
+            RenderingRar.Run();
+            RenderingArchivesToMultipleAndSinglePagesHtml.Run();
 
             #endregion
 
             #region Rendering E-Mail Messages
 
-            //AdjustPageSize.Run();
-            //RenameEmailFields.Run();
-            //DateTimeFormatAndTimeZoneOffset.Run();
+            AdjustPageSize.Run();
+            RenameEmailFields.Run();
+            DateTimeFormatAndTimeZoneOffset.Run();
 
             #endregion
 
             #region Rendering Outlook Data Files
 
-            //FilterMessages.Run();
-            //GetViewInfoForOutlookDataFile.Run();
-            //LimitCountOfItemsToRender.Run();
-            //RenderOutlookDataFileFolder.Run();
+            FilterMessages.Run();
+            GetViewInfoForOutlookDataFile.Run();
+            LimitCountOfItemsToRender.Run();
+            RenderOutlookDataFileFolder.Run();
 
             #endregion
 
             #region Rendering PDF Documents
 
-            //DisableCharactersGrouping.Run();
-            //EnableFontHinting.Run();
-            //GetViewInfoForPdfDocument.Run();
-            //AdjustImageQuality.Run();
-            //EnableLayeredRendering.Run();
-            //RenderOriginalPageSize.Run();
-            //DisableTextSelection.Run();
-            //DisableFontLicenseVerifications.Run();
-            //DisableFontLicenseVerifications.Run();
+            DisableCharactersGrouping.Run();
+            EnableFontHinting.Run();
+            GetViewInfoForPdfDocument.Run();
+            AdjustImageQuality.Run();
+            EnableLayeredRendering.Run();
+            RenderOriginalPageSize.Run();
+            DisableTextSelection.Run();
+            DisableFontLicenseVerifications.Run();
+            DisableFontLicenseVerifications.Run();
 
             #endregion
 
             #region Rendering MS Project Documents
 
-            //AdjustTimeUnit.Run();
-            //GetViewInfoForProjectDocument.Run();
-            //RenderProjectTimeInterval.Run();
+            AdjustTimeUnit.Run();
+            GetViewInfoForProjectDocument.Run();
+            RenderProjectTimeInterval.Run();
 
             #endregion
 
             #region Rendering Spreadsheets
 
-            //AdjustTextOverflowInCells.Run();
-            //RenderGridLines.Run();
-            //RenderHiddenRowsAndColumns.Run();
-            //RenderPrintAreas.Run();
-            //SkipRenderingOfEmptyColumns.Run();
-            //SkipRenderingOfEmptyRows.Run();
-            //SplitWorksheetsIntoPages.SplitByRows();
-            //SplitWorksheetsIntoPages.SplitByRowsAndColumns();
-            //RenderRowAndColumnHeadings.Run();
-            //GetWorksheetsNames.Run();
-            //RenderingNumbers.Run();
-            //RenderingXmlSpreadSheetML.Run();
-            //RenderingByPageBreaks.Run();
+            AdjustTextOverflowInCells.Run();
+            RenderGridLines.Run();
+            RenderHiddenRowsAndColumns.Run();
+            RenderPrintAreas.Run();
+            SkipRenderingOfEmptyColumns.Run();
+            SkipRenderingOfEmptyRows.Run();
+            SplitWorksheetsIntoPages.SplitByRows();
+            SplitWorksheetsIntoPages.SplitByRowsAndColumns();
+            RenderRowAndColumnHeadings.Run();
+            GetWorksheetsNames.Run();
+            RenderingNumbers.Run();
+            RenderingXmlSpreadSheetML.Run();
+            RenderingByPageBreaks.Run();
 
             #endregion
 
             #region Rendering Word Processing Documents
-            //RenderTrackedChanges.Run();
+            RenderTrackedChanges.Run();
             #endregion
 
             #region Rendering Web documents
-            //RenderingHtmlWithUserDefinedMargins.Run();
-            //RenderingChmFiles.Run();
+            RenderingHtmlWithUserDefinedMargins.Run();
+            RenderingChmFiles.Run();
             #endregion
 
             #region Rendering Lotus messages
 
-            //RenderingNsf.Run();
-            //FilterLotusNotesMessages.Run();
+            RenderingNsf.Run();
+            FilterLotusNotesMessages.Run();
 
             #endregion
 
@@ -212,23 +212,22 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Caching
 
-            //UseCacheWhenProcessingDocuments.Run();
+            UseCacheWhenProcessingDocuments.Run();
 
             #endregion
 
             #region Loading
 
-            //LoadPasswordProtectedDocument.Run();
-            //LoadDocumentsWithEncoding.Run();
-            //SpecifyFileTypeWhenLoadingDocument.Run();
-            //SetResourceLoadingTimeout.Run();
+            LoadPasswordProtectedDocument.Run();
+            LoadDocumentsWithEncoding.Run();
+            SpecifyFileTypeWhenLoadingDocument.Run();
+            SetResourceLoadingTimeout.Run();
 
             #region Loading documents from different sources
 
-            //LoadDocumentFromLocalDisk.Run();
-            //LoadDocumentFromStream.Run();
-            //LoadDocumentFromUrl.Run();
-            //LoadDocumentFromFtp.Run();
+            LoadDocumentFromLocalDisk.Run();
+            LoadDocumentFromStream.Run();
+            LoadDocumentFromUrl.Run();
 
             #endregion
 
@@ -237,12 +236,12 @@ namespace GroupDocs.Viewer.Examples.CSharp
             #endregion
 
             #region HowTo
-            //HowToDetermineFileType.FromFileExtension();
-            //HowToDetermineFileType.FromMediaType();
-            //HowToDetermineFileType.FromStream();
+            HowToDetermineFileType.FromFileExtension();
+            HowToDetermineFileType.FromMediaType();
+            HowToDetermineFileType.FromStream();
 
-            //HowToLogging.ToConsole();
-            //HowToLogging.ToFile();
+            HowToLogging.ToConsole();
+            HowToLogging.ToFile();
             #endregion
 
             Console.WriteLine();

@@ -14,7 +14,14 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocument
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
-            string filePath = "ftp://localhost/sample.doc";
+            string filePath = ""; // e.g. ftp://localhost/sample.doc
+            
+            if (string.IsNullOrEmpty(filePath))
+            {
+                Console.WriteLine("\n[LoadDocumentFromFtp] Please make sure to set a proper path to the file.");
+                return;
+            }
+
             Stream stream = GetFileFromFtp(filePath);
             using (Viewer viewer = new Viewer(stream))
             {

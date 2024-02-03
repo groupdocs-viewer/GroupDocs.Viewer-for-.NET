@@ -7,9 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.C
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GroupDocs.Viewer.Examples.CSharp", "GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.shproj", "{52FCB48E-82A0-4201-ACA1-E9B6047E2047}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Core", "GroupDocs.Viewer.Examples.CSharp.Core\GroupDocs.Viewer.Examples.CSharp.Core.csproj", "{A5DDB218-44E3-4006-B89B-DDC227C973F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.NET6", "GroupDocs.Viewer.Examples.CSharp.NET6\GroupDocs.Viewer.Examples.CSharp.NET6.csproj", "{A4D33401-0075-4676-B4DD-50A423AA33F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.NET6", "GroupDocs.Viewer.Examples.CSharp.NET6\GroupDocs.Viewer.Examples.CSharp.NET6.csproj", "{A4D33401-0075-4676-B4DD-50A423AA33F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5DDB218-44E3-4006-B89B-DDC227C973F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5DDB218-44E3-4006-B89B-DDC227C973F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5DDB218-44E3-4006-B89B-DDC227C973F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5DDB218-44E3-4006-B89B-DDC227C973F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4D33401-0075-4676-B4DD-50A423AA33F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4D33401-0075-4676-B4DD-50A423AA33F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4D33401-0075-4676-B4DD-50A423AA33F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,7 +33,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{52fcb48e-82a0-4201-aca1-e9b6047e2047}*SharedItemsImports = 13
 		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{a4d33401-0075-4676-b4dd-50a423aa33f0}*SharedItemsImports = 5
-		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{a5ddb218-44e3-4006-b89b-ddc227c973f7}*SharedItemsImports = 5
 		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{fe0b7fb6-3d10-4952-9178-ec52e591b3d2}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
