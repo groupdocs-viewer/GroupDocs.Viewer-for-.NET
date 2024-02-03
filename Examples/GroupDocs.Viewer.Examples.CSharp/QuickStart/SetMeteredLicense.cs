@@ -10,8 +10,14 @@ namespace GroupDocs.Viewer.Examples.CSharp.QuickStart
     {
         public static void Run()
         {
-            string publicKey = "*****";
-            string privateKey = "*****";
+            string publicKey = "";
+            string privateKey = "";
+
+            if (string.IsNullOrEmpty(publicKey))
+            {
+                Console.WriteLine("\n[SetMeteredLicense] Please make sure to set Metered keys. Lear more at https://purchase.groupdocs.com/faqs/licensing/metered.");
+                return;
+            } 
 
             Metered metered = new Metered();
             metered.SetMeteredKey(publicKey, privateKey);

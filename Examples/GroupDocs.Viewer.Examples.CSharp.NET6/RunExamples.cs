@@ -22,220 +22,235 @@ using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 
-    Console.WriteLine("Open RunExamples.cs. \nIn Main() method uncomment the example that you want to run.");
-    Console.WriteLine("=====================================================");
+namespace GroupDocs.Viewer.Examples.CSharp
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("GroupDocs.Viewer for .NET examples.");
+            Console.WriteLine("=====================================================");
 
-    #region Quick Start
+            #region Quick Start
 
-    SetLicenseFromFile.Run();
-   //SetLicenseFromStream.Run();
-   //SetMeteredLicense.Run();
-    HelloWorld.Run();
+            SetLicenseFromFile.Run();
+            SetLicenseFromStream.Run();
+            SetMeteredLicense.Run();
+            HelloWorld.Run();
 
-#endregion
+            #endregion
 
-#region Basic Usage
+            #region Basic Usage
 
-//GetSupportedFileFormats.Run();
-//GetViewInfo.Run();
-//CheckFileIsEncrypted.Run();
+            GetSupportedFileFormats.Run();
+            GetViewInfo.Run();
+            CheckFileIsEncrypted.Run();
 
-#region Processing attachments
+            #region Processing attachments
 
-//RetrieveAndPrintDocumentAttachments.Run();
-//RetrieveAndSaveDocumentAttachments.Run();
-//RenderDocumentAttachments.Run();
+            RetrieveAndPrintDocumentAttachments.Run();
+            RetrieveAndSaveDocumentAttachments.Run();
+            RenderDocumentAttachments.Run();
 
-#endregion
+            #endregion
 
-#region Render document to HTML
+            #region Render document to HTML
 
-//RenderToHtmlWithEmbeddedResources.Run();
-//RenderToHtmlWithExternalResources.Run();
+            RenderToHtmlWithEmbeddedResources.Run();
+            RenderToHtmlWithExternalResources.Run();
 
-//ExcludingFontsFromOutputHtml.Run();
-//MinifyHtmlDocument.Run();
-//RenderToResponsiveHtml.Run();
+            ExcludingFontsFromOutputHtml.Run();
+            MinifyHtmlDocument.Run();
+            RenderToResponsiveHtml.Run();
 
-#endregion
+            #endregion
 
-#region Render document to Image
+            #region Render document to Image
 
-//RenderToPng.Run();
-//RenderToJpg.Run();
+            RenderToPng.Run();
+            RenderToJpg.Run();
 
-//GetTextCoordinates.Run();
-//RenderForDisplayWithText.Run();
-//AdjustQualityWhenRenderingToJpg.Run();
-//AdjustImageSize.Run();
-//RenderingWmzAndWmf.Run();
-//RenderingEmzAndEmf.Run();
-//RenderingCdr.Run();
-//RenderingCmx.Run();
-//RenderingAi.Run();
-//RenderingTga.Run();
-//RenderingApng.Run();
+            GetTextCoordinates.Run();
+            RenderForDisplayWithText.Run();
+            AdjustQualityWhenRenderingToJpg.Run();
+            AdjustImageSize.Run();
+            RenderingWmzAndWmf.Run();
+            RenderingEmzAndEmf.Run();
+            RenderingCdr.Run();
+            RenderingCmx.Run();
+            RenderingAi.Run();
+            RenderingTga.Run();
+            RenderingApng.Run();
 
-#endregion
+            #endregion
 
-#region Render document to PDF
+            #region Render document to PDF
 
-//RenderToPdf.Run();
-//GetPdfStream.Run();
+            RenderToPdf.Run();
+            GetPdfStream.Run();
 
-//AdjustQualityOfJpgImages.Run();
-//ProtectPdfDocument.Run();
+            AdjustQualityOfJpgImages.Run();
+            ProtectPdfDocument.Run();
 
-#endregion
+            #endregion
 
-#endregion
+            #endregion
 
-#region Advanced Usage
+            #region Advanced Usage
 
-#region Common rendering options
+            #region Common rendering options
 
-//AddWatermark.Run();
-//RenderDocumentWithComments.Run();
-//RenderDocumentWithNotes.Run();
-//RenderHiddenPages.Run();
-//RenderNConsecutivePages.Run();
-//RenderSelectedPages.Run();
-//ReplaceMissingFont.Run();
-//ReorderPages.Run();
-//FlipRotatePages.Run();
-//RenderWithCustomFonts.Run();
-//RenderingTxt.Run();
-//SetImageSizeLimits.Run();
-//CancelRenderWithCancellationToken.Run();
+            AddWatermark.Run();
+            RenderDocumentWithComments.Run();
+            RenderDocumentWithNotes.Run();
+            RenderHiddenPages.Run();
+            RenderNConsecutivePages.Run();
+            RenderSelectedPages.Run();
+            ReplaceMissingFont.Run();
+            ReorderPages.Run();
+            FlipRotatePages.Run();
+            RenderWithCustomFonts.Run();
+            RenderingTxt.Run();
+            SetImageSizeLimits.Run();
+            CancelRenderWithCancellationToken.Run();
 
-#endregion
+            #endregion
 
-#region Rendering options by document type
+            #region Rendering options by document type
 
-#region Rendering CAD Files
+            #region Rendering CAD Files
 
-//RenderingPc3Files.Run();
+            RenderingPc3Files.Run();
 
-#endregion
+            #endregion
 
-#region Rendering Archive Files
+            #region Rendering Archive Files
 
-//GetViewInfoForArchiveFile.Run();
-//RenderArchiveFolder.Run();
-//SpecifyFilenameWhenRenderingArchiveFiles.Run();
-//RenderingRar.Run();
-//RenderingArchivesToMultipleAndSinglePagesHtml.Run();
+            GetViewInfoForArchiveFile.Run();
+            RenderArchiveFolder.Run();
+            SpecifyFilenameWhenRenderingArchiveFiles.Run();
+            RenderingRar.Run();
+            RenderingArchivesToMultipleAndSinglePagesHtml.Run();
 
-#endregion
+            #endregion
 
-#region Rendering E-Mail Messages
+            #region Rendering E-Mail Messages
 
-//AdjustPageSize.Run();
-//RenameEmailFields.Run();
-//DateTimeFormatAndTimeZoneOffset.Run();
+            AdjustPageSize.Run();
+            RenameEmailFields.Run();
+            DateTimeFormatAndTimeZoneOffset.Run();
 
-#endregion
+            #endregion
 
-#region Rendering Outlook Data Files
+            #region Rendering Outlook Data Files
 
-//FilterMessages.Run();
-//GetViewInfoForOutlookDataFile.Run();
-//LimitCountOfItemsToRender.Run();
-//RenderOutlookDataFileFolder.Run();
+            FilterMessages.Run();
+            GetViewInfoForOutlookDataFile.Run();
+            LimitCountOfItemsToRender.Run();
+            RenderOutlookDataFileFolder.Run();
 
-#endregion
+            #endregion
 
-#region Rendering PDF Documents
+            #region Rendering PDF Documents
 
-//DisableCharactersGrouping.Run();
-//EnableFontHinting.Run();
-//GetViewInfoForPdfDocument.Run();
-//AdjustImageQuality.Run();
-//EnableLayeredRendering.Run();
-//RenderOriginalPageSize.Run();
-//DisableTextSelection.Run();
-//DisableFontLicenseVerifications.Run();
+            DisableCharactersGrouping.Run();
+            EnableFontHinting.Run();
+            GetViewInfoForPdfDocument.Run();
+            AdjustImageQuality.Run();
+            EnableLayeredRendering.Run();
+            RenderOriginalPageSize.Run();
+            DisableTextSelection.Run();
+            DisableFontLicenseVerifications.Run();
 
-#endregion
+            #endregion
 
-#region Rendering MS Project Documents
+            #region Rendering MS Project Documents
 
-//AdjustTimeUnit.Run();
-//GetViewInfoForProjectDocument.Run();
-//RenderProjectTimeInterval.Run();
+            AdjustTimeUnit.Run();
+            GetViewInfoForProjectDocument.Run();
+            RenderProjectTimeInterval.Run();
 
-#endregion
+            #endregion
 
-#region Rendering Spreadsheets
+            #region Rendering Spreadsheets
 
-//AdjustTextOverflowInCells.Run();
-//RenderGridLines.Run();
-//RenderHiddenRowsAndColumns.Run();
-//RenderPrintAreas.Run();
-//SkipRenderingOfEmptyColumns.Run();
-//SkipRenderingOfEmptyRows.Run();
-//SplitWorksheetsIntoPages.SplitByRows();
-//SplitWorksheetsIntoPages.SplitByRowsAndColumns();
-//RenderRowAndColumnHeadings.Run();
-//GetWorksheetsNames.Run();
-//RenderingNumbers.Run();
-//RenderingXmlSpreadSheetML.Run();
-//RenderingByPageBreaks.Run();
+            AdjustTextOverflowInCells.Run();
+            RenderGridLines.Run();
+            RenderHiddenRowsAndColumns.Run();
+            RenderPrintAreas.Run();
+            SkipRenderingOfEmptyColumns.Run();
+            SkipRenderingOfEmptyRows.Run();
+            SplitWorksheetsIntoPages.SplitByRows();
+            SplitWorksheetsIntoPages.SplitByRowsAndColumns();
+            RenderRowAndColumnHeadings.Run();
+            GetWorksheetsNames.Run();
+            RenderingNumbers.Run();
+            RenderingXmlSpreadSheetML.Run();
+            RenderingByPageBreaks.Run();
 
-#endregion
+            #endregion
 
-#region Rendering Word Processing Documents
-//RenderTrackedChanges.Run();
-#endregion
+            #region Rendering Word Processing Documents
 
-#region Rendering Web documents
-//RenderingHtmlWithUserDefinedMargins.Run();
-//RenderingChmFiles.Run();
-#endregion
+            RenderTrackedChanges.Run();
 
-#region Rendering Lotus messages
+            #endregion
 
-//RenderingNsf.Run();
-//FilterLotusNotesMessages.Run();
+            #region Rendering Web documents
 
-#endregion
+            RenderingHtmlWithUserDefinedMargins.Run();
+            RenderingChmFiles.Run();
 
-#endregion
+            #endregion
 
-#region Caching
+            #region Rendering Lotus messages
 
-//UseCacheWhenProcessingDocuments.Run();
+            RenderingNsf.Run();
+            FilterLotusNotesMessages.Run();
 
-#endregion
+            #endregion
 
-#region Loading
+            #endregion
 
-//LoadPasswordProtectedDocument.Run();
-//LoadDocumentsWithEncoding.Run();
-//SpecifyFileTypeWhenLoadingDocument.Run();
-//SetResourceLoadingTimeout.Run();
+            #region Caching
 
-#region Loading documents from different sources
+            UseCacheWhenProcessingDocuments.Run();
 
-//LoadDocumentFromLocalDisk.Run();
-//LoadDocumentFromStream.Run();
-//LoadDocumentFromUrl.Run();
-//  LoadDocumentFromFtp.Run();
+            #endregion
 
-#endregion
+            #region Loading
 
-#endregion
+            LoadPasswordProtectedDocument.Run();
+            LoadDocumentsWithEncoding.Run();
+            SpecifyFileTypeWhenLoadingDocument.Run();
+            SetResourceLoadingTimeout.Run();
 
-#endregion
+            #region Loading documents from different sources
 
-#region HowTo
-//HowToDetermineFileType.FromFileExtension();
-//HowToDetermineFileType.FromMediaType();
-//HowToDetermineFileType.FromStream();
+            LoadDocumentFromLocalDisk.Run();
+            LoadDocumentFromStream.Run();
+            LoadDocumentFromUrl.Run();
+            LoadDocumentFromFtp.Run();
 
-//HowToLogging.ToConsole();
-//HowToLogging.ToFile();
-#endregion
+            #endregion
 
-    Console.WriteLine();
-    Console.WriteLine("All done.");
+            #endregion
+
+            #endregion
+
+            #region HowTo
+
+            HowToDetermineFileType.FromFileExtension();
+            HowToDetermineFileType.FromMediaType();
+            HowToDetermineFileType.FromStream();
+
+            HowToLogging.ToConsole();
+            HowToLogging.ToFile();
+
+            #endregion
+
+            Console.WriteLine();
+            Console.WriteLine("All done.");
+        }
+    }
+}
