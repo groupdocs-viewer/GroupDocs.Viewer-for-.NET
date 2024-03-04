@@ -20,7 +20,6 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingLotusNotesDataFiles;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
@@ -200,13 +199,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             RenderingHtmlWithUserDefinedMargins.Run();
             RenderingChmFiles.Run();
-
-            #endregion
-
-            #region Rendering Lotus messages
-
-            RenderingNsf.Run();
-            FilterLotusNotesMessages.Run();
 
             #endregion
 
