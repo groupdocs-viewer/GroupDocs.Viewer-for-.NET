@@ -51,7 +51,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             RetrieveAndPrintDocumentAttachments.Run();
             RetrieveAndSaveDocumentAttachments.Run();
-            RenderDocumentAttachments.Run();
+            //RenderDocumentAttachments.Run();
 
             #endregion
 

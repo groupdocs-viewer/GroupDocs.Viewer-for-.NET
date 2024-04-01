@@ -18,7 +18,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             {
                 PngViewOptions options = new PngViewOptions(pageFilePathFormat);
                 options.CadOptions = CadOptions.ForRenderingByWidth(800);
-                options.CadOptions.BackgroundColor = System.Drawing.Color.Green;
+                options.CadOptions.BackgroundColor = GroupDocs.Viewer.Drawing.Rgb24Color.KnownColors.CssLevel1.Green;
 
                 viewer.View(options);
             }
