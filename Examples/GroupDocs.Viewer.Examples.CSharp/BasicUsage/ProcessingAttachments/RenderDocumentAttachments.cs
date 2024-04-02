@@ -22,6 +22,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments
                 {
                     MemoryStream attachmentStream = new MemoryStream();
                     viewer.SaveAttachment(attachment, attachmentStream);
+                    attachmentStream.Position = 0;
 
                     RenderAttachment(attachment, attachmentStream, outputDirectory);
                 }
