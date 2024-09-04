@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GroupDocs.Viewer.Examples.CSharp.NET6.CrossPlatform": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

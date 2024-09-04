@@ -39,17 +39,6 @@ git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET
 
 Navigate to `Demos/ASP.NET Core/src/` folder and run the application by calling
 
-```bash
-dotnet run
-```
-
-Or to run this demo in Docker container execute the following commands
-
-```bash
-docker build -t groupdocs-viewer:aspnetcore-demo .
-docker run -d -p 8080:80 --name viewer-demo groupdocs-viewer:aspnetcore-demo
-```
-
 Open the app by navigating to <http://localhost:8080/viewer> in your favorite browser.
 
 ## License

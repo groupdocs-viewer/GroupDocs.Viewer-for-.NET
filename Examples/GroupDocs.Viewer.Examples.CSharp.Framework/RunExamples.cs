@@ -1,5 +1,4 @@
-﻿using System;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Caching;
+﻿using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Caching;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Loading.LoadingDocumentsFromDifferentSources;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderingOptions;
@@ -10,10 +9,10 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsB
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPresentationDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingSpreadsheets;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingTextDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWordProcessingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.ProcessingAttachments;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToHtml;
@@ -21,7 +20,7 @@ using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToImage;
 using GroupDocs.Viewer.Examples.CSharp.BasicUsage.RenderDocumentToPdf;
 using GroupDocs.Viewer.Examples.CSharp.HowTo;
 using GroupDocs.Viewer.Examples.CSharp.QuickStart;
-using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
+using System;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {

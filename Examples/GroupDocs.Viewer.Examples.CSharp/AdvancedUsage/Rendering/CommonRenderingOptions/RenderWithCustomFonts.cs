@@ -1,7 +1,8 @@
-﻿using System;
-using System.IO;
-using GroupDocs.Viewer.Fonts;
+﻿using GroupDocs.Viewer.Fonts;
 using GroupDocs.Viewer.Options;
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderingOptions
 {
@@ -11,10 +12,22 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
     class RenderWithCustomFonts
     {
         public static void Run()
-        {            
+        {
+            string fontsPath;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                fontsPath = Utils.FontsPath;
+            }
+            else
+            {
+                var assembly = System.Reflection.Assembly.GetEntryAssembly();
+                var entryAssemblyDirectory = Path.GetDirectoryName(assembly.Location);
+                fontsPath = Path.Combine(entryAssemblyDirectory, Utils.FontsPath);
+            }
+
             FontSettings.SetFontSources(
-                new FolderFontSource(Utils.FontsPath, Fonts.SearchOption.TopFolderOnly));                       
-            
+                new FolderFontSource(fontsPath, Fonts.SearchOption.TopFolderOnly));
+
             string outputDirectory = Utils.GetOutputDirectoryPath();
             string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 

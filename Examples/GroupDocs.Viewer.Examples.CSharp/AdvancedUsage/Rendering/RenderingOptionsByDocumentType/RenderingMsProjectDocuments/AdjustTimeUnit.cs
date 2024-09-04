@@ -1,6 +1,8 @@
-﻿using System;
-using System.IO;
+﻿#if !CROSS_PLATFORM
+
 using GroupDocs.Viewer.Options;
+using System;
+using System.IO;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments
 {
@@ -27,3 +29,4 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     }
 }
 
+#endif

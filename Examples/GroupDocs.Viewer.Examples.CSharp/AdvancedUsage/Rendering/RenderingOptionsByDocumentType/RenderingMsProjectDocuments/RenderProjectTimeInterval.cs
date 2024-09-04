@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !CROSS_PLATFORM
+
+using System;
 using System.IO;
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer.Results;
@@ -19,7 +21,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             {
                 HtmlViewOptions options = HtmlViewOptions.ForEmbeddedResources(pageFilePathFormat);
 
-                ProjectManagementViewInfo viewInfo = 
+                ProjectManagementViewInfo viewInfo =
                     viewer.GetViewInfo(ViewInfoOptions.FromHtmlViewOptions(options)) as ProjectManagementViewInfo;
 
                 options.ProjectManagementOptions.StartDate = viewInfo.StartDate;
@@ -32,4 +34,5 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         }
     }
 }
+#endif
 

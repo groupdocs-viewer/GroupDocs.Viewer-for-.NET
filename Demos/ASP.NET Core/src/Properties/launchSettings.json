@@ -2,7 +2,7 @@
   "profiles": {
     "GroupDocs.Viewer.AspNetCore": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "viewer",
       "applicationUrl": "https://localhost:9091;http://localhost:8080",

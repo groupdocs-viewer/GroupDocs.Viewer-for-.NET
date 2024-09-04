@@ -227,3 +227,5 @@ deploy_key
 
 #Cache files
 Cache/
+Output/
+Aspose/
