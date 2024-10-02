@@ -31,7 +31,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX))
             {
                 JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-                
+
                 viewer.View(options);
 
                 // To render 2nd image, just specify
@@ -44,7 +44,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX))
             {
                 PngViewOptions options = new PngViewOptions(pageFilePathFormat);
-               
+
                 viewer.View(options);
 
                 // To render 2nd image, just specify
@@ -57,7 +57,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX))
             {
                 PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
-               
+
                 viewer.View(options);
 
                 // By default all images will be rendered in output.pdf, to render only 2nd image in output PDF

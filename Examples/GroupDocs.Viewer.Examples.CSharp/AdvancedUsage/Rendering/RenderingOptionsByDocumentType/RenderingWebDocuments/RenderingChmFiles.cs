@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GroupDocs.Viewer.Options;
+using System;
 using System.IO;
-using GroupDocs.Viewer.Options;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments
 {
@@ -23,7 +21,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 options.RenderToSinglePage = true; // Enable it if you want to convert all CHM content to single page
 
                 //viewer.View(options,1,2,3); // Convert only 1,2,3 pages
-                 viewer.View(options); // Convert all pages
+                viewer.View(options); // Convert all pages
             }
 
             // TO JPG
@@ -33,7 +31,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             {
                 JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
-                viewer.View(options,1,2,3); // Convert only 1,2,3 pages
+                viewer.View(options, 1, 2, 3); // Convert only 1,2,3 pages
                 //viewer.View(options); // Convert all pages
             }
 
@@ -44,7 +42,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             {
                 PngViewOptions options = new PngViewOptions(pageFilePathFormat);
 
-                viewer.View(options,1,2,3); // Convert only 1,2,3 pages
+                viewer.View(options, 1, 2, 3); // Convert only 1,2,3 pages
                 //viewer.View(options); // Convert all pages
             }
 

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GroupDocs.Viewer.Options;
+using System;
 using System.IO;
-using GroupDocs.Viewer.Options;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingCadDrawings
 {

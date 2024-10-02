@@ -1,8 +1,5 @@
 ﻿using GroupDocs.Viewer.Options;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingCadDrawings
 {
@@ -19,7 +16,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
                 // With PC3 file is 274x198
-                options.CadOptions.Pc3File = TestFiles.SAMPLE_PC3_CONFIG; 
+                options.CadOptions.Pc3File = TestFiles.SAMPLE_PC3_CONFIG;
                 // Without PC3 file size is 2000x1769 pixels
 
                 viewer.View(options);

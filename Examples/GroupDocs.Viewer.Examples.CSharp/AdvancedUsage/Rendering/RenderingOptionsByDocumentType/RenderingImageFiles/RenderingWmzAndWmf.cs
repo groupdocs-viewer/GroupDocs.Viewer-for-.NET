@@ -28,7 +28,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ))
             {
                 JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-                
+
                 viewer.View(options);
             }
 
@@ -38,7 +38,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ))
             {
                 PngViewOptions options = new PngViewOptions(pageFilePathFormat);
-               
+
                 viewer.View(options);
             }
 
@@ -48,7 +48,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ))
             {
                 PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
-               
+
                 viewer.View(options);
             }
 
