@@ -1,4 +1,4 @@
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddGroupDocsViewerUI();
@@ -14,7 +14,7 @@ builder.Services
     .AddLocalStorage("./Storage/Files")
     .AddLocalCache("./Storage/Cache");
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app
     .UseRouting()
@@ -35,4 +35,4 @@ app
         });
     });
 
-app.Run();
+await app.RunAsync();

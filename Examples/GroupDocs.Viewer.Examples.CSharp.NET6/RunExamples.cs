@@ -23,7 +23,7 @@ using GroupDocs.Viewer.Examples.CSharp.QuickStart;
 
 namespace GroupDocs.Viewer.Examples.CSharp
 {
-    internal class Program
+    internal static class Program
     {
         public static void Main(string[] args)
         {

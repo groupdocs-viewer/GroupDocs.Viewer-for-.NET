@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.27" />
+    <PackageReference Include="GroupDocs.Viewer.UI" Version="6.0.28" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="6.0.4" />
     <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="6.0.4" />
-    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.30" />
+    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api" Version="6.0.31" />
     <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
   <ItemGroup>

@@ -111,8 +111,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             foreach (string subFolder in viewInfo.Folders)
             {
                 Console.WriteLine($" - {subFolder}");
-
-                ReadFolders(viewer, subFolder);
             }
         }
     }

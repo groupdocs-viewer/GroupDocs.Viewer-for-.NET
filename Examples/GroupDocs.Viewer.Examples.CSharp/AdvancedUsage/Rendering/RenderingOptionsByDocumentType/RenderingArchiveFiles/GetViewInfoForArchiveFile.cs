@@ -1,6 +1,6 @@
-﻿using System;
-using GroupDocs.Viewer.Options;
+﻿using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer.Results;
+using System;
 
 namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingArchiveFiles
 {
@@ -13,7 +13,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         {
             using (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP_WITH_FOLDERS))
             {
-                ViewInfo info = viewer.GetViewInfo(ViewInfoOptions.ForHtmlView());
+                ViewInfo info = viewer.GetViewInfo(ViewInfoOptions.ForJpgView());
 
                 Console.WriteLine("File type: " + info.FileType);
                 Console.WriteLine("Pages count: " + info.Pages.Count);
@@ -30,7 +30,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
 
         private static void ReadFolders(Viewer viewer, string folder)
         {
-            ViewInfoOptions options = ViewInfoOptions.ForHtmlView();
+            ViewInfoOptions options = ViewInfoOptions.ForJpgView();
             options.ArchiveOptions.Folder = folder;
 
             ArchiveViewInfo viewInfo = viewer.GetViewInfo(options) as ArchiveViewInfo;
@@ -38,8 +38,6 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
             foreach (string subFolder in viewInfo.Folders)
             {
                 Console.WriteLine($" - {subFolder}");
-
-                ReadFolders(viewer, subFolder);
             }
         }
     }
