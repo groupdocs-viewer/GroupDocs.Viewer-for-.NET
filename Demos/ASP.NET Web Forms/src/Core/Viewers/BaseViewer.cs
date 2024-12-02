@@ -1,14 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using GroupDocs.Viewer.AspNetWebForms.Core.Configuration;
+﻿using GroupDocs.Viewer.AspNetWebForms.Core.Configuration;
 using GroupDocs.Viewer.AspNetWebForms.Core.Entities;
 using GroupDocs.Viewer.AspNetWebForms.Core.FileTypeResolution;
 using GroupDocs.Viewer.AspNetWebForms.Core.Licensing;
 using GroupDocs.Viewer.AspNetWebForms.Core.Viewers.Extensions;
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer.Results;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Page = GroupDocs.Viewer.AspNetWebForms.Core.Entities.Page;
 
 namespace GroupDocs.Viewer.AspNetWebForms.Core.Viewers
@@ -22,10 +22,10 @@ namespace GroupDocs.Viewer.AspNetWebForms.Core.Viewers
         private readonly IPageFormatter _pageFormatter;
         private Viewer _viewer;
 
-        protected BaseViewer(ViewerConfig config, 
-            IViewerLicenser viewerLicenser, 
-            IFileStorage fileStorage, 
-            IFileTypeResolver fileTypeResolver, 
+        protected BaseViewer(ViewerConfig config,
+            IViewerLicenser viewerLicenser,
+            IFileStorage fileStorage,
+            IFileTypeResolver fileTypeResolver,
             IPageFormatter pageFormatter)
         {
             _config = config;
@@ -122,9 +122,9 @@ namespace GroupDocs.Viewer.AspNetWebForms.Core.Viewers
         private async Task<LoadOptions> CreateLoadOptionsAsync(FileCredentials fileCredentials)
         {
             FileType loadFileType = FileType.FromExtension(fileCredentials.FileType);
-            if(loadFileType == FileType.Unknown)
-                  loadFileType = await _fileTypeResolver.ResolveFileTypeAsync(fileCredentials.FilePath);
-            
+            if (loadFileType == FileType.Unknown)
+                loadFileType = await _fileTypeResolver.ResolveFileTypeAsync(fileCredentials.FilePath);
+
             LoadOptions loadOptions = new LoadOptions
             {
                 FileType = FileType.FromExtension(loadFileType.Extension),
