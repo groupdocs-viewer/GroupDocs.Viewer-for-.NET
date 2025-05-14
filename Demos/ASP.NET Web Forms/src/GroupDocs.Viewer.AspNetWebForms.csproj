@@ -50,8 +50,8 @@
     <Reference Include="AsyncKeyedLock, Version=6.2.1.0, Culture=neutral, PublicKeyToken=c6dde91429ba0f2f, processorArchitecture=MSIL">
       <HintPath>packages\AsyncKeyedLock.6.2.1\lib\netstandard2.0\AsyncKeyedLock.dll</HintPath>
     </Reference>
-    <Reference Include="GroupDocs.Viewer, Version=25.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>packages\GroupDocs.Viewer.25.3.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=25.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\GroupDocs.Viewer.25.4.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="MessagePack, Version=2.5.0.0, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
       <HintPath>packages\MessagePack.2.5.192\lib\net472\MessagePack.dll</HintPath>

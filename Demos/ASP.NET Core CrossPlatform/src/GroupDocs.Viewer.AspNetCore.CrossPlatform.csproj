@@ -10,15 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer.UI" Version="8.0.3" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="8.0.3" />
-    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="8.0.3" />
-    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api.CrossPlatform" Version="8.0.3" />
+    <PackageReference Include="GroupDocs.Viewer.UI" Version="8.0.6" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Cache" Version="8.0.6" />
+    <PackageReference Include="GroupDocs.Viewer.UI.Api.Local.Storage" Version="8.0.6" />
+    <PackageReference Include="GroupDocs.Viewer.UI.SelfHost.Api.CrossPlatform" Version="8.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Storage\" />
+    <Folder Include="Storage\Cache\" />
   </ItemGroup>
 
   <ItemGroup>
