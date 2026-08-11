@@ -1,5 +1,4 @@
-﻿#if NETCOREAPP
-using System;
+﻿using System;
 using System.IO;
 using GroupDocs.Viewer.Options;
 using System.Threading.Tasks;
@@ -31,10 +30,17 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.CommonRenderi
                 }
             }, cancellationToken);
 
-            cancellationTokenSource.CancelAfter(10);
+            // Cancel task after 3000 ms.
+            cancellationTokenSource.CancelAfter(3000);
+
+            // Also you can call Cancel method at any time
+            //cancellationTokenSource.Cancel();
+
+            // Wait for the task to cancel.
+            Thread.Sleep(2000);
+
 
             Console.WriteLine($"\nSource document rendered successfully.\nCheck output in {outputDirectory}.");
         }
     }
 }
-#endif
