@@ -111,7 +111,9 @@ namespace GroupDocs.Viewer.Examples.CSharp
             RenderWithCustomFonts.Run();
             RenderingTxt.Run();
             SetImageSizeLimits.Run();
-            CancelRenderWithCancellationToken.Run();
+            // This example throws an exception in Debug mode.
+            // Use Release mode to debug with exceptions suppressed.
+            // CancelRenderWithCancellationToken.Run();
 
             #endregion
 
