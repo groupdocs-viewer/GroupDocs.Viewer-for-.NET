@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "GroupDocs.Viewer.Examples.CSharp.NET6": {
+      "commandName": "Project"
+    }
+  }
+}
