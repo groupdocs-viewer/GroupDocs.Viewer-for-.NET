@@ -162,7 +162,6 @@ namespace GroupDocs.Viewer.Examples.CSharp
             RenderOriginalPageSize.Run();
             DisableTextSelection.Run();
             DisableFontLicenseVerifications.Run();
-            DisableFontLicenseVerifications.Run();
 
             #endregion
 
@@ -221,6 +220,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             LoadDocumentFromLocalDisk.Run();
             LoadDocumentFromStream.Run();
             LoadDocumentFromUrl.Run();
+            LoadDocumentFromFtp.Run();
 
             #endregion
 

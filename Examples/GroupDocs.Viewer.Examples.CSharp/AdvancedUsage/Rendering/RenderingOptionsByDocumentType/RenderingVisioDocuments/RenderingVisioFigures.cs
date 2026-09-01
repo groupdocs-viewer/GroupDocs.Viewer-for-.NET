@@ -8,7 +8,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
     /// <summary>
     /// This example demonstrates how to render Visio documents figures into HTML, JPG, PNG, PDF.
     /// </summary>
-    public class RenderingVisioDocumentsFigures
+    public class RenderingVisioFigures
     {
         public static void Run()
         {

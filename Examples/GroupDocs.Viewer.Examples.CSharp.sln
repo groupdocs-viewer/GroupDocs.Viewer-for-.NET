@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.C
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GroupDocs.Viewer.Examples.CSharp", "GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.shproj", "{52FCB48E-82A0-4201-ACA1-E9B6047E2047}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.NET6", "GroupDocs.Viewer.Examples.CSharp.NET6\GroupDocs.Viewer.Examples.CSharp.NET6.csproj", "{05D02F42-2B6D-4445-901B-730B644D0506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Net", "GroupDocs.Viewer.Examples.CSharp.Net\GroupDocs.Viewer.Examples.CSharp.Net.csproj", "{05D02F42-2B6D-4445-901B-730B644D0506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.NET6.Windows", "GroupDocs.Viewer.Examples.CSharp.NET6.Windows\GroupDocs.Viewer.Examples.CSharp.NET6.Windows.csproj", "{83AD6213-3A11-1EC4-E560-306993DFCA38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.NetWindows", "GroupDocs.Viewer.Examples.CSharp.NetWindows\GroupDocs.Viewer.Examples.CSharp.NetWindows.csproj", "{83AD6213-3A11-1EC4-E560-306993DFCA38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
