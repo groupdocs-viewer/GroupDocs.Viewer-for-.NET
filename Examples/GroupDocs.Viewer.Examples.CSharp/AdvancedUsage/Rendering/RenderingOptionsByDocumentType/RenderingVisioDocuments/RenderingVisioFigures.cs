@@ -3,7 +3,7 @@ using System;
 using System.IO;
 
 
-namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingImageFiles
+namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingVisioDocuments
 {
     /// <summary>
     /// This example demonstrates how to render Visio documents figures into HTML, JPG, PNG, PDF.
@@ -25,29 +25,29 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
                 viewer.View(options);
             }
 
-            // TO JPG
-            pageFilePathFormat = Path.Combine(outputDirectory, "visio_result.jpg");
+            //// TO JPG
+            //pageFilePathFormat = Path.Combine(outputDirectory, "visio_result.jpg");
 
-            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO))
-            {
-                JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-                options.VisioRenderingOptions.RenderFiguresOnly = true;
-                options.VisioRenderingOptions.FigureWidth = 250;
+            //using (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO))
+            //{
+            //    JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
+            //    options.VisioRenderingOptions.RenderFiguresOnly = true;
+            //    options.VisioRenderingOptions.FigureWidth = 250;
 
-                viewer.View(options);
-            }
+            //    viewer.View(options);
+            //}
 
-            // TO PNG
-            pageFilePathFormat = Path.Combine(outputDirectory, "visio_result.png");
+            //// TO PNG
+            //pageFilePathFormat = Path.Combine(outputDirectory, "visio_result.png");
 
-            using (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO))
-            {
-                PngViewOptions options = new PngViewOptions(pageFilePathFormat);
-                options.VisioRenderingOptions.RenderFiguresOnly = true;
-                options.VisioRenderingOptions.FigureWidth = 250;
+            //using (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO))
+            //{
+            //    PngViewOptions options = new PngViewOptions(pageFilePathFormat);
+            //    options.VisioRenderingOptions.RenderFiguresOnly = true;
+            //    options.VisioRenderingOptions.FigureWidth = 250;
 
-                viewer.View(options);
-            }
+            //    viewer.View(options);
+            //}
 
             // TO PDF
             pageFilePathFormat = Path.Combine(outputDirectory, "visio_result.pdf");

@@ -9,6 +9,7 @@ using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsB
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingMsProjectDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingOutlookDataFiles;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPdfDocuments;
+using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingPresentationDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingSpreadsheets;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingTextDocuments;
 using GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOptionsByDocumentType.RenderingWebDocuments;
@@ -77,8 +78,11 @@ namespace GroupDocs.Viewer.Examples.CSharp
             RenderingEmzAndEmf.Run();
             RenderingCdr.Run();
             RenderingCmx.Run();
+            // RenderingAi is not supported on the cross-platform package.
             RenderingTga.Run();
             RenderingApng.Run();
+            RenderingFodgAndOdg.Run();
+            RenderingSvgAndSvgz.Run();
 
             #endregion
 
@@ -120,7 +124,20 @@ namespace GroupDocs.Viewer.Examples.CSharp
 
             #region Rendering CAD Files
 
+            AdjustOutputImageSize.Run();
+            GetViewInfoForCadDrawing.Run();
+            RenderAllLayouts.Run();
+            RenderLayers.Run();
+            RenderSingleLayout.Run();
+            SplitDrawingIntoTiles.Run();
+            SetImageBackgroundColor.Run();
+
             RenderingPc3Files.Run();
+            RenderingCf2.Run();
+            RenderingHpg.Run();
+            RenderingIgs.Run();
+            RenderingObj.Run();
+            RenderingPlt.Run();
 
             #endregion
 
@@ -148,6 +165,7 @@ namespace GroupDocs.Viewer.Examples.CSharp
             GetViewInfoForOutlookDataFile.Run();
             LimitCountOfItemsToRender.Run();
             RenderOutlookDataFileFolder.Run();
+            RenderingPstAndOst.Run();
 
             #endregion
 
@@ -169,6 +187,13 @@ namespace GroupDocs.Viewer.Examples.CSharp
             AdjustTimeUnit.Run();
             GetViewInfoForProjectDocument.Run();
             RenderProjectTimeInterval.Run();
+            RenderingNotes.Run();
+
+            #endregion
+
+            #region Rendering Presentation Documents
+
+            RenderingFodp.Run();
 
             #endregion
 
