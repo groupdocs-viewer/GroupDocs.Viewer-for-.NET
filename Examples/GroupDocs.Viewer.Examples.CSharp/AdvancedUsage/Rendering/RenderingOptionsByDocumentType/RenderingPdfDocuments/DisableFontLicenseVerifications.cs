@@ -13,7 +13,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
         public static void Run()
         {
             string outputDirectory = Utils.GetOutputDirectoryPath();
-            string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.png");
+            string pageFilePathFormat = Path.Combine(outputDirectory, "page_{0}.html");
 
             using (Viewer viewer = new Viewer(TestFiles.OXPS_EMBEDDED_FONT))
             {

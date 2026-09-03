@@ -229,3 +229,4 @@ deploy_key
 Cache/
 Output/
 Aspose/
+/Examples/NuGet.Config

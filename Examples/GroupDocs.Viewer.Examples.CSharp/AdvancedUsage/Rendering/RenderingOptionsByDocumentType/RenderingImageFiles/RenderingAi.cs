@@ -6,6 +6,7 @@ namespace GroupDocs.Viewer.Examples.CSharp.AdvancedUsage.Rendering.RenderingOpti
 {
     /// <summary>
     /// This example demonstrates how to render Ai document into HTML, JPG, PNG, PDF.
+    /// AI/PSD not supported in GroupDocs.Viewer.Net60; use .NET 4.6.2 or NET 6.0 Windows
     /// </summary>
     public class RenderingAi
     {
