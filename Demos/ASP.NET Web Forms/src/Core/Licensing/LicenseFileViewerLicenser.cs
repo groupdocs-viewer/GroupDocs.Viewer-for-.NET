@@ -20,25 +20,38 @@ namespace GroupDocs.Viewer.AspNetWebForms.Core.Licensing
             if (_licenseSet)
                 return;
 
-            if (File.Exists(_config.LicensePath))
-                SetLicense(_config.LicensePath);
+            TrySetLicense(_config.LicensePath);
 
             string licensePath = Environment.GetEnvironmentVariable("GROUPDOCS_LIC_PATH");
-            if (!string.IsNullOrEmpty(licensePath))
-                SetLicense(licensePath);
+            TrySetLicense(licensePath);
         }
 
-        private void SetLicense(string licensePath)
+        private void TrySetLicense(string licensePath)
         {
-            lock (_lock)
+            if (string.IsNullOrWhiteSpace(licensePath))
+                return;
+
+            bool looksLikeLocalPath = !licensePath.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                && !licensePath.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
+
+            if (looksLikeLocalPath && !File.Exists(licensePath))
+                return;
+
+            try
             {
-                if (!_licenseSet)
+                lock (_lock)
                 {
+                    if (_licenseSet)
+                        return;
+
                     License license = new License();
                     license.SetLicense(licensePath);
-
                     _licenseSet = true;
                 }
+            }
+            catch (Exception)
+            {
+                // Keep running in evaluation mode when a license cannot be applied.
             }
         }
     }

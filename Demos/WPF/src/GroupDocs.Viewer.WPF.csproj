@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -41,9 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer" Version="25.12.0" />
-    <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="GroupDocs.Viewer" Version="26.8.0" />
+    <PackageReference Include="System.Formats.Asn1" Version="10.0.0" />
+    <PackageReference Include="System.Text.Json" Version="10.0.4" />
   </ItemGroup>
 
 </Project>

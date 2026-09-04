@@ -86,7 +86,7 @@ namespace GroupDocs.Viewer.AspNetMvc.Controllers
             }
             catch (Exception ex)
             {
-                return ErrorJsonResult(ex.Message);
+                return ErrorJsonResult(GetErrorMessage(ex));
             }
         }
 
@@ -246,7 +246,7 @@ namespace GroupDocs.Viewer.AspNetMvc.Controllers
                     return ForbiddenJsonResult(message);
                 }
 
-                return ErrorJsonResult(ex.Message);
+                return ErrorJsonResult(GetErrorMessage(ex));
             }
         }
 
@@ -350,6 +350,14 @@ namespace GroupDocs.Viewer.AspNetMvc.Controllers
 
                 return (fileName, bytes);
             }
+        }
+
+        private static string GetErrorMessage(Exception ex)
+        {
+            while (ex is AggregateException aggregate && aggregate.InnerException != null)
+                ex = aggregate.InnerException;
+
+            return ex?.GetBaseException()?.Message ?? ex?.Message ?? "Unknown error";
         }
 
         private IHttpActionResult ErrorJsonResult(string message) =>
