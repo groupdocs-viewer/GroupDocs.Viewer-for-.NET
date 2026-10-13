@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GroupDocs.Viewer" Version="26.8.0" />
+    <PackageReference Include="GroupDocs.Viewer" Version="26.9.0" />
     <PackageReference Include="System.Formats.Asn1" Version="10.0.0" />
     <PackageReference Include="System.Text.Json" Version="10.0.4" />
   </ItemGroup>

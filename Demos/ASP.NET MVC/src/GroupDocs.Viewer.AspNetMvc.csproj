@@ -55,8 +55,8 @@
     <Reference Include="AsyncKeyedLock, Version=6.2.1.0, Culture=neutral, PublicKeyToken=c6dde91429ba0f2f, processorArchitecture=MSIL">
       <HintPath>packages\AsyncKeyedLock.6.2.1\lib\netstandard2.0\AsyncKeyedLock.dll</HintPath>
     </Reference>
-    <Reference Include="GroupDocs.Viewer, Version=26.8.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>packages\GroupDocs.Viewer.Net462.26.8.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=26.9.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\GroupDocs.Viewer.Net462.26.9.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.Cryptography.Pkcs.8.0.0\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
@@ -308,6 +308,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets'))" />
   </Target>
   <Target Name="InstallPackages" BeforeTargets="BeforeBuild" Condition="'$(BuildClientApp)' == 'True'">
     <Message Importance="high" Text="*** Installing npm packages ***" />
@@ -317,12 +318,11 @@
     <Message Importance="high" Text="*** Bundling client files ***" />
     <Exec WorkingDirectory="$(ClientRoot)" Command="npm run build" ContinueOnError="false" />
   </Target>
-
-  <Import Project="packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets" Condition="Exists('packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets')" />
+  <Import Project="packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets" Condition="Exists('packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets')" />
   <Target Name="EnsureGroupDocsViewerPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets'))" />
+    <Error Condition="!Exists('packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets'))" />
   </Target>
 </Project>

@@ -36,8 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupDocs.Viewer, Version=26.8.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>packages\GroupDocs.Viewer.Net462.26.8.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
+    <Reference Include="GroupDocs.Viewer, Version=26.9.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\GroupDocs.Viewer.Net462.26.9.0\lib\net462\GroupDocs.Viewer.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.Cryptography.Pkcs.8.0.0\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
@@ -150,12 +150,11 @@
     <Content Include="Resources\open_file.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
-  <Import Project="packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets" Condition="Exists('packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets')" />
-  <Target Name="EnsureGroupDocsViewerPackageBuildImports" BeforeTargets="PrepareForBuild">
+  <Import Project="packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets" Condition="Exists('packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GroupDocs.Viewer.26.8.0\build\net462\GroupDocs.Viewer.targets'))" />
+    <Error Condition="!Exists('packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GroupDocs.Viewer.26.9.0\build\net462\GroupDocs.Viewer.targets'))" />
   </Target>
 </Project>
