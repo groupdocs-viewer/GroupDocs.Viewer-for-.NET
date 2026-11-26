@@ -13,7 +13,7 @@ public static class RenderAllLayouts
         using (Viewer viewer = new Viewer("sample.dxf"))
         {
            // Convert the document to PDF.
-           PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+           PdfViewOptions viewOptions = new PdfViewOptions("render-all-layouts.pdf");
            // Render the Model and all non-empty paper space layouts. 
            viewOptions.CadOptions.RenderLayouts = true;
            viewer.View(viewOptions);

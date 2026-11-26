@@ -15,7 +15,7 @@ public static class ViewPagesFromArray
         using (Viewer viewer = new Viewer("sample.docx"))
         {
            // Create view options.
-           var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+           var viewOptions = HtmlViewOptions.ForEmbeddedResources("view-pages-from-array_{0}.html");
 
            // Use array to render specific pages.
            viewer.View(viewOptions, pageNumbers);

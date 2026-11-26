@@ -14,7 +14,7 @@ public static class RenderCsvWithSeparatorDetection
         {
             // Convert the spreadsheet to HTML.
             // {0} is replaced with the current page number in the file names.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-csv-with-separator-detection_{0}.html");
             // Detect a CSV/TSV separator.
             viewOptions.SpreadsheetOptions.DetectSeparator = true;
             viewer.View(viewOptions);

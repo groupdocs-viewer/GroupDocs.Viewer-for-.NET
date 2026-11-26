@@ -13,7 +13,7 @@ public static class RenderProjectSpecificDates
         using (var viewer = new Viewer("sample.mpp"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-project-specific-dates.pdf");
             // Specify the date range.
             viewOptions.ProjectManagementOptions.StartDate = new DateTime(2026, 10, 01);
             viewOptions.ProjectManagementOptions.EndDate = new DateTime(2026, 12, 01);

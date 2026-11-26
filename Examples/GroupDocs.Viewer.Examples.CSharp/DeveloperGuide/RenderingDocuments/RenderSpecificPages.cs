@@ -13,7 +13,7 @@ public static class RenderSpecificPages
         using (Viewer viewer = new Viewer("sample.docx"))
         {
             // {0} is replaced with the current page number in the file name.
-            PngViewOptions viewOptions = new PngViewOptions("page_{0}.png");
+            PngViewOptions viewOptions = new PngViewOptions("render-specific-pages_{0}.png");
             // Render pages 1 and 3 only.
             viewer.View(viewOptions, 1, 3);
         }

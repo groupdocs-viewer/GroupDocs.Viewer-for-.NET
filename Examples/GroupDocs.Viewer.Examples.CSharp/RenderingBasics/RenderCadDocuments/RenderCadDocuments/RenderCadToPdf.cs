@@ -13,7 +13,7 @@ public static class RenderCadToPdf
         {
             // Create a PDF file for the drawing.
             // Specify the PDF file name.
-            PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+            PdfViewOptions viewOptions = new PdfViewOptions("render-cad-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

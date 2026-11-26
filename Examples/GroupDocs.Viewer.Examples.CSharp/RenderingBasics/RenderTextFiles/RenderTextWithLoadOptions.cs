@@ -19,7 +19,7 @@ public static class RenderTextWithLoadOptions
         // Convert the document to PDF.
         using (var viewer = new Viewer(stream, loadOptions))
         {
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-text-with-load-options.pdf");
             viewer.View(viewOptions);
         }
     }

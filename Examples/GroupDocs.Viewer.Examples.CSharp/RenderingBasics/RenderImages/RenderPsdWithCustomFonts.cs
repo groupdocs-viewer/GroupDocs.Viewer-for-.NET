@@ -21,7 +21,7 @@ public static class RenderPsdWithCustomFonts
         using (var viewer = new Viewer("sample.psd"))
         {
             // Convert a PSD file to PNG.
-            var viewOptions = new PngViewOptions("output.png");
+            var viewOptions = new PngViewOptions("render-psd-with-custom-fonts.png");
             // Specify the default font that should be used to replace missing fonts.
             viewOptions.DefaultFontName = "Arial";
             viewer.View(viewOptions);

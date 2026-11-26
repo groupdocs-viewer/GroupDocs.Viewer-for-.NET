@@ -11,7 +11,7 @@ public static class SetWorksheetMargins
 
         using (var viewer = new Viewer("invoice.xlsx"))
         {
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("set-worksheet-margins.pdf");
 
             // Set margins for worksheets in the output pdf pages
             viewOptions.SpreadsheetOptions.LeftMargin = 0;

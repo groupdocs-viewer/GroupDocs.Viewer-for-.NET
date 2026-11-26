@@ -14,7 +14,7 @@ public static class RenderCadToHtmlExternal
             // Create an HTML file for the drawing.
             // Specify the HTML file name and location of external resources.
             // {0} is replaced with the resource name.
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForExternalResources("output.html", "output/resource_{0}", "output/resource_{0}");
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForExternalResources("render-cad-to-html-external.html", "output/resource_{0}", "output/resource_{0}");
             viewer.View(viewOptions);
         }
     }

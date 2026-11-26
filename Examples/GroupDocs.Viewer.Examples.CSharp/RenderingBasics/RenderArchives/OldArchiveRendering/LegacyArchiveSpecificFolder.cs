@@ -12,7 +12,7 @@ public static class LegacyArchiveSpecificFolder
         using (var viewer = new Viewer("documents.zip"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("legacy-archive-specific-folder.html");
             // Specify a folder to render items from.
             viewOptions.ArchiveOptions.Folder = "Documents/CAD files";
             viewer.View(viewOptions);

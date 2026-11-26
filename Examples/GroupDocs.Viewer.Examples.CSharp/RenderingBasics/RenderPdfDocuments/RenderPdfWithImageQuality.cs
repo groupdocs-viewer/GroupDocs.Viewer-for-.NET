@@ -13,7 +13,7 @@ public static class RenderPdfWithImageQuality
         {
             // Create an HTML file for each document page.
             // {0} is replaced with the current page number in the file name.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-pdf-with-image-quality_{0}.html");
             // Set image quality to medium.
             viewOptions.PdfOptions.ImageQuality = ImageQuality.Medium;
             viewer.View(viewOptions);

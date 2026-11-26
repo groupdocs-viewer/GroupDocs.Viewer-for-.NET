@@ -12,7 +12,7 @@ public static class RenderOutlookWithMaxItems
         using (var viewer = new Viewer("sample.pst"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-outlook-with-max-items_{0}.html");
             // Specify the maximum number of folder items.
             viewOptions.OutlookOptions.MaxItemsInFolder = 30;
             viewer.View(viewOptions);

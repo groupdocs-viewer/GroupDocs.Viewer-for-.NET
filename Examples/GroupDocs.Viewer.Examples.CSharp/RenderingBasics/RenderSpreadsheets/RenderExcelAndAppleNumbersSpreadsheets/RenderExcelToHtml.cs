@@ -14,7 +14,7 @@ public static class RenderExcelToHtml
         {
             // Convert the spreadsheet to HTML.
             // {0} is replaced with the current page number in the file names.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-excel-to-html_{0}.html");
             viewer.View(viewOptions);
         }
     }

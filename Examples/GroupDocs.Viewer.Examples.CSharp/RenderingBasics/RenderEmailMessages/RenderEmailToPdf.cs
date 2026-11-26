@@ -12,7 +12,7 @@ public static class RenderEmailToPdf
         using (var viewer = new Viewer("sample.eml"))
         {
             // Create a PDF file.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-email-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

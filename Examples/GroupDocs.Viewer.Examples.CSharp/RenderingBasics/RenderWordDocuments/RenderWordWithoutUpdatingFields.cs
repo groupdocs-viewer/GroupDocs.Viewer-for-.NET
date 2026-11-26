@@ -9,10 +9,10 @@ public static class RenderWordWithoutUpdatingFields
     {
         // ...
 
-        HtmlViewOptions htmlViewOptions = HtmlViewOptions.ForEmbeddedResources();
+        HtmlViewOptions htmlViewOptions = HtmlViewOptions.ForEmbeddedResources("render-word-without-updating-fields_{0}.html");
         htmlViewOptions.WordProcessingOptions.UpdateFields = false;
 
-        PdfViewOptions pdfViewOptions = new PdfViewOptions("output.pdf");
+        PdfViewOptions pdfViewOptions = new PdfViewOptions("render-word-without-updating-fields.pdf");
         pdfViewOptions.WordProcessingOptions.UpdateFields = false;
 
         using (var viewer = new Viewer("handbook.docx"))

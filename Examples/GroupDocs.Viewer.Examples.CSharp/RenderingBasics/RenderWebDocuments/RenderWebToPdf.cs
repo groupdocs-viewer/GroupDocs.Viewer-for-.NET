@@ -13,7 +13,7 @@ public static class RenderWebToPdf
         {
             // Create a PDF file for the document.
             // Specify the PDF file name.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-web-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

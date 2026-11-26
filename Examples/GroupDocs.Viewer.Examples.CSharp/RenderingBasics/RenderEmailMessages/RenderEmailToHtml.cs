@@ -12,7 +12,7 @@ public static class RenderEmailToHtml
         using (var viewer = new Viewer("sample.eml"))
         {
            // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-email-to-html.html");
             viewer.View(viewOptions);
         }
     }

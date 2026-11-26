@@ -13,7 +13,7 @@ public static class RenderProjectWithNotes
         using (var viewer = new Viewer("sample.mpp"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-project-with-notes.pdf");
             // Enable notes rendering.
             viewOptions.RenderNotes = true;
             viewer.View(viewOptions);

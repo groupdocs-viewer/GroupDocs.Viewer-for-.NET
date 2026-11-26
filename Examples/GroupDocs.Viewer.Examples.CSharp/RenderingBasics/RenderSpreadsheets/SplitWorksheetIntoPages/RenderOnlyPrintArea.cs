@@ -10,7 +10,7 @@ public static class RenderOnlyPrintArea
         // ...
 
         // Create PDF view options for rendering to PDF
-        PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+        PdfViewOptions viewOptions = new PdfViewOptions("render-only-print-area.pdf");
 
         // Create spreadsheet options to render a Print Area only
         viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForRenderingPrintArea();

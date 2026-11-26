@@ -12,7 +12,7 @@ public static class RenderToHtmlExternal
         using (Viewer viewer = new Viewer("sample.docx"))
         {
             // Create view options.
-            var viewOptions = HtmlViewOptions.ForExternalResources();
+            var viewOptions = HtmlViewOptions.ForExternalResources("render-to-html-external_{0}.html", "render-to-html-external_{0}_{1}", "render-to-html-external_{0}_{1}");
             viewer.View(viewOptions);
         }
     }

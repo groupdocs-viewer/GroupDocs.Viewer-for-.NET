@@ -12,7 +12,7 @@ public static class RenderNsfWithMaxItems
         using (var viewer = new Viewer("sample.nsf"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-nsf-with-max-items_{0}.html");
             // Specify the maximum items to render.
             viewOptions.MailStorageOptions.MaxItems = 20;
             viewer.View(viewOptions);

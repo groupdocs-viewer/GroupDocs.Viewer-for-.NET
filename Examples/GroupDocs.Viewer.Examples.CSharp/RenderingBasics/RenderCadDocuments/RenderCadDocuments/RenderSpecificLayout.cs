@@ -13,7 +13,7 @@ public static class RenderSpecificLayout
         using (Viewer viewer = new Viewer("sample.dxf"))
         {
            // Convert the document to PDF.
-           PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+           PdfViewOptions viewOptions = new PdfViewOptions("render-specific-layout.pdf");
            // Specify the name of the layout to render.
            // If the specified layout is not found,
            // an exception occurs.

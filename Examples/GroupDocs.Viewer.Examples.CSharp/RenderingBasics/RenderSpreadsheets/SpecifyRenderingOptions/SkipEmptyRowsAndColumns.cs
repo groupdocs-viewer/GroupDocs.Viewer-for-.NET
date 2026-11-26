@@ -13,7 +13,7 @@ public static class SkipEmptyRowsAndColumns
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("skip-empty-rows-and-columns.pdf");
             // Enable skipping blank rows and columns.
             viewOptions.SpreadsheetOptions.SkipEmptyRows = true;
             viewOptions.SpreadsheetOptions.SkipEmptyColumns = true;

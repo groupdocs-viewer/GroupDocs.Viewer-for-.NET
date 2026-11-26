@@ -16,7 +16,7 @@ public static class SetExternalResourcesTimeout
         // Render a file.
         using (Viewer viewer = new Viewer("business-flyer.docx", loadOptions))
         {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("set-external-resources-timeout_{0}.html");
             viewer.View(viewOptions);
         }
     }

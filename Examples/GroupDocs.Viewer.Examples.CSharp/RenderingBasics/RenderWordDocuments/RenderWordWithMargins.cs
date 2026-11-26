@@ -13,7 +13,7 @@ public static class RenderWordWithMargins
         {
             // Create an HTML file for each document page.
             // {0} is replaced with the current page number in the file name.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-word-with-margins_{0}.html");
             // Specify the size of page margins in points.
             viewOptions.WordProcessingOptions.TopMargin = 72;
             viewOptions.WordProcessingOptions.BottomMargin = 72;

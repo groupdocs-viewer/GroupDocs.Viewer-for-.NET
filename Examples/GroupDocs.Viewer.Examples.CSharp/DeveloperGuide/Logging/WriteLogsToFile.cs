@@ -11,7 +11,7 @@ public static class WriteLogsToFile
         // ...
 
         // Create logger and specify the output file.
-        FileLogger fileLogger = new FileLogger("output.log");
+        FileLogger fileLogger = new FileLogger("write-logs-to-file.log");
 
         // Create ViewerSettings and specify FileLogger.
         ViewerSettings viewerSettings = new ViewerSettings(fileLogger);
@@ -19,7 +19,7 @@ public static class WriteLogsToFile
         // Render a document.
         using (Viewer viewer = new Viewer("sample.docx",viewerSettings))
         {
-            ViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("result.html");
+            ViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("write-logs-to-file.html");
             viewer.View(viewOptions);
         }
     }

@@ -13,7 +13,7 @@ public static class RenderWordUnlinkToc
         using (var viewer = new Viewer("handbook.docx"))
         {
             // Convert the document to HTML.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-word-unlink-toc_{0}.html");
             // Unlink table of contents.
             viewOptions.WordProcessingOptions.UnlinkTableOfContents = true;
             viewer.View(viewOptions);

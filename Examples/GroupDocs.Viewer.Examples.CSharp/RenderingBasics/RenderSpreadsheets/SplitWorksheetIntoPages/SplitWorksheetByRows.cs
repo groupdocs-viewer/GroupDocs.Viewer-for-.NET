@@ -10,7 +10,7 @@ public static class SplitWorksheetByRows
         // ...
 
         // Create PDF view options for rendering to PDF
-        PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+        PdfViewOptions viewOptions = new PdfViewOptions("split-worksheet-by-rows.pdf");
 
         // Specify number of rows for every page
         int rowsPerPage = 15;

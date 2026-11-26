@@ -13,7 +13,7 @@ public static class RenderWebWithPageSize
         using (var viewer = new Viewer("groupdocs-documentation.mhtml"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-web-with-page-size.pdf");
             // Specify the page size.
             viewOptions.WebDocumentOptions.PageSize = PageSize.A3;
             viewer.View(viewOptions);

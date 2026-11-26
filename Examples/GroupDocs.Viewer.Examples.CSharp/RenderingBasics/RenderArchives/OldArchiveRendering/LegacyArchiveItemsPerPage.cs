@@ -13,7 +13,7 @@ public static class LegacyArchiveItemsPerPage
         {
             // Create an HTML file for the top folder and each subfolder in the archive.
             // {0} is replaced with the current page number in the output file name.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("legacy-archive-items-per-page_{0}.html");
             // Specify the number of items to display on each HTML page.
             viewOptions.ArchiveOptions.ItemsPerPage = 10;
             viewer.View(viewOptions);

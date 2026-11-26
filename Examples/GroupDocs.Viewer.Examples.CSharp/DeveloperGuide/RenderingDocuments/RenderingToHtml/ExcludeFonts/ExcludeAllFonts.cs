@@ -12,7 +12,7 @@ public static class ExcludeAllFonts
         using (Viewer viewer = new Viewer("sample.docx"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();    
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("exclude-all-fonts_{0}.html");    
             viewOptions.ExcludeFonts = true;
             viewer.View(viewOptions);
         }

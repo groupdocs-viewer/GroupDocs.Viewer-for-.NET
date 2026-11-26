@@ -10,7 +10,7 @@ public static class SplitWorksheetByPageBreaks
         // ...
 
         // Create PDF view options for rendering to PDF
-        PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+        PdfViewOptions viewOptions = new PdfViewOptions("split-worksheet-by-page-breaks.pdf");
 
         // Create spreadsheet options to split worksheet onto pages by page breaks
         viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForRenderingByPageBreaks();

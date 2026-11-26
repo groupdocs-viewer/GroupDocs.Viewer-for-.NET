@@ -13,7 +13,7 @@ public static class RenderPdfPreservePageSize
         {
             // Create a PNG image for each PDF page.
             // {0} is replaced with the current page number in the image name.
-            var viewOptions = new PngViewOptions("output_{0}.png");
+            var viewOptions = new PngViewOptions("render-pdf-preserve-page-size_{0}.png");
             // Preserve the size of document pages.
             viewOptions.PdfOptions.RenderOriginalPageSize = true;
             viewer.View(viewOptions);

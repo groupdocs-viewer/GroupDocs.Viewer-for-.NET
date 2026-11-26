@@ -23,7 +23,6 @@ using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.ProcessingAttachments.HowT
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.ProcessingAttachments.HowToListAttachments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.AddTextWatermark;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.CancelRendering;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.FlipOrRotatePages;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.ExcludeFonts;
@@ -282,7 +281,6 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("ViewPagesFromArray", "DeveloperGuide/RenderingDocuments/ViewSpecificPages", ViewPagesFromArray.Run),
     ("RenderDocumentToPng", "DeveloperGuide/RenderingDocuments", RenderDocumentToPng.Run),
     ("RenderSpecificPages", "DeveloperGuide/RenderingDocuments", RenderSpecificPages.Run),
-    ("CancelRendering", "DeveloperGuide/RenderingDocuments/CancelRendering", CancelRendering.Run),
     ("ShowHiddenPages", "DeveloperGuide/RenderingDocuments/ShowHiddenPages", ShowHiddenPages.Run),
     ("FlipOrRotatePages", "DeveloperGuide/RenderingDocuments/FlipOrRotatePages", FlipOrRotatePages.Run),
     ("SetCustomFonts", "DeveloperGuide/RenderingDocuments/SetCustomFonts", SetCustomFonts.Run),
@@ -369,6 +367,7 @@ void EnterExampleDir(string dir)
 // Skipped: LoadDocumentFromFtp (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream/LoadDocumentFromFtp/LoadDocumentFromFtp.cs)
 // Skipped: LoadDocumentFromAmazonS3 (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream/LoadDocumentFromAmazonS3Storage/LoadDocumentFromAmazonS3.cs)
 // Skipped: LoadDocumentFromAzureBlob (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream/LoadDocumentFromAzureBlobStorage/LoadDocumentFromAzureBlob.cs)
+// Skipped: CancelRendering (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/RenderingDocuments/CancelRendering/CancelRendering.cs)
 // Skipped: UseCustomCache (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/CachingResults/HowToUseCustomCacheImplementation/UseCustomCache.cs)
 // Skipped: RenderWithThreadSafeCache (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/CachingResults/ImplementThreadSafeCacheForGroupdocsViewer/RenderWithThreadSafeCache.cs)
 // Skipped: MigrateOldApi (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/DeveloperGuide/Troubleshooting/HowToMigrateToGroupdocsViewer198OrHigher/MigrateOldApi.cs)

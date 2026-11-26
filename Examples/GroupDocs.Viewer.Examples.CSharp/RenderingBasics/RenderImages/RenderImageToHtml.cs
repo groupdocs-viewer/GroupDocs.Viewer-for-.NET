@@ -12,7 +12,7 @@ public static class RenderImageToHtml
         using (var viewer = new Viewer("vector-image.svg"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-image-to-html.html");
             viewer.View(viewOptions);
         }
     }

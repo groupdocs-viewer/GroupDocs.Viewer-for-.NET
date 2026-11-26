@@ -13,7 +13,7 @@ public static class RenderImageToHtmlExternal
         {
             // Specify the HTML file name and location of external resources.
             // {0} is replaced with the resource name in the output file name.
-            var viewOptions = HtmlViewOptions.ForExternalResources("output.html", "output/resource_{0}", "output/resource_{0}");
+            var viewOptions = HtmlViewOptions.ForExternalResources("render-image-to-html-external.html", "output/resource_{0}", "output/resource_{0}");
             viewer.View(viewOptions);
         }
     }

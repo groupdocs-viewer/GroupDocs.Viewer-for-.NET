@@ -13,7 +13,7 @@ public static class SetTextOverflowMode
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("set-text-overflow-mode.pdf");
             // Specify the AutoFitColumn mode.
             viewOptions.SpreadsheetOptions.TextOverflowMode = TextOverflowMode.AutoFitColumn;
             viewer.View(viewOptions);

@@ -10,9 +10,9 @@ public static class RenderPdfPopupAnnotations
         // ...
 
         // Preparing output options
-        PngViewOptions pngOpt = new PngViewOptions();
+        PngViewOptions pngOpt = new PngViewOptions("render-pdf-popup-annotations_{0}.png");
         JpgViewOptions jpegOpt = new JpgViewOptions();
-        HtmlViewOptions htmlEmbeddedOpt = HtmlViewOptions.ForEmbeddedResources();
+        HtmlViewOptions htmlEmbeddedOpt = HtmlViewOptions.ForEmbeddedResources("render-pdf-popup-annotations_{0}.html");
 
         // Enabling "RenderNotes" for all options
         pngOpt.RenderNotes = jpegOpt.RenderNotes = htmlEmbeddedOpt.RenderNotes = true;

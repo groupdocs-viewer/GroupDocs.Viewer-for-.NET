@@ -12,7 +12,7 @@ public static class RenderOutlookWithFilters
         using (var viewer = new Viewer("sample.pst"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-outlook-with-filters_{0}.html");
             // Set filters.
             viewOptions.OutlookOptions.TextFilter = "invoice";
             viewOptions.OutlookOptions.AddressFilter = "northwindroasters.example";

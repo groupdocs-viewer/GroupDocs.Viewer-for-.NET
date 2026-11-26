@@ -14,7 +14,7 @@ public static class RenderNumbersToJpg
         {
             // Convert the spreadsheet to JPEG.
             // {0} is replaced with the current page number in the file names.
-            var viewOptions = new JpgViewOptions("output_{0}.jpg");
+            var viewOptions = new JpgViewOptions("render-numbers-to-jpg_{0}.jpg");
             // Set width and height.
             viewOptions.Width = 800;
             viewOptions.Height = 900;

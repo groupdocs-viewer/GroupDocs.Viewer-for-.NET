@@ -13,7 +13,7 @@ public static class RenderHiddenRowsAndColumns
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-hidden-rows-and-columns.pdf");
             // Enable rendering hidden rows and columns.
             viewOptions.SpreadsheetOptions.RenderHiddenRows = true;
             viewOptions.SpreadsheetOptions.RenderHiddenColumns = true;

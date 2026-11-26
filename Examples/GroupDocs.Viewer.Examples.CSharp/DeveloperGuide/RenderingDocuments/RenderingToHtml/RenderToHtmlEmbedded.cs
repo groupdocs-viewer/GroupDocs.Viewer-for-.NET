@@ -12,7 +12,7 @@ public static class RenderToHtmlEmbedded
         using (Viewer viewer = new Viewer("sample.docx"))
         {
             // Create view options.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-to-html-embedded_{0}.html");
             viewer.View(viewOptions);
         }
     }

@@ -13,7 +13,7 @@ public static class RenderEbookToHtml
         {
             // Create an HTML file for each document page.
             // {0} is replaced with the current page number in the file name.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("page_{0}.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-ebook-to-html_{0}.html");
             viewer.View(viewOptions);
         }
     }

@@ -13,7 +13,7 @@ public static class RenderWordWithComments
         using (var viewer = new Viewer("with_comment.docx"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-word-with-comments.pdf");
             // Enable comments rendering.
             viewOptions.RenderComments = true;
             viewer.View(viewOptions);

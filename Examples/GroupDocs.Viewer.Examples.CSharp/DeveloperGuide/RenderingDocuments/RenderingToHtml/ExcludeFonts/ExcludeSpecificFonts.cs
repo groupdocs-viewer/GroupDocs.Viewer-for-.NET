@@ -12,7 +12,7 @@ public static class ExcludeSpecificFonts
         using (Viewer viewer = new Viewer("sample.pptx"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();    
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("exclude-specific-fonts_{0}.html");    
             viewOptions.FontsToExclude.Add("Times New Roman");// Exclude the Times New Roman font.
             viewOptions.FontsToExclude.Add("Arial");// Exclude the Arial font.
             viewer.View(viewOptions);

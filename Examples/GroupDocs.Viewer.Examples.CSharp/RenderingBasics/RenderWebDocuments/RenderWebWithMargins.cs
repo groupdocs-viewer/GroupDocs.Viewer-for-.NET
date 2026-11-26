@@ -13,7 +13,7 @@ public static class RenderWebWithMargins
         using (var viewer = new Viewer("groupdocs-documentation.mhtml"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-web-with-margins.pdf");
             // Specify the size of page margins in points.
             viewOptions.WebDocumentOptions.LeftMargin = 40;
             viewOptions.WebDocumentOptions.RightMargin = 40;

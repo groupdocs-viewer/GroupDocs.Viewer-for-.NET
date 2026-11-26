@@ -13,7 +13,7 @@ public static class RenderEmailWithDatetimeFormat
         using (var viewer = new Viewer("sample.eml"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-email-with-datetime-format.html");
             // Apply a custom format to the date in the email message header.
             viewOptions.EmailOptions.DateTimeFormat = "MMMM dd, yyyy H:mm:ss zzz";
             // Specify the time zone offset. 

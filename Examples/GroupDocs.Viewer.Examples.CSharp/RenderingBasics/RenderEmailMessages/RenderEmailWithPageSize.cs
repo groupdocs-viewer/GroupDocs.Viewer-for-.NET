@@ -12,7 +12,7 @@ public static class RenderEmailWithPageSize
         using (var viewer = new Viewer("sample.eml"))
         {
             // Create a PDF file.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-email-with-page-size.pdf");
             // Specify the page size.
             viewOptions.EmailOptions.PageSize = PageSize.A4;
             viewer.View(viewOptions);

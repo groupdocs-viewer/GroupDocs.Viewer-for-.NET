@@ -13,7 +13,7 @@ public static class RenderTextToPdf
         using (var viewer = new Viewer("terms_of_service.txt"))
         {
             // Convert the text file to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-text-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

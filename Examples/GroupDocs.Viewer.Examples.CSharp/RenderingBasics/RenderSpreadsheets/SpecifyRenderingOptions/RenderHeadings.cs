@@ -13,7 +13,7 @@ public static class RenderHeadings
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-headings.pdf");
             // Render row and column headings.
             viewOptions.SpreadsheetOptions.RenderHeadings = true;
             viewer.View(viewOptions);

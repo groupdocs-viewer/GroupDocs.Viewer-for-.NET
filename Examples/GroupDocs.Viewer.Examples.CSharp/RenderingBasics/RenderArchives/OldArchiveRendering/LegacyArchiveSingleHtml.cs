@@ -12,7 +12,7 @@ public static class LegacyArchiveSingleHtml
         using (var viewer = new Viewer("documents.zip"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("legacy-archive-single-html.html");
             // Render the archive file to a single page.
             viewOptions.RenderToSinglePage = true;
             viewer.View(viewOptions);

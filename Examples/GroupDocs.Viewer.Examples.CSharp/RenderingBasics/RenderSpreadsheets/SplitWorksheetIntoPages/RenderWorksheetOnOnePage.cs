@@ -10,7 +10,7 @@ public static class RenderWorksheetOnOnePage
         // ...
 
         // Create PDF view options for rendering to PDF
-        PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+        PdfViewOptions viewOptions = new PdfViewOptions("render-worksheet-on-one-page.pdf");
 
         // Create spreadsheet options to render each worksheet to one page
         viewOptions.SpreadsheetOptions = SpreadsheetOptions.ForOnePagePerSheet();

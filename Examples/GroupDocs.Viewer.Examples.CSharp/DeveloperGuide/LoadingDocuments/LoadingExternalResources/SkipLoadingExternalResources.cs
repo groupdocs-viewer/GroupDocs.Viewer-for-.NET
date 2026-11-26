@@ -15,7 +15,7 @@ public static class SkipLoadingExternalResources
         using (Viewer viewer = new Viewer("business-flyer.docx", loadOptions))
         {
             HtmlViewOptions viewOptions = 
-                HtmlViewOptions.ForEmbeddedResources();
+                HtmlViewOptions.ForEmbeddedResources("skip-loading-external-resources_{0}.html");
 
             viewer.View(viewOptions);
         }

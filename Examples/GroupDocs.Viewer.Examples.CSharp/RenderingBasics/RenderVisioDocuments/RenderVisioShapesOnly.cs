@@ -13,7 +13,7 @@ public static class RenderVisioShapesOnly
         using (var viewer = new Viewer("map.vsdx"))
         {
             // Convert the Visio file to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-visio-shapes-only.pdf");
             // Render the master shapes only.
             viewOptions.VisioRenderingOptions.RenderFiguresOnly = true;
             // Specify shape width in pixels.

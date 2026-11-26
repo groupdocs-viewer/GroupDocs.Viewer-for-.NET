@@ -13,7 +13,7 @@ public static class RenderPdfWithComments
         {
             // Create a PNG image for each PDF page.
             // {0} is replaced with the current page number in the image name.
-            var viewOptions = new PngViewOptions("output_{0}.png");
+            var viewOptions = new PngViewOptions("render-pdf-with-comments_{0}.png");
             // Enable comments rendering.
             viewOptions.RenderComments = true;
             viewer.View(viewOptions);

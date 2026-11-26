@@ -16,7 +16,7 @@ public static class LoadExternalResourcesFromSafelist
         using (Viewer viewer = new Viewer("business-flyer.docx", loadOptions))
         {
             HtmlViewOptions viewOptions = 
-                HtmlViewOptions.ForEmbeddedResources();
+                HtmlViewOptions.ForEmbeddedResources("load-external-resources-from-safelist_{0}.html");
 
             viewer.View(viewOptions);
         }

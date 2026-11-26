@@ -37,5 +37,6 @@
     <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveFoldersInfo.cs" />
     <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveSpecificFolder.cs" />
     <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveFileName.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\CancelRendering.cs" />
   </ItemGroup>
 </Project>

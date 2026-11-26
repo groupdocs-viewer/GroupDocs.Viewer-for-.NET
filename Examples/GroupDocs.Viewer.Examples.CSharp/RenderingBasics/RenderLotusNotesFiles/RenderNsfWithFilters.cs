@@ -12,7 +12,7 @@ public static class RenderNsfWithFilters
         using (var viewer = new Viewer("sample.nsf"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-nsf-with-filters_{0}.html");
             // Set filters.
             viewOptions.MailStorageOptions.TextFilter = "Viewer";
             viewOptions.MailStorageOptions.AddressFilter = "groupdocs@mail.com";

@@ -13,7 +13,7 @@ public static class RenderExcelToPdf
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-excel-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

@@ -13,7 +13,7 @@ public static class RenderPdfToPng
         {
             // Create a PNG image for each PDF page.
             // {0} is replaced with the current page number in the image name.
-            var viewOptions = new PngViewOptions("output_{0}.png");
+            var viewOptions = new PngViewOptions("render-pdf-to-png_{0}.png");
             // Set width and height.
             viewOptions.Width = 800;
             viewOptions.Height = 900;

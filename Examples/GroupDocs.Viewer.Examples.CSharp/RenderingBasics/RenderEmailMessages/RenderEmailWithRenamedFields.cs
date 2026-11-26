@@ -12,7 +12,7 @@ public static class RenderEmailWithRenamedFields
         using (var viewer = new Viewer("sample.eml"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-email-with-renamed-fields.html");
             // Specify custom field labels.
             viewOptions.EmailOptions.FieldTextMap[Field.From] = "Sender";
             viewOptions.EmailOptions.FieldTextMap[Field.To] = "Recipient";

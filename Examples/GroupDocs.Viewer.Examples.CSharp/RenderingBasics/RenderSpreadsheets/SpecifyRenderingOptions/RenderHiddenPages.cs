@@ -13,7 +13,7 @@ public static class RenderHiddenPages
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-hidden-pages.pdf");
             // Enable rendering hidden pages.
             viewOptions.RenderHiddenPages = true;
             viewer.View(viewOptions);

@@ -11,7 +11,7 @@ public static class RenderXpsSkipFontLicenseCheck
 
         using (Viewer viewer = new Viewer("sample.oxps"))
         {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("render-xps-skip-font-license-check_{0}.html");
             viewOptions.PdfOptions.DisableFontLicenseVerifications = true;
             viewer.View(viewOptions);
         }

@@ -12,7 +12,7 @@ public static class RenderImageToPng
         using (var viewer = new Viewer("vector-image.svg"))
         {
             // Create a PNG image.
-            var viewOptions = new PngViewOptions("output.png");
+            var viewOptions = new PngViewOptions("render-image-to-png.png");
             // Set width and height.
             viewOptions.Width = 1600;
             viewOptions.Height = 900;

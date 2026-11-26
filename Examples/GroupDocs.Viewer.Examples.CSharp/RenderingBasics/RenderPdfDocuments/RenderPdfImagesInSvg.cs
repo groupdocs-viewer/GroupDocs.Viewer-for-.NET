@@ -11,7 +11,7 @@ public static class RenderPdfImagesInSvg
 
         using (Viewer viewer = new Viewer("sample.pdf"))
         {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("render-pdf-images-in-svg_{0}.html");
             viewOptions.PdfOptions.WrapImagesInSvg = true;
 
             viewer.View(viewOptions);

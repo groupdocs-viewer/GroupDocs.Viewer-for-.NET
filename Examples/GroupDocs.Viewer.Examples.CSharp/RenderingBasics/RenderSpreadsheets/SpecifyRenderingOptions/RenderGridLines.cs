@@ -13,7 +13,7 @@ public static class RenderGridLines
         using (var viewer = new Viewer("invoice.xlsx"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-grid-lines.pdf");
             // Render grid lines.
             viewOptions.SpreadsheetOptions.RenderGridLines = true;
             viewer.View(viewOptions);

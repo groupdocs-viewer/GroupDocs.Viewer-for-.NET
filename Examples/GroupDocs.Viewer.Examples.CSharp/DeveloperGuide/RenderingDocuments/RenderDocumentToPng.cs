@@ -14,7 +14,7 @@ public static class RenderDocumentToPng
         {
             // Create a PNG image for each page.
             // {0} is replaced with the current page number in the file name.
-            PngViewOptions viewOptions = new PngViewOptions("page_{0}.png");
+            PngViewOptions viewOptions = new PngViewOptions("render-document-to-png_{0}.png");
             viewer.View(viewOptions);
         }
     }

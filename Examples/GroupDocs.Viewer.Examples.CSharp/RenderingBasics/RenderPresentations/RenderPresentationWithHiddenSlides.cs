@@ -13,7 +13,7 @@ public static class RenderPresentationWithHiddenSlides
         using (var viewer = new Viewer("sample.pptx"))
         {
             // Convert the presentation to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-presentation-with-hidden-slides.pdf");
             // Enable hidden slides rendering.
             viewOptions.RenderHiddenPages = true;
             viewer.View(viewOptions);

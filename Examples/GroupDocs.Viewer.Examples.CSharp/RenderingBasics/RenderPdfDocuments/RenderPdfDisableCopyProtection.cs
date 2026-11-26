@@ -11,7 +11,7 @@ public static class RenderPdfDisableCopyProtection
 
         using (Viewer viewer = new Viewer("copy_protected.pdf"))
         {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("render-pdf-disable-copy-protection_{0}.html");
             viewOptions.PdfOptions.DisableCopyProtection = true;
 
             viewer.View(viewOptions);

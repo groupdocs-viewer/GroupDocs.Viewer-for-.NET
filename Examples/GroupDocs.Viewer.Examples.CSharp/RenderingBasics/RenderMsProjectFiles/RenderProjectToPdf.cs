@@ -12,7 +12,7 @@ public static class RenderProjectToPdf
         using (var viewer = new Viewer("sample.mpp"))
         {
             // Create a PDF file for the project's active view.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-project-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

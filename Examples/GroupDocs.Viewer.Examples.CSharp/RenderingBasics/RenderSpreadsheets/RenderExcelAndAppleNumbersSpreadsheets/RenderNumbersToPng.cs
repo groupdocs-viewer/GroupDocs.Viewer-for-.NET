@@ -14,7 +14,7 @@ public static class RenderNumbersToPng
         {
             // Convert the spreadsheet to PNG.
             // {0} is replaced with the current page number in the file names.
-            var viewOptions = new PngViewOptions("output_{0}.png");
+            var viewOptions = new PngViewOptions("render-numbers-to-png_{0}.png");
             // Set width and height.
             viewOptions.Width = 800;
             viewOptions.Height = 900;

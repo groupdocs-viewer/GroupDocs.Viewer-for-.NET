@@ -13,7 +13,7 @@ public static class RenderNumbersToPdf
         using (var viewer = new Viewer("sample.numbers"))
         {
             // Convert the spreadsheet to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-numbers-to-pdf.pdf");
             viewer.View(viewOptions);
         }
     }

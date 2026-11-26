@@ -13,7 +13,7 @@ public static class RenderProjectWithPageSize
         using (var viewer = new Viewer("sample.mpp"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-project-with-page-size.pdf");
             // Specify the page size.
             viewOptions.ProjectManagementOptions.PageSize = PageSize.A3;
             viewer.View(viewOptions);

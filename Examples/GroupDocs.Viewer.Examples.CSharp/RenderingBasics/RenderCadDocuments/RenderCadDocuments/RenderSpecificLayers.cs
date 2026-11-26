@@ -15,7 +15,7 @@ public static class RenderSpecificLayers
         using (Viewer viewer = new Viewer("sample.dwg"))
         {
             // Convert the document to PDF.
-            PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+            PdfViewOptions viewOptions = new PdfViewOptions("render-specific-layers.pdf");
             // Specify a list of layers to display.
             viewOptions.CadOptions.Layers = new List<Layer>
             {

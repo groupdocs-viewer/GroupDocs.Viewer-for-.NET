@@ -12,7 +12,7 @@ public static class RenderOutlookSpecificFolder
         using (var viewer = new Viewer("sample.pst"))
         {
             // Create an HTML file.
-            var viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            var viewOptions = HtmlViewOptions.ForEmbeddedResources("render-outlook-specific-folder_{0}.html");
             // Render messages from the "Inbox" folder and its subfolders.
             viewOptions.OutlookOptions.Folder = "Inbox";
             // Render messages from a specific subfolder in the "Inbox" folder.

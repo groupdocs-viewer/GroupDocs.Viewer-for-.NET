@@ -13,7 +13,7 @@ public static class RenderWordWithTrackedChanges
         using (var viewer = new Viewer("with_tracked_changes.docx"))
         {
             // Convert the document to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-word-with-tracked-changes.pdf");
             // Enable tracked changes rendering.
             viewOptions.WordProcessingOptions.RenderTrackedChanges = true;
             viewer.View(viewOptions);

@@ -13,7 +13,7 @@ public static class RenderCadToHtml
         {
             // Create an HTML file for the drawing.
             // Specify the HTML file name.
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("output.html");
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("render-cad-to-html.html");
             viewer.View(viewOptions);
         }
     }

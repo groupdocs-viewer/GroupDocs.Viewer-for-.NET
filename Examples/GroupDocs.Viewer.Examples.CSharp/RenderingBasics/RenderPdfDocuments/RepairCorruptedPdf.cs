@@ -12,7 +12,7 @@ public static class RepairCorruptedPdf
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.TryRepair = true;
 
-        PngViewOptions viewOptions = new PngViewOptions();
+        PngViewOptions viewOptions = new PngViewOptions("repair-corrupted-pdf_{0}.png");
 
         using (Viewer viewer = new Viewer("corrupted.pdf", loadOptions))
         {    

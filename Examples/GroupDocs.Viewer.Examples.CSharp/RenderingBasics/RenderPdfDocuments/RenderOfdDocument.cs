@@ -17,7 +17,7 @@ public static class RenderOfdDocument
 
         using (Viewer viewer = new Viewer("input.ofd"))
         {
-            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources();
+            HtmlViewOptions viewOptions = HtmlViewOptions.ForEmbeddedResources("render-ofd-document_{0}.html");
             viewer.View(viewOptions);
         }
     }

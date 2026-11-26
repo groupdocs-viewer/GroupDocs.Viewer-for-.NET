@@ -13,7 +13,7 @@ public static class RenderPresentationWithComments
         using (var viewer = new Viewer("with_comments.pptx"))
         {
             // Convert the presentation to PDF.
-            var viewOptions = new PdfViewOptions("output.pdf");
+            var viewOptions = new PdfViewOptions("render-presentation-with-comments.pdf");
             // Enable comments rendering.
             viewOptions.RenderComments = true;
             viewer.View(viewOptions);
