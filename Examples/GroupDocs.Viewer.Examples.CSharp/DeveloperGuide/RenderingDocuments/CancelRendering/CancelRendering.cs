@@ -31,7 +31,7 @@ public static class CancelRendering
         cancellationTokenSource.CancelAfter(1000);
 
         // Also you can call Cancel method at any time
-        //cancellationTokenSource.Cancel();
+        cancellationTokenSource.Cancel();
 
         // Wait for the task to cancel.
         Thread.Sleep(2000);

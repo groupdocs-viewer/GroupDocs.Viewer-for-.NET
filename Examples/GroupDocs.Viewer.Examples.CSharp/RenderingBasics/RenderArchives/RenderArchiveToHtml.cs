@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderArchives._index;
+namespace GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderArchives;
 
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer;

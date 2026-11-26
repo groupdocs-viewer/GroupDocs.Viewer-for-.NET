@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp._index;
+namespace GroupDocs.Viewer.Examples.CSharp;
 
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer;

@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml._index;
+namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml;
 
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer;

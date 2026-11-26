@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.CachingResults._index;
+namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.CachingResults;
 
 using System.Diagnostics;
 using System.IO;

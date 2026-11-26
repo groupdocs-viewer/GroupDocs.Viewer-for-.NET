@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf._index;
+namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf;
 
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer;

@@ -6,13 +6,14 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using GroupDocs.Viewer;
+using GroupDocs.Viewer.Examples.CSharp;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.CachingResults;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.CachingResults.ImplementThreadSafeCacheForGroupdocsViewer;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.CachingResults._index;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.GettingUsedFonts;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadPasswordProtectedDocument;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadingDocumentsFromDifferentSources.LoadDocumentFromLocalDisk;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadingDocumentsFromDifferentSources.LoadingDocumentsFromStream;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadingDocumentsFromDifferentSources.LoadingDocumentsFromStream.LoadDocumentFromUrl;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadingDocumentsFromDifferentSources.LoadingDocumentsFromStream._index;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.LoadingExternalResources;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.SpecifyEncodingWhenLoadingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.LoadingDocuments.SpecifyFileTypeWhenLoadingADocument;
@@ -20,15 +21,17 @@ using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.Logging;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.ProcessingAttachments.HowToConvertAndViewAttachments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.ProcessingAttachments.HowToExtractAndSaveAttachments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.ProcessingAttachments.HowToListAttachments;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.AddTextWatermark;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.CancelRendering;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.FlipOrRotatePages;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.ExcludeFonts;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.MinifyHtml;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.OptimizeHtmlForPrinting;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.RenderWithResponsiveLayout;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml.SetImageSizeLimitsWhenRenderingToHtml;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToHtml._index;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.AdjustJpegImagesQuality;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.OptimizationPdfOptions.OptimizationPdfForWeb;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.OptimizationPdfOptions.OptimizationPdfResources;
@@ -43,18 +46,16 @@ using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.Renderi
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.ProtectPdfDocument;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.ReorderPages;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf.SetImageSizeLimitsWhenRenderingToPdf;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPdf._index;
+using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg.ImageViewerAdjustImageSize;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg.ImageViewerAdjustQualityForJpg;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg.ImageViewerGetTextCoordinates;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg.SetImageSizeLimitsWhenRenderingToPngJpg;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg._index;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.ReplaceMissingFont;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.SaveOutputToStream;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.SetCustomFonts;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.ShowHiddenPages;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.ViewSpecificPages;
-using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments._index;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RetrievingDocumentInformation.GetPdfOutputFileInfo;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RetrievingDocumentInformation.HowToCheckIfFileIsEncrypted;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RetrievingDocumentInformation.HowToDetermineFileType;
@@ -65,7 +66,7 @@ using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.SearchHighlightText;
 using GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.Troubleshooting.HowToMigrateToGroupdocsViewer198OrHigher;
 using GroupDocs.Viewer.Examples.CSharp.GettingStarted.LicensingAndSubscription;
 using GroupDocs.Viewer.Examples.CSharp.ProductOverview;
-using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderArchives._index;
+using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderArchives;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderCadDocuments.RenderCadDocuments;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderCadDocuments.SpecifyRenderingOptions;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderEbooks;
@@ -84,7 +85,6 @@ using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderVisioDocuments;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderWebDocuments;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderWordDocuments;
 using GroupDocs.Viewer.Examples.CSharp.RenderingBasics.RenderXmlDocuments;
-using GroupDocs.Viewer.Examples.CSharp._index;
 
 // Set working directory to the output folder where sample files are copied
 Directory.SetCurrentDirectory(AppContext.BaseDirectory);
@@ -253,13 +253,13 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("ApplyPc3File", "RenderingBasics/RenderCadDocuments/SpecifyRenderingOptions", ApplyPc3File.Run),
     ("SplitDrawingIntoTiles", "RenderingBasics/RenderCadDocuments/SpecifyRenderingOptions", SplitDrawingIntoTiles.Run),
     ("EnablePerformanceMode", "RenderingBasics/RenderCadDocuments/SpecifyRenderingOptions", EnablePerformanceMode.Run),
-    ("LoadArchive", "RenderingBasics/RenderArchives/_index", LoadArchive.Run),
-    ("RenderArchiveToHtml", "RenderingBasics/RenderArchives/_index", RenderArchiveToHtml.Run),
-    ("RenderArchiveToPdf", "RenderingBasics/RenderArchives/_index", RenderArchiveToPdf.Run),
-    ("RenderArchiveToImages", "RenderingBasics/RenderArchives/_index", RenderArchiveToImages.Run),
-    ("RenderArchiveWithOptions", "RenderingBasics/RenderArchives/_index", RenderArchiveWithOptions.Run),
-    ("ExtractFilesFromArchive", "RenderingBasics/RenderArchives/_index", ExtractFilesFromArchive.Run),
-    ("GetArchiveInfo", "RenderingBasics/RenderArchives/_index", GetArchiveInfo.Run),
+    ("LoadArchive", "RenderingBasics/RenderArchives", LoadArchive.Run),
+    ("RenderArchiveToHtml", "RenderingBasics/RenderArchives", RenderArchiveToHtml.Run),
+    ("RenderArchiveToPdf", "RenderingBasics/RenderArchives", RenderArchiveToPdf.Run),
+    ("RenderArchiveToImages", "RenderingBasics/RenderArchives", RenderArchiveToImages.Run),
+    ("RenderArchiveWithOptions", "RenderingBasics/RenderArchives", RenderArchiveWithOptions.Run),
+    ("ExtractFilesFromArchive", "RenderingBasics/RenderArchives", ExtractFilesFromArchive.Run),
+    ("GetArchiveInfo", "RenderingBasics/RenderArchives", GetArchiveInfo.Run),
     ("LoadDocumentFromLocalDisk", "DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadDocumentFromLocalDisk", LoadDocumentFromLocalDisk.Run),
     ("LoadPasswordProtectedDocument", "DeveloperGuide/LoadingDocuments/LoadPasswordProtectedDocument", LoadPasswordProtectedDocument.Run),
     ("SpecifyFileTypeWhenLoading", "DeveloperGuide/LoadingDocuments/SpecifyFileTypeWhenLoadingADocument", SpecifyFileTypeWhenLoading.Run),
@@ -270,7 +270,7 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("GetFileTypeFromExtension", "DeveloperGuide/RetrievingDocumentInformation/HowToDetermineFileType", GetFileTypeFromExtension.Run),
     ("GetFileTypeFromMediaType", "DeveloperGuide/RetrievingDocumentInformation/HowToDetermineFileType", GetFileTypeFromMediaType.Run),
     ("GetFileTypeFromStream", "DeveloperGuide/RetrievingDocumentInformation/HowToDetermineFileType", GetFileTypeFromStream.Run),
-    ("LoadDocumentFromStream", "DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream/_index", LoadDocumentFromStream.Run),
+    ("LoadDocumentFromStream", "DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream", LoadDocumentFromStream.Run),
     ("GetFileTypeAndPagesCount", "DeveloperGuide/RetrievingDocumentInformation/HowToGetFileTypeAndPagesCount", GetFileTypeAndPagesCount.Run),
     ("GetFileTypeAndPagesCountFromStream", "DeveloperGuide/RetrievingDocumentInformation/HowToGetFileTypeAndPagesCount", GetFileTypeAndPagesCountFromStream.Run),
     ("LoadDocumentFromUrl", "DeveloperGuide/LoadingDocuments/LoadingDocumentsFromDifferentSources/LoadingDocumentsFromStream/LoadDocumentFromUrl", LoadDocumentFromUrl.Run),
@@ -280,8 +280,8 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("GetPdfOutputInfo", "DeveloperGuide/RetrievingDocumentInformation/GetPdfOutputFileInfo", GetPdfOutputInfo.Run),
     ("ViewSpecificPages", "DeveloperGuide/RenderingDocuments/ViewSpecificPages", ViewSpecificPages.Run),
     ("ViewPagesFromArray", "DeveloperGuide/RenderingDocuments/ViewSpecificPages", ViewPagesFromArray.Run),
-    ("RenderDocumentToPng", "DeveloperGuide/RenderingDocuments/_index", RenderDocumentToPng.Run),
-    ("RenderSpecificPages", "DeveloperGuide/RenderingDocuments/_index", RenderSpecificPages.Run),
+    ("RenderDocumentToPng", "DeveloperGuide/RenderingDocuments", RenderDocumentToPng.Run),
+    ("RenderSpecificPages", "DeveloperGuide/RenderingDocuments", RenderSpecificPages.Run),
     ("CancelRendering", "DeveloperGuide/RenderingDocuments/CancelRendering", CancelRendering.Run),
     ("ShowHiddenPages", "DeveloperGuide/RenderingDocuments/ShowHiddenPages", ShowHiddenPages.Run),
     ("FlipOrRotatePages", "DeveloperGuide/RenderingDocuments/FlipOrRotatePages", FlipOrRotatePages.Run),
@@ -305,7 +305,7 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("ThreadSafeCacheClass", "DeveloperGuide/CachingResults/ImplementThreadSafeCacheForGroupdocsViewer", ThreadSafeCacheClass.Run),
     ("ThreadSafeCacheKeyLocker", "DeveloperGuide/CachingResults/ImplementThreadSafeCacheForGroupdocsViewer", ThreadSafeCacheKeyLocker.Run),
     ("RemoveFormFields", "DeveloperGuide/RenderingDocuments/RenderingToPdf/OptimizationPdfOptions/OptimizeContent/OptimizationPdfRemoveFields", RemoveFormFields.Run),
-    ("CacheRenderingResults", "DeveloperGuide/CachingResults/_index", CacheRenderingResults.Run),
+    ("CacheRenderingResults", "DeveloperGuide/CachingResults", CacheRenderingResults.Run),
     ("OptimizePdfForWeb", "DeveloperGuide/RenderingDocuments/RenderingToPdf/OptimizationPdfOptions/OptimizationPdfForWeb", OptimizePdfForWeb.Run),
     ("OptimizePdfResources", "DeveloperGuide/RenderingDocuments/RenderingToPdf/OptimizationPdfOptions/OptimizationPdfResources", OptimizePdfResources.Run),
     ("SubsetFonts", "DeveloperGuide/RenderingDocuments/RenderingToPdf/OptimizationPdfOptions/OptimizeFonts/OptimizationPdfSubsetFonts", SubsetFonts.Run),
@@ -318,21 +318,21 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("ExcludeSpecificFonts", "DeveloperGuide/RenderingDocuments/RenderingToHtml/ExcludeFonts", ExcludeSpecificFonts.Run),
     ("MinifyHtml", "DeveloperGuide/RenderingDocuments/RenderingToHtml/MinifyHtml", MinifyHtml.Run),
     ("LimitImageSizeInHtml", "DeveloperGuide/RenderingDocuments/RenderingToHtml/SetImageSizeLimitsWhenRenderingToHtml", LimitImageSizeInHtml.Run),
-    ("RenderToHtmlExternal", "DeveloperGuide/RenderingDocuments/RenderingToHtml/_index", RenderToHtmlExternal.Run),
-    ("RenderToHtmlEmbedded", "DeveloperGuide/RenderingDocuments/RenderingToHtml/_index", RenderToHtmlEmbedded.Run),
-    ("RenderHtmlWithAndWithoutJavascript", "DeveloperGuide/RenderingDocuments/RenderingToHtml/_index", RenderHtmlWithAndWithoutJavascript.Run),
+    ("RenderToHtmlExternal", "DeveloperGuide/RenderingDocuments/RenderingToHtml", RenderToHtmlExternal.Run),
+    ("RenderToHtmlEmbedded", "DeveloperGuide/RenderingDocuments/RenderingToHtml", RenderToHtmlEmbedded.Run),
+    ("RenderHtmlWithAndWithoutJavascript", "DeveloperGuide/RenderingDocuments/RenderingToHtml", RenderHtmlWithAndWithoutJavascript.Run),
     ("AdjustImageSize", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/ImageViewerAdjustImageSize", AdjustImageSize.Run),
     ("AdjustJpgQuality", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/ImageViewerAdjustQualityForJpg", AdjustJpgQuality.Run),
     ("GetTextCoordinates", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/ImageViewerGetTextCoordinates", GetTextCoordinates.Run),
     ("LimitImageSizeInPngAndJpg", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/SetImageSizeLimitsWhenRenderingToPngJpg", LimitImageSizeInPngAndJpg.Run),
-    ("RenderToPngImages", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/_index", RenderToPngImages.Run),
-    ("RenderToJpegImages", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg/_index", RenderToJpegImages.Run),
+    ("RenderToPngImages", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg", RenderToPngImages.Run),
+    ("RenderToJpegImages", "DeveloperGuide/RenderingDocuments/RenderingToPngOrJpeg", RenderToJpegImages.Run),
     ("ReorderPages", "DeveloperGuide/RenderingDocuments/RenderingToPdf/ReorderPages", ReorderPages.Run),
     ("ProtectPdfDocument", "DeveloperGuide/RenderingDocuments/RenderingToPdf/ProtectPdfDocument", ProtectPdfDocument.Run),
     ("AdjustJpegQuality", "DeveloperGuide/RenderingDocuments/RenderingToPdf/AdjustJpegImagesQuality", AdjustJpegQuality.Run),
     ("SetImageSizeLimits", "DeveloperGuide/RenderingDocuments/RenderingToPdf/SetImageSizeLimitsWhenRenderingToPdf", SetImageSizeLimits.Run),
-    ("RenderToPdf", "DeveloperGuide/RenderingDocuments/RenderingToPdf/_index", RenderToPdf.Run),
-    ("RenderDocxToHtml", "_index", RenderDocxToHtml.Run),
+    ("RenderToPdf", "DeveloperGuide/RenderingDocuments/RenderingToPdf", RenderToPdf.Run),
+    ("RenderDocxToHtml", "", RenderDocxToHtml.Run),
     ("QuickExampleHtml", "ProductOverview", QuickExampleHtml.Run),
     ("QuickExampleProtectedPdf", "ProductOverview", QuickExampleProtectedPdf.Run)
 };

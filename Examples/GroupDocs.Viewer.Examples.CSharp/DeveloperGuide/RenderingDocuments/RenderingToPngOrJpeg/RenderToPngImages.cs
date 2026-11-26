@@ -1,4 +1,4 @@
-namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg._index;
+namespace GroupDocs.Viewer.Examples.CSharp.DeveloperGuide.RenderingDocuments.RenderingToPngOrJpeg;
 
 using GroupDocs.Viewer.Options;
 using GroupDocs.Viewer;
