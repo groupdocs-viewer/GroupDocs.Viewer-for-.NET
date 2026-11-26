@@ -1,0 +1,48 @@
+{
+  "spec_version": "1.0",
+  "product": "Viewer",
+  "package_name": "GroupDocs.Viewer",
+  "package_version": "26.10.0",
+  "project_name": "GroupDocs.Viewer.Examples",
+  "root_namespace": "GroupDocs.Viewer.Examples",
+  "docs_repo": "GroupDocs.Viewer-Docs",
+  "docs_platform": "net",
+  "runners": [
+    {
+      "role": "Framework",
+      "tfm": "net462",
+      "runs_on": "windows-latest"
+    },
+    {
+      "role": "Net",
+      "tfm": "net10.0",
+      "runs_on": "ubuntu-latest"
+    },
+    {
+      "role": "NetWindows",
+      "tfm": "net10.0-windows7.0",
+      "runs_on": "windows-latest"
+    }
+  ],
+  "shipped_tfms": [
+    "net462",
+    "net6.0",
+    "net6.0-windows7.0",
+    "net8.0",
+    "net8.0-windows7.0",
+    "net10.0",
+    "net10.0-windows7.0"
+  ],
+  "docs_skip_files": [
+    "technical-support.md",
+    "quick-start-guide.md"
+  ],
+  "docs_skip_directories": [
+    ".git",
+    "_includes",
+    "_output_files",
+    "_sample_files",
+    "sample-files",
+    "tools"
+  ]
+}

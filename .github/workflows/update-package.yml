@@ -1,0 +1,68 @@
+name: Update Package Version
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-package:
+    name: Check for GroupDocs.Viewer updates
+    runs-on: ubuntu-latest
+    env:
+      PKG_LIST: "GroupDocs.Viewer|Examples/GroupDocs.Viewer.Examples.CSharp.Framework/GroupDocs.Viewer.Examples.CSharp.Framework.csproj GroupDocs.Viewer|Examples/GroupDocs.Viewer.Examples.CSharp.Net/GroupDocs.Viewer.Examples.CSharp.Net.csproj GroupDocs.Viewer|Examples/GroupDocs.Viewer.Examples.CSharp.NetWindows/GroupDocs.Viewer.Examples.CSharp.NetWindows.csproj"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for updates and bump versions
+        id: versions
+        run: |
+          NEEDS=false
+          NOTES=""
+          for entry in $PKG_LIST; do
+            PKG=$(echo "$entry" | cut -d'|' -f1)
+            PROJ=$(echo "$entry" | cut -d'|' -f2)
+
+            CURRENT=$(grep -oP 'Include="'"$PKG"'" Version="\K[^"]+' "$PROJ" || true)
+            if [ -z "$CURRENT" ]; then
+              echo "::error::$PKG not found in $PROJ"
+              exit 1
+            fi
+
+            SLUG=$(echo "$PKG" | tr '[:upper:]' '[:lower:]')
+            LATEST=$(curl -sf "https://api.nuget.org/v3-flatcontainer/$SLUG/index.json" \
+              | jq -r '[.versions[] | select(test("[-]") | not)][-1]')
+            if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
+              echo "::error::Could not determine latest version for $PKG"
+              exit 1
+            fi
+
+            echo "$PKG: $CURRENT -> $LATEST"
+            if [ "$CURRENT" != "$LATEST" ]; then
+              NEEDS=true
+              # An id present in both projects is visited twice; note it once.
+              case "$NOTES" in
+                *"$PKG $LATEST"*) ;;
+                *) NOTES="$NOTES $PKG $LATEST," ;;
+              esac
+              # Anchored on Include="<id>" Version=" so an id that is a prefix of
+              # another (GroupDocs.Total vs GroupDocs.Total.NETFramework) cannot
+              # cross-match.
+              sed -i 's|Include="'"$PKG"'" Version="'"$CURRENT"'"|Include="'"$PKG"'" Version="'"$LATEST"'"|g' "$PROJ"
+              echo "Updated $PROJ"
+            fi
+          done
+          echo "needs_update=$NEEDS" >> "$GITHUB_OUTPUT"
+          echo "notes=$(echo "$NOTES" | sed 's/,$//;s/^ //')" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.versions.outputs.needs_update == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find Examples -name '*.csproj' -print0 | xargs -0 git add
+          git commit -m "Update ${{ steps.versions.outputs.notes }}"
+          git push

@@ -1,0 +1,37 @@
+name: Conformance
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  gdx-lint:
+    name: gdx-lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out the docs repo (for the tab-id and manifest join)
+        uses: actions/checkout@v4
+        with:
+          repository: groupdocs-viewer/GroupDocs.Viewer-Docs
+          path: .docs
+
+      - name: Check out the spec
+        uses: actions/checkout@v4
+        with:
+          repository: groupdocs/groupdocs-public-code-examples-structure
+          path: .spec
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Lint
+        run: |
+          PYTHONPATH=.spec/tools/gdx-lint python -m gdxlint . \
+            --docs .docs/net --format github

@@ -1,86 +1,76 @@
-# Document Viewer .NET API
+# GroupDocs.Viewer for .NET - Code Examples
 
-This powerful .NET document processing API supports rendering of [170+ format formats](https://docs.groupdocs.com/viewer/net/supported-document-formats/) to HTML5, image, and PDF formats, with more than 130 formats supported for auto-detection.
+[![banner](https://raw.githubusercontent.com/groupdocs/groupdocs.github.io/master/img/banners/groupdocs-viewer-net-banner.png)](https://releases.groupdocs.com/viewer/net/)
 
-<p align="center">
-  <a title="Download complete GroupDocs.Viewer for .NET source code" href="https://github.com/groupdocsviewer/GroupDocs_Viewer_NET/archive/master.zip">
-	<img src="https://raw.github.com/AsposeExamples/java-examples-dashboard/master/images/downloadZip-Button-Large.png" />
-  </a>
-</p>
+[Product Page](https://products.groupdocs.com/viewer/net/) | [Docs](https://docs.groupdocs.com/viewer/net/) | [Demos](https://products.groupdocs.app/viewer/family) | [API Reference](https://reference.groupdocs.com/viewer/net/) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Search](https://search.groupdocs.com/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
 
-Directory | Description
---------- | -----------
-[Demos](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Demos)  | Contains demo projects that demonstrate product features.
-[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Examples)  | C# examples and sample files that will help you learn how to use product features.
-[Plugins](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET/tree/master/Plugins)  | Contains Visual Studio plugins related to GroupDocs.Viewer.
+[GroupDocs.Viewer for .NET](https://products.groupdocs.com/viewer/net/) is a document viewer API that renders 170+ formats -- Word, Excel, PowerPoint, PDF, CAD, e-mail, archives and more -- to HTML, PDF, PNG and JPG.
 
 ## Features
 
-- Viewing documents by rendering as HTML5, images, or PDF.
-- Rendering documents as self-contained HTML pages with embedded resources.
-- Rendering files in lossless PNG format or lossy JPG compressed format.
-- Rotating or reordering pages when rendering.
-- Getting information about document and rendering results, such as file type and number of pages on the output.
-- Getting a list of folders in an archive.
-- Getting a list of layers and layouts in a CAD drawing.
-- Getting a list of folders in an Outlook data file.
-- Getting information about the limitations of PDF documents.
-- Getting project start and end dates from an MS Project file.
-- Minifying HTML and CSS.
-- Rendering to responsive HTML.
-- Adding text watermarks on output pages.
-- Rendering documents with comments and notes.
-- Rendering documents using custom fonts.
-- Replacing missing fonts when rendering.
+- **Wide Format Support**: View 170+ document formats without third-party software.
+- **Multiple Outputs**: Render to HTML (embedded or external resources), PDF, PNG and JPG.
+- **Document Information**: Read page count, sizes and format-specific details before rendering.
+- **Rendering Options**: Watermarks, page ranges, rotation, password-protected documents.
 
-## Supported formats
+## Supported File Formats
 
-**Microsoft Word®:** DOC, DOCM, DOCX, DOT, DOTM, DOTX\
-**Microsoft Excel®:** XLS, XLSB, XLSM, XLSX, XLT, XLTX, XLAM\
-**Microsoft PowerPoint®:** PPT, PPTX, PPTM, PPS, PPSX, PPSM, POT, POTM, POTX\
-**Microsoft Visio®:** VDW, VDX, VSD, VSDM, VSDX, VSS, VSSM, VSSX, VST, VSTM, VSTX, VSX, VTX\
-**Microsoft Project®:** MPP, MPT, MPX\
-**Microsoft OneNote®:** ONE\
-**OpenOffice®:** ODG, OTG, OXPS, ODP, OTP, ODS, OTS, ODT, OTT, OXPS\
-**AutoCAD®:** DGN, DWF, DWT, DWG, DXF\
-**CorelDraw®:** CDR\
-**Adobe Photoshop®:** PSD, PSB\
-**IBM Notes:** NSF\
-**Source code:** CS, VB, AS, AS3, and other\
-**Image:** GIF, ICO, JP2, JPF, JPX, JPM, J2C, J2K, JPC, JPG, JPEG, SVG, TIF, TIFF\
-**Markup:** HTML, MHT, MHTML, MD\
-**Portable:** PDF\
-**Archive:** TAR, ZIP, BZ2, RAR, GZ\
-**Email:** EML, EMLX, MSG, OST, PST\
-**Metafile:** CGM, EMF, WMF, WMZ, EMZ, CMX\
-**Other:** IFC, STL, PS, XPS, TEX, SXC, DJVU, DNG, DIB, EPS
+GroupDocs.Viewer for .NET supports a wide range of file formats, including Word, Excel, PowerPoint, PDF, OpenDocument, Image, Email, and many others. See the [full list of supported formats](https://docs.groupdocs.com/viewer/net/supported-document-formats/) for details.
 
-## Platform independence
+## Get Started
 
-GroupDocs.Viewer for .NET does not require any external software or third-party tools and supports any 32-bit or 64-bit operating system with .NET Framework, .NET Core, or .NET installed. The supported operating systems and platforms are listed below:
+1. **Set Up Environment**: Ensure that [.NET 10.0+](https://dotnet.microsoft.com/download) is installed on your system.
 
-**Windows:** Microsoft Windows Server 2003 and later, Microsoft Windows XP, Vista, 7, 8, 8.1, 10, 11\
-**Mac:** Mac OS X\
-**Linux:** Linux (Ubuntu, OpenSUSE, CentOS and others)\
-**Development Environments:** Microsoft Visual Studio, Microsoft Visual Studio for Mac, Rider from JetBrains\
-**Supported Frameworks:** .NET Framework, .NET Core, and .NET
+2. **Get the Code**: Clone or download this repository.
 
-## Get started
+   ```bash
+   git clone git@github.com:groupdocs-viewer/GroupDocs.Viewer-for-.NET.git
+   ```
 
-To fetch and reference the `GroupDocs.Viewer` assembly in your project, execute `Install-Package GroupDocs.Viewer` from the Package Manager Console in Visual Studio. To update the GroupDocs.Viewer for .NET, please execute `Update-Package GroupDocs.Viewer` to get the latest version.
+3. **Navigate to the Repository Root**
 
-Please check the [GitHub Repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) for other common usage scenarios.
+   ```bash
+   cd ./GroupDocs.Viewer-for-.NET
+   ```
 
-## C# code to render XLSX file to HTML
+4. **Restore Packages**: To restore NuGet packages, run:
 
-```csharp
-using (Viewer viewer = new Viewer("invoice.xlsx"))
-{
-   HtmlViewOptions options = 
-       HtmlViewOptions.ForEmbeddedResources();
+   ```bash
+   dotnet restore
+   ```
 
-   viewer.View(options);
-}
-```
+   Alternatively, you can download the package from the official [GroupDocs Releases](https://releases.groupdocs.com/viewer/net/#direct-download) website.
 
-[Product Page](https://products.groupdocs.com/viewer/net/) | [Docs](https://docs.groupdocs.com/viewer/net/) | [Demos](https://products.groupdocs.app/viewer/family) | [API Reference](https://reference.groupdocs.com/viewer/net/) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Search](https://search.groupdocs.com/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license/)
+5. **Configure License (Optional)**: If you have a license file, set the `GROUPDOCS_LIC_PATH` environment variable to its path, or drop a `*.lic` file next to the executable. By default, GroupDocs.Viewer for .NET runs in evaluation mode. You can also [get a temporary license](https://purchase.groupdocs.com/temporary-license) to test all the features.
+
+6. **Run the Examples**: All example code lives in one shared project. Each runner below is a thin executable that pins one target framework:
+
+   **.NET Framework — `net462`:**
+   ```bash
+   dotnet run --project Examples/GroupDocs.Viewer.Examples.CSharp.Framework/GroupDocs.Viewer.Examples.CSharp.Framework.csproj
+   ```
+
+   **.NET (cross-platform) — `net10.0`:**
+   ```bash
+   dotnet run --project Examples/GroupDocs.Viewer.Examples.CSharp.Net/GroupDocs.Viewer.Examples.CSharp.Net.csproj
+   ```
+
+   **.NET (Windows-specific) — `net10.0-windows7.0`:**
+   ```bash
+   dotnet run --project Examples/GroupDocs.Viewer.Examples.CSharp.NetWindows/GroupDocs.Viewer.Examples.CSharp.NetWindows.csproj
+   ```
+
+   Pass `--list` to print all available example names, or `--example <Name>` to run a single example silently.
+
+## More Resources
+
+Find additional details and examples in the [GroupDocs.Viewer for .NET documentation](https://docs.groupdocs.com/viewer/net/).
+
+We also offer **GroupDocs.Viewer** packages for other platforms:
+* [**GroupDocs.Viewer for Java**](https://products.groupdocs.com/viewer/java/)
+* [**GroupDocs.Viewer for Python via .NET**](https://products.groupdocs.com/viewer/python-net/)
+* [**GroupDocs.Viewer for Node.js via Java**](https://products.groupdocs.com/viewer/nodejs-java/)
+
+---
+
+[Product Page](https://products.groupdocs.com/viewer/net/) | [Docs](https://docs.groupdocs.com/viewer/net/) | [Demos](https://products.groupdocs.app/viewer/family) | [API Reference](https://reference.groupdocs.com/viewer/net/) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Search](https://search.groupdocs.com/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)

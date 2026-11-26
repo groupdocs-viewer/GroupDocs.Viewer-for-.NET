@@ -1,0 +1,14 @@
+* text=auto eol=lf
+*.sln text eol=crlf
+*.csproj text eol=lf
+*.props text eol=lf
+*.targets text eol=lf
+*.cs text eol=lf
+
+*.docx binary
+*.pdf binary
+*.xlsx binary
+*.pptx binary
+*.png binary
+*.jpg binary
+*.zip binary
