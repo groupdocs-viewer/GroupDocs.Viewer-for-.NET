@@ -1,0 +1,25 @@
+SKU;Product;Category;Unit;Price;Supplier
+HLP-CF-101;Harbor Blend whole bean coffee;Coffee;1 kg bag;26.68;Northwind Coffee Roasters
+HLP-CF-102;Dockside Decaf whole bean coffee;Coffee;1 kg bag;27.70;Northwind Coffee Roasters
+HLP-CF-103;Lighthouse Espresso beans;Coffee;1 kg bag;31.54;Northwind Coffee Roasters
+HLP-CF-104;Cold brew concentrate;Coffee;1 L bottle;13.92;Northwind Coffee Roasters
+HLP-CF-105;Autumn Harvest spiced roast;Coffee;500 g bag;16.24;Northwind Coffee Roasters
+HLP-OL-201;Cold-pressed olive oil;Oils & Vinegars;750 ml tin;18.70;Grove & Press
+HLP-OL-202;Pumpkin seed oil;Oils & Vinegars;250 ml bottle;12.69;Grove & Press
+HLP-OL-203;Apple cider vinegar;Oils & Vinegars;500 ml bottle;6.24;Orchard Row
+HLP-OL-204;Aged balsamic vinegar;Oils & Vinegars;250 ml bottle;21.17;Grove & Press
+HLP-HN-301;Chestnut honey;Honey & Preserves;350 g jar;11.31;Hillside Apiaries
+HLP-HN-302;Wildflower honey;Honey & Preserves;500 g jar;11.89;Hillside Apiaries
+HLP-HN-303;Cranberry relish;Honey & Preserves;300 g jar;7.18;Orchard Row
+HLP-HN-304;Fig and walnut preserve;Honey & Preserves;300 g jar;7.83;Orchard Row
+HLP-HN-305;Autumn Harvest apple butter;Honey & Preserves;300 g jar;6.67;Orchard Row
+HLP-GR-401;Maple pecan granola;Grains & Cereals;750 g bag;9.14;Mill Creek Farms
+HLP-GR-402;Stone-ground oats;Grains & Cereals;1 kg bag;4.50;Mill Creek Farms
+HLP-GR-403;Heritage spelt flour;Grains & Cereals;1 kg bag;5.58;Mill Creek Farms
+HLP-GR-404;Wild rice blend;Grains & Cereals;500 g bag;6.38;Mill Creek Farms
+HLP-GR-405;Autumn Harvest muesli;Grains & Cereals;750 g bag;8.56;Mill Creek Farms
+HLP-SP-501;Smoked sea salt;Spices & Salts;250 g jar;5.73;Saltmarsh Co.
+HLP-SP-502;Pink peppercorns;Spices & Salts;100 g jar;7.61;Spice Quay
+HLP-SP-503;Mulling spice blend;Spices & Salts;80 g tin;5.94;Spice Quay
+HLP-SP-504;Smoked paprika;Spices & Salts;100 g tin;5.22;Spice Quay
+HLP-SP-505;Saffron threads;Spices & Salts;1 g vial;9.86;Spice Quay

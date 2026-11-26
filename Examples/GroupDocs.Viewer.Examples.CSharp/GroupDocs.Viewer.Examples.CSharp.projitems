@@ -1,318 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>52fcb48e-82a0-4201-aca1-e9b6047e2047</SharedGUID>
+    <SharedGUID>{E6517F6A-8D48-5FDF-BECA-644A6D04845F}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>GroupDocs.Viewer.Examples.CSharp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Caching\UseCacheWhenProcessingDocuments.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadDocumentsWithEncoding.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromFtp.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromLocalDisk.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromStream.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadingDocumentsFromDifferentSources\LoadDocumentFromUrl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\LoadPasswordProtectedDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SetResourceLoadingTimeout.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Loading\SpecifyFileTypeWhenLoadingDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\AddWatermark.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\CancelRenderWithCancellationToken.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderDocumentWithComments.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderDocumentWithNotes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderHiddenPages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderNConsecutivePages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderSelectedPages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\RenderWithCustomFonts.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\ReorderPages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\ReplaceMissingFont.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\FlipRotatePages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\CommonRenderingOptions\SetImageSizeLimits.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\GetViewInfoForArchiveFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderingArchivesToHtml.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderingRar.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\SpecifyFilenameWhenRenderingArchiveFiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingArchiveFiles\RenderArchiveFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\AdjustOutputImageSize.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\GetViewInfoForCadDrawing.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderAllLayouts.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingCf2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingHpg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingIgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingObj.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingPc3Files.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderingPlt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderLayers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\RenderSingleLayout.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\SetImageBackgroundColor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingCadDrawings\SplitDrawingIntoTiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\DateTimeFormatAndTimeZoneOffset.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\AdjustPageSize.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingEMailMessages\RenameEmailFields.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingAi.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingApng.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCmx.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingCdr.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingEmzAndEmf.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingTga.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingWmzAndWmf.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingSvgAndSvgz.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingImageFiles\RenderingFodgAndOdg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingMsProjectDocuments\AdjustTimeUnit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingMsProjectDocuments\GetViewInfoForProjectDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingMsProjectDocuments\RenderingNotes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingMsProjectDocuments\RenderProjectTimeInterval.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingOutlookDataFiles\FilterMessages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingOutlookDataFiles\GetViewInfoForOutlookDataFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingOutlookDataFiles\LimitCountOfItemsToRender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingOutlookDataFiles\RenderingPstAndOst.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingOutlookDataFiles\RenderOutlookDataFileFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\DisableTextSelection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\AdjustImageQuality.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\DisableCharactersGrouping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\EnableFontHinting.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\DisableFontLicenseVerifications.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\RenderOriginalPageSize.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\EnableLayeredRendering.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPdfDocuments\GetViewInfoForPdfDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingPresentationDocuments\RenderingFodp.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\GetWorksheetsNames.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\AdjustTextOverflowInCells.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderGridLines.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderHiddenRowsAndColumns.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderingNumbers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderingXmlSpreadSheetML.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderingByPageBreaks.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderPrintAreas.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\RenderRowAndColumnHeadings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\SkipRenderingOfEmptyColumns.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\SkipRenderingOfEmptyRows.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingSpreadsheets\SplitWorksheetsIntoPages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingTextFiles\RenderingTxt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingVisioDocuments\RenderingVisioFigures.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWebDocuments\RenderingHtmlWithUserDefinedMargins.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWebDocuments\RenderingChmFiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdvancedUsage\Rendering\RenderingOptionsByDocumentType\RenderingWordProcessingDocuments\RenderTrackedChanges.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\CheckFileIsEncrypted.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\GetPdfStream.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HowTo\HowToDetermineFileType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HowTo\HowToLogging.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestFiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetSupportedFileFormats.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\GetViewInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\ProcessingAttachments\RenderDocumentAttachments.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\ProcessingAttachments\RetrieveAndPrintDocumentAttachments.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\ProcessingAttachments\RetrieveAndSaveDocumentAttachments.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToHtml\ExcludingFontsFromOutputHtml.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToHtml\MinifyHtmlDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToHtml\RenderDocumentToHtmlWithEmbeddedResources.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToHtml\RenderDocumentToHtmlWithExternalResources.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToHtml\RenderToResponsiveHtml.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\AdjustImageSize.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\AdjustQualityWhenRenderingToJpg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\GetTextCoordinates.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\RenderForDisplayWithText.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\RenderToJpg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToImage\RenderToPng.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\AdjustQualityOfJpgImages.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\ProtectPdfDocument.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BasicUsage\RenderDocumentToPdf\RenderToPdf.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)QuickStart\HelloWorld.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)QuickStart\SetLicenseFromFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)QuickStart\SetLicenseFromStream.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)QuickStart\SetMeteredLicense.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils.cs" />
+    <!-- One glob. Never enumerate files here: a hand-maintained list rots and
+         silently drops examples from the build. [GDX401, GDX402] -->
+    <Compile Include="$(MSBuildThisFileDirectory)**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\Fonts\terminal-grotesque_open.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\excel-2003-xml.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.tga">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample2.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\shift_jis_encoded.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\encrypted.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\four-pages.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\hieroglyphs.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\hieroglyphs_1.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\one-page-text.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\page-breaks.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\password_protected.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\resume.oxps">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.ai">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.apng">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cdr">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cf2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.chm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.cmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.eml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.emz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.fodg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.fodp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.hpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.igs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.mpp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.msg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.numbers">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.ost">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.plt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.pst">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.svgz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.vssx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.wmz">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\sample.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\small_page.pc3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\three_sheets.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\two-pages.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_attachments.msg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_comment.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_empty_column.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_empty_row.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_external_image.doc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_folders.rar">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_folders.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_four_print_areas.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_hidden_page.pptx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_hidden_row_and_column.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_jpg_image.pptx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_layers_and_layouts.dwg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_missing_font.odg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_missing_font.pptx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_notes.pptx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_overflowing_text.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_subfolders.ost">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\SampleFiles\with_tracked_changes.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LoadDocumentFromAmazonS3.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LoadDocumentFromAzureBlob.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LoadDocumentFromFtp.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\UseCustomCache.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LoadXmlWithEncoding.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\MigrateOldApi.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\RenderWithThreadSafeCache.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\AspnetCoreProgram.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\AspnetCoreLicense.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\AspnetCoreAuthorization.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\AspnetCoreUiOptions.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\HtmlImageSizeProperties.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\PdfImageSizeProperties.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\ImageSizeProperties.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveToHtml.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveItemsPerPage.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveSingleHtml.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveToPdf.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveToPng.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveToJpeg.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveFoldersInfo.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveSpecificFolder.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)**\LegacyArchiveFileName.cs" />
   </ItemGroup>
 </Project>

@@ -1,15 +1,14 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33403.182
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.Framework", "GroupDocs.Viewer.Examples.CSharp.Framework\GroupDocs.Viewer.Examples.CSharp.Framework.csproj", "{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Framework", "GroupDocs.Viewer.Examples.CSharp.Framework\GroupDocs.Viewer.Examples.CSharp.Framework.csproj", "{BB7FFC12-A364-555F-A646-F888527AE5F9}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GroupDocs.Viewer.Examples.CSharp", "GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.shproj", "{52FCB48E-82A0-4201-ACA1-E9B6047E2047}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Net", "GroupDocs.Viewer.Examples.CSharp.Net\GroupDocs.Viewer.Examples.CSharp.Net.csproj", "{7B0B9776-7BC3-5272-89CB-0612E9A58D05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.Net", "GroupDocs.Viewer.Examples.CSharp.Net\GroupDocs.Viewer.Examples.CSharp.Net.csproj", "{05D02F42-2B6D-4445-901B-730B644D0506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Viewer.Examples.CSharp.NetWindows", "GroupDocs.Viewer.Examples.CSharp.NetWindows\GroupDocs.Viewer.Examples.CSharp.NetWindows.csproj", "{4064FFDB-EB0B-5BE0-8995-D005F52B34C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Viewer.Examples.CSharp.NetWindows", "GroupDocs.Viewer.Examples.CSharp.NetWindows\GroupDocs.Viewer.Examples.CSharp.NetWindows.csproj", "{83AD6213-3A11-1EC4-E560-306993DFCA38}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GroupDocs.Viewer.Examples.CSharp", "GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.shproj", "{E6517F6A-8D48-5FDF-BECA-644A6D04845F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,29 +16,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE0B7FB6-3D10-4952-9178-EC52E591B3D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05D02F42-2B6D-4445-901B-730B644D0506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05D02F42-2B6D-4445-901B-730B644D0506}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05D02F42-2B6D-4445-901B-730B644D0506}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05D02F42-2B6D-4445-901B-730B644D0506}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83AD6213-3A11-1EC4-E560-306993DFCA38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83AD6213-3A11-1EC4-E560-306993DFCA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83AD6213-3A11-1EC4-E560-306993DFCA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83AD6213-3A11-1EC4-E560-306993DFCA38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB7FFC12-A364-555F-A646-F888527AE5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7FFC12-A364-555F-A646-F888527AE5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7FFC12-A364-555F-A646-F888527AE5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7FFC12-A364-555F-A646-F888527AE5F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0B9776-7BC3-5272-89CB-0612E9A58D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0B9776-7BC3-5272-89CB-0612E9A58D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0B9776-7BC3-5272-89CB-0612E9A58D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0B9776-7BC3-5272-89CB-0612E9A58D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4064FFDB-EB0B-5BE0-8995-D005F52B34C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4064FFDB-EB0B-5BE0-8995-D005F52B34C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4064FFDB-EB0B-5BE0-8995-D005F52B34C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4064FFDB-EB0B-5BE0-8995-D005F52B34C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2D7B8C4A-482F-41A3-BA12-EB4AB29DAC8E}
-	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{05d02f42-2b6d-4445-901b-730b644d0506}*SharedItemsImports = 5
-		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{52fcb48e-82a0-4201-aca1-e9b6047e2047}*SharedItemsImports = 13
-		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{83ad6213-3a11-1ec4-e560-306993dfca38}*SharedItemsImports = 5
-		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{fe0b7fb6-3d10-4952-9178-ec52e591b3d2}*SharedItemsImports = 4
+		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{e6517f6a-8d48-5fdf-beca-644a6d04845f}*SharedItemsImports = 13
+		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{bb7ffc12-a364-555f-a646-f888527ae5f9}*SharedItemsImports = 5
+		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{7b0b9776-7bc3-5272-89cb-0612e9a58d05}*SharedItemsImports = 5
+		GroupDocs.Viewer.Examples.CSharp\GroupDocs.Viewer.Examples.CSharp.projitems*{4064ffdb-eb0b-5be0-8995-d005f52b34c8}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
