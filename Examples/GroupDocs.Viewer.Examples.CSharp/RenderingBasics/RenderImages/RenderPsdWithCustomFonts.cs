@@ -26,5 +26,8 @@ public static class RenderPsdWithCustomFonts
             viewOptions.DefaultFontName = "Arial";
             viewer.View(viewOptions);
         }
+
+        // Reset font sources to default ones after rendering is complete.
+        FontSettings.ResetFontSources();
     }
 }

@@ -142,7 +142,6 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("RenderPdfImagesInSvg", "RenderingBasics/RenderPdfDocuments", RenderPdfImagesInSvg.Run),
     ("RenderPdfDisableCopyProtection", "RenderingBasics/RenderPdfDocuments", RenderPdfDisableCopyProtection.Run),
     ("RepairCorruptedPdf", "RenderingBasics/RenderPdfDocuments", RepairCorruptedPdf.Run),
-    ("RenderOfdDocument", "RenderingBasics/RenderPdfDocuments", RenderOfdDocument.Run),
     ("RenderPdfPopupAnnotations", "RenderingBasics/RenderPdfDocuments", RenderPdfPopupAnnotations.Run),
     ("RenderWorksheetOnOnePage", "RenderingBasics/RenderSpreadsheets/SplitWorksheetIntoPages", RenderWorksheetOnOnePage.Run),
     ("SplitWorksheetByPageBreaks", "RenderingBasics/RenderSpreadsheets/SplitWorksheetIntoPages", SplitWorksheetByPageBreaks.Run),
@@ -214,7 +213,6 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("RenderImageToPdf", "RenderingBasics/RenderImages", RenderImageToPdf.Run),
     ("RenderImageToPng", "RenderingBasics/RenderImages", RenderImageToPng.Run),
     ("RenderImageToJpg", "RenderingBasics/RenderImages", RenderImageToJpg.Run),
-    ("RenderPsdWithCustomFonts", "RenderingBasics/RenderImages", RenderPsdWithCustomFonts.Run),
     ("RenderEmailToHtml", "RenderingBasics/RenderEmailMessages", RenderEmailToHtml.Run),
     ("RenderEmailToHtmlExternal", "RenderingBasics/RenderEmailMessages", RenderEmailToHtmlExternal.Run),
     ("RenderEmailToPdf", "RenderingBasics/RenderEmailMessages", RenderEmailToPdf.Run),
@@ -223,7 +221,6 @@ var examples = new (string Name, string Dir, Action Run)[]
     ("RenderEmailWithPageSize", "RenderingBasics/RenderEmailMessages", RenderEmailWithPageSize.Run),
     ("RenderEmailWithRenamedFields", "RenderingBasics/RenderEmailMessages", RenderEmailWithRenamedFields.Run),
     ("RenderEmailWithDatetimeFormat", "RenderingBasics/RenderEmailMessages", RenderEmailWithDatetimeFormat.Run),
-    ("GetEmailInfo", "RenderingBasics/RenderEmailMessages", GetEmailInfo.Run),
     ("RenderOutlookToHtml", "RenderingBasics/RenderOutlookDataFiles", RenderOutlookToHtml.Run),
     ("RenderOutlookToPdf", "RenderingBasics/RenderOutlookDataFiles", RenderOutlookToPdf.Run),
     ("RenderOutlookToPng", "RenderingBasics/RenderOutlookDataFiles", RenderOutlookToPng.Run),
@@ -354,7 +351,10 @@ void EnterExampleDir(string dir)
     Directory.SetCurrentDirectory(path);
 }
 
+// Skipped: RenderOfdDocument (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderPdfDocuments/RenderOfdDocument.cs)
 // Skipped: LoadXmlWithEncoding (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderXmlDocuments/LoadXmlWithEncoding.cs)
+// Skipped: RenderPsdWithCustomFonts (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderImages/RenderPsdWithCustomFonts.cs)
+// Skipped: GetEmailInfo (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderEmailMessages/GetEmailInfo.cs)
 // Skipped: LegacyArchiveToHtml (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderArchives/OldArchiveRendering/LegacyArchiveToHtml.cs)
 // Skipped: LegacyArchiveItemsPerPage (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderArchives/OldArchiveRendering/LegacyArchiveItemsPerPage.cs)
 // Skipped: LegacyArchiveSingleHtml (non-runnable reference, see GroupDocs.Viewer.Examples.CSharp/RenderingBasics/RenderArchives/OldArchiveRendering/LegacyArchiveSingleHtml.cs)
